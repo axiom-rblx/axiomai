@@ -403,7 +403,7 @@
 /* Requests go through a Cloudflare Worker proxy instead of hitting Groq
    directly, so no API key ever ships in this file or your page source.
    Set this to your deployed worker's URL (see worker.js setup comments). */
-const PROXY_URL = "https://axiom-proxy.YOUR-SUBDOMAIN.workers.dev";
+const PROXY_URL = "https://axiom-proxy.itsizzydudee.workers.dev";
 
 const store = {
   get(k, fallback){ try{ const v = localStorage.getItem(k); return v===null?fallback:JSON.parse(v); }catch(e){return fallback;} },
