@@ -278,6 +278,13 @@
   .sheet .sub{color:var(--ink-soft);font-size:13px;margin-bottom:18px}
   .sheetRow{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--card-border)}
   .sheetRow:last-of-type{border-bottom:none}
+  .sheetTabs{display:flex;gap:6px;margin-bottom:18px;border-bottom:1px solid var(--card-border);padding-bottom:2px}
+  .sheetTab{padding:8px 4px;font-size:13.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;border-bottom:2px solid transparent;margin-right:16px}
+  .sheetTab.active{color:var(--blue);border-bottom-color:var(--blue)}
+  .colorRow{display:flex;gap:8px;flex-wrap:wrap}
+  .colorDot{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform .1s ease}
+  .colorDot:hover{transform:scale(1.1)}
+  .colorDot.active{border-color:var(--ink)}
   .segmented{display:flex;border:1px solid var(--card-border);border-radius:12px;overflow:hidden}
   .segmented div{padding:7px 14px;font-size:13px;cursor:pointer;color:var(--ink-soft);transition:background .15s ease}
   .segmented div.active{background:linear-gradient(135deg,var(--blue),var(--blue-soft));color:#fff}
@@ -338,6 +345,9 @@
     <div class="navLabel">Assistants</div>
     <div id="navList"></div>
 
+    <div class="navLabel">Community</div>
+    <div class="navItem" id="devhubNav"><b>DevHub</b><span>Chat with other devs</span></div>
+
     <div class="sideSpacer"></div>
 
     <div class="sideFooter">
@@ -358,37 +368,79 @@
       </div>
     </div>
 
-    <div class="chatArea" id="chatArea">
-      <div class="chatInner" id="log"></div>
+    <div id="chatView">
+      <div class="chatArea" id="chatArea">
+        <div class="chatInner" id="log"></div>
+      </div>
+
+      <div class="composer">
+        <div class="composerInner">
+          <div class="imgChips hidden" id="imgChips"></div>
+          <form id="form">
+            <div class="composerBox">
+              <button type="button" class="attachBtn" id="attachBtn" title="Attach image">&#128206;</button>
+              <input type="file" id="fileInput" accept="image/*" multiple class="hidden">
+              <textarea id="input" placeholder="Ask for a script, GUI, or system for your Roblox game..." rows="1"></textarea>
+              <button class="send" id="send" type="submit">&#8593;</button>
+            </div>
+          </form>
+        </div>
+        <div class="hint" id="composerHint">Axiom only helps with Roblox development — scripts, UI, and game systems.</div>
+      </div>
     </div>
 
-    <div class="composer">
-      <div class="composerInner">
-        <div class="imgChips hidden" id="imgChips"></div>
-        <form id="form">
-          <div class="composerBox">
-            <button type="button" class="attachBtn" id="attachBtn" title="Attach image">&#128206;</button>
-            <input type="file" id="fileInput" accept="image/*" multiple class="hidden">
-            <textarea id="input" placeholder="Ask for a script, GUI, or system for your Roblox game..." rows="1"></textarea>
-            <button class="send" id="send" type="submit">&#8593;</button>
-          </div>
-        </form>
+    <div id="devhubView" class="hidden">
+      <div class="chatArea" id="devhubArea">
+        <div class="chatInner" id="devhubLog"></div>
       </div>
-      <div class="hint" id="composerHint">Axiom only helps with Roblox development — scripts, UI, and game systems.</div>
+      <div class="composer">
+        <div class="composerInner">
+          <form id="devhubForm">
+            <div class="composerBox">
+              <textarea id="devhubInput" placeholder="Say something to other Axiom devs..." rows="1"></textarea>
+              <button class="send" id="devhubSend" type="submit">&#8593;</button>
+            </div>
+          </form>
+        </div>
+        <div class="hint">Public chat — visible to everyone using this site. Set your display name in Settings → Profile.</div>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="overlay" id="settingsOverlay">
   <div class="sheet glass">
-    <h3>Settings</h3>
-    <div class="sub">Signed in as <b id="settingsUser"></b></div>
+    <div class="sheetTabs" id="sheetTabs">
+      <div class="sheetTab active" data-tab="settings">Settings</div>
+      <div class="sheetTab" data-tab="profile">Profile</div>
+    </div>
 
-    <div class="sheetRow">
-      <span>Appearance</span>
-      <div class="segmented" id="themeSeg">
-        <div data-v="light">Light</div>
-        <div data-v="dark">Dark</div>
+    <div id="tabSettings">
+      <div class="sheetRow">
+        <span>Appearance</span>
+        <div class="segmented" id="themeSeg">
+          <div data-v="light">Light</div>
+          <div data-v="dark">Dark</div>
+        </div>
+      </div>
+      <div class="sheetRow">
+        <span>Signed in as</span>
+        <b id="settingsUser"></b>
+      </div>
+    </div>
+
+    <div id="tabProfile" class="hidden">
+      <div class="field">
+        <label>Display name</label>
+        <input id="profileDisplayName" type="text" placeholder="How you'll show up in DevHub">
+      </div>
+      <div class="field">
+        <label>Avatar color</label>
+        <div class="colorRow" id="colorRow"></div>
+      </div>
+      <div class="field">
+        <label>Email <span style="font-weight:400;color:var(--ink-soft)">(optional — for future login recovery, not verified yet)</span></label>
+        <input id="profileEmail" type="email" placeholder="you@example.com">
       </div>
     </div>
 
@@ -485,15 +537,15 @@ document.getElementById("mobileToggle").onclick = () => {
 const modes = {
   axiom: {
     label: "Axiom", sub: "Default assistant",
-    system: "You are Axiom, an assistant that exclusively helps with Roblox game development: ideas, planning, systems design, and general Roblox Studio guidance. This includes debugging — if the user pastes an error message, stack trace, or output log during a Roblox conversation, treat it as part of the Roblox debugging task and help fix it, even if the error text itself doesn't mention Roblox by name. Only decline requests that are clearly unrelated to Roblox development (e.g. general life advice, unrelated coding in other engines/languages). Keep answers focused and practical."
+    system: "You are Axiom, an assistant that exclusively helps with Roblox game development: ideas, planning, systems architecture, and Roblox Studio guidance. Follow modern Roblox best practices: use RemoteEvents/RemoteFunctions (never trust the client for anything that affects other players or economy), prefer ModuleScripts for shared logic, use :GetService() at the top of scripts, and mention performance/security concerns when relevant (e.g. exploiters, server authority). This includes debugging — if the user pastes an error message, stack trace, or output log during a Roblox conversation, treat it as part of the task and help fix it, even if the error text doesn't mention Roblox by name. Only decline requests clearly unrelated to Roblox development. Keep answers focused and practical, and ask a clarifying question if the request is genuinely ambiguous (e.g. 'client or server script?')."
   },
   ui: {
     label: "Axiom UI", sub: "Interface design",
-    system: "You are Axiom UI, a specialist in Roblox interface (GUI) design only. When asked for code, write the FULL, complete Luau ScreenGui/Frame construction script using Instance.new — do not truncate, summarize, or leave placeholders like '-- add more here'. Include all elements, properties, and event connections needed for the feature to actually work. Wrap code in a ```lua code block. Keep any surrounding explanation short, but never shorten the code itself. Debugging is part of your job: if the user pastes an error message, stack trace, or output log during this conversation, treat it as a bug in the GUI script you're discussing and help fix it, even if the error text doesn't mention Roblox by name. Only decline requests clearly unrelated to Roblox UI/game development."
+    system: "You are Axiom UI, a specialist in Roblox interface (GUI) design. When asked for code, write the FULL, complete Luau script using Instance.new — never truncate or leave placeholders like '-- add more here'. Default to clean, modern GUI patterns: UICorner for rounded corners, UIStroke for outlines, UIGradient where it improves visual appeal, UIListLayout/UIGridLayout for organized children, and TweenService for smooth open/close/hover animations instead of instant state changes. Use ScreenGui with ResetOnSpawn = false for persistent UI, and IgnoreGuiInset when relevant. Structure scripts with clear variable names for each UI element. Wrap code in a ```lua code block; keep prose short but never shorten the code. Debugging pasted errors/stack traces is part of your job even if 'Roblox' isn't mentioned by name. Only decline requests clearly unrelated to Roblox UI/game development."
   },
   code: {
     label: "Axiom Code", sub: "Luau scripting",
-    system: "You are Axiom Code, a specialist in Luau scripting for Roblox only. Write the FULL, complete Luau script for the requested gameplay/system — do not truncate, summarize, or leave placeholders like '-- rest of logic here'. Include all functions, event connections, and edge-case handling needed for the feature to actually work end to end. Wrap code in a ```lua code block. Keep any surrounding explanation short, but never shorten the code itself. Debugging is part of your job: if the user pastes an error message, stack trace, or output log during this conversation, treat it as a bug in the script you're discussing and help fix it, even if the error text doesn't mention Roblox by name. Only decline requests clearly unrelated to Roblox scripting/game development."
+    system: "You are Axiom Code, a specialist in Luau scripting for Roblox. Write the FULL, complete script for the requested system — never truncate or leave placeholders like '-- rest of logic here'. Follow modern best practices: :GetService() calls at the top, server-authoritative logic for anything gameplay/economy-affecting (never trust client-fired RemoteEvents blindly — validate on the server), :Connect() cleanup where relevant, pcall around risky operations (DataStore calls, HTTP requests), and clear comments only where logic isn't self-evident. Prefer ModuleScripts for reusable logic when the system is non-trivial. Wrap code in a ```lua code block; keep prose short but never shorten the code. Debugging pasted errors/stack traces is part of your job even if 'Roblox' isn't mentioned by name. Only decline requests clearly unrelated to Roblox scripting/game development."
   }
 };
 let current = "axiom";
@@ -520,12 +572,113 @@ Object.keys(modes).forEach(key => {
 
 function switchMode(key){
   current = key;
-  document.querySelectorAll(".navItem").forEach(x=>x.classList.toggle("active",x.dataset.key===key));
+  document.querySelectorAll(".navItem[data-key]").forEach(x=>x.classList.toggle("active",x.dataset.key===key));
+  document.getElementById("devhubNav").classList.remove("active");
   document.getElementById("topTitle").textContent = modes[key].label;
   document.getElementById("topSub").textContent = modes[key].sub;
+  document.getElementById("chatView").classList.remove("hidden");
+  document.getElementById("devhubView").classList.add("hidden");
+  document.getElementById("clearBtn").classList.remove("hidden");
+  stopDevhubPolling();
   renderLog();
   document.getElementById("sidebar").classList.remove("open");
 }
+
+function openDevhub(){
+  document.querySelectorAll(".navItem[data-key]").forEach(x=>x.classList.remove("active"));
+  document.getElementById("devhubNav").classList.add("active");
+  document.getElementById("topTitle").textContent = "DevHub";
+  document.getElementById("topSub").textContent = "Public chat with other Axiom devs";
+  document.getElementById("chatView").classList.add("hidden");
+  document.getElementById("devhubView").classList.remove("hidden");
+  document.getElementById("clearBtn").classList.add("hidden");
+  document.getElementById("sidebar").classList.remove("open");
+  loadDevhub();
+  startDevhubPolling();
+}
+document.getElementById("devhubNav").onclick = openDevhub;
+
+/* ================= DEVHUB ================= */
+let devhubPollTimer = null;
+let devhubLastCount = 0;
+
+function startDevhubPolling(){
+  stopDevhubPolling();
+  devhubPollTimer = setInterval(loadDevhub, 4000);
+}
+function stopDevhubPolling(){
+  if(devhubPollTimer){ clearInterval(devhubPollTimer); devhubPollTimer = null; }
+}
+
+async function loadDevhub(){
+  try{
+    const res = await fetch(PROXY_URL.replace(/\/$/,"") + "/devhub");
+    const data = await res.json();
+    if(data.error){
+      renderDevhubError(data.error.message);
+      return;
+    }
+    if(data.messages && data.messages.length !== devhubLastCount){
+      devhubLastCount = data.messages.length;
+      renderDevhub(data.messages);
+    }
+  }catch(err){
+    renderDevhubError("Couldn't reach DevHub: " + err.message);
+  }
+}
+
+function renderDevhubError(msg){
+  const log = document.getElementById("devhubLog");
+  log.innerHTML = '<div class="emptyState"><h3>DevHub unavailable</h3><p>' + escapeHtml(msg) + '</p></div>';
+}
+
+function renderDevhub(messages){
+  const log = document.getElementById("devhubLog");
+  log.innerHTML = "";
+  if(messages.length === 0){
+    log.innerHTML = '<div class="emptyState"><h3>DevHub</h3><p>No messages yet — say hi to other Axiom devs.</p></div>';
+    return;
+  }
+  messages.forEach(m => {
+    const row = document.createElement("div");
+    row.className = "row bot";
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.style.maxWidth = "80%";
+    const nameEl = document.createElement("div");
+    nameEl.style.cssText = "font-size:12px;font-weight:700;margin-bottom:3px;color:" + (m.color || "var(--blue)");
+    nameEl.textContent = m.name || "Anonymous";
+    const textEl = document.createElement("div");
+    textEl.textContent = m.text;
+    bubble.appendChild(nameEl);
+    bubble.appendChild(textEl);
+    row.appendChild(bubble);
+    log.appendChild(row);
+  });
+  document.getElementById("devhubArea").scrollTop = document.getElementById("devhubArea").scrollHeight;
+}
+
+document.getElementById("devhubForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const input = document.getElementById("devhubInput");
+  const text = input.value.trim();
+  if(!text) return;
+  input.value = "";
+  try{
+    await fetch(PROXY_URL.replace(/\/$/,"") + "/devhub", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: (currentProfile && currentProfile.displayName) || currentUsername || "Anonymous",
+        text: text,
+        color: (currentProfile && currentProfile.color) || "#2f7bff"
+      })
+    });
+    loadDevhub();
+  }catch(err){
+    renderDevhubError("Couldn't send: " + err.message);
+  }
+});
 
 /* ================= RENDER ================= */
 function escapeHtml(s){
@@ -845,10 +998,54 @@ document.getElementById("clearBtn").onclick = () => {
   renderLog();
 };
 
+/* ================= PROFILE ================= */
+const AVATAR_COLORS = ["#2f7bff","#7c5cff","#ff5c8a","#ff9f43","#2ecc71","#00c2c2","#e74c3c"];
+
+function profileKey(username){ return "axiom_profile_" + username; }
+function loadProfile(username){
+  return store.get(profileKey(username), { displayName: username, color: AVATAR_COLORS[0], email: "" });
+}
+function saveProfile(profile){
+  if(currentUsername) store.set(profileKey(currentUsername), profile);
+}
+let currentProfile = null;
+
+function renderAvatar(){
+  if(!currentProfile) return;
+  const dot = document.getElementById("userDot");
+  dot.textContent = (currentProfile.displayName || currentUsername)[0].toUpperCase();
+  dot.style.background = currentProfile.color;
+  document.getElementById("userNameLabel").textContent = currentProfile.displayName || currentUsername;
+}
+
+function renderColorPicker(){
+  const row = document.getElementById("colorRow");
+  row.innerHTML = "";
+  AVATAR_COLORS.forEach(c => {
+    const dot = document.createElement("div");
+    dot.className = "colorDot" + (currentProfile.color === c ? " active" : "");
+    dot.style.background = c;
+    dot.onclick = () => { currentProfile.color = c; renderColorPicker(); };
+    row.appendChild(dot);
+  });
+}
+
+/* sheet tab switching */
+document.querySelectorAll(".sheetTab").forEach(tab => {
+  tab.onclick = () => {
+    document.querySelectorAll(".sheetTab").forEach(t => t.classList.toggle("active", t === tab));
+    document.getElementById("tabSettings").classList.toggle("hidden", tab.dataset.tab !== "settings");
+    document.getElementById("tabProfile").classList.toggle("hidden", tab.dataset.tab !== "profile");
+  };
+});
+
 /* ================= SETTINGS ================= */
 const settingsOverlay = document.getElementById("settingsOverlay");
 function openSettings(){
   document.getElementById("settingsUser").textContent = currentUsername || "";
+  document.getElementById("profileDisplayName").value = currentProfile.displayName || "";
+  document.getElementById("profileEmail").value = currentProfile.email || "";
+  renderColorPicker();
   applyTheme(store.get("axiom_theme","light"));
   settingsOverlay.classList.add("show");
 }
@@ -860,6 +1057,10 @@ document.querySelectorAll("#themeSeg div").forEach(d => {
   d.onclick = () => applyTheme(d.dataset.v);
 });
 document.getElementById("saveSettings").onclick = () => {
+  currentProfile.displayName = document.getElementById("profileDisplayName").value.trim() || currentUsername;
+  currentProfile.email = document.getElementById("profileEmail").value.trim();
+  saveProfile(currentProfile);
+  renderAvatar();
   settingsOverlay.classList.remove("show");
 };
 document.getElementById("logoutBtn").onclick = logOut;
@@ -869,8 +1070,8 @@ function boot(username){
   currentUsername = username;
   authWrap.classList.add("hidden");
   app.classList.remove("hidden");
-  document.getElementById("userNameLabel").textContent = username;
-  document.getElementById("userDot").textContent = username[0].toUpperCase();
+  currentProfile = loadProfile(username);
+  renderAvatar();
   applyTheme(store.get("axiom_theme","light"));
   loadHistory(username);
   switchMode(current);
