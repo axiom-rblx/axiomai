@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fbfaf7">
+  <meta
+    name="description"
+    content="Axiom project information, GitHub activity, contributors, Discord community, and credits."
+  >
+  <title>Info — Axiom</title>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #fbfaf7;
+      --surface: #fffefa;
+      --surface-2: #f4f1ea;
+      --surface-3: #eeebe4;
+      --ink: #292621;
+      --muted: #777168;
+      --line: #dedad1;
+      --blue: #4d78f6;
+      --blue-soft: #edf2ff;
+      --green: #2e9d61;
+      --green-soft: #eaf7ef;
+      --shadow: 0 18px 60px rgba(50, 41, 28, .08);
+      --radius: 20px;
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #171716;
+      --surface: #1e1d1a;
+      --surface-2: #25231f;
+      --surface-3: #2c2924;
+      --ink: #f1efe8;
+      --muted: #aaa49a;
+      --line: #393630;
+      --blue: #8ba9ff;
+      --blue-soft: #252b3a;
+      --green: #73d49a;
+      --green-soft: #1d3024;
+      --shadow: 0 18px 60px rgba(0, 0, 0, .35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(
+          circle at 50% -15%,
+          color-mix(in srgb, var(--blue) 10%, transparent),
+          transparent 34rem
+        ),
+        var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: color-mix(in srgb, var(--blue) 24%, transparent);
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: 0 0 auto;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -.7px;
+    }
+
+    .mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link,
+    .theme-btn {
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 12px;
+      border-radius: 10px;
+      color: var(--muted);
+      background: transparent;
+      transition: background .16s ease, color .16s ease, transform .16s ease;
+    }
+
+    .nav-link:hover,
+    .theme-btn:hover {
+      background: var(--surface-2);
+      color: var(--ink);
+    }
+
+    .nav-link:active,
+    .theme-btn:active {
+      transform: scale(.98);
+    }
+
+    .hero {
+      padding: clamp(78px, 12vw, 150px) 0 58px;
+      max-width: 840px;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 790px;
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+      font-size: clamp(44px, 7vw, 82px);
+      line-height: .99;
+      letter-spacing: -3.8px;
+      font-weight: 500;
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      margin: 25px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .button {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 650;
+      transition:
+        transform .16s ease,
+        border-color .16s ease,
+        background .16s ease,
+        box-shadow .16s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--muted) 50%, var(--line));
+      box-shadow: 0 10px 28px rgba(0, 0, 0, .06);
+    }
+
+    .button.primary {
+      border-color: color-mix(in srgb, var(--blue) 70%, var(--line));
+      background: var(--blue);
+      color: white;
+    }
+
+    .status-pill {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 13px;
+      border: 1px solid color-mix(in srgb, var(--green) 35%, var(--line));
+      border-radius: 12px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: currentColor;
+      box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 12%, transparent);
+    }
+
+    .section {
+      padding: 28px 0 74px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-head span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .divider {
+      height: 1px;
+      margin: 6px 0;
+      background: var(--line);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      overflow: hidden;
+    }
+
+    .panel-pad {
+      padding: 26px;
+    }
+
+    .repo-card {
+      min-height: 238px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .repo-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .repo-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--surface-2);
+      color: var(--ink);
+    }
+
+    .repo-title {
+      margin: 18px 0 0;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: -.7px;
+    }
+
+    .repo-path {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .repo-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .meta-chip {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface-2);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .meta-chip strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .about-card {
+      min-height: 238px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--surface-2);
+    }
+
+    .about-card h3 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -.65px;
+    }
+
+    .about-card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: 14px;
+    }
+
+    .beta-tag {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 24px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .github-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 14px;
+    }
+
+    .panel-head {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-head strong {
+      font-size: 14px;
+      letter-spacing: -.2px;
+    }
+
+    .panel-head span,
+    .panel-head a {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .panel-head a:hover {
+      color: var(--ink);
+    }
+
+    .commit-list,
+    .contributor-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .commit {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      padding: 17px 22px;
+      border-bottom: 1px solid var(--line);
+      transition: background .15s ease;
+    }
+
+    .commit:last-child {
+      border-bottom: 0;
+    }
+
+    .commit:hover {
+      background: var(--surface-2);
+    }
+
+    .commit-message {
+      margin: 0;
+      overflow: hidden;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.4;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .commit-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .sha {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      color: var(--blue);
+    }
+
+    .commit-time {
+      align-self: center;
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .contributor {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contributor:last-child {
+      border-bottom: 0;
+    }
+
+    .contributor img {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      object-fit: cover;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+    }
+
+    .contributor-main {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .contributor-name {
+      margin: 0;
+      overflow: hidden;
+      font-size: 13px;
+      font-weight: 700;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .contributor-count {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .external {
+      color: var(--muted);
+    }
+
+    .external:hover {
+      color: var(--ink);
+    }
+
+    .loading-state,
+    .error-state {
+      padding: 28px 22px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .loading-row {
+      height: 13px;
+      margin: 9px 0;
+      border-radius: 7px;
+      background:
+        linear-gradient(
+          90deg,
+          var(--surface-2),
+          var(--surface-3),
+          var(--surface-2)
+        );
+      background-size: 220% 100%;
+      animation: shimmer 1.35s linear infinite;
+    }
+
+    @keyframes shimmer {
+      to {
+        background-position: -220% 0;
+      }
+    }
+
+    .discord-grid {
+      display: grid;
+      grid-template-columns: .82fr 1.18fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .discord-info {
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--surface-2);
+    }
+
+    .discord-info h3 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: -.7px;
+    }
+
+    .discord-info p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .discord-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .discord-stat {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .discord-stat strong {
+      display: block;
+      font-size: 22px;
+      letter-spacing: -.6px;
+    }
+
+    .discord-stat span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .discord-widget-wrap {
+      min-height: 420px;
+      padding: 12px;
+    }
+
+    .discord-widget {
+      width: 100%;
+      height: 396px;
+      display: block;
+      border: 0;
+      border-radius: 14px;
+      background: var(--surface-2);
+    }
+
+    .people {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .person {
+      min-height: 270px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset;
+      transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+
+    .person:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--muted) 50%, var(--line));
+      box-shadow: var(--shadow);
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      display: block;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--blue-soft);
+      border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .06);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .person-bottom {
+      margin-top: 55px;
+    }
+
+    .person h3 {
+      margin: 0;
+      font-size: 23px;
+      letter-spacing: -.65px;
+      font-weight: 650;
+    }
+
+    .role {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .thanks {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+    }
+
+    .note {
+      min-height: 220px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .note h2 {
+      margin: 0 0 13px;
+      font-size: 23px;
+      letter-spacing: -.65px;
+    }
+
+    .note p {
+      margin: 0;
+      max-width: 600px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .note.small {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--surface-2);
+    }
+
+    .note.small strong {
+      font-size: 14px;
+    }
+
+    .note.small span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .project-grid,
+      .github-grid,
+      .discord-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .discord-info {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .people {
+        grid-template-columns: 1fr;
+      }
+
+      .person {
+        min-height: 210px;
+      }
+
+      .thanks {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2.7px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .topbar {
+        height: 64px;
+      }
+
+      .nav-link span {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 72px;
+        padding-bottom: 48px;
+      }
+
+      h1 {
+        font-size: 48px;
+        letter-spacing: -2.5px;
+      }
+
+      .hero-copy {
+        font-size: 15px;
+      }
+
+      .person,
+      .note,
+      .panel {
+        border-radius: 16px;
+      }
+
+      .commit {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+      }
+
+      .commit-time {
+        justify-self: start;
+      }
+
+      .discord-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Axiom home">
+        <span class="mark">A</span>
+        <span>Axiom</span>
+      </a>
+
+      <nav class="nav">
+        <a class="nav-link" href="/">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 12H5"></path>
+            <path d="m12 19-7-7 7-7"></path>
+          </svg>
+          <span>Back to Axiom</span>
+        </a>
+
+        <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle theme">
+          <svg class="icon" id="themeIcon" viewBox="0 0 24 24" aria-hidden="true"></svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Axiom Info</p>
+        <h1>Everything behind Axiom.</h1>
+        <p class="hero-copy">
+          Project information, live GitHub activity, community links, contributors,
+          and the people building Axiom for Roblox developers.
+        </p>
+
+        <div class="hero-actions">
+          <a
+            class="button primary"
+            href="https://github.com/axiom-rblx/axiomai"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.4 5.4 0 0 0 19.4 4 5 5 0 0 0 19.3.5S18.2.1 15 1.8a13.4 13.4 0 0 0-7 0C4.8.1 3.7.5 3.7.5A5 5 0 0 0 3.6 4a5.4 5.4 0 0 0-1.4 3.7c0 5.3 3.5 6.5 6.8 6.9A4.8 4.8 0 0 0 8 18v4"></path>
+              <path d="M8 19c-3 .9-5-1.4-5-1.4"></path>
+            </svg>
+            GitHub Repository
+          </a>
+
+          <div class="status-pill" title="Axiom is currently in beta">
+            <span class="status-dot"></span>
+            Beta
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="project">
+        <div class="section-head">
+          <h2>Project</h2>
+          <span>axiom-rblx/axiomai</span>
+        </div>
+
+        <div class="project-grid">
+          <article class="panel panel-pad repo-card">
+            <div>
+              <div class="repo-top">
+                <div class="repo-icon">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.4 5.4 0 0 0 19.4 4 5 5 0 0 0 19.3.5S18.2.1 15 1.8a13.4 13.4 0 0 0-7 0C4.8.1 3.7.5 3.7.5A5 5 0 0 0 3.6 4a5.4 5.4 0 0 0-1.4 3.7c0 5.3 3.5 6.5 6.8 6.9A4.8 4.8 0 0 0 8 18v4"></path>
+                    <path d="M8 19c-3 .9-5-1.4-5-1.4"></path>
+                  </svg>
+                </div>
+
+                <a
+                  class="external"
+                  href="https://github.com/axiom-rblx/axiomai"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Open Axiom GitHub repository"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15 3h6v6"></path>
+                    <path d="M10 14 21 3"></path>
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  </svg>
+                </a>
+              </div>
+
+              <h3 class="repo-title">Axiom AI</h3>
+              <p class="repo-path">github.com/axiom-rblx/axiomai</p>
+            </div>
+
+            <div class="repo-meta" id="repoMeta">
+              <span class="meta-chip"><strong>Public</strong> repository</span>
+              <span class="meta-chip"><strong>main</strong> branch</span>
+              <span class="meta-chip">Loading GitHub…</span>
+            </div>
+          </article>
+
+          <article class="panel panel-pad about-card">
+            <div>
+              <h3>Built for Roblox developers.</h3>
+              <p>
+                Axiom focuses on helping developers move faster with scripting,
+                UI work, and project assistance without turning the workflow into
+                another generic AI chat.
+              </p>
+            </div>
+
+            <div class="beta-tag">
+              <span class="status-dot"></span>
+              Beta release
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="github">
+        <div class="section-head">
+          <h2>GitHub Activity</h2>
+          <span>Live from GitHub</span>
+        </div>
+
+        <div class="github-grid">
+          <article class="panel">
+            <div class="panel-head">
+              <strong>Latest commits</strong>
+              <a
+                href="https://github.com/axiom-rblx/axiomai/commits/main"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View all
+              </a>
+            </div>
+
+            <div id="commitList" class="loading-state" aria-live="polite">
+              <div class="loading-row" style="width: 78%"></div>
+              <div class="loading-row" style="width: 48%"></div>
+              <div class="loading-row" style="width: 87%"></div>
+              <div class="loading-row" style="width: 58%"></div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <strong>Contributors</strong>
+              <a
+                href="https://github.com/axiom-rblx/axiomai/graphs/contributors"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+
+            <div id="contributorList" class="loading-state" aria-live="polite">
+              <div class="loading-row" style="width: 66%"></div>
+              <div class="loading-row" style="width: 54%"></div>
+              <div class="loading-row" style="width: 72%"></div>
+              <div class="loading-row" style="width: 49%"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="discord">
+        <div class="section-head">
+          <h2>Discord</h2>
+          <span>Community server</span>
+        </div>
+
+        <div class="discord-grid">
+          <article class="panel panel-pad discord-info">
+            <div>
+              <h3>Axiom Discord</h3>
+              <p>
+                Join the community for announcements, project updates, support,
+                testing, feedback, and development discussion.
+              </p>
+
+              <div class="discord-stats">
+                <div class="discord-stat">
+                  <strong id="discordWidgetState">…</strong>
+                  <span>Widget</span>
+                </div>
+
+                <div class="discord-stat">
+                  <strong id="discordOnline">—</strong>
+                  <span>Online</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <p id="discordStatus" style="margin-bottom: 14px;">
+                Loading live server information…
+              </p>
+              <a
+                class="button"
+                id="discordInvite"
+                href="https://discord.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open Discord
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15 3h6v6"></path>
+                  <path d="M10 14 21 3"></path>
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="panel discord-widget-wrap">
+            <iframe
+              id="discordWidget"
+              class="discord-widget"
+              title="Axiom Discord server widget"
+              src="https://discord.com/widget?id=1545617335900180550&theme=light"
+              loading="lazy"
+              sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+            ></iframe>
+          </article>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="credits">
+        <div class="section-head">
+          <h2>Founders</h2>
+          <span>Core team</span>
+        </div>
+
+        <div class="people">
+          <article class="person">
+            <div class="avatar">
+              <img
+                src="https://cdn.discordapp.com/avatars/1081101959777488937/2c3269659d3bb4c93e79139583e3b9a0.webp?size=1024"
+                alt="Marigold"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              >
+            </div>
+            <div class="person-bottom">
+              <h3>Marigold</h3>
+              <p class="role">Founder · Developer</p>
+            </div>
+          </article>
+
+          <article class="person">
+            <div class="avatar">
+              <img
+                src="https://cdn.discordapp.com/guilds/1545617335900180550/users/1313630076809510975/avatars/dafc01bf42a8041355f61a172d01ffc9.webp?size=1024"
+                alt="Izzy"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              >
+            </div>
+            <div class="person-bottom">
+              <h3>Izzy</h3>
+              <p class="role">Founder · Developer</p>
+            </div>
+          </article>
+
+          <article class="person">
+            <div class="avatar">
+              <img
+                src="https://axiom-proxy.itsizzydudee.workers.dev/media/ab843b70-5e27-4850-a2c9-f52b56ae9b91"
+                alt="Cxno"
+                loading="lazy"
+              >
+            </div>
+            <div class="person-bottom">
+              <h3>Cxno</h3>
+              <p class="role">Founder · Developer</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0;">
+        <div class="section-head">
+          <h2>Contributors</h2>
+          <span>Community</span>
+        </div>
+
+        <div class="thanks">
+          <div class="note">
+            <h2>Built with the community.</h2>
+            <p>
+              Axiom keeps improving through testing, feedback, bug reports, ideas,
+              and the developers who use it while building their Roblox projects.
+            </p>
+          </div>
+
+          <div class="note small">
+            <strong>Want your name here?</strong>
+            <span>
+              Contributors and major project supporters can be added here as Axiom grows.
+            </span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-row">
+        <span>© <span id="year"></span> Axiom</span>
+        <span>Built for Roblox developers.</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const GITHUB_REPO = 'axiom-rblx/axiomai';
+    const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}`;
+    const DISCORD_GUILD_ID = '1545617335900180550';
+
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    const discordWidget = document.getElementById('discordWidget');
+
+    const sun = `
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2"></path>
+      <path d="M12 20v2"></path>
+      <path d="m4.93 4.93 1.41 1.41"></path>
+      <path d="m17.66 17.66 1.41 1.41"></path>
+      <path d="M2 12h2"></path>
+      <path d="M20 12h2"></path>
+      <path d="m6.34 17.66-1.41 1.41"></path>
+      <path d="m19.07 4.93-1.41 1.41"></path>
+    `;
+
+    const moon = `
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    `;
+
+    function setTheme(theme) {
+      root.dataset.theme = theme;
+      localStorage.setItem('axiom-theme', theme);
+      themeIcon.innerHTML = theme === 'dark' ? sun : moon;
+
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute('content', theme === 'dark' ? '#171716' : '#fbfaf7');
+
+      discordWidget.src =
+        `https://discord.com/widget?id=${DISCORD_GUILD_ID}&theme=${theme === 'dark' ? 'dark' : 'light'}`;
+    }
+
+    const savedTheme = localStorage.getItem('axiom-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+
+    themeBtn.addEventListener('click', () => {
+      setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function escapeHTML(value = '') {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function relativeTime(dateString) {
+      const date = new Date(dateString);
+      if (Number.isNaN(date.getTime())) return '';
+
+      const seconds = Math.round((date.getTime() - Date.now()) / 1000);
+      const units = [
+        ['year', 31536000],
+        ['month', 2592000],
+        ['week', 604800],
+        ['day', 86400],
+        ['hour', 3600],
+        ['minute', 60]
+      ];
+
+      const formatter = new Intl.RelativeTimeFormat(undefined, { numeric: 'auto' });
+
+      for (const [unit, size] of units) {
+        if (Math.abs(seconds) >= size) {
+          return formatter.format(Math.round(seconds / size), unit);
+        }
+      }
+
+      return 'just now';
+    }
+
+    async function githubJSON(path) {
+      const response = await fetch(`${GITHUB_API}${path}`, {
+        headers: {
+          Accept: 'application/vnd.github+json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`GitHub request failed (${response.status})`);
+      }
+
+      return response.json();
+    }
+
+    async function loadRepoMeta() {
+      const container = document.getElementById('repoMeta');
+
+      try {
+        const repo = await githubJSON('');
+
+        container.innerHTML = `
+          <span class="meta-chip"><strong>${escapeHTML(repo.visibility || 'public')}</strong> repository</span>
+          <span class="meta-chip"><strong>${escapeHTML(repo.default_branch || 'main')}</strong> branch</span>
+          <span class="meta-chip"><strong>${Number(repo.stargazers_count || 0).toLocaleString()}</strong> stars</span>
+          <span class="meta-chip"><strong>${Number(repo.forks_count || 0).toLocaleString()}</strong> forks</span>
+        `;
+      } catch (error) {
+        console.warn(error);
+        container.innerHTML = `
+          <span class="meta-chip"><strong>Public</strong> repository</span>
+          <span class="meta-chip"><strong>main</strong> branch</span>
+          <span class="meta-chip">GitHub unavailable</span>
+        `;
+      }
+    }
+
+    async function loadCommits() {
+      const container = document.getElementById('commitList');
+
+      try {
+        const commits = await githubJSON('/commits?per_page=6');
+
+        if (!Array.isArray(commits) || !commits.length) {
+          throw new Error('No commits returned');
+        }
+
+        container.className = '';
+        container.innerHTML = `
+          <ul class="commit-list">
+            ${commits.map(item => {
+              const commit = item.commit || {};
+              const author = commit.author || {};
+              const firstLine = (commit.message || 'Untitled commit').split('\n')[0];
+
+              return `
+                <li>
+                  <a
+                    class="commit"
+                    href="${escapeHTML(item.html_url || `https://github.com/${GITHUB_REPO}`)}"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <div>
+                      <p class="commit-message" title="${escapeHTML(firstLine)}">
+                        ${escapeHTML(firstLine)}
+                      </p>
+                      <div class="commit-meta">
+                        <span class="sha">${escapeHTML((item.sha || '').slice(0, 7))}</span>
+                        <span>${escapeHTML(author.name || item.author?.login || 'GitHub')}</span>
+                      </div>
+                    </div>
+                    <time
+                      class="commit-time"
+                      datetime="${escapeHTML(author.date || '')}"
+                      title="${escapeHTML(author.date ? new Date(author.date).toLocaleString() : '')}"
+                    >
+                      ${escapeHTML(relativeTime(author.date))}
+                    </time>
+                  </a>
+                </li>
+              `;
+            }).join('')}
+          </ul>
+        `;
+      } catch (error) {
+        console.warn(error);
+        container.className = 'error-state';
+        container.innerHTML = `
+          GitHub activity could not be loaded right now.
+          <a
+            href="https://github.com/${GITHUB_REPO}/commits/main"
+            target="_blank"
+            rel="noreferrer"
+            style="color: var(--blue);"
+          >View commits on GitHub.</a>
+        `;
+      }
+    }
+
+    async function loadContributors() {
+      const container = document.getElementById('contributorList');
+
+      try {
+        const contributors = await githubJSON('/contributors?per_page=10&anon=1');
+
+        if (!Array.isArray(contributors) || !contributors.length) {
+          throw new Error('No contributors returned');
+        }
+
+        container.className = '';
+        container.innerHTML = `
+          <ul class="contributor-list">
+            ${contributors.map(person => {
+              const name = person.login || person.name || 'Contributor';
+              const url = person.html_url || `https://github.com/${GITHUB_REPO}/graphs/contributors`;
+              const avatar = person.avatar_url || 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png';
+
+              return `
+                <li class="contributor">
+                  <img
+                    src="${escapeHTML(avatar)}"
+                    alt=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  >
+                  <div class="contributor-main">
+                    <p class="contributor-name">${escapeHTML(name)}</p>
+                    <div class="contributor-count">
+                      ${Number(person.contributions || 0).toLocaleString()} contribution${Number(person.contributions || 0) === 1 ? '' : 's'}
+                    </div>
+                  </div>
+                  <a
+                    class="external"
+                    href="${escapeHTML(url)}"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Open ${escapeHTML(name)} on GitHub"
+                  >
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6"></path>
+                      <path d="M10 14 21 3"></path>
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    </svg>
+                  </a>
+                </li>
+              `;
+            }).join('')}
+          </ul>
+        `;
+      } catch (error) {
+        console.warn(error);
+        container.className = 'error-state';
+        container.innerHTML = `
+          Contributors could not be loaded right now.
+          <a
+            href="https://github.com/${GITHUB_REPO}/graphs/contributors"
+            target="_blank"
+            rel="noreferrer"
+            style="color: var(--blue);"
+          >View contributors on GitHub.</a>
+        `;
+      }
+    }
+
+    async function loadDiscord() {
+      const widgetState = document.getElementById('discordWidgetState');
+      const online = document.getElementById('discordOnline');
+      const status = document.getElementById('discordStatus');
+      const invite = document.getElementById('discordInvite');
+
+      try {
+        const response = await fetch(
+          `https://discord.com/api/guilds/${DISCORD_GUILD_ID}/widget.json`
+        );
+
+        if (!response.ok) {
+          throw new Error(`Discord widget request failed (${response.status})`);
+        }
+
+        const data = await response.json();
+
+        widgetState.textContent = 'Live';
+        online.textContent = Number(data.presence_count || 0).toLocaleString();
+
+        status.textContent = data.name
+          ? `${data.name} is connected to the live Discord widget.`
+          : 'Live Discord widget connected.';
+
+        if (data.instant_invite) {
+          invite.href = data.instant_invite;
+          invite.firstChild.textContent = 'Join Discord ';
+        }
+      } catch (error) {
+        console.warn(error);
+        widgetState.textContent = 'Off';
+        online.textContent = '—';
+        status.textContent =
+          'Enable the Server Widget in Discord Server Settings to show live server information here.';
+      }
+    }
+
+    Promise.allSettled([
+      loadRepoMeta(),
+      loadCommits(),
+      loadContributors(),
+      loadDiscord()
+    ]);
+  </script>
+</body>
+</html>
