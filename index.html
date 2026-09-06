@@ -29,6 +29,369 @@ html[data-reduce-motion=true] *,html[data-reduce-motion=true] *::before{animatio
 @media(max-width:1000px){.community-shell{padding:25px}.creation-grid{gap:15px}.admin-layout{grid-template-columns:1fr}.admin-user-list{max-height:270px}}
 @media(max-width:760px){.community-shell{padding:24px 18px}.community-heading{align-items:start;gap:12px}.community-heading h1{font-size:24px}.community-heading .btn{padding:9px 11px;white-space:nowrap}.creation-grid{grid-template-columns:1fr}.admin-stats{grid-template-columns:1fr 1fr;gap:9px}.stat-card{padding:14px}.person-name{max-width:150px}.profile-stats{gap:23px}.badge-choices{gap:7px}.badge-choice{font-size:12px;padding:12px 8px}}
 
+
+
+/* Axiom spacious UI polish — warm, calm, code-first */
+:root{
+  --bg:#fbfaf7;
+  --side:#f4f2ed;
+  --surface:#fffefa;
+  --soft:#f1efe9;
+  --hover:#e9e6df;
+  --ink:#282521;
+  --muted:#777168;
+  --line:#dfdcd4;
+  --blue:#4778f6;
+  --blue-hover:#3869e7;
+  --blue-soft:#edf2ff;
+  --shadow:0 14px 42px #312a1e0d;
+  --code:#171817;
+  --code-head:#20211f;
+  --code-line:#343632;
+  --ring:#8eacf8;
+  --radius:18px;
+  --prose-serif:ui-serif,Georgia,Cambria,"Times New Roman",serif
+}
+html[data-theme=dark]{
+  --bg:#171716;
+  --side:#111110;
+  --surface:#1d1d1b;
+  --soft:#25231f;
+  --hover:#2d2a25;
+  --ink:#f1efe8;
+  --muted:#aaa49a;
+  --line:#393630;
+  --blue:#88a9ff;
+  --blue-hover:#a6bdff;
+  --blue-soft:#252b3a;
+  --shadow:0 16px 48px #0005;
+  --code:#10110f;
+  --code-head:#181916;
+  --code-line:#30322d;
+  --ring:#6687dc
+}
+body{
+  letter-spacing:-.006em;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility
+}
+*{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--muted) 38%,transparent) transparent}
+*::-webkit-scrollbar{width:10px;height:10px}
+*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar-thumb{
+  background:color-mix(in srgb,var(--muted) 32%,transparent);
+  border:3px solid transparent;
+  background-clip:padding-box;
+  border-radius:999px
+}
+*::-webkit-scrollbar-thumb:hover{background:color-mix(in srgb,var(--muted) 52%,transparent);background-clip:padding-box}
+#app{background:var(--bg)}
+.sidebar{
+  width:282px;
+  flex-basis:282px;
+  padding:19px 12px 12px;
+  background:var(--side);
+  border-right-color:color-mix(in srgb,var(--line) 80%,transparent)
+}
+.sidebar .brand{padding:4px 12px 24px}
+.brand{font-size:21px;letter-spacing:-.7px}
+.new-chat{
+  margin-bottom:22px;
+  border-color:color-mix(in srgb,var(--line) 82%,transparent);
+  box-shadow:none;
+  border-radius:11px;
+  padding:10px 13px
+}
+.nav-item{padding:10px 12px;border-radius:9px}
+.nav-item.active{background:color-mix(in srgb,var(--blue-soft) 78%,var(--surface))}
+.recent-row{border-radius:8px}
+.side-bottom{border-top-color:color-mix(in srgb,var(--line) 78%,transparent)}
+.topbar{
+  height:64px;
+  padding:0 30px;
+  border-bottom-color:color-mix(in srgb,var(--line) 70%,transparent);
+  background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px)
+}
+.top-title{font-size:13px}
+.top-sub{font-size:12px}
+#chatView{background:var(--bg)}
+.chat-area{scroll-padding-bottom:210px}
+.chat-log{
+  width:min(100%,1080px);
+  padding:48px 50px 48px;
+  margin:0 auto
+}
+.welcome{
+  width:min(100%,960px);
+  padding:clamp(52px,12vh,138px) 50px 34px
+}
+.welcome-logo{width:44px;height:44px;margin-bottom:25px}
+.eyebrow{font-size:13px;margin-bottom:11px}
+.welcome h1{
+  max-width:760px;
+  font-size:clamp(31px,3.3vw,44px);
+  line-height:1.12;
+  font-weight:520;
+  letter-spacing:-1.7px;
+  margin-bottom:17px
+}
+.welcome>p:last-of-type{max-width:650px;font-size:15px;line-height:1.7}
+.suggestions{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:38px
+}
+.suggestion{
+  min-height:134px;
+  border-radius:15px;
+  padding:19px 17px;
+  border-color:color-mix(in srgb,var(--line) 88%,transparent);
+  box-shadow:none;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease
+}
+.suggestion:hover{
+  background:color-mix(in srgb,var(--surface) 72%,var(--soft));
+  border-color:color-mix(in srgb,var(--muted) 48%,var(--line));
+  transform:translateY(-2px)
+}
+.composer-wrap{
+  width:min(100%,1080px);
+  padding:18px 50px 24px;
+  margin:0 auto
+}
+.composer-box{
+  border-radius:22px;
+  padding:18px 18px 13px;
+  border-color:color-mix(in srgb,var(--line) 92%,transparent);
+  box-shadow:0 8px 30px #18130b0a,0 1px 2px #18130b0a;
+  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease
+}
+html[data-theme=dark] .composer-box{box-shadow:0 10px 34px #0004}
+.composer-box:focus-within{
+  border-color:color-mix(in srgb,var(--blue) 52%,var(--line));
+  box-shadow:0 10px 38px #243a7714,0 0 0 1px color-mix(in srgb,var(--blue) 16%,transparent)
+}
+.composer-box textarea{
+  min-height:62px;
+  max-height:240px;
+  padding:1px 4px;
+  font-size:15.5px;
+  line-height:1.65
+}
+.composer-tools{margin-top:12px}
+.mode-select{border:1px solid transparent;padding:7px 10px;border-radius:9px}
+.send{width:38px;height:38px;min-width:38px;border-radius:12px}
+.composer-hint{margin-top:10px;font-size:11.5px}
+.message{
+  margin-bottom:50px;
+  min-width:0;
+  animation:axiomMessageIn .28s cubic-bezier(.2,.75,.25,1)
+}
+@keyframes axiomMessageIn{
+  from{opacity:0;transform:translateY(5px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.message-head{
+  margin-bottom:15px;
+  font-size:13px;
+  gap:10px
+}
+.message-head .axiom-avatar{width:23px;height:23px}
+.message-head .avatar{width:25px;height:25px}
+.message.user{
+  margin-left:0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end
+}
+.message.user .message-head{
+  width:min(78%,760px);
+  opacity:.78;
+  margin-bottom:8px
+}
+.user-content{
+  width:auto;
+  max-width:min(78%,760px);
+  padding:13px 17px;
+  background:var(--soft);
+  border:1px solid color-mix(in srgb,var(--line) 76%,transparent);
+  border-radius:18px 18px 5px 18px;
+  font-size:15px;
+  line-height:1.65
+}
+.message.assistant{
+  width:100%;
+  max-width:100%
+}
+.response{
+  width:100%;
+  font-family:var(--prose-serif);
+  font-size:16.5px;
+  line-height:1.86;
+  letter-spacing:-.004em;
+  color:var(--ink)
+}
+.response>div{
+  max-width:850px
+}
+.response p{margin:0 0 19px}
+.response h2,.response h3,.response h4{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  margin:31px 0 13px;
+  font-weight:650;
+  line-height:1.28;
+  letter-spacing:-.55px
+}
+.response h2{font-size:22px}
+.response h3{font-size:19px}
+.response h4{font-size:17px}
+.response ul,.response ol{padding-left:27px;margin:13px 0 22px}
+.response li{margin:8px 0;padding-left:2px}
+.response blockquote{
+  max-width:800px;
+  margin:22px 0;
+  padding:3px 0 3px 18px;
+  border-left:2px solid color-mix(in srgb,var(--muted) 48%,var(--line));
+  color:var(--muted)
+}
+.response code.inline{
+  font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;
+  background:var(--soft);
+  border:1px solid color-mix(in srgb,var(--line) 86%,transparent);
+  padding:2px 6px;
+  border-radius:6px
+}
+.response-actions{
+  max-width:850px;
+  gap:6px;
+  margin-top:13px
+}
+.response-actions .icon-btn,.response-actions .btn{
+  height:32px;
+  border-radius:8px
+}
+.status-note{max-width:850px}
+.code-card{
+  width:100%;
+  max-width:980px;
+  margin:26px 0 30px;
+  border:1px solid var(--code-line);
+  background:var(--code);
+  color:#e7e9e4;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 8px 24px #00000012
+}
+.code-header{
+  min-height:46px;
+  padding:0 11px 0 16px;
+  background:var(--code-head);
+  border-bottom:1px solid var(--code-line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  font:12px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:#aaaFA7
+}
+.code-meta{
+  display:flex;
+  align-items:center;
+  min-width:0;
+  gap:9px;
+  font-weight:600
+}
+.code-meta .icon{width:16px;height:16px;opacity:.72}
+.code-label{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap
+}
+.code-subtle{
+  color:#777d74;
+  font-weight:450;
+  white-space:nowrap
+}
+.code-actions{display:flex;align-items:center;gap:5px;flex-shrink:0}
+.code-action{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  height:31px;
+  padding:0 9px;
+  color:#c8ccc4!important;
+  border-radius:8px!important;
+  font:12px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  transition:background .14s ease,color .14s ease
+}
+.code-action .icon{width:15px;height:15px}
+.code-action:hover{background:#ffffff0d!important;color:#fff!important}
+.code-action.copied{color:#a7d5ac!important}
+.code-card pre{
+  margin:0;
+  padding:23px 24px 25px;
+  overflow:auto;
+  max-height:760px;
+  font:13.5px/1.78 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+  tab-size:4;
+  overscroll-behavior:contain
+}
+.code-card.long-code:not(.expanded) pre{max-height:560px}
+.code-card.expanded pre{max-height:none}
+.code-card code{white-space:pre;display:block;min-width:max-content}
+.tok-comment{color:#7f8a7d}
+.tok-string{color:#add1a4}
+.tok-keyword{color:#c4a7e7}
+.tok-number{color:#e5b47c}
+.table-wrap{
+  max-width:960px;
+  margin:22px 0;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:auto
+}
+.response table{margin:0}
+.response th,.response td{padding:11px 14px}
+.jump-bottom{bottom:218px}
+dialog{border-radius:18px}
+.btn,.icon-btn,.nav-item,.suggestion,.composer-box,.code-action{
+  -webkit-tap-highlight-color:transparent
+}
+@media(min-width:1500px){
+  .sidebar{width:292px;flex-basis:292px}
+  .chat-log,.composer-wrap{width:min(100%,1160px)}
+  .chat-log{padding-left:64px;padding-right:64px}
+  .composer-wrap{padding-left:64px;padding-right:64px}
+  .welcome{width:min(100%,1020px)}
+  .response>div,.response-actions,.status-note{max-width:900px}
+  .code-card{max-width:1030px}
+}
+@media(max-width:1000px){
+  .sidebar{width:235px;flex-basis:235px}
+  .chat-log{padding:38px 32px}
+  .composer-wrap{padding-left:32px;padding-right:32px}
+  .welcome{padding-left:32px;padding-right:32px}
+}
+@media(max-width:760px){
+  .topbar{height:60px;padding:0 14px}
+  .chat-log{padding:30px 17px 38px}
+  .welcome{padding:42px 20px 22px}
+  .composer-wrap{padding:11px 13px max(13px,env(safe-area-inset-bottom))}
+  .composer-box{border-radius:18px;padding:14px 14px 11px}
+  .message{margin-bottom:38px}
+  .message.user .message-head,.user-content{max-width:91%;width:auto}
+  .response{font-size:15.5px;line-height:1.78}
+  .response h2{font-size:20px}
+  .code-card{margin:21px 0 24px;border-radius:12px}
+  .code-header{padding-left:12px}
+  .code-action{padding:0 7px}
+  .code-action .action-label.optional{display:none}
+  .code-card pre{padding:18px 16px 20px;font-size:12.5px;line-height:1.72;max-height:620px}
+}
+
 </style>
 </head>
 <body>
@@ -333,13 +696,129 @@ function highlight(code){
 }
 async function copyText(text){try{await navigator.clipboard.writeText(text);toast('Copied to clipboard.');}catch{const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.append(area);area.select();const ok=document.execCommand('copy');area.remove();toast(ok?'Copied to clipboard.':'Clipboard unavailable. Select the text to copy it.');}}
 function downloadCode(code,label){const ext=/^(lua|luau)$/i.test(label.split(/\s/)[0])?'luau':/^(json|html|css|js|ts)$/i.test(label)?label:'txt';const blob=new Blob([code],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='axiom-script.'+ext;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-function renderResponse(el,text,streaming=false){
-  el.replaceChildren();const lines=text.split('\n');let prose=[],code=[],label='',inCode=false;
-  function flushProse(){if(prose.length){const d=document.createElement('div');d.innerHTML=markdown(prose.join('\n'));el.append(d);prose=[];}}
-  function flushCode(){const source=code.join('\n');const card=document.createElement('section');card.className='code-card';const head=document.createElement('div');head.className='code-header';const name=document.createElement('span');name.textContent=label||'code';const actions=document.createElement('div');actions.className='code-actions';const copy=document.createElement('button');copy.textContent='Copy';copy.onclick=()=>copyText(source);const dl=document.createElement('button');dl.textContent='Download';dl.onclick=()=>downloadCode(source,label);actions.append(copy,dl);head.append(name,actions);const pre=document.createElement('pre'),c=document.createElement('code');if(/^(lua|luau)\b/i.test(label)&&!streaming)c.innerHTML=highlight(source);else c.textContent=source;pre.append(c);card.append(head,pre);el.append(card);code=[];}
-  for(const line of lines){const fence=line.match(/^\s*```(.*)$/);if(fence){if(inCode){flushCode();inCode=false;}else{flushProse();label=fence[1].trim();inCode=true;}}else if(inCode)code.push(line);else prose.push(line);}
-  if(inCode)flushCode();else flushProse();
+function prettyCodeLabel(raw){
+  const value=(raw||'').trim();
+  if(!value)return 'Code';
+  const parts=value.split(/\s+/);
+  const lang=parts.shift().toLowerCase();
+  const names={
+    lua:'Luau',luau:'Luau',js:'JavaScript',javascript:'JavaScript',
+    ts:'TypeScript',typescript:'TypeScript',html:'HTML',css:'CSS',
+    json:'JSON',py:'Python',python:'Python',sh:'Shell',bash:'Bash',
+    txt:'Text',text:'Text',md:'Markdown',markdown:'Markdown'
+  };
+  const nice=names[lang]||lang.toUpperCase();
+  return parts.length?nice+' · '+parts.join(' '):nice;
 }
+function renderResponse(el,text,streaming=false){
+  el.replaceChildren();
+  const lines=text.split('\n');
+  let prose=[],code=[],label='',inCode=false;
+
+  function flushProse(){
+    if(!prose.length)return;
+    const d=document.createElement('div');
+    d.innerHTML=markdown(prose.join('\n'));
+    el.append(d);
+    prose=[];
+  }
+
+  function flushCode(){
+    const source=code.join('\n');
+    const lineCount=source?source.split('\n').length:0;
+    const card=document.createElement('section');
+    card.className='code-card'+(lineCount>34?' long-code':'');
+    card.dataset.language=label||'code';
+
+    const head=document.createElement('div');
+    head.className='code-header';
+
+    const meta=document.createElement('div');
+    meta.className='code-meta';
+    meta.innerHTML=icon('code');
+
+    const name=document.createElement('span');
+    name.className='code-label';
+    name.textContent=prettyCodeLabel(label);
+
+    const count=document.createElement('span');
+    count.className='code-subtle';
+    count.textContent=lineCount+(lineCount===1?' line':' lines');
+    meta.append(name,count);
+
+    const actions=document.createElement('div');
+    actions.className='code-actions';
+
+    if(lineCount>34){
+      const expand=document.createElement('button');
+      expand.type='button';
+      expand.className='code-action';
+      expand.innerHTML=icon('down')+'<span class="action-label optional">Expand</span>';
+      expand.onclick=()=>{
+        const open=card.classList.toggle('expanded');
+        expand.innerHTML=icon(open?'up':'down')+
+          '<span class="action-label optional">'+(open?'Collapse':'Expand')+'</span>';
+      };
+      actions.append(expand);
+    }
+
+    const copy=document.createElement('button');
+    copy.type='button';
+    copy.className='code-action';
+    copy.innerHTML=icon('copy')+'<span class="action-label">Copy</span>';
+    copy.onclick=async()=>{
+      await copyText(source);
+      copy.classList.add('copied');
+      copy.innerHTML=icon('check')+'<span class="action-label">Copied</span>';
+      setTimeout(()=>{
+        copy.classList.remove('copied');
+        copy.innerHTML=icon('copy')+'<span class="action-label">Copy</span>';
+      },1600);
+    };
+
+    const dl=document.createElement('button');
+    dl.type='button';
+    dl.className='code-action';
+    dl.innerHTML=icon('file')+'<span class="action-label optional">Download</span>';
+    dl.onclick=()=>downloadCode(source,label);
+
+    actions.append(copy,dl);
+    head.append(meta,actions);
+
+    const pre=document.createElement('pre');
+    const c=document.createElement('code');
+
+    if(/^(lua|luau)\b/i.test(label)&&!streaming)c.innerHTML=highlight(source);
+    else c.textContent=source;
+
+    pre.append(c);
+    card.append(head,pre);
+    el.append(card);
+    code=[];
+  }
+
+  for(const line of lines){
+    const fence=line.match(/^\s*```(.*)$/);
+    if(fence){
+      if(inCode){
+        flushCode();
+        inCode=false;
+      }else{
+        flushProse();
+        label=fence[1].trim();
+        inCode=true;
+      }
+    }else if(inCode){
+      code.push(line);
+    }else{
+      prose.push(line);
+    }
+  }
+
+  if(inCode)flushCode();
+  else flushProse();
+}
+
 function plainContent(content){return Array.isArray(content)?content.filter(c=>c.type==='text').map(c=>c.text).join('\n'):String(content||'');}
 function nearBottom(){const a=$('chatArea');return a.scrollHeight-a.scrollTop-a.clientHeight<160;}
 function toBottom(){const a=$('chatArea');a.scrollTop=a.scrollHeight;}
