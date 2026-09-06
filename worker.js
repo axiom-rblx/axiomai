@@ -1,6 +1,7 @@
-// Axiom v3 — shared accounts, profiles, badges, DevHub and Creations.
+// Axiom v4 — shared accounts, verified email recovery, profiles, badges, DevHub and Creations.
 // Required bindings: DB (D1), MEDIA (R2). Tables initialize automatically.
 // Required secrets: GROQ_API_KEY, AUTH_SECRET (random 32+ characters), ADMIN_CODE.
+// Email features: RESEND_API_KEY secret + EMAIL_FROM variable (for example Axiom <accounts@yourdomain.com>).
 // Required owner configuration: ADMIN_USERNAMES, e.g. izzy,anotherowner.
 // Owner names are reserved during signup and require the admin code to register.
 // Admin access requires a signed-in approved owner AND the code; elevation lasts 15 min.
@@ -434,7 +435,11 @@ const SCHEMA = [
   `CREATE INDEX IF NOT EXISTS creations_feed ON creations(deleted, created_at DESC, id DESC);`,
   `CREATE TABLE IF NOT EXISTS creation_media (creation_id TEXT NOT NULL REFERENCES creations(id) ON DELETE CASCADE, media_id TEXT NOT NULL REFERENCES media(id), position INTEGER NOT NULL, PRIMARY KEY(creation_id,media_id));`,
   `CREATE INDEX IF NOT EXISTS creation_media_file ON creation_media(media_id);`,
-  `CREATE TABLE IF NOT EXISTS admin_audit (id TEXT PRIMARY KEY, actor_id TEXT NOT NULL, action TEXT NOT NULL, target_id TEXT NOT NULL, created_at INTEGER NOT NULL);`
+  `CREATE TABLE IF NOT EXISTS admin_audit (id TEXT PRIMARY KEY, actor_id TEXT NOT NULL, action TEXT NOT NULL, target_id TEXT NOT NULL, created_at INTEGER NOT NULL);`,
+  `CREATE TABLE IF NOT EXISTS verified_emails (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, email TEXT NOT NULL COLLATE NOCASE UNIQUE, verified_at INTEGER NOT NULL);`,
+  `CREATE TABLE IF NOT EXISTS email_codes (id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, email TEXT NOT NULL COLLATE NOCASE, purpose TEXT NOT NULL, code_hash TEXT NOT NULL, attempts INTEGER NOT NULL DEFAULT 0, expires_at INTEGER NOT NULL, created_at INTEGER NOT NULL);`,
+  `CREATE INDEX IF NOT EXISTS email_codes_lookup ON email_codes(user_id,purpose,created_at DESC);`,
+  `CREATE INDEX IF NOT EXISTS email_codes_expiry ON email_codes(expires_at);`
 ];
 
 const initialized = new WeakMap();
@@ -600,9 +605,20 @@ function selfProfile(env, u) {
   return {
     ...publicProfile(u),
     email: u.email,
+    emailVerified: !!u.email_verified,
     canAdmin: isOwner(env, u),
     adminUntil: u.admin_until || 0
   };
+}
+
+async function accountRow(env, id) {
+  return one(
+    env,
+    `SELECT u.*,
+       EXISTS(SELECT 1 FROM verified_emails ve WHERE ve.user_id=u.id AND lower(ve.email)=lower(u.email)) AS email_verified
+     FROM users u WHERE u.id=?`,
+    id
+  );
 }
 
 async function authenticate(request, env) {
@@ -617,7 +633,8 @@ async function authenticate(request, env) {
 
   const u = await one(
     env,
-    `SELECT u.*,s.admin_until
+    `SELECT u.*,s.admin_until,
+       EXISTS(SELECT 1 FROM verified_emails ve WHERE ve.user_id=u.id AND lower(ve.email)=lower(u.email)) AS email_verified
      FROM sessions s
      JOIN users u ON u.id=s.user_id
      WHERE s.token_hash=? AND s.expires_at>?`,
@@ -652,9 +669,13 @@ async function newSession(env, u) {
     Date.now() + SESSION_LIFETIME
   );
 
+  const row = u.email_verified === undefined
+    ? await accountRow(env, u.id)
+    : u;
+
   return {
     token,
-    user: selfProfile(env, u)
+    user: selfProfile(env, row)
   };
 }
 
@@ -670,6 +691,152 @@ function validateUsername(raw) {
   }
 
   return raw.trim().toLowerCase();
+}
+
+function validatePassword(password) {
+  if (
+    typeof password !== 'string' ||
+    password.length < 8 ||
+    password.length > 128
+  ) {
+    fail(400, 'Use a password between 8 and 128 characters.');
+  }
+
+  return password;
+}
+
+function normalizeEmail(raw) {
+  if (
+    typeof raw !== 'string' ||
+    raw.length > 254 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw.trim())
+  ) {
+    fail(400, 'Enter a valid email address.');
+  }
+
+  return raw.trim().toLowerCase();
+}
+
+function requireEmailService(env) {
+  if (!env.RESEND_API_KEY || !env.EMAIL_FROM) {
+    fail(
+      503,
+      'Email is not configured yet. Add RESEND_API_KEY and EMAIL_FROM to the Worker.'
+    );
+  }
+}
+
+function verificationCode() {
+  const n = crypto.getRandomValues(new Uint32Array(1))[0] % 1000000;
+  return String(n).padStart(6, '0');
+}
+
+async function emailCodeHash(env, email, purpose, code) {
+  requireAuthSecret(env);
+  return digest(`${env.AUTH_SECRET}\0${purpose}\0${email}\0${code}`);
+}
+
+async function sendEmail(env, to, subject, text) {
+  requireEmailService(env);
+
+  const upstream = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer ' + env.RESEND_API_KEY,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: env.EMAIL_FROM,
+      to: [to],
+      subject,
+      text
+    })
+  });
+
+  if (!upstream.ok) {
+    fail(502, 'Axiom could not send the email. Check the email service configuration.');
+  }
+}
+
+async function issueEmailCode(env, userId, email, purpose) {
+  const code = verificationCode();
+  const id = crypto.randomUUID();
+  const expires = Date.now() + 10 * 60000;
+
+  await run(env, 'DELETE FROM email_codes WHERE user_id=? AND purpose=?', userId, purpose);
+  await run(
+    env,
+    `INSERT INTO email_codes(id,user_id,email,purpose,code_hash,expires_at,created_at)
+     VALUES(?,?,?,?,?,?,?)`,
+    id,
+    userId,
+    email,
+    purpose,
+    await emailCodeHash(env, email, purpose, code),
+    expires,
+    Date.now()
+  );
+
+  const subject = purpose === 'reset-password'
+    ? 'Reset your Axiom password'
+    : 'Verify your Axiom email';
+
+  const action = purpose === 'reset-password'
+    ? 'reset your password'
+    : 'verify your email';
+
+  try {
+    await sendEmail(
+      env,
+      email,
+      subject,
+      `Your Axiom code is ${code}. Use it to ${action}. This code expires in 10 minutes. If you did not request this, you can ignore this email.`
+    );
+  } catch (err) {
+    await run(env, 'DELETE FROM email_codes WHERE id=?', id).catch(() => {});
+    throw err;
+  }
+
+  return expires;
+}
+
+async function consumeEmailCode(env, userId, purpose, code) {
+  if (typeof code !== 'string' || !/^\d{6}$/.test(code.trim())) {
+    fail(400, 'Enter the 6-digit code from your email.');
+  }
+
+  const row = await one(
+    env,
+    `SELECT * FROM email_codes
+     WHERE user_id=? AND purpose=?
+     ORDER BY created_at DESC LIMIT 1`,
+    userId,
+    purpose
+  );
+
+  if (!row || row.expires_at <= Date.now() || row.attempts >= 5) {
+    fail(400, 'That code is invalid or expired. Request a new one.');
+  }
+
+  const actual = await emailCodeHash(env, row.email, purpose, code.trim());
+  if (!await equalSecret(actual, row.code_hash)) {
+    await run(env, 'UPDATE email_codes SET attempts=attempts+1 WHERE id=?', row.id);
+    fail(400, 'That code is invalid or expired. Request a new one.');
+  }
+
+  await run(env, 'DELETE FROM email_codes WHERE id=?', row.id);
+  return row;
+}
+
+async function emailTaken(env, email, exceptUserId = '') {
+  return !!await one(
+    env,
+    `SELECT id FROM users
+     WHERE email=? COLLATE NOCASE AND id<>?
+     LIMIT 1`,
+    email,
+    exceptUserId
+  );
 }
 
 async function checkAdminCode(env, code, scope) {
@@ -692,24 +859,20 @@ async function checkAdminCode(env, code, scope) {
 async function authRoute(request, env, path, headers, ip) {
   if (request.method !== 'POST') fail(405, 'Method not allowed.');
 
-  await throttle(env, 'auth-ip:' + ip, 15, 15 * 60000);
-
-  const b = await parseJSON(request, 4096);
-  const username = validateUsername(b.username);
-  const password = b.password;
-
-  if (
-    typeof password !== 'string' ||
-    password.length < 8 ||
-    password.length > 128
-  ) {
-    fail(400, 'Use a password between 8 and 128 characters.');
-  }
-
+  await throttle(env, 'auth-ip:' + ip, 20, 15 * 60000);
+  const b = await parseJSON(request, 8192);
   requireAuthSecret(env);
 
   if (path === '/auth/register') {
     await throttle(env, 'signup-ip:' + ip, 5, 60 * 60000);
+
+    const username = validateUsername(b.username);
+    const email = normalizeEmail(b.email);
+    const password = validatePassword(b.password);
+
+    if (await emailTaken(env, email)) {
+      fail(409, 'That email is already connected to another account.');
+    }
 
     if (owners(env).includes(username)) {
       await checkAdminCode(env, b.adminCode, 'reserved:' + username);
@@ -722,59 +885,243 @@ async function authRoute(request, env, path, headers, ip) {
     try {
       await run(
         env,
-        `INSERT INTO users(id,username,password_hash,salt,display_name,created_at)
-         VALUES(?,?,?,?,?,?)`,
+        `INSERT INTO users(id,username,password_hash,salt,display_name,email,created_at)
+         VALUES(?,?,?,?,?,?,?)`,
         id,
         username,
         passwordHash,
         salt,
         username,
+        email,
         Date.now()
       );
     } catch (err) {
       if (/UNIQUE constraint failed: users.username/i.test(String(err))) {
         fail(409, 'That username is already taken. Choose another one.');
       }
-
       throw err;
     }
 
     return responseJSON(
-      await newSession(
-        env,
-        await one(env, 'SELECT * FROM users WHERE id=?', id)
-      ),
+      await newSession(env, await accountRow(env, id)),
       201,
       headers
     );
   }
 
-  await throttle(
-    env,
-    'login-user:' + await digest(username),
-    10,
-    15 * 60000
-  );
+  if (path === '/auth/login') {
+    const identifier = typeof b.identifier === 'string'
+      ? b.identifier.trim()
+      : typeof b.username === 'string'
+        ? b.username.trim()
+        : '';
+    const password = validatePassword(b.password);
 
-  const u = await one(
-    env,
-    'SELECT * FROM users WHERE username=? COLLATE NOCASE',
-    username
-  );
+    if (!identifier || identifier.length > 254) {
+      fail(400, 'Enter your username or verified email.');
+    }
 
-  const hash = await hashPassword(
-    env,
-    password,
-    u?.salt || '00'.repeat(16)
-  );
+    await throttle(
+      env,
+      'login-user:' + await digest(identifier.toLowerCase()),
+      10,
+      15 * 60000
+    );
 
-  if (!u || !await equalSecret(hash, u.password_hash)) {
-    fail(401, 'Incorrect username or password.');
+    let u;
+    if (identifier.includes('@')) {
+      const email = normalizeEmail(identifier);
+      u = await one(
+        env,
+        `SELECT u.*,
+           CASE WHEN lower(ve.email)=lower(u.email) THEN 1 ELSE 0 END AS email_verified
+         FROM verified_emails ve
+         JOIN users u ON u.id=ve.user_id
+         WHERE ve.email=? COLLATE NOCASE`,
+        email
+      );
+    } else {
+      const username = validateUsername(identifier);
+      u = await one(
+        env,
+        `SELECT u.*,
+           EXISTS(SELECT 1 FROM verified_emails ve WHERE ve.user_id=u.id AND lower(ve.email)=lower(u.email)) AS email_verified
+         FROM users u WHERE u.username=? COLLATE NOCASE`,
+        username
+      );
+    }
+
+    const hash = await hashPassword(
+      env,
+      password,
+      u?.salt || '00'.repeat(16)
+    );
+
+    if (!u || !await equalSecret(hash, u.password_hash)) {
+      fail(401, 'Incorrect username/email or password.');
+    }
+
+    if (u.suspended) fail(403, 'This account is suspended.');
+    return responseJSON(await newSession(env, u), 200, headers);
   }
 
-  if (u.suspended) fail(403, 'This account is suspended.');
+  if (path === '/auth/password/request') {
+    requireEmailService(env);
+    const email = normalizeEmail(b.email);
 
-  return responseJSON(await newSession(env, u), 200, headers);
+    await throttle(env, 'reset-ip:' + ip, 8, 30 * 60000);
+    await throttle(
+      env,
+      'reset-email:' + await digest(email),
+      4,
+      30 * 60000
+    );
+
+    const u = await one(
+      env,
+      `SELECT u.* FROM verified_emails ve
+       JOIN users u ON u.id=ve.user_id
+       WHERE ve.email=? COLLATE NOCASE AND u.suspended=0`,
+      email
+    );
+
+    if (u) {
+      await issueEmailCode(env, u.id, email, 'reset-password');
+    }
+
+    return responseJSON(
+      { ok: true, message: 'If that verified email belongs to an account, a code was sent.' },
+      200,
+      headers
+    );
+  }
+
+  if (path === '/auth/password/reset') {
+    const email = normalizeEmail(b.email);
+    const password = validatePassword(b.password);
+
+    const u = await one(
+      env,
+      `SELECT u.* FROM verified_emails ve
+       JOIN users u ON u.id=ve.user_id
+       WHERE ve.email=? COLLATE NOCASE AND u.suspended=0`,
+      email
+    );
+
+    if (!u) fail(400, 'That code is invalid or expired. Request a new one.');
+    await consumeEmailCode(env, u.id, 'reset-password', b.code);
+
+    const salt = hex(crypto.getRandomValues(new Uint8Array(16)));
+    const passwordHash = await hashPassword(env, password, salt);
+
+    await env.DB.batch([
+      stmt(env, 'UPDATE users SET password_hash=?,salt=? WHERE id=?', passwordHash, salt, u.id),
+      stmt(env, 'DELETE FROM sessions WHERE user_id=?', u.id),
+      stmt(env, 'DELETE FROM email_codes WHERE user_id=?', u.id)
+    ]);
+
+    return responseJSON({ ok: true }, 200, headers);
+  }
+
+  fail(404, 'Auth route not found.');
+}
+
+async function accountRoute(request, env, u, path, headers) {
+  if (path === '/account/email/request') {
+    if (request.method !== 'POST') fail(405, 'Method not allowed.');
+    await throttle(env, 'email-connect:' + u.id, 5, 30 * 60000);
+
+    const b = await parseJSON(request, 2048);
+    const email = normalizeEmail(b.email);
+
+    if (await emailTaken(env, email, u.id)) {
+      fail(409, 'That email is already connected to another account.');
+    }
+
+    const verified = await one(
+      env,
+      'SELECT email FROM verified_emails WHERE user_id=?',
+      u.id
+    );
+
+    if (verified && verified.email.toLowerCase() === email) {
+      return responseJSON({ ok: true, alreadyVerified: true }, 200, headers);
+    }
+
+    const expires = await issueEmailCode(env, u.id, email, 'verify-email');
+    await run(env, 'UPDATE users SET email=? WHERE id=?', email, u.id);
+
+    return responseJSON(
+      { ok: true, email, expiresAt: expires },
+      200,
+      headers
+    );
+  }
+
+  if (path === '/account/email/verify') {
+    if (request.method !== 'POST') fail(405, 'Method not allowed.');
+    await throttle(env, 'email-verify:' + u.id, 12, 30 * 60000);
+
+    const b = await parseJSON(request, 1024);
+    const row = await consumeEmailCode(env, u.id, 'verify-email', b.code);
+
+    if (await emailTaken(env, row.email, u.id)) {
+      fail(409, 'That email is already connected to another account.');
+    }
+
+    try {
+      await env.DB.batch([
+        stmt(
+          env,
+          `INSERT INTO verified_emails(user_id,email,verified_at) VALUES(?,?,?)
+           ON CONFLICT(user_id) DO UPDATE SET email=excluded.email,verified_at=excluded.verified_at`,
+          u.id,
+          row.email,
+          Date.now()
+        ),
+        stmt(env, 'UPDATE users SET email=? WHERE id=?', row.email, u.id)
+      ]);
+    } catch (err) {
+      if (/UNIQUE constraint failed: verified_emails.email/i.test(String(err))) {
+        fail(409, 'That email is already connected to another account.');
+      }
+      throw err;
+    }
+
+    const fresh = await accountRow(env, u.id);
+    fresh.admin_until = u.admin_until;
+    return responseJSON({ user: selfProfile(env, fresh) }, 200, headers);
+  }
+
+  if (path === '/account/password') {
+    if (request.method !== 'POST') fail(405, 'Method not allowed.');
+    await throttle(env, 'password-change:' + u.id, 6, 30 * 60000);
+
+    const b = await parseJSON(request, 2048);
+    const currentPassword = validatePassword(b.currentPassword);
+    const newPassword = validatePassword(b.newPassword);
+
+    const currentHash = await hashPassword(env, currentPassword, u.salt);
+    if (!await equalSecret(currentHash, u.password_hash)) {
+      fail(403, 'Your current password is incorrect.');
+    }
+
+    if (currentPassword === newPassword) {
+      fail(400, 'Choose a new password that is different from your current one.');
+    }
+
+    const salt = hex(crypto.getRandomValues(new Uint8Array(16)));
+    const passwordHash = await hashPassword(env, newPassword, salt);
+
+    await env.DB.batch([
+      stmt(env, 'UPDATE users SET password_hash=?,salt=? WHERE id=?', passwordHash, salt, u.id),
+      stmt(env, 'DELETE FROM sessions WHERE user_id=? AND token_hash<>?', u.id, u.tokenHash)
+    ]);
+
+    return responseJSON({ ok: true }, 200, headers);
+  }
+
+  fail(404, 'Account route not found.');
 }
 
 async function profileRoute(request, env, u, path, headers) {
@@ -822,14 +1169,6 @@ async function profileRoute(request, env, u, path, headers) {
       fail(400, 'Keep your bio under 180 characters.');
     }
 
-    if (
-      typeof b.email !== 'string' ||
-      b.email.length > 254 ||
-      (b.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.email))
-    ) {
-      fail(400, 'Enter a valid email address or leave it empty.');
-    }
-
     if (!/^#[0-9a-f]{6}$/i.test(b.color)) {
       fail(400, 'Choose a valid avatar color.');
     }
@@ -856,10 +1195,9 @@ async function profileRoute(request, env, u, path, headers) {
     // Client-supplied badges, usernames, and roles are ignored.
     await run(
       env,
-      'UPDATE users SET display_name=?,bio=?,email=?,color=?,avatar_id=? WHERE id=?',
+      'UPDATE users SET display_name=?,bio=?,color=?,avatar_id=? WHERE id=?',
       name,
       b.bio.trim(),
-      b.email.trim(),
       b.color,
       b.avatarId,
       u.id
@@ -868,7 +1206,7 @@ async function profileRoute(request, env, u, path, headers) {
     return responseJSON(
       {
         user: selfProfile(env, {
-          ...await one(env, 'SELECT * FROM users WHERE id=?', u.id),
+          ...await accountRow(env, u.id),
           admin_until: u.admin_until
         })
       },
@@ -1839,7 +2177,8 @@ async function cleanup(env) {
 
   await env.DB.batch([
     stmt(env, 'DELETE FROM sessions WHERE expires_at<?', now),
-    stmt(env, 'DELETE FROM throttles WHERE expires_at<?', now)
+    stmt(env, 'DELETE FROM throttles WHERE expires_at<?', now),
+    stmt(env, 'DELETE FROM email_codes WHERE expires_at<?', now)
   ]);
 
   if (!env.MEDIA) return;
@@ -1926,11 +2265,12 @@ export default {
         return responseJSON(
           {
             ok: true,
-            version: 3,
+            version: 4,
             accounts: !!env.DB,
             uploads: !!env.MEDIA,
             chat: !!env.GROQ_API_KEY,
-            admin: !!env.ADMIN_CODE && owners(env).length > 0
+            admin: !!env.ADMIN_CODE && owners(env).length > 0,
+            email: !!env.RESEND_API_KEY && !!env.EMAIL_FROM
           },
           200,
           headers
@@ -1955,7 +2295,7 @@ export default {
         }
       }
 
-      if (['/auth/register', '/auth/login'].includes(path)) {
+      if (['/auth/register', '/auth/login', '/auth/password/request', '/auth/password/reset'].includes(path)) {
         return await authRoute(request, env, path, headers, ip);
       }
 
@@ -1977,6 +2317,10 @@ export default {
 
       if (path === '/me' || path.startsWith('/profiles/')) {
         return await profileRoute(request, env, u, path, headers);
+      }
+
+      if (path.startsWith('/account/')) {
+        return await accountRoute(request, env, u, path, headers);
       }
 
       if (path === '/devhub/archive' && request.method === 'GET') {
