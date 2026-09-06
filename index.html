@@ -650,6 +650,98 @@ html[data-custom-gradient=true] .creation-card{
   max-width:150px;margin-top:1px
 }
 
+
+/* Axiom social profile system */
+.profile-theme-setting{margin:0 0 22px}
+.profile-theme-setting>strong{font-size:14px;font-weight:550}
+.profile-theme-setting>p{font-size:12px;color:var(--muted);margin:4px 0 10px}
+.profile-theme-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.profile-theme-grid button{
+  display:flex;align-items:center;gap:8px;padding:8px;border:1px solid var(--line);
+  border-radius:10px;background:var(--surface);font-size:12px;color:var(--muted);text-align:left
+}
+.profile-theme-grid button:hover{background:var(--soft);color:var(--ink)}
+.profile-theme-grid button[aria-pressed=true]{
+  border-color:color-mix(in srgb,var(--blue) 55%,var(--line));
+  background:var(--blue-soft);color:var(--ink)
+}
+.theme-swatch{width:28px;height:20px;border-radius:6px;flex-shrink:0;border:1px solid #ffffff40}
+.theme-swatch.classic{background:linear-gradient(135deg,#edf2ff,#f3f1eb)}
+.theme-swatch.ocean{background:linear-gradient(135deg,#0b6ea8,#53d4c5)}
+.theme-swatch.sunset{background:linear-gradient(135deg,#ff8a5b,#8a5cff)}
+.theme-swatch.midnight{background:linear-gradient(135deg,#111827,#354d8c)}
+.theme-swatch.forest{background:linear-gradient(135deg,#245b43,#84a95d)}
+.theme-swatch.rose{background:linear-gradient(135deg,#c75b83,#f2a58c)}
+.profile-link-editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.profile-link-editor-grid input{margin:0}
+.profile-hero[data-profile-theme=ocean]{background:linear-gradient(135deg,#0b6ea8,#53d4c5)}
+.profile-hero[data-profile-theme=sunset]{background:linear-gradient(135deg,#ff8a5b,#8a5cff)}
+.profile-hero[data-profile-theme=midnight]{background:linear-gradient(135deg,#111827,#354d8c)}
+.profile-hero[data-profile-theme=forest]{background:linear-gradient(135deg,#245b43,#84a95d)}
+.profile-hero[data-profile-theme=rose]{background:linear-gradient(135deg,#c75b83,#f2a58c)}
+.public-profile[data-profile-theme=ocean]{--profile-accent:#149eae}
+.public-profile[data-profile-theme=sunset]{--profile-accent:#d5667a}
+.public-profile[data-profile-theme=midnight]{--profile-accent:#6f8fd8}
+.public-profile[data-profile-theme=forest]{--profile-accent:#5a8b68}
+.public-profile[data-profile-theme=rose]{--profile-accent:#cc6c8e}
+.public-profile[data-profile-theme=classic]{--profile-accent:var(--blue)}
+.profile-action-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:16px 0 6px}
+.profile-action-row .primary{background:var(--profile-accent,var(--blue))}
+.profile-links{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}
+.profile-link-pill{
+  display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink);
+  border:1px solid var(--line);background:var(--surface);padding:7px 10px;border-radius:9px;font-size:12px
+}
+.profile-link-pill:hover{background:var(--soft);border-color:var(--profile-accent,var(--blue))}
+.profile-link-pill .icon{width:14px;height:14px;color:var(--profile-accent,var(--blue))}
+.profile-section{margin:23px 0 0;padding-top:20px;border-top:1px solid var(--line)}
+.profile-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}
+.profile-section h3{font-size:14px;margin:0;font-weight:650;letter-spacing:-.2px}
+.pinned-profile-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.pinned-profile-card{
+  text-align:left;border:1px solid var(--line);border-radius:11px;background:var(--surface);
+  overflow:hidden;min-width:0;transition:transform .14s,border-color .14s
+}
+.pinned-profile-card:hover{transform:translateY(-1px);border-color:var(--profile-accent,var(--blue))}
+.pinned-profile-card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--soft)}
+.pinned-profile-card .pin-copy{padding:9px}
+.pinned-profile-card strong{display:block;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pinned-profile-card span{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+.activity-list{display:flex;flex-direction:column;gap:5px}
+.activity-row{display:flex;align-items:flex-start;gap:9px;padding:8px 0}
+.activity-icon{
+  width:28px;height:28px;border-radius:8px;background:var(--soft);color:var(--profile-accent,var(--blue));
+  display:flex;align-items:center;justify-content:center;flex-shrink:0
+}
+.activity-icon .icon{width:14px;height:14px}
+.activity-row strong{display:block;font-size:12px;font-weight:600}
+.activity-row span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.pin-control{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+.pin-control.pinned{color:var(--blue);background:var(--blue-soft)}
+.online-members{
+  min-height:42px;display:flex;align-items:center;gap:6px;overflow:auto;padding:10px 0 3px;
+  scrollbar-width:none
+}
+.online-members::-webkit-scrollbar{display:none}
+.online-member{
+  position:relative;width:36px;height:36px;flex:0 0 36px;border-radius:11px;padding:0
+}
+.online-member .avatar{width:36px;height:36px;border-radius:11px}
+.online-member .presence-dot{
+  position:absolute;right:-1px;bottom:-1px;width:10px;height:10px;
+  box-shadow:0 0 0 3px var(--bg)
+}
+.online-member:hover{transform:translateY(-1px)}
+#onlineCount{font-weight:550;color:var(--ink)}
+.profile-url-copy{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:7px}
+.profile-url-copy button{color:var(--blue);font-size:11px;padding:2px 4px;border-radius:5px}
+.profile-url-copy button:hover{background:var(--blue-soft)}
+@media(max-width:760px){
+  .profile-theme-grid{grid-template-columns:1fr 1fr}
+  .profile-link-editor-grid{grid-template-columns:1fr}
+  .pinned-profile-grid{grid-template-columns:1fr 1fr}
+}
+
 </style>
 </head>
 <body>
@@ -681,6 +773,7 @@ html[data-custom-gradient=true] .creation-card{
 <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 3 7v5c0 5 9 10 9 10s9-5 9-10V7l-9-4Z"/><path d="m8 12 3 3 5-6"/></symbol>
 <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/></symbol>
 <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="m14 4 6 6-3 1-3 3-1 6-3-7-7-3 6-1 3-3 1-3Z"/><path d="m10 14-6 6"/></symbol>
 </defs></svg>
 <section id="authWrap">
   <div class="auth-intro"><div class="brand"><img data-logo alt="">Axiom<em>.</em></div><div><h1>Your next game<br>starts with <span>an idea.</span></h1><p>A place to build interfaces, work through scripts, and bring your Roblox projects to life.</p><div class="auth-capabilities"><span><svg class="icon"><use href="#i-layout"/></svg>Interfaces</span><span><svg class="icon"><use href="#i-code"/></svg>Scripts</span><span><svg class="icon"><use href="#i-box"/></svg>Systems</span></div></div><span class="small muted">Made for Roblox developers.</span></div>
@@ -701,12 +794,12 @@ html[data-custom-gradient=true] .creation-card{
 <button class="icon-btn jump-bottom" id="jumpBottom" aria-label="Scroll to latest message" hidden><svg class="icon"><use href="#i-down"/></svg></button>
 <div class="composer-wrap"><div id="chatError" class="error-strip" role="alert" hidden><span></span><button class="btn ghost" id="retryRequest">Retry</button><button class="icon-btn" id="dismissError" aria-label="Dismiss error"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="chatForm" class="composer-box"><div class="attachments" id="attachments" hidden></div><label class="sr-only" for="prompt">Message Axiom</label><textarea id="prompt" rows="2" maxlength="60000" placeholder="Ask Axiom to build something…"></textarea><div class="composer-tools"><div class="composer-left"><button class="icon-btn" id="attachBtn" type="button" aria-label="Attach images or code files" title="Attach images or code files"><svg class="icon"><use href="#i-clip"/></svg></button><label class="sr-only" for="modeSelect">Assistant mode</label><select class="sr-only" id="modeSelect" tabindex="-1" aria-hidden="true"><option value="axiom">Axiom</option><option value="ui">Interface designer</option><option value="code">Script developer</option></select><div class="mode-picker" id="modePicker"><button class="mode-trigger" id="modePickerButton" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="mode-trigger-icon" id="modePickerIcon"><svg class="icon"><use href="#i-chat"/></svg></span><span class="mode-trigger-copy"><strong id="modePickerLabel">Axiom</strong><small id="modePickerSub">Roblox workspace</small></span><svg class="icon mode-chevron"><use href="#i-down"/></svg></button><div class="mode-menu" id="modePickerMenu" role="listbox" aria-label="Choose Axiom mode" hidden><button type="button" class="mode-option" role="option" data-mode-choice="axiom"><span class="mode-option-icon"><svg class="icon"><use href="#i-chat"/></svg></span><span><strong>Axiom</strong><small>Build across your Roblox project</small></span><span class="mode-check">✓</span></button><button type="button" class="mode-option" role="option" data-mode-choice="ui"><span class="mode-option-icon"><svg class="icon"><use href="#i-layout"/></svg></span><span><strong>Interface designer</strong><small>Polished Roblox UI and UX</small></span><span class="mode-check">✓</span></button><button type="button" class="mode-option" role="option" data-mode-choice="code"><span class="mode-option-icon"><svg class="icon"><use href="#i-code"/></svg></span><span><strong>Script developer</strong><small>Luau scripts and game systems</small></span><span class="mode-check">✓</span></button></div></div></div><div class="composer-right"><span class="model-label" id="modelLabel">Axiom · Deep Build</span><button class="send" id="sendBtn" type="submit" aria-label="Send message"><svg class="icon"><use href="#i-up"/></svg></button><button class="send" id="stopBtn" type="button" aria-label="Stop generating" hidden><svg class="icon"><use href="#i-stop"/></svg></button></div></div></form><p class="composer-hint">Axiom can make mistakes. Test generated code in Roblox Studio.</p></div>
 </section>
-<section class="hub-view" id="hubView" hidden aria-label="DevHub community"><div class="hub-header"><h1>DevHub</h1><p>A shared space for developers. Open a member’s profile to see who’s behind the work.</p><button class="btn ghost" id="legacyBoardBtn">View earlier board</button><p id="hubStatus" role="status"></p></div><div class="chat-area" id="hubArea"><div class="hub-log" id="hubLog"></div></div><div class="composer-wrap"><form id="hubForm" class="composer-box"><label class="sr-only" for="hubInput">Public message</label><textarea id="hubInput" rows="2" maxlength="500" placeholder="Share what you’re working on…" required></textarea><div class="composer-tools"><span class="small muted">Visible to everyone on DevHub</span><button class="send" id="hubSend" aria-label="Post message"><svg class="icon"><use href="#i-up"/></svg></button></div></form></div></section>
+<section class="hub-view" id="hubView" hidden aria-label="DevHub community"><div class="hub-header"><h1>DevHub</h1><p>A shared space for developers. <strong id="onlineCount">0 developers online</strong></p><div class="online-members" id="onlineMembers" aria-label="Online developers"></div><button class="btn ghost" id="legacyBoardBtn">View earlier board</button><p id="hubStatus" role="status"></p></div><div class="chat-area" id="hubArea"><div class="hub-log" id="hubLog"></div></div><div class="composer-wrap"><form id="hubForm" class="composer-box"><label class="sr-only" for="hubInput">Public message</label><textarea id="hubInput" rows="2" maxlength="500" placeholder="Share what you’re working on…" required></textarea><div class="composer-tools"><span class="small muted">Visible to everyone on DevHub</span><button class="send" id="hubSend" aria-label="Post message"><svg class="icon"><use href="#i-up"/></svg></button></div></form></div></section>
 <section id="creationsView" class="shared-view" hidden aria-label="Community creations"><div class="community-shell"><div class="community-heading"><div><h1>Creations</h1><p>A little inspiration. A lot of work worth sharing.</p></div><button id="newCreation" class="btn primary"><svg class="icon"><use href="#i-plus"/></svg>Share a creation</button></div><div class="feed-toolbar"><div class="filter-tabs" id="creationFilters" role="group" aria-label="Filter creations"><button data-category="All" aria-pressed="true">All work</button><button data-category="Interface" aria-pressed="false">Interfaces</button><button data-category="Script" aria-pressed="false">Scripts</button><button data-category="Game" aria-pressed="false">Games</button><button data-category="Other" aria-pressed="false">Other</button></div><button class="btn ghost" id="clearAuthorFilter" hidden>Show everyone</button></div><p id="creationStatus" class="inline-error" role="status"></p><div id="creationGrid" class="creation-grid"></div><button id="moreCreations" class="btn feed-more" hidden>Load more</button></div></section>
 <section id="adminView" class="shared-view" hidden aria-label="Admin dashboard"><div class="community-shell"><div class="community-heading"><div><h1>Admin dashboard</h1><p>Look after the people and work that make Axiom.</p></div><button id="lockAdmin" class="btn"><svg class="icon"><use href="#i-shield"/></svg>Lock dashboard</button></div><div class="admin-stats" id="adminStats"></div><div class="feed-toolbar admin-tabs"><div class="filter-tabs" role="group" aria-label="Admin sections"><button id="adminMembersTab" aria-pressed="true">Members & badges</button><button id="adminContentTab" aria-pressed="false">Community</button></div><span class="feed-note" id="adminExpiry"></span></div><p id="adminStatus" class="inline-error" role="status"></p><div id="adminMembersPanel" class="admin-layout"><section class="admin-members" aria-label="Members"><div class="admin-search"><label class="sr-only" for="adminSearch">Find a member</label><input id="adminSearch" class="search-input" placeholder="Find a member by name…"></div><div id="adminUserList" class="admin-user-list"></div><button id="adminMoreUsers" class="btn ghost" hidden>Load more members</button></section><section class="admin-detail" id="adminUserDetail" aria-label="Selected member"><div class="admin-detail-empty">Choose a member to manage their badges and account.</div></section></div><section id="adminContentPanel" hidden aria-label="Community moderation"><div id="adminContentList"></div><button id="adminMoreContent" class="btn" hidden>Load more creations</button></section></div></section>
 </main></div>
 <dialog id="settingsDialog" aria-labelledby="settingsTitle"><div class="dialog-header"><h2 id="settingsTitle">Settings</h2><button class="icon-btn" data-close="settingsDialog" aria-label="Close settings"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="settingsForm"><div class="dialog-body"><div class="settings-tabs" role="tablist" aria-label="Settings sections"><button type="button" role="tab" id="profileTab" aria-controls="profilePanel" aria-selected="true" data-tab="profile">Profile</button><button type="button" role="tab" id="preferencesTab" aria-controls="preferencesPanel" aria-selected="false" tabindex="-1" data-tab="preferences">Preferences</button></div>
-<div id="profilePanel" role="tabpanel" aria-labelledby="profileTab"><div class="banner-editor"><div class="banner-editor-head"><div><strong>Profile banner</strong><p>Shown across the top of your public Axiom profile.</p></div><div class="banner-actions"><button class="btn" type="button" id="viewOwnProfile">View profile</button><button class="btn" type="button" id="uploadBanner"><svg class="icon"><use href="#i-upload"/></svg>Change banner</button><button class="btn ghost" type="button" id="removeBanner">Remove</button></div></div><div class="banner-preview" id="bannerPreview"></div></div><div class="avatar-editor"><div class="avatar" id="avatarPreview"></div><div><button class="btn" type="button" id="uploadAvatar"><svg class="icon"><use href="#i-upload"/></svg>Change photo</button> <button class="btn ghost" type="button" id="removeAvatar">Remove</button><p>PNG, JPG, WebP, GIF, AVIF or BMP · up to 5 MB<br>Animated GIFs and WebP stay animated.</p></div></div><div class="field"><label for="displayName">Display name</label><input id="displayName" maxlength="40" required><p class="help">Shown in your workspace and on DevHub.</p></div><div class="field-row"><div class="field"><label for="usernameReadOnly">Username</label><input id="usernameReadOnly" readonly></div><div class="field"><label for="profileEmail">Connected email <span id="emailState" class="email-state"></span></label><input id="profileEmail" type="email" readonly placeholder="Not connected"></div></div><div class="account-security"><div class="setting-row"><div><strong>Email & recovery</strong><p id="emailHelp">Connect and verify an email to sign in by email and reset your password.</p></div><button id="manageEmail" class="btn" type="button">Connect email</button></div><div class="setting-row"><div><strong>Discord</strong><p id="discordHelp">Link Discord to your Axiom profile with the /connect command.</p></div><button id="manageDiscord" class="btn" type="button">Connect Discord</button></div><div class="setting-row"><div><strong>Password</strong><p>Change your password and sign out other sessions.</p></div><button id="changePassword" class="btn" type="button">Change password</button></div></div><div class="field"><label for="profileBio">Bio</label><textarea id="profileBio" maxlength="180" placeholder="A little about what you build…"></textarea></div><div class="field"><label>Avatar color</label><div class="colors" id="avatarColors" role="group" aria-label="Avatar color"></div></div><div class="status-setting"><strong>Status <span class="email-state verified" id="currentPresenceLabel"></span></strong><p>Auto shows Online while active and Idle after about 2 minutes. Invisible always appears Offline.</p><div class="status-options" id="statusOptions" role="group" aria-label="Profile status"><button type="button" class="status-option" data-status-mode="auto"><span class="auto-dot"></span><span>Auto</span></button><button type="button" class="status-option" data-status-mode="online"><span class="presence-dot online"></span><span>Online</span></button><button type="button" class="status-option" data-status-mode="idle"><span class="presence-dot idle"></span><span>Idle</span></button><button type="button" class="status-option" data-status-mode="dnd"><span class="presence-dot dnd"></span><span>DND</span></button><button type="button" class="status-option invisible" data-status-mode="invisible"><span class="presence-dot offline"></span><span>Invisible</span></button></div></div><div class="custom-status-field"><label for="statusQuote">Custom status <span id="statusQuoteCount">0/80</span></label><input id="statusQuote" maxlength="80" placeholder="What are you working on?"></div><div class="badge-settings"><strong>Your badges</strong><div id="myBadges" class="readonly-badges"></div><p>Badges are assigned by the Axiom team.</p></div><div class="info-box">Your email is private. Your name, photo, banner, bio, status, and awarded badges are shown on your public profile.</div></div>
+<div id="profilePanel" role="tabpanel" aria-labelledby="profileTab"><div class="banner-editor"><div class="banner-editor-head"><div><strong>Profile banner</strong><p>Shown across the top of your public Axiom profile.</p></div><div class="banner-actions"><button class="btn" type="button" id="viewOwnProfile">View profile</button><button class="btn" type="button" id="uploadBanner"><svg class="icon"><use href="#i-upload"/></svg>Change banner</button><button class="btn ghost" type="button" id="removeBanner">Remove</button></div></div><div class="banner-preview" id="bannerPreview"></div></div><div class="profile-theme-setting"><strong>Profile theme</strong><p>Choose the look people see when they open your profile.</p><div class="profile-theme-grid" id="profileThemeGrid"><button type="button" data-profile-theme-choice="classic"><span class="theme-swatch classic"></span><span>Classic</span></button><button type="button" data-profile-theme-choice="ocean"><span class="theme-swatch ocean"></span><span>Ocean</span></button><button type="button" data-profile-theme-choice="sunset"><span class="theme-swatch sunset"></span><span>Sunset</span></button><button type="button" data-profile-theme-choice="midnight"><span class="theme-swatch midnight"></span><span>Midnight</span></button><button type="button" data-profile-theme-choice="forest"><span class="theme-swatch forest"></span><span>Forest</span></button><button type="button" data-profile-theme-choice="rose"><span class="theme-swatch rose"></span><span>Rose</span></button></div></div><div class="avatar-editor"><div class="avatar" id="avatarPreview"></div><div><button class="btn" type="button" id="uploadAvatar"><svg class="icon"><use href="#i-upload"/></svg>Change photo</button> <button class="btn ghost" type="button" id="removeAvatar">Remove</button><p>PNG, JPG, WebP, GIF, AVIF or BMP · up to 5 MB<br>Animated GIFs and WebP stay animated.</p></div></div><div class="field"><label for="displayName">Display name</label><input id="displayName" maxlength="40" required><p class="help">Shown in your workspace and on DevHub.</p></div><div class="field-row"><div class="field"><label for="usernameReadOnly">Username</label><input id="usernameReadOnly" readonly></div><div class="field"><label for="profileEmail">Connected email <span id="emailState" class="email-state"></span></label><input id="profileEmail" type="email" readonly placeholder="Not connected"></div></div><div class="account-security"><div class="setting-row"><div><strong>Email & recovery</strong><p id="emailHelp">Connect and verify an email to sign in by email and reset your password.</p></div><button id="manageEmail" class="btn" type="button">Connect email</button></div><div class="setting-row"><div><strong>Discord</strong><p id="discordHelp">Link Discord to your Axiom profile with the /connect command.</p></div><button id="manageDiscord" class="btn" type="button">Connect Discord</button></div><div class="setting-row"><div><strong>Password</strong><p>Change your password and sign out other sessions.</p></div><button id="changePassword" class="btn" type="button">Change password</button></div></div><div class="field"><label for="profileBio">Bio</label><textarea id="profileBio" maxlength="180" placeholder="A little about what you build…"></textarea></div><div class="field profile-links-editor"><label>Profile links</label><p class="help">Optional links shown on your public profile.</p><div class="profile-link-editor-grid"><input id="profileGithub" type="url" maxlength="220" placeholder="https://github.com/username" aria-label="GitHub profile link"><input id="profileRoblox" type="url" maxlength="220" placeholder="https://www.roblox.com/users/..." aria-label="Roblox profile link"><input id="profileWebsite" type="url" maxlength="220" placeholder="https://your-site.com" aria-label="Website link"><input id="profileDiscord" type="url" maxlength="220" placeholder="https://discord.com/users/..." aria-label="Discord profile link"></div></div><div class="field"><label>Avatar color</label><div class="colors" id="avatarColors" role="group" aria-label="Avatar color"></div></div><div class="status-setting"><strong>Status <span class="email-state verified" id="currentPresenceLabel"></span></strong><p>Auto shows Online while active and Idle after about 2 minutes. Invisible always appears Offline.</p><div class="status-options" id="statusOptions" role="group" aria-label="Profile status"><button type="button" class="status-option" data-status-mode="auto"><span class="auto-dot"></span><span>Auto</span></button><button type="button" class="status-option" data-status-mode="online"><span class="presence-dot online"></span><span>Online</span></button><button type="button" class="status-option" data-status-mode="idle"><span class="presence-dot idle"></span><span>Idle</span></button><button type="button" class="status-option" data-status-mode="dnd"><span class="presence-dot dnd"></span><span>DND</span></button><button type="button" class="status-option invisible" data-status-mode="invisible"><span class="presence-dot offline"></span><span>Invisible</span></button></div></div><div class="custom-status-field"><label for="statusQuote">Custom status <span id="statusQuoteCount">0/80</span></label><input id="statusQuote" maxlength="80" placeholder="What are you working on?"></div><div class="badge-settings"><strong>Your badges</strong><div id="myBadges" class="readonly-badges"></div><p>Badges are assigned by the Axiom team.</p></div><div class="info-box">Your email is private. Your name, photo, banner, bio, status, and awarded badges are shown on your public profile.</div></div>
 <div id="preferencesPanel" role="tabpanel" aria-labelledby="preferencesTab" hidden><div class="setting-row"><div><strong>Appearance</strong><p>Make yourself at home.</p></div><label class="sr-only" for="themeSelect">Appearance</label><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option><option value="system">System</option></select></div><div class="gradient-setting"><div class="gradient-heading"><div><strong>Custom workspace background</strong><p>Blend two colors into your own Axiom background.</p></div><label class="gradient-switch"><input id="gradientEnabled" type="checkbox" aria-label="Use custom gradient background"><span></span></label></div><div class="gradient-editor" id="gradientEditor"><div class="gradient-preview" id="gradientPreview" aria-label="Gradient preview"></div><div class="gradient-colors"><label><span>Color one</span><span class="color-input-wrap"><input id="gradientA" type="color" value="#eaf2ff"><code id="gradientAText">#EAF2FF</code></span></label><label><span>Color two</span><span class="color-input-wrap"><input id="gradientB" type="color" value="#f5eaff"><code id="gradientBText">#F5EAFF</code></span></label></div><button class="btn ghost gradient-reset" id="gradientReset" type="button">Reset gradient</button></div></div><div class="setting-row"><div><strong>Send with Enter</strong><p>Shift + Enter adds a new line.</p></div><input id="enterSend" type="checkbox" aria-label="Send with Enter"></div><div class="setting-row"><div><strong>Reduce motion</strong><p>Turn off interface animations.</p></div><input id="reduceMotion" type="checkbox" aria-label="Reduce motion"></div><div class="setting-row"><div><strong>Response length</strong><p>Longer responses use more of your API quota.</p></div><label class="sr-only" for="tokenLimit">Response length</label><select id="tokenLimit"><option value="4096">Standard · 4K</option><option value="8192">Extended · 8K</option><option value="16384">Large · 16K</option></select></div><div class="info-box">Chat content and reference images are sent to the AI provider when you send a message. Your account and public profile sync across devices. AI chat history stays in this browser.</div><div class="account-import"><button id="openImport" class="btn" type="button">Import older local chats</button><p>Bring conversations from your previous Axiom profile into this account.</p></div></div><p class="form-error" id="settingsError" role="alert"></p></div><div class="dialog-footer"><button class="btn ghost danger" id="logoutBtn" type="button">Log out</button><span class="spacer"></span><button class="btn" type="button" data-close="settingsDialog">Cancel</button><button class="btn primary" id="saveSettings">Save changes</button></div></form></dialog>
 <dialog id="searchDialog" aria-labelledby="searchTitle"><div class="dialog-header"><h2 id="searchTitle">Find a conversation</h2><button class="icon-btn" data-close="searchDialog" aria-label="Close search"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><label class="sr-only" for="chatSearch">Search chats</label><input id="chatSearch" class="search-input" placeholder="Search your conversations…"><div id="searchResults"></div></div></dialog>
 <dialog id="confirmDialog" aria-labelledby="confirmTitle"><div class="dialog-header"><h2 id="confirmTitle">Delete conversation?</h2></div><div class="dialog-body">This removes the conversation from this browser.</div><div class="dialog-footer"><span class="spacer"></span><button class="btn" id="confirmCancel">Keep chat</button><button class="btn danger" id="confirmDelete">Delete chat</button></div></dialog>
@@ -1005,13 +1098,81 @@ $('legacyClaimForm').onsubmit=async e=>{
   }catch(err){$('legacyClaimError').textContent=err.message;}finally{$('legacyClaimSubmit').disabled=false;}
 };
 syncAuthMode();
+
+const PROFILE_THEME_META={
+  classic:'Classic',
+  ocean:'Ocean',
+  sunset:'Sunset',
+  midnight:'Midnight',
+  forest:'Forest',
+  rose:'Rose'
+};
+const PROFILE_LINK_LABELS={
+  github:'GitHub',
+  roblox:'Roblox',
+  website:'Website',
+  discord:'Discord'
+};
+let myPinnedIds=new Set();
+
+function profilePath(usernameValue){
+  return '/@'+encodeURIComponent(usernameValue);
+}
+
+function profileUsernameFromPath(){
+  const match=location.pathname.match(/^\/@([^/]+)\/?$/);
+  if(!match)return '';
+  try{return decodeURIComponent(match[1]);}catch{return '';}
+}
+
+async function loadMyPins(){
+  if(!sessionToken)return;
+  try{
+    const data=await api('/profile/pins');
+    myPinnedIds=new Set(data.creationIds||[]);
+  }catch{}
+}
+
+function renderProfileThemes(){
+  const selected=profileDraft?.profileTheme||profile?.profileTheme||'classic';
+  document.querySelectorAll('[data-profile-theme-choice]').forEach(button=>{
+    button.setAttribute('aria-pressed',String(button.dataset.profileThemeChoice===selected));
+  });
+}
+
+document.querySelectorAll('[data-profile-theme-choice]').forEach(button=>{
+  button.onclick=()=>{
+    if(!profileDraft)return;
+    profileDraft.profileTheme=button.dataset.profileThemeChoice;
+    renderProfileThemes();
+  };
+});
+
+function profileLinksFromForm(){
+  return {
+    github:$('profileGithub').value.trim(),
+    roblox:$('profileRoblox').value.trim(),
+    website:$('profileWebsite').value.trim(),
+    discord:$('profileDiscord').value.trim()
+  };
+}
+
+function profileLinkHostLabel(key,url){
+  try{
+    if(key==='website')return new URL(url).hostname.replace(/^www\./,'');
+  }catch{}
+  return PROFILE_LINK_LABELS[key]||key;
+}
+
 async function boot(user){
   account=user;username=user.username;localKey='account:'+user.id;
   const saved=await dbRead('conversations',localKey);threads=Array.isArray(saved)?saved:[];
-  profile={displayName:username,color:COLORS[0],email:'',emailVerified:false,discordConnected:false,bio:'',badges:[],bannerId:null,status:'offline',presenceMode:'auto',statusQuote:'',...user};
+  profile={displayName:username,color:COLORS[0],email:'',emailVerified:false,discordConnected:false,bio:'',badges:[],bannerId:null,status:'offline',presenceMode:'auto',statusQuote:'',links:{},profileTheme:'classic',...user};
   prefs={theme:read('axiom_theme','light'),enterSend:true,reduceMotion:false,tokenLimit:8192,gradientEnabled:false,gradientA:'#eaf2ff',gradientB:'#f5eaff',...read('axiom_preferences_'+localKey,{})};
   if(avatarURL?.startsWith('blob:'))URL.revokeObjectURL(avatarURL);avatarBlob=null;avatarURL=mediaURL(user.avatarId);
-  $('authWrap').hidden=true;$('app').hidden=false;$('adminNav').hidden=!user.canAdmin;applyAppearance(prefs.theme);updateProfile();startPresence();activeId=threads[0]?.id||null;mode=threads[0]?.mode||'axiom';setMode(mode,false);renderRecent();
+  $('authWrap').hidden=true;$('app').hidden=false;$('adminNav').hidden=!user.canAdmin;applyAppearance(prefs.theme);updateProfile();startPresence();loadMyPins();activeId=threads[0]?.id||null;mode=threads[0]?.mode||'axiom';setMode(mode,false);renderRecent();
+  const requestedProfile=profileUsernameFromPath();
+  if(requestedProfile)openPublicProfile('@'+requestedProfile,false);
 }
 function hideCommunityViews(){for(const id of ['creationsView','adminView'])$(id).hidden=true;for(const id of ['creationsNav','adminNav'])$(id).classList.remove('active');}
 function communityView(name,title,sub,nav){
@@ -1379,7 +1540,7 @@ function previewAvatar(){if(draftURL)URL.revokeObjectURL(draftURL);draftURL=draf
 function previewBanner(){if(bannerDraftURL)URL.revokeObjectURL(bannerDraftURL);bannerDraftURL=bannerDraftBlob?URL.createObjectURL(bannerDraftBlob):null;const src=bannerDraftBlob?bannerDraftURL:bannerChanged?null:mediaURL(profileDraft.bannerId);$('bannerPreview').style.backgroundImage=src?`linear-gradient(180deg,transparent 45%,#0000001d),url("${src}")`:'';$('removeBanner').disabled=!src;}
 function renderColors(){const row=$('avatarColors');row.replaceChildren();COLORS.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.className='color';b.style.setProperty('--swatch',c);b.ariaLabel=['Blue','Purple','Rose','Amber','Green','Teal','Slate'][i];b.setAttribute('aria-pressed',String(profileDraft.color===c));b.onclick=()=>{profileDraft.color=c;renderColors();previewAvatar();};row.append(b);});}
 function settingsTab(tab){document.querySelectorAll('[data-tab]').forEach(b=>{const selected=b.dataset.tab===tab;b.setAttribute('aria-selected',String(selected));b.tabIndex=selected?0:-1;});$('profilePanel').hidden=tab!=='profile';$('preferencesPanel').hidden=tab!=='preferences';}
-function openSettings(){profileDraft={...profile};draftBlob=null;avatarChanged=false;bannerDraftBlob=null;bannerChanged=false;$('displayName').value=profile.displayName||username;$('usernameReadOnly').value='@'+username;$('profileEmail').value=profile.email||'';$('profileBio').value=profile.bio||'';$('statusQuote').value=profile.statusQuote||'';updateStatusQuoteCount();$('emailState').textContent=profile.email?(profile.emailVerified?'Verified':'Unverified'):'';$('emailState').className='email-state '+(profile.emailVerified?'verified':'pending');$('emailHelp').textContent=profile.emailVerified?'You can sign in with this email and use it for password recovery.':'Verify your email to enable email sign-in and password recovery.';$('manageEmail').textContent=profile.email?(profile.emailVerified?'Change email':'Verify email'):'Connect email';$('discordHelp').textContent=profile.discordConnected?'Your Discord account is linked to this Axiom profile.':'Run /connect in Discord, then enter the private code here.';$('manageDiscord').textContent=profile.discordConnected?'Disconnect':'Connect Discord';$('manageDiscord').className='btn'+(profile.discordConnected?' danger':'');$('themeSelect').value=prefs.theme;$('gradientEnabled').checked=!!prefs.gradientEnabled;$('gradientA').value=prefs.gradientA||'#eaf2ff';$('gradientB').value=prefs.gradientB||'#f5eaff';syncGradientEditor();$('enterSend').checked=prefs.enterSend;$('reduceMotion').checked=prefs.reduceMotion;$('tokenLimit').value=String(prefs.tokenLimit);$('settingsError').textContent='';$('myBadges').innerHTML=profile.badges?.length?badgesHTML(profile.badges):'<p>No badges yet.</p>';settingsTab('profile');renderColors();renderStatusOptions();previewAvatar();previewBanner();$('settingsDialog').showModal();closeSidebar();}
+function openSettings(){profileDraft={...profile};draftBlob=null;avatarChanged=false;bannerDraftBlob=null;bannerChanged=false;$('displayName').value=profile.displayName||username;$('usernameReadOnly').value='@'+username;$('profileEmail').value=profile.email||'';$('profileBio').value=profile.bio||'';$('statusQuote').value=profile.statusQuote||'';updateStatusQuoteCount();$('profileGithub').value=profile.links?.github||'';$('profileRoblox').value=profile.links?.roblox||'';$('profileWebsite').value=profile.links?.website||'';$('profileDiscord').value=profile.links?.discord||'';$('emailState').textContent=profile.email?(profile.emailVerified?'Verified':'Unverified'):'';$('emailState').className='email-state '+(profile.emailVerified?'verified':'pending');$('emailHelp').textContent=profile.emailVerified?'You can sign in with this email and use it for password recovery.':'Verify your email to enable email sign-in and password recovery.';$('manageEmail').textContent=profile.email?(profile.emailVerified?'Change email':'Verify email'):'Connect email';$('discordHelp').textContent=profile.discordConnected?'Your Discord account is linked to this Axiom profile.':'Run /connect in Discord, then enter the private code here.';$('manageDiscord').textContent=profile.discordConnected?'Disconnect':'Connect Discord';$('manageDiscord').className='btn'+(profile.discordConnected?' danger':'');$('themeSelect').value=prefs.theme;$('gradientEnabled').checked=!!prefs.gradientEnabled;$('gradientA').value=prefs.gradientA||'#eaf2ff';$('gradientB').value=prefs.gradientB||'#f5eaff';syncGradientEditor();$('enterSend').checked=prefs.enterSend;$('reduceMotion').checked=prefs.reduceMotion;$('tokenLimit').value=String(prefs.tokenLimit);$('settingsError').textContent='';$('myBadges').innerHTML=profile.badges?.length?badgesHTML(profile.badges):'<p>No badges yet.</p>';settingsTab('profile');renderColors();renderStatusOptions();renderProfileThemes();previewAvatar();previewBanner();$('settingsDialog').showModal();closeSidebar();}
 $('settingsBtn').onclick=openSettings;$('userChip').onclick=()=>profile?.id?openPublicProfile(profile.id):openSettings();$('viewOwnProfile').onclick=()=>{if(profile?.id){$('settingsDialog').close();openPublicProfile(profile.id);}};
 function openEmailDialog(email=profile?.email||'',codeSent=false){$('emailForm').reset();$('emailAddress').value=email;$('emailError').textContent='';$('emailCodeWrap').hidden=!codeSent;$('emailVerify').hidden=!codeSent;$('emailCode').required=codeSent;$('emailTitle').textContent=profile?.emailVerified?'Change email':'Connect email';if(!$('emailDialog').open)$('emailDialog').showModal();if(codeSent)$('emailCode').focus();else $('emailAddress').focus();}
 $('manageEmail').onclick=()=>{$('settingsDialog').close();openEmailDialog();};
@@ -1471,7 +1632,7 @@ $('themeSelect').onchange=syncGradientEditor;$('reduceMotion').onchange=syncGrad
 async function uploadFile(file,purpose){return (await api('/uploads',{method:'POST',headers:{'Content-Type':'application/octet-stream','X-Filename':encodeURIComponent(file.name||'avatar'),'X-Purpose':purpose},body:file,timeout:90000})).file;}
 $('settingsForm').onsubmit=async e=>{
   e.preventDefault();if(avatarLoading||bannerLoading||profileSaving)return;profileSaving=true;$('saveSettings').disabled=true;document.querySelectorAll('[data-close="settingsDialog"]').forEach(b=>b.disabled=true);$('settingsError').textContent='';
-  const draft={displayName:$('displayName').value.trim(),bio:$('profileBio').value.trim(),color:profileDraft.color,avatarId:profileDraft.avatarId||null,bannerId:profileDraft.bannerId||null,presenceMode:profileDraft.presenceMode||'auto',statusQuote:$('statusQuote').value.trim()};
+  const draft={displayName:$('displayName').value.trim(),bio:$('profileBio').value.trim(),color:profileDraft.color,avatarId:profileDraft.avatarId||null,bannerId:profileDraft.bannerId||null,presenceMode:profileDraft.presenceMode||'auto',statusQuote:$('statusQuote').value.trim(),links:profileLinksFromForm(),profileTheme:profileDraft.profileTheme||'classic'};
   const nextPrefs={theme:$('themeSelect').value,enterSend:$('enterSend').checked,reduceMotion:$('reduceMotion').checked,tokenLimit:Number($('tokenLimit').value),gradientEnabled:$('gradientEnabled').checked,gradientA:$('gradientA').value,gradientB:$('gradientB').value};
   try{if(avatarChanged){draft.avatarId=draftBlob?(await uploadFile(draftBlob,'avatar')).id:null;profileDraft.avatarId=draft.avatarId;avatarChanged=false;}if(bannerChanged){draft.bannerId=bannerDraftBlob?(await uploadFile(bannerDraftBlob,'creation')).id:null;profileDraft.bannerId=draft.bannerId;bannerChanged=false;}
     const result=await api('/me',{method:'PUT',body:draft});account=result.user;profile={...result.user};prefs=nextPrefs;avatarBlob=null;avatarURL=mediaURL(profile.avatarId);updateProfile();startPresence();
@@ -1492,18 +1653,34 @@ $('importForm').onsubmit=async e=>{e.preventDefault();$('importSubmit').disabled
   if(!old||(old.hash?await passwordHash(password,old.salt)!==old.hash:old.pass!==password))throw new Error('Incorrect old local username or password.');
   const count=await copyLegacyChats(oldName);if(!count)throw new Error('No new older conversations were found for that profile.');$('importDialog').close();$('legacyPassword').value='';toast('Older chats imported.');
 }catch(err){$('importError').textContent=err.message;}finally{$('importSubmit').disabled=false;}};
-async function openPublicProfile(id){
+async function openPublicProfile(ref,pushUrl=true){
   const request=++profileRequest;
   $('publicProfileBody').innerHTML='<div class="profile-status">Loading profile…</div>';
   if(!$('publicProfileDialog').open)$('publicProfileDialog').showModal();
 
+  const isUsername=typeof ref==='string'&&ref.startsWith('@');
+  const usernameRef=isUsername?ref.slice(1):'';
+  const endpoint=isUsername
+    ? (sessionToken
+        ? '/profiles/by-username/'+encodeURIComponent(usernameRef)
+        : '/public/profiles/'+encodeURIComponent(usernameRef))
+    : '/profiles/'+encodeURIComponent(ref);
+
   try{
-    const {user,counts}=await api('/profiles/'+encodeURIComponent(id));
+    const data=await api(endpoint);
     if(request!==profileRequest||!$('publicProfileDialog').open)return;
+
+    const {user,counts,pinned=[],activity=[],viewerFollows=false}=data;
+
+    if(pushUrl&&history?.pushState){
+      const next=profilePath(user.username);
+      if(location.pathname!==next)history.pushState({profile:user.username},'',next);
+    }
 
     const hero=$('publicProfileDialog').querySelector('.profile-hero');
     hero.querySelector('.profile-hero-banner')?.remove();
     hero.classList.remove('has-banner');
+    hero.dataset.profileTheme=user.profileTheme||'classic';
 
     const banner=mediaURL(user.bannerId);
 
@@ -1523,6 +1700,7 @@ async function openPublicProfile(id){
 
     const box=document.createElement('div');
     box.className='public-profile';
+    box.dataset.profileTheme=user.profileTheme||'classic';
 
     const avatarWrap=document.createElement('div');
     avatarWrap.className='profile-avatar-wrap';
@@ -1533,7 +1711,6 @@ async function openPublicProfile(id){
 
     const dot=document.createElement('span');
     setPresenceDot(dot,user.status);
-
     avatarWrap.append(av,dot);
 
     const name=document.createElement('h2');
@@ -1546,6 +1723,20 @@ async function openPublicProfile(id){
     const handle=document.createElement('div');
     handle.className='person-handle';
     handle.textContent='@'+user.username;
+
+    const profileUrl=document.createElement('div');
+    profileUrl.className='profile-url-copy';
+    const path=document.createElement('span');
+    path.textContent=location.host+profilePath(user.username);
+    const copy=document.createElement('button');
+    copy.type='button';
+    copy.textContent='Copy profile link';
+    copy.onclick=async()=>{
+      const url=location.origin+profilePath(user.username);
+      try{await navigator.clipboard.writeText(url);toast('Profile link copied.');}
+      catch{toast(url);}
+    };
+    profileUrl.append(path,copy);
 
     const status=document.createElement('div');
     status.className='profile-status-line';
@@ -1564,14 +1755,30 @@ async function openPublicProfile(id){
     bio.className='profile-bio';
     bio.textContent=user.bio||'This developer hasn’t added a bio yet.';
 
-    const joined=document.createElement('p');
-    joined.className='profile-joined';
-    joined.textContent='Joined '+new Date(user.createdAt).toLocaleDateString(undefined,{month:'long',year:'numeric'});
+    const links=document.createElement('div');
+    links.className='profile-links';
+    for(const [key,url] of Object.entries(user.links||{})){
+      if(!url)continue;
+      const a=document.createElement('a');
+      a.className='profile-link-pill';
+      a.href=url;
+      a.target='_blank';
+      a.rel='noopener noreferrer';
+      a.innerHTML=icon('link');
+      const label=document.createElement('span');
+      label.textContent=profileLinkHostLabel(key,url);
+      a.append(label);
+      links.append(a);
+    }
 
     const stats=document.createElement('div');
     stats.className='profile-stats';
 
-    for(const [label,count] of [['Creations',counts.creations],['DevHub messages',counts.messages]]){
+    for(const [label,count] of [
+      ['Creations',counts?.creations||0],
+      ['Followers',counts?.followers||0],
+      ['Following',counts?.following||0]
+    ]){
       const d=document.createElement('div');
       const value=document.createElement('strong');
       const l=document.createElement('span');
@@ -1581,15 +1788,146 @@ async function openPublicProfile(id){
       stats.append(d);
     }
 
-    const viewBtn=document.createElement('button');
-    viewBtn.className='btn';
-    viewBtn.textContent='View creations';
-    viewBtn.onclick=()=>{
-      $('publicProfileDialog').close();
-      openCreations(user.id);
-    };
+    const actions=document.createElement('div');
+    actions.className='profile-action-row';
 
-    box.append(avatarWrap,name,handle,status,statusQuote,bio,stats,joined,viewBtn);
+    if(sessionToken&&account&&user.id!==account.id){
+      const follow=document.createElement('button');
+      follow.className='btn '+(viewerFollows?'':'primary');
+      follow.textContent=viewerFollows?'Following':'Follow';
+      follow.onclick=async()=>{
+        follow.disabled=true;
+        try{
+          const result=await api('/profiles/'+encodeURIComponent(user.id)+'/follow',{
+            method:follow.textContent==='Following'?'DELETE':'POST'
+          });
+          follow.textContent=result.following?'Following':'Follow';
+          follow.className='btn '+(result.following?'':'primary');
+          const statValues=stats.querySelectorAll('strong');
+          if(statValues[1])statValues[1].textContent=String(result.counts.followers);
+        }catch(err){toast(err.message);}
+        finally{follow.disabled=false;}
+      };
+      actions.append(follow);
+    }
+
+    if(sessionToken){
+      const viewBtn=document.createElement('button');
+      viewBtn.className='btn';
+      viewBtn.textContent='View creations';
+      viewBtn.onclick=()=>{
+        $('publicProfileDialog').close();
+        openCreations(user.id);
+      };
+      actions.append(viewBtn);
+    }else{
+      const signIn=document.createElement('button');
+      signIn.className='btn primary';
+      signIn.textContent='Sign in to Axiom';
+      signIn.onclick=()=>{
+        $('publicProfileDialog').close();
+        $('authWrap').hidden=false;
+      };
+      actions.append(signIn);
+    }
+
+    if(pinned.length){
+      const section=document.createElement('section');
+      section.className='profile-section';
+      const head=document.createElement('div');
+      head.className='profile-section-head';
+      const title=document.createElement('h3');
+      title.textContent='Pinned creations';
+      head.append(title);
+      section.append(head);
+
+      const grid=document.createElement('div');
+      grid.className='pinned-profile-grid';
+
+      for(const creation of pinned){
+        const card=document.createElement('button');
+        card.className='pinned-profile-card';
+        card.type='button';
+        const preview=creation.attachments?.find(file=>file.kind==='image');
+
+        if(preview){
+          const img=document.createElement('img');
+          img.src=mediaURL(preview.id);
+          img.alt='';
+          img.loading='lazy';
+          card.append(img);
+        }
+
+        const copyWrap=document.createElement('div');
+        copyWrap.className='pin-copy';
+        const title=document.createElement('strong');
+        title.textContent=creation.title;
+        const cat=document.createElement('span');
+        cat.textContent=creation.category;
+        copyWrap.append(title,cat);
+        card.append(copyWrap);
+
+        card.onclick=()=>{
+          if(!sessionToken){
+            toast('Sign in to browse community creations.');
+            return;
+          }
+          $('publicProfileDialog').close();
+          openCreations(user.id);
+        };
+
+        grid.append(card);
+      }
+
+      section.append(grid);
+      box.append(section);
+    }
+
+    if(activity.length){
+      const section=document.createElement('section');
+      section.className='profile-section';
+      const head=document.createElement('div');
+      head.className='profile-section-head';
+      const title=document.createElement('h3');
+      title.textContent='Recent activity';
+      head.append(title);
+      section.append(head);
+
+      const list=document.createElement('div');
+      list.className='activity-list';
+
+      for(const item of activity){
+        const row=document.createElement('div');
+        row.className='activity-row';
+        const badge=document.createElement('span');
+        badge.className='activity-icon';
+        badge.innerHTML=icon(item.kind==='creation'?'grid':'chat');
+
+        const copyWrap=document.createElement('div');
+        const strong=document.createElement('strong');
+        strong.textContent=item.kind==='creation'
+          ? 'Published a creation'
+          : 'Posted in DevHub';
+
+        const detail=document.createElement('span');
+        const date=new Date(item.ts).toLocaleDateString(undefined,{month:'short',day:'numeric'});
+        detail.textContent=(item.label||'').slice(0,90)+' · '+date;
+
+        copyWrap.append(strong,detail);
+        row.append(badge,copyWrap);
+        list.append(row);
+      }
+
+      section.append(list);
+      box.append(section);
+    }
+
+    const joined=document.createElement('p');
+    joined.className='profile-joined';
+    joined.textContent='Joined '+new Date(user.createdAt).toLocaleDateString(undefined,{month:'long',year:'numeric'});
+
+    box.prepend(avatarWrap,name,handle,profileUrl,status,statusQuote,bio,links,stats,actions);
+    box.append(joined);
     $('publicProfileBody').replaceChildren(box);
   }catch(err){
     if(request===profileRequest){
@@ -1605,8 +1943,42 @@ function confirmAction(title,description,label='Delete'){return new Promise(reso
 let latestHub=[];
 $('legacyBoardBtn').onclick=async()=>{$('legacyBoardContent').textContent='Loading earlier messages…';$('legacyBoardDialog').showModal();try{const data=await api('/devhub/archive');$('legacyBoardContent').replaceChildren();if(!data.messages.length)$('legacyBoardContent').textContent='No earlier messages are available.';for(const m of data.messages){const row=document.createElement('article');row.className='admin-post';const body=document.createElement('div');const name=document.createElement('strong');name.textContent=m.name+' · legacy profile';const text=document.createElement('p');text.textContent=m.text;body.append(name,text);row.append(body);$('legacyBoardContent').append(row);}}catch(err){$('legacyBoardContent').textContent=err.message;}};
 
+
+function renderOnlineMembers(data){
+  const wrap=$('onlineMembers');
+  wrap.replaceChildren();
+  const count=Number(data?.count)||0;
+  $('onlineCount').textContent=count+(count===1?' developer online':' developers online');
+
+  for(const member of data?.members||[]){
+    const button=document.createElement('button');
+    button.className='online-member';
+    button.type='button';
+    button.title=(member.displayName||member.username)+' · '+STATUS_LABELS[normalizeStatus(member.status)];
+    button.onclick=()=>openPublicProfile(member.id);
+
+    const av=document.createElement('span');
+    av.className='avatar';
+    avatar(av,member,mediaURL(member.avatarId));
+
+    const dot=document.createElement('span');
+    setPresenceDot(dot,member.status);
+
+    button.append(av,dot);
+    wrap.append(button);
+  }
+}
+
+async function loadOnlineMembers(){
+  if(!sessionToken)return;
+  try{
+    const data=await api('/members/online');
+    renderOnlineMembers(data);
+  }catch{}
+}
+
 function stopHub(){clearInterval(hubTimer);hubTimer=null;}
-$('devhubNav').onclick=()=>{if(!communityView('hub','DevHub','Developer community','devhubNav'))return;loadHub();hubTimer=setInterval(()=>{if(!document.hidden)loadHub();},15000);};
+$('devhubNav').onclick=()=>{if(!communityView('hub','DevHub','Developer community','devhubNav'))return;loadHub();loadOnlineMembers();hubTimer=setInterval(()=>{if(!document.hidden){loadHub();loadOnlineMembers();}},15000);};
 function renderHub(messages){
   const area=$('hubArea'),follow=area.scrollHeight-area.scrollTop-area.clientHeight<140;$('hubLog').replaceChildren();
   if(!messages.length){const p=document.createElement('p');p.className='empty-hub';p.textContent='Nothing here yet. Share what you’re building.';$('hubLog').append(p);return;}
@@ -1620,7 +1992,7 @@ let hubSubmission=null;
 $('hubForm').onsubmit=async e=>{e.preventDefault();const text=$('hubInput').value.trim();if(!text||$('hubSend').disabled)return;$('hubSend').disabled=true;$('hubStatus').textContent='Sending…';if(hubSubmission?.text!==text)hubSubmission={text,requestId:uid()};try{const data=await api('/devhub',{method:'POST',body:hubSubmission});if($('hubInput').value.trim()===text)$('hubInput').value='';hubSubmission=null;if(!latestHub.some(m=>m.id===data.message.id))latestHub.push(data.message);renderHub(latestHub);$('hubStatus').textContent='';}catch(err){$('hubStatus').textContent=err.message;}finally{$('hubSend').disabled=false;}};
 // Creations preserve original image/video bytes. Source files download as attachments.
 let creations=[],creationCursor=null,creationCategory='All',creationAuthor=null,creationLoading=false,creationFetch=0,creationFiles=[],creationPublishing=false,creationRequestId=null,creationAdding=false,creationEdit=0;
-function openCreations(author=null){if(!communityView('creations','Creations','Made by the community','creationsNav'))return;creationAuthor=author;$('clearAuthorFilter').hidden=!author;loadCreations(true);}
+function openCreations(author=null){if(!communityView('creations','Creations','Made by the community','creationsNav'))return;if(account&&(!author||author===account.id))loadMyPins().then(()=>renderCreations());creationAuthor=author;$('clearAuthorFilter').hidden=!author;loadCreations(true);}
 $('creationsNav').onclick=()=>openCreations();$('clearAuthorFilter').onclick=()=>openCreations();
 document.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>{creationCategory=b.dataset.category;document.querySelectorAll('[data-category]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));loadCreations(true);});
 async function loadCreations(reset=false){
@@ -1633,6 +2005,35 @@ async function loadCreations(reset=false){
 $('moreCreations').onclick=()=>loadCreations();
 function showMedia(file){$('mediaTitle').textContent=file.name;const node=document.createElement(file.kind==='video'?'video':'img');node.src=mediaURL(file.id);if(file.kind==='video')node.controls=true;else node.alt=file.name;$('mediaBody').replaceChildren(node);$('mediaDialog').showModal();}
 $('mediaDialog').addEventListener('close',()=>{$('mediaBody').replaceChildren();});
+
+async function toggleCreationPin(creation){
+  if(!account||creation.author.id!==account.id)return;
+
+  const next=[...myPinnedIds];
+
+  if(myPinnedIds.has(creation.id)){
+    next.splice(next.indexOf(creation.id),1);
+  }else{
+    if(next.length>=3){
+      toast('You can pin up to 3 creations.');
+      return;
+    }
+    next.push(creation.id);
+  }
+
+  try{
+    const data=await api('/profile/pins',{
+      method:'PUT',
+      body:{creationIds:next}
+    });
+    myPinnedIds=new Set(data.creationIds||[]);
+    renderCreations();
+    toast(myPinnedIds.has(creation.id)?'Creation pinned.':'Creation unpinned.');
+  }catch(err){
+    toast(err.message);
+  }
+}
+
 function renderCreations(){
   const grid=$('creationGrid');grid.replaceChildren();if(!creations.length){const empty=document.createElement('div');empty.className='feed-empty';empty.innerHTML=icon('grid')+'<h2>Good work deserves a place.</h2><p>No creations here yet. Share something you’ve been building.</p>';grid.append(empty);return;}
   for(const c of creations){const card=document.createElement('article');card.className='creation-card';const preview=c.attachments.find(a=>a.kind==='image'||a.kind==='video');
@@ -1641,7 +2042,7 @@ function renderCreations(){
     else{const blank=document.createElement('div');blank.className='creation-preview creation-preview-empty';blank.innerHTML=icon(c.category==='Script'?'code':'box');const title=document.createElement('span');title.textContent=c.attachments.length?'Project files included':c.category+' creation';blank.append(title);card.append(blank);}
     const body=document.createElement('div');body.className='creation-body';const kicker=document.createElement('div');kicker.className='creation-kicker';const category=document.createElement('span');category.className='category-label';category.textContent=c.category;const time=document.createElement('time');time.className='small muted';time.textContent=new Date(c.ts).toLocaleDateString(undefined,{month:'short',day:'numeric'});kicker.append(category,time);const h=document.createElement('h2');h.textContent=c.title;const description=document.createElement('p');description.className='creation-description';description.textContent=c.description;body.append(kicker,h,description);
     if(c.attachments.length){const files=document.createElement('div');files.className='creation-files';for(const file of c.attachments){const a=document.createElement('a');a.className='file-link';a.href=mediaURL(file.id);a.target='_blank';a.rel='noopener noreferrer';a.innerHTML=icon('file');const label=document.createElement('span');label.textContent=file.name;a.append(label);if(file.kind!=='file'){a.onclick=e=>{e.preventDefault();showMedia(file);};}files.append(a);}body.append(files);}
-    const footer=document.createElement('div');footer.className='creation-author';footer.append(personLink(c.author,true));if(c.author.id===account.id||account.canAdmin&&account.adminUntil>Date.now()){const del=document.createElement('button');del.className='icon-btn';del.ariaLabel='Delete '+c.title;del.innerHTML=icon('trash');del.onclick=async()=>{if(!await confirmAction('Delete this creation?','The post and its attachments will no longer be public.'))return;try{await api('/creations/'+c.id,{method:'DELETE'});creations=creations.filter(item=>item.id!==c.id);renderCreations();}catch(err){toast(err.message);}};footer.append(del);}body.append(footer);card.append(body);grid.append(card);
+    const footer=document.createElement('div');footer.className='creation-author';footer.append(personLink(c.author,true));if(c.author.id===account.id){const pin=document.createElement('button');pin.className='btn ghost pin-control'+(myPinnedIds.has(c.id)?' pinned':'');pin.type='button';pin.innerHTML=icon('pin')+'<span>'+(myPinnedIds.has(c.id)?'Pinned':'Pin')+'</span>';pin.onclick=()=>toggleCreationPin(c);footer.append(pin);}if(c.author.id===account.id||account.canAdmin&&account.adminUntil>Date.now()){const del=document.createElement('button');del.className='icon-btn';del.ariaLabel='Delete '+c.title;del.innerHTML=icon('trash');del.onclick=async()=>{if(!await confirmAction('Delete this creation?','The post and its attachments will no longer be public.'))return;try{await api('/creations/'+c.id,{method:'DELETE'});creations=creations.filter(item=>item.id!==c.id);renderCreations();}catch(err){toast(err.message);}};footer.append(del);}body.append(footer);card.append(body);grid.append(card);
   }
 }
 $('newCreation').onclick=()=>{creationEdit++;creationFiles=[];creationRequestId=uid();$('creationForm').reset();$('creationError').textContent='';renderCreationDrafts();$('creationDialog').showModal();};
@@ -1686,12 +2087,29 @@ function renderAdminDetail(){const u=selectedAdminUser;if(!u)return;const panel=
 async function saveAdminMember(u,suspended,button){button.disabled=true;try{const badges=[...$('adminUserDetail').querySelectorAll('[data-badge]:checked')].map(c=>c.value);const result=await api('/admin/users/'+u.id,{method:'PATCH',body:{badges,suspended}});Object.assign(u,result.user);if(u.id===account.id){account.badges=u.badges;profile.badges=u.badges;updateProfile();}renderAdminUsers();renderAdminDetail();toast('Member updated.');}catch(err){$('adminStatus').textContent=err.message;}finally{button.disabled=false;}}
 async function loadAdminContent(reset=true){try{const data=await api('/admin/content'+(!reset&&adminContentCursor?'?before='+encodeURIComponent(adminContentCursor):''));const list=$('adminContentList');if(reset)list.replaceChildren();const groups=reset?[['DevHub messages',data.messages,'message'],['Creations',data.creations,'creation']]:[['More creations',data.creations,'creation']];for(const [label,items,type] of groups){const h=document.createElement('h2');h.className='admin-section-title';h.textContent=label;list.append(h);if(!items.length){const p=document.createElement('p');p.className='small muted';p.textContent='Nothing to review.';list.append(p);}for(const item of items){const card=document.createElement('div');card.className='admin-post';const body=document.createElement('div');body.append(personLink(item.author));const text=document.createElement('p');text.textContent=type==='message'?item.text:item.title+' — '+item.description;body.append(text);const del=document.createElement('button');del.className='icon-btn danger';del.ariaLabel='Delete '+type;del.innerHTML=icon('trash');del.onclick=async()=>{if(!await confirmAction('Delete this '+type+'?','This content will no longer appear in the community.'))return;try{await api((type==='message'?'/devhub/':'/creations/')+item.id,{method:'DELETE'});card.remove();toast('Post removed.');}catch(err){$('adminStatus').textContent=err.message;}};card.append(body,del);list.append(card);}}adminContentCursor=data.next;$('adminMoreContent').hidden=!adminContentCursor;}catch(err){$('adminStatus').textContent=err.message;}}
 $('adminMoreContent').onclick=()=>loadAdminContent(false);
-$('publicProfileDialog').addEventListener('close',()=>{const hero=$('publicProfileDialog').querySelector('.profile-hero');hero.querySelector('.profile-hero-banner')?.remove();hero.classList.remove('has-banner');});
+$('publicProfileDialog').addEventListener('close',()=>{const hero=$('publicProfileDialog').querySelector('.profile-hero');hero.querySelector('.profile-hero-banner')?.remove();hero.classList.remove('has-banner');delete hero.dataset.profileTheme;if(profileUsernameFromPath()&&history?.pushState)history.pushState({},'', '/');if(!sessionToken)$('authWrap').hidden=false;});
+
+window.addEventListener('popstate',()=>{
+  const requested=profileUsernameFromPath();
+  if(requested){
+    openPublicProfile('@'+requested,false);
+  }else if($('publicProfileDialog').open){
+    $('publicProfileDialog').close();
+  }
+});
+
 document.addEventListener('keydown',e=>{if(e.key==='Tab'&&$('sidebar').classList.contains('open')){const items=[...$('sidebar').querySelectorAll('button:not(:disabled)')];const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}if(e.key==='Escape'&&$('sidebar').classList.contains('open')){closeSidebar();$('mobileToggle').focus();}if(e.altKey&&e.key.toLowerCase()==='n'&&username&&!document.querySelector('dialog[open]')){e.preventDefault();$('newChat').click();}});
 window.addEventListener('beforeunload',e=>{if(activeRequest){e.preventDefault();e.returnValue='';}});
 document.querySelectorAll('[data-logo]').forEach(img=>img.src=LOGO);
 applyAppearance(read('axiom_theme','light'));
 if(sessionToken)api('/me').then(data=>boot(data.user)).catch(err=>{if(err.status===401||err.status===403){sessionStorage.removeItem('axiom_session_v3');sessionToken='';}$('authError').textContent=err.message;});
+else{
+  const requestedProfile=profileUsernameFromPath();
+  if(requestedProfile){
+    $('authWrap').hidden=true;
+    openPublicProfile('@'+requestedProfile,false);
+  }
+}
 </script>
 </body>
 </html>
