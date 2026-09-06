@@ -850,7 +850,7 @@ function renderChat(scroll=true){
   });
   if(scroll)toBottom();showChatError();
 }
-function updateControls(){const busy=!!activeRequest;$('sendBtn').hidden=busy;$('stopBtn').hidden=!busy;$('sendBtn').disabled=attachmentLoading||(!($('prompt').value.trim()||pending.length));$('modeSelect').disabled=busy;$('attachBtn').disabled=busy||attachmentLoading;$('prompt').disabled=busy;$('clearChat').disabled=busy||!currentThread();$('modelLabel').textContent=pending.some(x=>x.kind==='image')||currentThread()?.messages.some(m=>Array.isArray(m.content)&&m.content.some(c=>c.type==='image_url'))?'Qwen · Vision':'GPT-OSS 120B';}
+function updateControls(){const busy=!!activeRequest;$('sendBtn').hidden=busy;$('stopBtn').hidden=!busy;$('sendBtn').disabled=attachmentLoading||(!($('prompt').value.trim()||pending.length));$('modeSelect').disabled=busy;$('attachBtn').disabled=busy||attachmentLoading;$('prompt').disabled=busy;$('clearChat').disabled=busy||!currentThread();$('modelLabel').textContent=pending.some(x=>x.kind==='image')||currentThread()?.messages.some(m=>Array.isArray(m.content)&&m.content.some(c=>c.type==='image_url'))?'Axiom Core · Vision':'Axiom Core';}
 $('chatArea').onscroll=()=>{$('jumpBottom').hidden=nearBottom()||!currentThread()?.messages.length;};$('jumpBottom').onclick=toBottom;
 function resizePrompt(){const p=$('prompt');p.style.height='auto';p.style.height=Math.min(200,Math.max(52,p.scrollHeight))+'px';updateControls();}
 $('prompt').oninput=resizePrompt;
