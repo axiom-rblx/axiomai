@@ -670,7 +670,7 @@ html[data-custom-gradient=true] .creation-card{
 <section id="adminView" class="shared-view" hidden aria-label="Admin dashboard"><div class="community-shell"><div class="community-heading"><div><h1>Admin dashboard</h1><p>Look after the people and work that make Axiom.</p></div><button id="lockAdmin" class="btn"><svg class="icon"><use href="#i-shield"/></svg>Lock dashboard</button></div><div class="admin-stats" id="adminStats"></div><div class="feed-toolbar admin-tabs"><div class="filter-tabs" role="group" aria-label="Admin sections"><button id="adminMembersTab" aria-pressed="true">Members & badges</button><button id="adminContentTab" aria-pressed="false">Community</button></div><span class="feed-note" id="adminExpiry"></span></div><p id="adminStatus" class="inline-error" role="status"></p><div id="adminMembersPanel" class="admin-layout"><section class="admin-members" aria-label="Members"><div class="admin-search"><label class="sr-only" for="adminSearch">Find a member</label><input id="adminSearch" class="search-input" placeholder="Find a member by name…"></div><div id="adminUserList" class="admin-user-list"></div><button id="adminMoreUsers" class="btn ghost" hidden>Load more members</button></section><section class="admin-detail" id="adminUserDetail" aria-label="Selected member"><div class="admin-detail-empty">Choose a member to manage their badges and account.</div></section></div><section id="adminContentPanel" hidden aria-label="Community moderation"><div id="adminContentList"></div><button id="adminMoreContent" class="btn" hidden>Load more creations</button></section></div></section>
 </main></div>
 <dialog id="settingsDialog" aria-labelledby="settingsTitle"><div class="dialog-header"><h2 id="settingsTitle">Settings</h2><button class="icon-btn" data-close="settingsDialog" aria-label="Close settings"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="settingsForm"><div class="dialog-body"><div class="settings-tabs" role="tablist" aria-label="Settings sections"><button type="button" role="tab" id="profileTab" aria-controls="profilePanel" aria-selected="true" data-tab="profile">Profile</button><button type="button" role="tab" id="preferencesTab" aria-controls="preferencesPanel" aria-selected="false" tabindex="-1" data-tab="preferences">Preferences</button></div>
-<div id="profilePanel" role="tabpanel" aria-labelledby="profileTab"><div class="banner-editor"><div class="banner-editor-head"><div><strong>Profile banner</strong><p>Shown across the top of your public Axiom profile.</p></div><div class="banner-actions"><button class="btn" type="button" id="uploadBanner"><svg class="icon"><use href="#i-upload"/></svg>Change banner</button><button class="btn ghost" type="button" id="removeBanner">Remove</button></div></div><div class="banner-preview" id="bannerPreview"></div></div><div class="avatar-editor"><div class="avatar" id="avatarPreview"></div><div><button class="btn" type="button" id="uploadAvatar"><svg class="icon"><use href="#i-upload"/></svg>Change photo</button> <button class="btn ghost" type="button" id="removeAvatar">Remove</button><p>PNG, JPG, WebP, GIF, AVIF or BMP · up to 5 MB<br>Animated GIFs and WebP stay animated.</p></div></div><div class="field"><label for="displayName">Display name</label><input id="displayName" maxlength="40" required><p class="help">Shown in your workspace and on DevHub.</p></div><div class="field-row"><div class="field"><label for="usernameReadOnly">Username</label><input id="usernameReadOnly" readonly></div><div class="field"><label for="profileEmail">Connected email <span id="emailState" class="email-state"></span></label><input id="profileEmail" type="email" readonly placeholder="Not connected"></div></div><div class="account-security"><div class="setting-row"><div><strong>Email & recovery</strong><p id="emailHelp">Connect and verify an email to sign in by email and reset your password.</p></div><button id="manageEmail" class="btn" type="button">Connect email</button></div><div class="setting-row"><div><strong>Discord</strong><p id="discordHelp">Link Discord to your Axiom profile with the /connect command.</p></div><button id="manageDiscord" class="btn" type="button">Connect Discord</button></div><div class="setting-row"><div><strong>Password</strong><p>Change your password and sign out other sessions.</p></div><button id="changePassword" class="btn" type="button">Change password</button></div></div><div class="field"><label for="profileBio">Bio</label><textarea id="profileBio" maxlength="180" placeholder="A little about what you build…"></textarea></div><div class="field"><label>Avatar color</label><div class="colors" id="avatarColors" role="group" aria-label="Avatar color"></div></div><div class="status-setting"><strong>Status</strong><p>Auto follows your activity. Invisible appears offline to everyone else.</p><div class="status-options" id="statusOptions" role="group" aria-label="Profile status"><button type="button" class="status-option" data-status-mode="auto"><span class="auto-dot"></span><span>Auto</span></button><button type="button" class="status-option" data-status-mode="online"><span class="presence-dot online"></span><span>Online</span></button><button type="button" class="status-option" data-status-mode="idle"><span class="presence-dot idle"></span><span>Idle</span></button><button type="button" class="status-option" data-status-mode="dnd"><span class="presence-dot dnd"></span><span>DND</span></button><button type="button" class="status-option invisible" data-status-mode="invisible"><span class="presence-dot offline"></span><span>Invisible</span></button></div></div><div class="badge-settings"><strong>Your badges</strong><div id="myBadges" class="readonly-badges"></div><p>Badges are assigned by the Axiom team.</p></div><div class="info-box">Your email is private. Your name, photo, banner, bio, status, and awarded badges are shown on your public profile.</div></div>
+<div id="profilePanel" role="tabpanel" aria-labelledby="profileTab"><div class="banner-editor"><div class="banner-editor-head"><div><strong>Profile banner</strong><p>Shown across the top of your public Axiom profile.</p></div><div class="banner-actions"><button class="btn" type="button" id="uploadBanner"><svg class="icon"><use href="#i-upload"/></svg>Change banner</button><button class="btn ghost" type="button" id="removeBanner">Remove</button></div></div><div class="banner-preview" id="bannerPreview"></div></div><div class="avatar-editor"><div class="avatar" id="avatarPreview"></div><div><button class="btn" type="button" id="uploadAvatar"><svg class="icon"><use href="#i-upload"/></svg>Change photo</button> <button class="btn ghost" type="button" id="removeAvatar">Remove</button><p>PNG, JPG, WebP, GIF, AVIF or BMP · up to 5 MB<br>Animated GIFs and WebP stay animated.</p></div></div><div class="field"><label for="displayName">Display name</label><input id="displayName" maxlength="40" required><p class="help">Shown in your workspace and on DevHub.</p></div><div class="field-row"><div class="field"><label for="usernameReadOnly">Username</label><input id="usernameReadOnly" readonly></div><div class="field"><label for="profileEmail">Connected email <span id="emailState" class="email-state"></span></label><input id="profileEmail" type="email" readonly placeholder="Not connected"></div></div><div class="account-security"><div class="setting-row"><div><strong>Email & recovery</strong><p id="emailHelp">Connect and verify an email to sign in by email and reset your password.</p></div><button id="manageEmail" class="btn" type="button">Connect email</button></div><div class="setting-row"><div><strong>Discord</strong><p id="discordHelp">Link Discord to your Axiom profile with the /connect command.</p></div><button id="manageDiscord" class="btn" type="button">Connect Discord</button></div><div class="setting-row"><div><strong>Password</strong><p>Change your password and sign out other sessions.</p></div><button id="changePassword" class="btn" type="button">Change password</button></div></div><div class="field"><label for="profileBio">Bio</label><textarea id="profileBio" maxlength="180" placeholder="A little about what you build…"></textarea></div><div class="field"><label>Avatar color</label><div class="colors" id="avatarColors" role="group" aria-label="Avatar color"></div></div><div class="status-setting"><strong>Status <span class="email-state verified" id="currentPresenceLabel"></span></strong><p>Auto shows Online while active and Idle after about 2 minutes. Invisible always appears Offline.</p><div class="status-options" id="statusOptions" role="group" aria-label="Profile status"><button type="button" class="status-option" data-status-mode="auto"><span class="auto-dot"></span><span>Auto</span></button><button type="button" class="status-option" data-status-mode="online"><span class="presence-dot online"></span><span>Online</span></button><button type="button" class="status-option" data-status-mode="idle"><span class="presence-dot idle"></span><span>Idle</span></button><button type="button" class="status-option" data-status-mode="dnd"><span class="presence-dot dnd"></span><span>DND</span></button><button type="button" class="status-option invisible" data-status-mode="invisible"><span class="presence-dot offline"></span><span>Invisible</span></button></div></div><div class="badge-settings"><strong>Your badges</strong><div id="myBadges" class="readonly-badges"></div><p>Badges are assigned by the Axiom team.</p></div><div class="info-box">Your email is private. Your name, photo, banner, bio, status, and awarded badges are shown on your public profile.</div></div>
 <div id="preferencesPanel" role="tabpanel" aria-labelledby="preferencesTab" hidden><div class="setting-row"><div><strong>Appearance</strong><p>Make yourself at home.</p></div><label class="sr-only" for="themeSelect">Appearance</label><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option><option value="system">System</option></select></div><div class="gradient-setting"><div class="gradient-heading"><div><strong>Custom workspace background</strong><p>Blend two colors into your own Axiom background.</p></div><label class="gradient-switch"><input id="gradientEnabled" type="checkbox" aria-label="Use custom gradient background"><span></span></label></div><div class="gradient-editor" id="gradientEditor"><div class="gradient-preview" id="gradientPreview" aria-label="Gradient preview"></div><div class="gradient-colors"><label><span>Color one</span><span class="color-input-wrap"><input id="gradientA" type="color" value="#eaf2ff"><code id="gradientAText">#EAF2FF</code></span></label><label><span>Color two</span><span class="color-input-wrap"><input id="gradientB" type="color" value="#f5eaff"><code id="gradientBText">#F5EAFF</code></span></label></div><button class="btn ghost gradient-reset" id="gradientReset" type="button">Reset gradient</button></div></div><div class="setting-row"><div><strong>Send with Enter</strong><p>Shift + Enter adds a new line.</p></div><input id="enterSend" type="checkbox" aria-label="Send with Enter"></div><div class="setting-row"><div><strong>Reduce motion</strong><p>Turn off interface animations.</p></div><input id="reduceMotion" type="checkbox" aria-label="Reduce motion"></div><div class="setting-row"><div><strong>Response length</strong><p>Longer responses use more of your API quota.</p></div><label class="sr-only" for="tokenLimit">Response length</label><select id="tokenLimit"><option value="4096">Standard · 4K</option><option value="8192">Extended · 8K</option><option value="16384">Large · 16K</option></select></div><div class="info-box">Chat content and reference images are sent to the AI provider when you send a message. Your account and public profile sync across devices. AI chat history stays in this browser.</div><div class="account-import"><button id="openImport" class="btn" type="button">Import older local chats</button><p>Bring conversations from your previous Axiom profile into this account.</p></div></div><p class="form-error" id="settingsError" role="alert"></p></div><div class="dialog-footer"><button class="btn ghost danger" id="logoutBtn" type="button">Log out</button><span class="spacer"></span><button class="btn" type="button" data-close="settingsDialog">Cancel</button><button class="btn primary" id="saveSettings">Save changes</button></div></form></dialog>
 <dialog id="searchDialog" aria-labelledby="searchTitle"><div class="dialog-header"><h2 id="searchTitle">Find a conversation</h2><button class="icon-btn" data-close="searchDialog" aria-label="Close search"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><label class="sr-only" for="chatSearch">Search chats</label><input id="chatSearch" class="search-input" placeholder="Search your conversations…"><div id="searchResults"></div></div></dialog>
 <dialog id="confirmDialog" aria-labelledby="confirmTitle"><div class="dialog-header"><h2 id="confirmTitle">Delete conversation?</h2></div><div class="dialog-body">This removes the conversation from this browser.</div><div class="dialog-footer"><span class="spacer"></span><button class="btn" id="confirmCancel">Keep chat</button><button class="btn danger" id="confirmDelete">Delete chat</button></div></dialog>
@@ -784,10 +784,16 @@ function setPresenceDot(el,status){
 }
 
 function renderStatusOptions(){
-  const selected=profileDraft?.presenceMode||'auto';
+  const selected=profileDraft?.presenceMode||profile?.presenceMode||'auto';
   document.querySelectorAll('[data-status-mode]').forEach(button=>{
     button.setAttribute('aria-pressed',String(button.dataset.statusMode===selected));
   });
+
+  const label=$('currentPresenceLabel');
+  if(label&&profile){
+    label.textContent='· '+STATUS_LABELS[normalizeStatus(profile.status)];
+    label.className='email-state '+(profile.status==='offline'?'pending':'verified');
+  }
 }
 
 function desiredPresenceState(){
@@ -796,23 +802,42 @@ function desiredPresenceState(){
   if(mode==='idle')return 'idle';
   if(mode==='online'||mode==='dnd'||mode==='invisible')return 'online';
 
-  const inactive=Date.now()-lastPresenceActivity>5*60*1000;
+  const inactive=Date.now()-lastPresenceActivity>2*60*1000;
   return document.hidden||inactive?'idle':'online';
 }
 
-async function pushPresence(){
+async function pushPresence(modeOverride=null){
   if(!sessionToken||!profile)return;
+
+  const mode=modeOverride||profile.presenceMode||'auto';
+
   try{
     const data=await api('/presence',{
       method:'POST',
-      body:{state:desiredPresenceState()},
+      body:{
+        state:desiredPresenceState(),
+        mode
+      },
       timeout:12000
     });
+
     profile.status=data.status||profile.status;
-    profile.presenceMode=data.presenceMode||profile.presenceMode;
-    if(account){account.status=profile.status;account.presenceMode=profile.presenceMode;}
+    profile.presenceMode=data.presenceMode||mode;
+
+    if(profileDraft){
+      profileDraft.presenceMode=profile.presenceMode;
+    }
+
+    if(account){
+      account.status=profile.status;
+      account.presenceMode=profile.presenceMode;
+    }
+
     setPresenceDot($('sidebarPresence'),profile.status);
-  }catch{}
+    renderStatusOptions();
+  }catch(err){
+    console.warn('[Axiom Presence]',err);
+  }
 }
 
 function stopPresence(){
@@ -824,15 +849,30 @@ function startPresence(){
   stopPresence();
   lastPresenceActivity=Date.now();
   pushPresence();
-  presenceTimer=setInterval(pushPresence,25000);
+  presenceTimer=setInterval(pushPresence,20000);
+}
+
+let presenceActivityPushTimer=null;
+
+function markPresenceActivity(){
+  const wasInactive=Date.now()-lastPresenceActivity>2*60*1000;
+  lastPresenceActivity=Date.now();
+
+  if((profile?.presenceMode||'auto')==='auto'&&(wasInactive||profile?.status==='idle')){
+    clearTimeout(presenceActivityPushTimer);
+    presenceActivityPushTimer=setTimeout(()=>pushPresence(),250);
+  }
 }
 
 for(const eventName of ['pointerdown','keydown','touchstart']){
-  window.addEventListener(eventName,()=>{
-    lastPresenceActivity=Date.now();
-  },{passive:true});
+  window.addEventListener(eventName,markPresenceActivity,{passive:true});
 }
-document.addEventListener('visibilitychange',()=>pushPresence());
+
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden)lastPresenceActivity=Date.now();
+  pushPresence();
+});
+
 function updateProfile(){avatar($('sidebarAvatar'));setPresenceDot($('sidebarPresence'),profile.status);$('userName').textContent=profile.displayName||username;const userBadges=document.createElement('span');userBadges.innerHTML=badgesHTML(profile.badges);$('userName').append(userBadges);$('greeting').textContent=`Hey ${profile.displayName||username}, let’s make something.`;}
 async function passwordHash(password,salt){
   const key=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveBits']);
@@ -1319,7 +1359,28 @@ $('removeAvatar').onclick=()=>{draftBlob=null;avatarChanged=true;previewAvatar()
 $('uploadBanner').onclick=()=>$('bannerFile').click();
 $('bannerFile').onchange=async e=>{const file=e.target.files[0];if(!file)return;const selection=++bannerSelection;bannerLoading=true;$('saveSettings').disabled=true;$('settingsError').textContent='';try{await validImage(file);if(!$('settingsDialog').open||selection!==bannerSelection)return;bannerDraftBlob=file;bannerChanged=true;previewBanner();}catch(err){$('settingsError').textContent=err.message;}finally{bannerLoading=false;$('saveSettings').disabled=false;e.target.value='';}};
 $('removeBanner').onclick=()=>{bannerDraftBlob=null;bannerChanged=true;previewBanner();};
-document.querySelectorAll('[data-status-mode]').forEach(button=>{button.onclick=()=>{profileDraft.presenceMode=button.dataset.statusMode;renderStatusOptions();};});
+document.querySelectorAll('[data-status-mode]').forEach(button=>{
+  button.onclick=async()=>{
+    const mode=button.dataset.statusMode;
+    profileDraft.presenceMode=mode;
+    profile.presenceMode=mode;
+    renderStatusOptions();
+
+    button.disabled=true;
+    try{
+      await pushPresence(mode);
+      toast(
+        mode==='auto'
+          ? 'Status set to Auto.'
+          : mode==='invisible'
+            ? 'You now appear Offline.'
+            : 'Status set to '+(mode==='dnd'?'DND':mode[0].toUpperCase()+mode.slice(1))+'.'
+      );
+    }finally{
+      button.disabled=false;
+    }
+  };
+});
 
 function syncGradientEditor(){
   const enabled=$('gradientEnabled').checked;
@@ -1356,7 +1417,7 @@ $('settingsForm').onsubmit=async e=>{
   e.preventDefault();if(avatarLoading||bannerLoading||profileSaving)return;profileSaving=true;$('saveSettings').disabled=true;document.querySelectorAll('[data-close="settingsDialog"]').forEach(b=>b.disabled=true);$('settingsError').textContent='';
   const draft={displayName:$('displayName').value.trim(),bio:$('profileBio').value.trim(),color:profileDraft.color,avatarId:profileDraft.avatarId||null,bannerId:profileDraft.bannerId||null,presenceMode:profileDraft.presenceMode||'auto'};
   const nextPrefs={theme:$('themeSelect').value,enterSend:$('enterSend').checked,reduceMotion:$('reduceMotion').checked,tokenLimit:Number($('tokenLimit').value),gradientEnabled:$('gradientEnabled').checked,gradientA:$('gradientA').value,gradientB:$('gradientB').value};
-  try{if(avatarChanged){draft.avatarId=draftBlob?(await uploadFile(draftBlob,'avatar')).id:null;profileDraft.avatarId=draft.avatarId;avatarChanged=false;}if(bannerChanged){draft.bannerId=bannerDraftBlob?(await uploadFile(bannerDraftBlob,'banner')).id:null;profileDraft.bannerId=draft.bannerId;bannerChanged=false;}
+  try{if(avatarChanged){draft.avatarId=draftBlob?(await uploadFile(draftBlob,'avatar')).id:null;profileDraft.avatarId=draft.avatarId;avatarChanged=false;}if(bannerChanged){draft.bannerId=bannerDraftBlob?(await uploadFile(bannerDraftBlob,'creation')).id:null;profileDraft.bannerId=draft.bannerId;bannerChanged=false;}
     const result=await api('/me',{method:'PUT',body:draft});account=result.user;profile={...result.user};prefs=nextPrefs;avatarBlob=null;avatarURL=mediaURL(profile.avatarId);updateProfile();startPresence();
     try{write('axiom_preferences_'+localKey,prefs);write('axiom_theme',prefs.theme);}catch{toast('Profile saved. Browser preferences could not be saved.');}
     applyAppearance(prefs.theme);$('settingsDialog').close();renderChat(false);if(view==='hub')loadHub();toast('Profile updated.');
