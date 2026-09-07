@@ -1581,6 +1581,19 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 @media(max-width:1050px){.mod-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.mod-member-layout{grid-template-columns:1fr}.mod-user-list{max-height:300px}}
 @media(max-width:760px){.mod-shell{padding:22px 16px 45px}.mod-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.mod-meta-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mod-actions{grid-template-columns:1fr}.mod-content-item{flex-direction:column}.mod-content-actions{justify-content:flex-start}}
 
+
+.staff-nav{
+  border-top:1px solid var(--line);
+  padding:12px 0 8px;
+  margin-top:2px;
+}
+.staff-nav .nav-label{
+  margin-bottom:5px;
+}
+.staff-nav .nav-item{
+  margin-top:2px;
+}
+
 </style>
 </head>
 <body>
@@ -1625,7 +1638,12 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
   <button class="btn new-chat" id="newChat"><svg class="icon"><use href="#i-plus"/></svg>New chat<kbd>Alt N</kbd></button>
   <div class="nav-label">Workspace</div><nav class="nav" id="modeNav"><button class="nav-item active" data-mode="axiom"><img class="asset-icon" src="/icons/ai.png" alt="">Axiom<span class="nav-dot"></span></button><button class="nav-item" data-mode="ui"><img class="asset-icon" src="/icons/studio.png" alt="">Interface designer<span class="nav-dot"></span></button><button class="nav-item" data-mode="code"><img class="asset-icon" src="/icons/api.png" alt="">Script developer<span class="nav-dot"></span></button></nav>
   <hr class="side-line"><button class="nav-item" id="devhubNav"><img class="asset-icon" src="/icons/post.png" alt="">DevHub</button>
-  <button class="nav-item" id="creationsNav"><img class="asset-icon" src="/icons/creation.png" alt="">Creations</button><button class="nav-item" id="dmsNav"><img class="asset-icon" src="/icons/message.png" alt="">Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><button class="nav-item" id="moderationNav" hidden><img class="asset-icon" src="/icons/support.png" alt="">Moderation</button><button class="nav-item" id="adminNav" hidden><img class="asset-icon" src="/icons/support.png" alt="">Admin dashboard</button><div class="recent-heading"><div class="nav-label">Recent chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
+  <button class="nav-item" id="creationsNav"><img class="asset-icon" src="/icons/creation.png" alt="">Creations</button><button class="nav-item" id="dmsNav"><img class="asset-icon" src="/icons/message.png" alt="">Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><div class="recent-heading"><div class="nav-label">Recent chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
+  <div class="staff-nav" id="staffNav" hidden>
+    <div class="nav-label">Staff</div>
+    <button class="nav-item" id="moderationNav" hidden><img class="asset-icon" src="/icons/support.png" alt="">Moderation</button>
+    <button class="nav-item" id="adminNav" hidden><img class="asset-icon" src="/icons/support.png" alt="">Admin dashboard</button>
+  </div>
   <div class="side-bottom"><button class="nav-item" id="settingsBtn"><img class="asset-icon" src="/icons/settings.png" alt="">Settings</button><button class="user-chip" id="userChip"><span class="sidebar-avatar-wrap"><span class="avatar" id="sidebarAvatar"></span><span class="presence-dot offline" id="sidebarPresence" aria-hidden="true"></span></span><span class="user-info"><strong id="userName"></strong><span>Personal workspace</span><span class="sidebar-status-quote" id="sidebarStatusQuote" hidden></span></span><svg class="icon muted"><use href="#i-settings"/></svg></button></div>
 </aside>
 <main class="main"><header class="topbar"><div class="top-left"><button class="icon-btn mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button><span class="top-title" id="topTitle">Axiom</span><span class="divider"></span><span class="top-sub" id="topSub">Roblox workspace</span></div><div class="top-right"><span class="tag">Beta</span><button class="icon-btn" id="themeToggle" aria-label="Toggle light and dark appearance"><svg class="icon"><use href="#i-moon"/></svg></button><button class="icon-btn" id="clearChat" aria-label="Delete current chat"><svg class="icon"><use href="#i-trash"/></svg></button></div></header>
@@ -2330,7 +2348,7 @@ async function boot(user){
   profile={displayName:username,color:COLORS[0],email:'',emailVerified:false,discordConnected:false,bio:'',badges:[],bannerId:null,status:'offline',presenceMode:'auto',statusQuote:'',links:{},profileTheme:'classic',...user};
   prefs={theme:read('axiom_theme','light'),enterSend:true,reduceMotion:false,tokenLimit:16384,gradientEnabled:false,gradientA:'#eaf2ff',gradientB:'#f5eaff',...read('axiom_preferences_'+localKey,{})};
   if(avatarURL?.startsWith('blob:'))URL.revokeObjectURL(avatarURL);avatarBlob=null;avatarURL=mediaURL(user.avatarId);
-  $('authWrap').hidden=true;$('app').hidden=false;$('moderationNav').hidden=!user.canModerate;$('adminNav').hidden=!user.canAdmin;applyAppearance(prefs.theme);updateProfile();startPresence();loadMyPins();activeId=threads[0]?.id||null;mode=threads[0]?.mode||'axiom';modelProfile=threads[0]?.modelProfile||read('axiom_model_'+localKey,'core-1');if(!AXIOM_MODELS[modelProfile])modelProfile='core-1';setMode(mode,false);syncModelPicker();renderRecent();
+  $('authWrap').hidden=true;$('app').hidden=false;$('moderationNav').hidden=!user.canModerate;$('adminNav').hidden=!user.canAdmin;$('staffNav').hidden=!(user.canModerate||user.canAdmin);applyAppearance(prefs.theme);updateProfile();startPresence();loadMyPins();activeId=threads[0]?.id||null;mode=threads[0]?.mode||'axiom';modelProfile=threads[0]?.modelProfile||read('axiom_model_'+localKey,'core-1');if(!AXIOM_MODELS[modelProfile])modelProfile='core-1';setMode(mode,false);syncModelPicker();renderRecent();
   refreshDMUnread();
   const requestedProfile=profileUsernameFromPath();
   if(requestedProfile)openPublicProfile('@'+requestedProfile,false);
