@@ -946,6 +946,550 @@ html[data-theme=dark] .model-menu{box-shadow:0 20px 60px #0009}
 @media(max-width:1120px){.admin-kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.admin-members-v2{grid-template-columns:1fr}.admin-member-list{max-height:300px}.admin-meta-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.admin-control-shell{padding:22px 16px 45px}.admin-control-head{align-items:flex-start}.admin-control-head h1{font-size:24px}.admin-head-actions{justify-content:flex-start}.admin-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-overview-grid,.admin-system-grid{grid-template-columns:1fr}.admin-actions-grid{grid-template-columns:1fr}.admin-toolbar .search-input{min-width:100%}.admin-mod-item{flex-direction:column}.admin-mod-actions{width:100%;justify-content:flex-start}}
 
+
+/* DMs v8.7 — full workspace messenger */
+.dm-stage{overflow:hidden!important;background:var(--bg)}
+.dm-app{
+  height:100%;
+  min-height:0;
+  display:grid;
+  grid-template-columns:286px minmax(0,1fr) 252px;
+  background:var(--surface);
+}
+.dm-app>.dm-sidebar{
+  border-right:1px solid var(--line);
+  background:var(--side);
+  min-width:0;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+}
+.dm-sidebar-title{
+  min-height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 12px 10px 16px;
+  border-bottom:1px solid var(--line);
+}
+.dm-sidebar-title strong{
+  display:block;
+  font-size:15px;
+  font-weight:650;
+  letter-spacing:-.25px;
+}
+.dm-sidebar-title span{
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:10px;
+}
+.dm-sidebar-head{padding:10px 11px;border-bottom:0}
+.dm-search-wrap{
+  height:36px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:0 10px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:var(--bg);
+  color:var(--muted);
+}
+.dm-search-wrap .icon{width:15px;height:15px}
+.dm-search-wrap input{
+  width:100%!important;
+  min-width:0;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  border-radius:0!important;
+  color:var(--ink);
+  font-size:12px!important;
+}
+.dm-search-wrap input::placeholder{color:var(--muted)}
+.dm-list{
+  flex:1;
+  min-height:0;
+  overflow:auto;
+  padding:3px 7px 8px;
+}
+.dm-conversation{
+  width:100%;
+  min-height:58px;
+  display:grid;
+  grid-template-columns:40px minmax(0,1fr) auto;
+  align-items:center;
+  gap:9px;
+  padding:7px 8px;
+  border-radius:9px;
+  text-align:left;
+  color:var(--ink);
+  transition:background .12s ease;
+}
+.dm-conversation:hover{background:var(--hover)}
+.dm-conversation.active{background:var(--blue-soft)}
+.dm-conversation>.avatar{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  flex:0 0 40px;
+}
+.dm-conversation-copy{min-width:0}
+.dm-conversation-top{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  min-width:0;
+}
+.dm-conversation-copy strong{
+  flex:1;
+  min-width:0;
+  display:block;
+  font-size:12px;
+  font-weight:620;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.dm-conversation-time{
+  color:var(--muted);
+  font-size:9px;
+  white-space:nowrap;
+}
+.dm-conversation-copy>span{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.35;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.dm-conversation-side{
+  min-width:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.dm-unread{
+  min-width:18px;
+  height:18px;
+  border-radius:999px;
+  background:var(--blue);
+  color:#fff;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:9px;
+  font-weight:750;
+}
+.dm-sidebar-foot{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:0 14px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:9px;
+}
+.dm-sidebar-foot .status-dot{width:7px;height:7px}
+
+.dm-chat{
+  min-width:0;
+  min-height:0;
+  display:flex;
+  background:var(--bg);
+}
+.dm-chat>.dm-thread{
+  flex:1;
+  min-height:0;
+  min-width:0;
+}
+.dm-thread{
+  display:flex;
+  flex-direction:column;
+}
+.dm-thread-empty{
+  margin:auto;
+  max-width:410px;
+  padding:40px;
+  text-align:center;
+  color:var(--muted);
+}
+.dm-thread-empty img{
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  margin-bottom:14px;
+  opacity:.9;
+}
+.dm-thread-empty h2{
+  margin:0 0 7px;
+  color:var(--ink);
+  font-size:20px;
+  font-weight:620;
+  letter-spacing:-.45px;
+}
+.dm-thread-empty p{
+  margin:0;
+  font-size:12px;
+  line-height:1.6;
+}
+.dm-thread-head{
+  min-height:68px;
+  flex:0 0 68px;
+  padding:0 16px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  background:var(--surface);
+}
+.dm-thread-user{
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-align:left;
+  border-radius:9px;
+  padding:5px 7px 5px 4px;
+}
+.dm-thread-user:hover{background:var(--hover)}
+.dm-thread-user>.avatar{
+  width:39px;
+  height:39px;
+  border-radius:12px;
+}
+.dm-thread-user strong{
+  display:block;
+  font-size:13px;
+  font-weight:650;
+}
+.dm-thread-user span span{
+  display:block;
+  margin-top:1px;
+  color:var(--muted);
+  font-size:10px;
+}
+.dm-thread-actions{
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+.dm-thread-state{
+  margin-right:5px;
+  color:var(--muted);
+  font-size:10px;
+}
+.dm-messages{
+  flex:1;
+  min-height:0;
+  overflow:auto;
+  padding:20px 20px 22px;
+  background:var(--bg);
+}
+.dm-day-separator{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin:17px 0 20px;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:600;
+}
+.dm-day-separator::before,
+.dm-day-separator::after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:var(--line);
+}
+.dm-message-row{
+  position:relative;
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr) auto;
+  gap:10px;
+  padding:4px 6px;
+  border-radius:7px;
+}
+.dm-message-row:hover{background:color-mix(in srgb,var(--hover) 72%,transparent)}
+.dm-message-row+.dm-message-row{margin-top:2px}
+.dm-message-row.compact{
+  grid-template-columns:42px minmax(0,1fr) auto;
+  padding-top:2px;
+  padding-bottom:2px;
+}
+.dm-message-row>.avatar{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  margin-top:2px;
+}
+.dm-message-row.compact>.avatar{visibility:hidden}
+.dm-message-main{min-width:0}
+.dm-message-head{
+  display:flex;
+  align-items:baseline;
+  gap:7px;
+  margin-bottom:2px;
+}
+.dm-message-head strong{
+  font-size:12px;
+  font-weight:650;
+}
+.dm-message-head span{
+  color:var(--muted);
+  font-size:9px;
+}
+.dm-message-row.compact .dm-message-head{display:none}
+.dm-message-text{
+  margin:0;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  color:var(--ink);
+  font-size:13px;
+  line-height:1.46;
+}
+.dm-compact-time{
+  visibility:hidden;
+  width:36px;
+  align-self:start;
+  padding-top:2px;
+  color:var(--muted);
+  font-size:8px;
+  text-align:right;
+}
+.dm-message-row.compact:hover .dm-compact-time{visibility:visible}
+.dm-message-tools{
+  opacity:0;
+  display:flex;
+  align-items:center;
+  align-self:start;
+  margin-top:-2px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  background:var(--surface);
+  box-shadow:var(--shadow);
+}
+.dm-message-row:hover .dm-message-tools{opacity:1}
+.dm-message-tools .icon-btn{
+  width:28px;
+  min-width:28px;
+  height:28px;
+  border-radius:6px;
+}
+.dm-message-tools .icon{width:13px;height:13px}
+
+.dm-composer{
+  flex:0 0 auto;
+  padding:0 16px 16px;
+  background:var(--bg);
+}
+.dm-form{
+  display:block;
+  padding:0;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--surface);
+  overflow:hidden;
+  box-shadow:0 8px 28px #0000000b;
+}
+.dm-form:focus-within{
+  border-color:color-mix(in srgb,var(--blue) 55%,var(--line));
+}
+.dm-form textarea{
+  display:block;
+  width:100%;
+  min-height:48px;
+  max-height:180px;
+  resize:none;
+  overflow-y:auto;
+  padding:13px 14px 5px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:var(--ink);
+  font-size:13px;
+  line-height:1.5;
+}
+.dm-form textarea::placeholder{color:var(--muted)}
+.dm-form-bottom{
+  min-height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:5px 7px 7px 13px;
+}
+.dm-composer-hint{
+  color:var(--muted);
+  font-size:9px;
+}
+.dm-form-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.dm-form-actions>span{
+  color:var(--muted);
+  font-size:9px;
+}
+.dm-form .send{
+  width:32px;
+  min-width:32px;
+  height:32px;
+  border-radius:9px;
+}
+
+.dm-details{
+  min-width:0;
+  min-height:0;
+  overflow:auto;
+  border-left:1px solid var(--line);
+  background:var(--surface);
+}
+.dm-details-empty{
+  min-height:100%;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  color:var(--muted);
+  text-align:center;
+  font-size:10px;
+}
+.dm-details-profile{padding:22px 18px}
+.dm-details-avatar{
+  display:flex;
+  justify-content:center;
+  margin:4px 0 12px;
+}
+.dm-details-avatar .avatar{
+  width:72px;
+  height:72px;
+  border-radius:22px;
+  font-size:24px;
+}
+.dm-details-name{
+  text-align:center;
+}
+.dm-details-name h3{
+  margin:0;
+  font-size:17px;
+  font-weight:650;
+  letter-spacing:-.4px;
+}
+.dm-details-name p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:10px;
+}
+.dm-details-status{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  margin-top:10px;
+  color:var(--muted);
+  font-size:10px;
+}
+.dm-details-quote{
+  margin:10px 0 0;
+  text-align:center;
+  color:var(--muted);
+  font-size:10px;
+  font-style:italic;
+}
+.dm-details-badges{
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.dm-details-divider{
+  height:1px;
+  margin:18px 0;
+  background:var(--line);
+}
+.dm-details-section strong{
+  display:block;
+  margin-bottom:6px;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+.dm-details-section p{
+  margin:0;
+  color:var(--ink);
+  font-size:11px;
+  line-height:1.55;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+.dm-details-meta{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.dm-details-meta div{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  font-size:10px;
+}
+.dm-details-meta span{color:var(--muted)}
+.dm-details-actions{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:7px;
+  margin-top:16px;
+}
+.dm-details-actions .btn{
+  width:100%;
+  justify-content:center;
+  font-size:11px;
+}
+
+@media(max-width:1180px){
+  .dm-app{grid-template-columns:274px minmax(0,1fr)}
+  .dm-details{display:none}
+}
+@media(max-width:820px){
+  .dm-app{grid-template-columns:230px minmax(0,1fr)}
+  .dm-composer-hint{display:none}
+}
+@media(max-width:650px){
+  .dm-app{grid-template-columns:1fr}
+  .dm-sidebar{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    transform:translateX(0);
+    transition:transform .18s ease;
+  }
+  .dm-stage.dm-mobile-thread .dm-sidebar{transform:translateX(-100%)}
+  .dm-chat{min-height:100%}
+  .dm-thread-head{padding-left:10px}
+  .dm-thread-head::before{
+    content:"‹";
+    color:var(--muted);
+    font-size:25px;
+    margin-right:-3px;
+    cursor:pointer;
+  }
+  .dm-message-row{grid-template-columns:38px minmax(0,1fr) auto;padding-left:2px;padding-right:2px}
+  .dm-message-row>.avatar{width:34px;height:34px;border-radius:10px}
+  .dm-messages{padding:16px 10px 18px}
+  .dm-composer{padding:0 10px 10px}
+}
+
 </style>
 </head>
 <body>
@@ -1000,7 +1544,93 @@ html[data-theme=dark] .model-menu{box-shadow:0 20px 60px #0009}
 </section>
 <section class="hub-view" id="hubView" hidden aria-label="DevHub community"><div class="hub-header"><h1>DevHub</h1><p>A shared space for developers. <strong id="onlineCount">0 developers online</strong></p><div class="online-members" id="onlineMembers" aria-label="Online developers"></div><button class="btn ghost" id="legacyBoardBtn">View earlier board</button><p id="hubStatus" role="status"></p></div><div class="chat-area" id="hubArea"><div class="hub-log" id="hubLog"></div></div><div class="composer-wrap"><form id="hubForm" class="composer-box"><label class="sr-only" for="hubInput">Public message</label><textarea id="hubInput" rows="2" maxlength="500" placeholder="Share what you’re working on…" required></textarea><div class="composer-tools"><span class="small muted">Visible to everyone on DevHub</span><button class="send" id="hubSend" aria-label="Post message"><svg class="icon"><use href="#i-up"/></svg></button></div></form></div></section>
 <section id="creationsView" class="shared-view" hidden aria-label="Community creations"><div class="community-shell"><div class="community-heading"><div><h1>Creations</h1><p>A little inspiration. A lot of work worth sharing.</p></div><button id="newCreation" class="btn primary"><img class="asset-icon" src="/icons/creation.png" alt="">Share a creation</button></div><div class="feed-toolbar"><div class="filter-tabs" id="creationFilters" role="group" aria-label="Filter creations"><button data-category="All" aria-pressed="true">All work</button><button data-category="Interface" aria-pressed="false">Interfaces</button><button data-category="Script" aria-pressed="false">Scripts</button><button data-category="Game" aria-pressed="false">Games</button><button data-category="Other" aria-pressed="false">Other</button></div><button class="btn ghost" id="clearAuthorFilter" hidden>Show everyone</button></div><p id="creationStatus" class="inline-error" role="status"></p><div id="creationGrid" class="creation-grid"></div><button id="moreCreations" class="btn feed-more" hidden>Load more</button></div></section>
-<section id="dmsView" class="shared-view" hidden aria-label="Direct messages"><div class="community-shell dm-shell"><div class="community-heading"><div><h1>Messages</h1><p>Account-to-account messages with other Axiom developers.</p></div><span class="feed-note">Text-only · account members</span></div><div class="dm-layout"><aside class="dm-sidebar"><div class="dm-sidebar-head"><label class="sr-only" for="dmSearch">Search conversations</label><input id="dmSearch" placeholder="Search messages…"></div><div class="dm-list" id="dmList"></div></aside><section class="dm-thread"><div class="dm-thread-empty" id="dmThreadEmpty"><img src="/icons/message.png" alt=""><h2>Your messages</h2><p>Open a developer’s profile and choose Message, or pick a conversation here.</p></div><div id="dmThread" class="dm-thread" hidden><div class="dm-thread-head"><button class="dm-thread-user" id="dmThreadUser" type="button"></button><span class="feed-note" id="dmThreadStatus"></span></div><div class="dm-messages" id="dmMessages"></div><form class="dm-form" id="dmForm"><label class="sr-only" for="dmInput">Direct message</label><textarea id="dmInput" maxlength="1000" rows="1" placeholder="Message this developer…" required></textarea><button class="send" id="dmSend" aria-label="Send direct message"><svg class="icon"><use href="#i-up"/></svg></button></form></div></section></div><p class="dm-note">DMs are not public. They are stored by Axiom and are not shown in DevHub or public profiles.</p></div></section>
+<section id="dmsView" class="shared-view dm-stage" hidden aria-label="Direct messages">
+  <div class="dm-app">
+    <aside class="dm-sidebar" aria-label="Conversations">
+      <div class="dm-sidebar-title">
+        <div>
+          <strong>Messages</strong>
+          <span id="dmConversationCount">0 conversations</span>
+        </div>
+        <button class="icon-btn" id="dmRefreshList" type="button" aria-label="Refresh conversations" title="Refresh conversations">
+          <svg class="icon"><use href="#i-search"/></svg>
+        </button>
+      </div>
+
+      <div class="dm-sidebar-head">
+        <label class="sr-only" for="dmSearch">Search conversations</label>
+        <div class="dm-search-wrap">
+          <svg class="icon"><use href="#i-search"/></svg>
+          <input id="dmSearch" autocomplete="off" placeholder="Find a conversation">
+        </div>
+      </div>
+
+      <div class="dm-list" id="dmList"></div>
+
+      <div class="dm-sidebar-foot">
+        <span class="status-dot online"></span>
+        Private Axiom messages
+      </div>
+    </aside>
+
+    <section class="dm-chat" aria-label="Message thread">
+      <div class="dm-thread-empty" id="dmThreadEmpty">
+        <img src="/icons/message.png" alt="">
+        <h2>Your messages</h2>
+        <p>Pick a conversation on the left, or open a developer profile and press Message.</p>
+      </div>
+
+      <div id="dmThread" class="dm-thread" hidden>
+        <header class="dm-thread-head">
+          <button class="dm-thread-user" id="dmThreadUser" type="button" aria-label="Open developer profile"></button>
+
+          <div class="dm-thread-actions">
+            <span class="dm-thread-state" id="dmThreadStatus"></span>
+            <button class="icon-btn" id="dmRefreshThread" type="button" aria-label="Refresh conversation" title="Refresh">
+              <svg class="icon"><use href="#i-search"/></svg>
+            </button>
+            <button class="icon-btn" id="dmViewProfile" type="button" aria-label="View profile" title="View profile">
+              <svg class="icon"><use href="#i-settings"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="dm-messages" id="dmMessages"></div>
+
+        <div class="dm-composer">
+          <form class="dm-form" id="dmForm">
+            <label class="sr-only" for="dmInput">Direct message</label>
+            <textarea
+              id="dmInput"
+              maxlength="1000"
+              rows="1"
+              autocomplete="off"
+              placeholder="Message this developer…"
+              required
+            ></textarea>
+
+            <div class="dm-form-bottom">
+              <span class="dm-composer-hint">Enter to send · Shift + Enter for a new line</span>
+              <div class="dm-form-actions">
+                <span id="dmCharCount">0 / 1000</span>
+                <button class="send" id="dmSend" aria-label="Send direct message">
+                  <svg class="icon"><use href="#i-up"/></svg>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <aside class="dm-details" id="dmDetails" aria-label="Developer details">
+      <div class="dm-details-empty" id="dmDetailsEmpty">
+        <span>Member details appear here.</span>
+      </div>
+      <div id="dmDetailsBody" hidden></div>
+    </aside>
+  </div>
+</section></div><p class="dm-note">DMs are not public. They are stored by Axiom and are not shown in DevHub or public profiles.</p></div></section>
 <section id="adminView" class="shared-view" hidden aria-label="Admin dashboard">
   <div class="admin-control-shell">
     <div class="admin-control-head">
@@ -2840,6 +3470,59 @@ function updateDMUnread(count){
   badge.hidden=total<1;
 }
 
+function dmShortTime(ts){
+  if(!ts)return '';
+  const date=new Date(ts);
+  const now=new Date();
+
+  if(date.toDateString()===now.toDateString()){
+    return date.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+  }
+
+  const yesterday=new Date(now);
+  yesterday.setDate(now.getDate()-1);
+
+  if(date.toDateString()===yesterday.toDateString())return 'Yesterday';
+
+  const diff=now-date;
+  if(diff<7*86400000){
+    return date.toLocaleDateString([],{weekday:'short'});
+  }
+
+  return date.toLocaleDateString([],{month:'short',day:'numeric'});
+}
+
+function dmDayLabel(ts){
+  const date=new Date(ts);
+  const now=new Date();
+
+  if(date.toDateString()===now.toDateString())return 'Today';
+
+  const yesterday=new Date(now);
+  yesterday.setDate(now.getDate()-1);
+
+  if(date.toDateString()===yesterday.toDateString())return 'Yesterday';
+
+  return date.toLocaleDateString(undefined,{
+    weekday:'long',
+    month:'short',
+    day:'numeric',
+    year:date.getFullYear()===now.getFullYear()?undefined:'numeric'
+  });
+}
+
+function dmDateKey(ts){
+  const d=new Date(ts);
+  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+}
+
+function resizeDMInput(){
+  const input=$('dmInput');
+  input.style.height='auto';
+  input.style.height=Math.min(180,Math.max(48,input.scrollHeight))+'px';
+  $('dmCharCount').textContent=`${input.value.length} / 1000`;
+}
+
 async function refreshDMUnread(){
   if(!sessionToken)return;
   try{
@@ -2855,6 +3538,7 @@ async function refreshDMUnread(){
 function dmConversationMatches(item,query){
   if(!query)return true;
   const q=query.toLowerCase();
+
   return (item.user.displayName||'').toLowerCase().includes(q)
     ||(item.user.username||'').toLowerCase().includes(q)
     ||(item.last?.text||'').toLowerCase().includes(q);
@@ -2863,13 +3547,19 @@ function dmConversationMatches(item,query){
 function renderDMList(){
   const list=$('dmList');
   list.replaceChildren();
+
   const query=$('dmSearch').value.trim();
   const items=dmConversations.filter(item=>dmConversationMatches(item,query));
+
+  $('dmConversationCount').textContent=
+    `${dmConversations.length} conversation${dmConversations.length===1?'':'s'}`;
 
   if(!items.length){
     const empty=document.createElement('p');
     empty.className='recent-empty';
-    empty.textContent=query?'No matching conversations.':'No DMs yet. Open a profile and choose Message.';
+    empty.textContent=query
+      ? 'No matching conversations.'
+      : 'No DMs yet. Open a profile and choose Message.';
     list.append(empty);
     return;
   }
@@ -2877,7 +3567,12 @@ function renderDMList(){
   for(const item of items){
     const button=document.createElement('button');
     button.type='button';
-    button.className='dm-conversation'+(dmPartner?.id===item.user.id?' active':'');
+    button.className='dm-conversation'+
+      (dmPartner?.id===item.user.id?' active':'');
+    button.setAttribute(
+      'aria-label',
+      `Open conversation with ${item.user.displayName||item.user.username}`
+    );
 
     const av=document.createElement('span');
     av.className='avatar';
@@ -2886,22 +3581,41 @@ function renderDMList(){
     const copy=document.createElement('div');
     copy.className='dm-conversation-copy';
 
+    const top=document.createElement('div');
+    top.className='dm-conversation-top';
+
     const name=document.createElement('strong');
     name.textContent=item.user.displayName||item.user.username;
-    const last=document.createElement('span');
-    last.textContent=(item.last?.mine?'You: ':'')+(item.last?.text||'Start a conversation');
 
-    copy.append(name,last);
-    button.append(av,copy);
+    const time=document.createElement('span');
+    time.className='dm-conversation-time';
+    time.textContent=dmShortTime(item.last?.ts);
+
+    top.append(name,time);
+
+    const last=document.createElement('span');
+    last.textContent=
+      (item.last?.mine?'You: ':'')+
+      (item.last?.text||'Start a conversation');
+
+    copy.append(top,last);
+
+    const side=document.createElement('div');
+    side.className='dm-conversation-side';
 
     if(item.unread){
       const unread=document.createElement('span');
       unread.className='dm-unread';
       unread.textContent=item.unread>99?'99+':String(item.unread);
-      button.append(unread);
+      side.append(unread);
     }
 
-    button.onclick=()=>openDMThread(item.user.id);
+    button.append(av,copy,side);
+    button.onclick=()=>{
+      $('dmsView').classList.add('dm-mobile-thread');
+      openDMThread(item.user.id);
+    };
+
     list.append(button);
   }
 }
@@ -2909,13 +3623,143 @@ function renderDMList(){
 async function loadDMList(){
   if(dmLoading)return;
   dmLoading=true;
+
   try{
     const data=await api('/dms');
     dmConversations=data.conversations||[];
     updateDMUnread(data.unread);
     renderDMList();
-  }catch(err){toast(err.message);}
-  finally{dmLoading=false;}
+  }catch(err){
+    toast(err.message);
+  }finally{
+    dmLoading=false;
+  }
+}
+
+function renderDMDetails(){
+  const empty=$('dmDetailsEmpty');
+  const body=$('dmDetailsBody');
+
+  if(!dmPartner){
+    empty.hidden=false;
+    body.hidden=true;
+    body.replaceChildren();
+    return;
+  }
+
+  empty.hidden=true;
+  body.hidden=false;
+  body.replaceChildren();
+
+  const profileBox=document.createElement('div');
+  profileBox.className='dm-details-profile';
+
+  const avatarWrap=document.createElement('div');
+  avatarWrap.className='dm-details-avatar';
+
+  const av=document.createElement('span');
+  av.className='avatar';
+  avatar(av,dmPartner,mediaURL(dmPartner.avatarId));
+  avatarWrap.append(av);
+
+  const nameWrap=document.createElement('div');
+  nameWrap.className='dm-details-name';
+
+  const h=document.createElement('h3');
+  h.textContent=dmPartner.displayName||dmPartner.username;
+
+  const handle=document.createElement('p');
+  handle.textContent='@'+dmPartner.username;
+
+  nameWrap.append(h,handle);
+
+  const status=document.createElement('div');
+  status.className='dm-details-status';
+
+  const dot=document.createElement('span');
+  setPresenceDot(dot,dmPartner.status);
+
+  const statusText=document.createElement('span');
+  statusText.textContent=STATUS_LABELS[normalizeStatus(dmPartner.status)];
+
+  status.append(dot,statusText);
+
+  profileBox.append(avatarWrap,nameWrap,status);
+
+  if(dmPartner.statusQuote){
+    const quote=document.createElement('p');
+    quote.className='dm-details-quote';
+    quote.textContent=dmPartner.statusQuote;
+    profileBox.append(quote);
+  }
+
+  if(dmPartner.badges?.length){
+    const badges=document.createElement('div');
+    badges.className='dm-details-badges';
+    badges.innerHTML=badgesHTML(dmPartner.badges);
+    profileBox.append(badges);
+  }
+
+  const divider1=document.createElement('div');
+  divider1.className='dm-details-divider';
+  profileBox.append(divider1);
+
+  const about=document.createElement('div');
+  about.className='dm-details-section';
+
+  const aboutLabel=document.createElement('strong');
+  aboutLabel.textContent='About';
+
+  const bio=document.createElement('p');
+  bio.textContent=dmPartner.bio||'This developer has not added a bio yet.';
+
+  about.append(aboutLabel,bio);
+  profileBox.append(about);
+
+  const divider2=document.createElement('div');
+  divider2.className='dm-details-divider';
+  profileBox.append(divider2);
+
+  const meta=document.createElement('div');
+  meta.className='dm-details-meta';
+
+  const joined=document.createElement('div');
+  joined.innerHTML=
+    '<span>Joined</span><strong>'+
+    escapeHTML(new Date(dmPartner.createdAt).toLocaleDateString(undefined,{
+      month:'short',
+      year:'numeric'
+    }))+
+    '</strong>';
+
+  const state=document.createElement('div');
+  state.innerHTML=
+    '<span>Status</span><strong>'+
+    escapeHTML(STATUS_LABELS[normalizeStatus(dmPartner.status)])+
+    '</strong>';
+
+  meta.append(joined,state);
+  profileBox.append(meta);
+
+  const actions=document.createElement('div');
+  actions.className='dm-details-actions';
+
+  const profileBtn=document.createElement('button');
+  profileBtn.type='button';
+  profileBtn.className='btn';
+  profileBtn.textContent='View profile';
+  profileBtn.onclick=()=>openPublicProfile(dmPartner.id);
+
+  const creationsBtn=document.createElement('button');
+  creationsBtn.type='button';
+  creationsBtn.className='btn';
+  creationsBtn.textContent='View creations';
+  creationsBtn.onclick=()=>openCreations(dmPartner.id);
+
+  actions.append(profileBtn,creationsBtn);
+  profileBox.append(actions);
+
+  body.append(profileBox);
 }
 
 function renderDMThread(){
@@ -2925,6 +3769,7 @@ function renderDMThread(){
   if(!dmPartner){
     thread.hidden=true;
     empty.hidden=false;
+    renderDMDetails();
     return;
   }
 
@@ -2939,15 +3784,21 @@ function renderDMThread(){
   avatar(av,dmPartner,mediaURL(dmPartner.avatarId));
 
   const info=document.createElement('span');
+
   const name=document.createElement('strong');
   name.textContent=dmPartner.displayName||dmPartner.username;
 
   const state=document.createElement('span');
-  state.textContent='@'+dmPartner.username+' · '+STATUS_LABELS[normalizeStatus(dmPartner.status)];
+  state.textContent=
+    '@'+dmPartner.username+
+    ' · '+
+    STATUS_LABELS[normalizeStatus(dmPartner.status)];
 
   info.append(name,state);
   userBtn.append(av,info);
   userBtn.onclick=()=>openPublicProfile(dmPartner.id);
+
+  renderDMDetails();
 
   const area=$('dmMessages');
   area.replaceChildren();
@@ -2962,84 +3813,194 @@ function renderDMThread(){
     iconImg.alt='';
 
     const title=document.createElement('h2');
-    title.textContent='Start the conversation.';
+    title.textContent='This is the beginning.';
 
     const note=document.createElement('p');
-    note.textContent='Say hey to @'+dmPartner.username+'.';
+    note.textContent=
+      'Start your conversation with @'+dmPartner.username+'.';
 
     first.append(iconImg,title,note);
     area.append(first);
   }else{
+    let previous=null;
+    let previousDay='';
+
     for(const message of dmMessages){
+      const day=dmDateKey(message.ts);
+
+      if(day!==previousDay){
+        const separator=document.createElement('div');
+        separator.className='dm-day-separator';
+        separator.textContent=dmDayLabel(message.ts);
+        area.append(separator);
+        previousDay=day;
+        previous=null;
+      }
+
+      const sender=message.mine?profile:dmPartner;
+      const sameSender=
+        previous &&
+        previous.mine===message.mine &&
+        Number(message.ts)-Number(previous.ts)<5*60*1000;
+
       const row=document.createElement('div');
-      row.className='dm-bubble-row'+(message.mine?' mine':'');
+      row.className='dm-message-row'+(sameSender?' compact':'');
+
+      const senderAvatar=document.createElement('span');
+      senderAvatar.className='avatar';
+      avatar(senderAvatar,sender,mediaURL(sender?.avatarId));
+
+      const main=document.createElement('div');
+      main.className='dm-message-main';
+
+      const head=document.createElement('div');
+      head.className='dm-message-head';
+
+      const senderName=document.createElement('strong');
+      senderName.textContent=message.mine
+        ? (profile?.displayName||profile?.username||'You')
+        : (dmPartner.displayName||dmPartner.username);
+
+      const time=document.createElement('span');
+      time.textContent=new Date(message.ts).toLocaleTimeString([],{
+        hour:'numeric',
+        minute:'2-digit'
+      });
+
+      head.append(senderName,time);
+
+      const text=document.createElement('p');
+      text.className='dm-message-text';
+      text.textContent=message.text;
+
+      main.append(head,text);
+
+      const compactTime=document.createElement('span');
+      compactTime.className='dm-compact-time';
+      compactTime.textContent=new Date(message.ts).toLocaleTimeString([],{
+        hour:'numeric',
+        minute:'2-digit'
+      });
+
+      row.append(senderAvatar,main);
 
       if(message.mine){
+        const tools=document.createElement('div');
+        tools.className='dm-message-tools';
+
         const del=document.createElement('button');
-        del.className='icon-btn dm-message-delete';
+        del.className='icon-btn';
+        del.type='button';
         del.ariaLabel='Delete direct message';
+        del.title='Delete message';
         del.innerHTML=icon('trash');
+
         del.onclick=async()=>{
+          if(!await confirmAction(
+            'Delete this message?',
+            'This removes the message from the Axiom conversation.',
+            'Delete message'
+          ))return;
+
           try{
-            await api('/dms/messages/'+encodeURIComponent(message.id),{method:'DELETE'});
+            await api(
+              '/dms/messages/'+encodeURIComponent(message.id),
+              {method:'DELETE'}
+            );
             dmMessages=dmMessages.filter(item=>item.id!==message.id);
             renderDMThread();
             loadDMList();
-          }catch(err){toast(err.message);}
+          }catch(err){
+            toast(err.message);
+          }
         };
-        row.append(del);
+
+        tools.append(del);
+        row.append(tools);
+      }else{
+        row.append(compactTime);
       }
 
-      const bubble=document.createElement('div');
-      bubble.className='dm-bubble';
-      const text=document.createElement('p');
-      text.textContent=message.text;
-      const time=document.createElement('time');
-      time.dateTime=new Date(message.ts).toISOString();
-      time.textContent=new Date(message.ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+      if(sameSender){
+        senderAvatar.style.visibility='hidden';
+      }
 
-      bubble.append(text,time);
-      row.append(bubble);
       area.append(row);
+      previous=message;
     }
   }
 
-  requestAnimationFrame(()=>{area.scrollTop=area.scrollHeight;});
+  requestAnimationFrame(()=>{
+    area.scrollTop=area.scrollHeight;
+  });
 }
 
 async function openDMThread(partnerId,silent=false){
   const request=++dmFetch;
+
   if(!silent)$('dmThreadStatus').textContent='Loading…';
 
   try{
     const data=await api('/dms/'+encodeURIComponent(partnerId));
+
     if(request!==dmFetch)return;
+
     dmPartner=data.user;
     dmMessages=data.messages||[];
     $('dmThreadStatus').textContent='';
     renderDMThread();
     await loadDMList();
   }catch(err){
-    if(request===dmFetch)$('dmThreadStatus').textContent=err.message;
+    if(request===dmFetch){
+      $('dmThreadStatus').textContent=err.message;
+    }
   }
 }
 
 function openDMs(partner=null){
-  if(!communityView('dms','Messages','Private developer conversations','dmsNav'))return;
+  if(!communityView(
+    'dms',
+    'Messages',
+    'Private developer conversations',
+    'dmsNav'
+  ))return;
+
+  $('dmsView').classList.toggle('dm-mobile-thread',!!partner?.id);
 
   loadDMList();
-  if(partner?.id)openDMThread(partner.id);
-  else renderDMThread();
+
+  if(partner?.id){
+    openDMThread(partner.id);
+  }else{
+    renderDMThread();
+  }
 
   dmTimer=setInterval(()=>{
     if(document.hidden||view!=='dms')return;
-    if(dmPartner?.id)openDMThread(dmPartner.id,true);
-    else loadDMList();
+
+    if(dmPartner?.id){
+      openDMThread(dmPartner.id,true);
+    }else{
+      loadDMList();
+    }
   },6000);
 }
 
 $('dmsNav').onclick=()=>openDMs();
+
 $('dmSearch').oninput=renderDMList;
+
+$('dmRefreshList').onclick=()=>{
+  loadDMList();
+};
+
+$('dmRefreshThread').onclick=()=>{
+  if(dmPartner?.id)openDMThread(dmPartner.id);
+};
+
+$('dmViewProfile').onclick=()=>{
+  if(dmPartner?.id)openPublicProfile(dmPartner.id);
+};
 
 $('dmForm').onsubmit=async e=>{
   e.preventDefault();
@@ -3047,24 +4008,34 @@ $('dmForm').onsubmit=async e=>{
 
   const input=$('dmInput');
   const text=input.value.trim();
+
   if(!text)return;
 
   $('dmSend').disabled=true;
+
   try{
     const result=await api(
       '/dms/'+encodeURIComponent(dmPartner.id),
-      {method:'POST',body:{text,requestId:uid()}}
+      {
+        method:'POST',
+        body:{text,requestId:uid()}
+      }
     );
+
     dmMessages.push(result.message);
     input.value='';
+    resizeDMInput();
     renderDMThread();
     await loadDMList();
-  }catch(err){toast(err.message);}
-  finally{
+  }catch(err){
+    toast(err.message);
+  }finally{
     $('dmSend').disabled=false;
     input.focus();
   }
 };
+
+$('dmInput').addEventListener('input',resizeDMInput);
 
 $('dmInput').addEventListener('keydown',e=>{
   if(e.key==='Enter'&&!e.shiftKey){
@@ -3072,6 +4043,21 @@ $('dmInput').addEventListener('keydown',e=>{
     $('dmForm').requestSubmit();
   }
 });
+
+
+$('dmThreadUser').addEventListener('click',()=>{});
+
+$('dmsView').addEventListener('click',e=>{
+  if(
+    innerWidth<=650 &&
+    e.target.closest('.dm-thread-head') &&
+    !e.target.closest('button')
+  ){
+    $('dmsView').classList.remove('dm-mobile-thread');
+  }
+});
+
+resizeDMInput();
 
 let adminUsers=[];
 let adminNext=null;
