@@ -2235,6 +2235,43 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 @media(max-width:1024px){.sidebar{position:fixed;inset:0 auto 0 0;width:min(286px,88vw);flex-basis:auto;z-index:40;transform:translateX(-100%);box-shadow:20px 0 60px #0003}.sidebar.open{transform:translateX(0)}.backdrop.show{display:block;position:fixed;inset:0;background:#0d18295c;z-index:39}.mobile-toggle{display:inline-flex}.topbar{height:64px;padding:0 16px}.top-sub{display:none}.main{width:100%}.chat-log{padding-left:20px;padding-right:20px}.composer-wrap{padding-left:18px;padding-right:18px}.community-shell,.admin-control-shell,.mod-shell,.notifications-shell{padding-left:20px;padding-right:20px}.dm-app{grid-template-columns:270px minmax(0,1fr)}.dm-details{display:none}.groups-app{grid-template-columns:68px 230px minmax(0,1fr)}.group-members-pane{display:none}.group-members-pane.show{display:flex;position:absolute;top:0;right:0;bottom:0;width:min(280px,80vw);z-index:12;box-shadow:-18px 0 50px #0004}.admin-kpi-grid,.mod-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:760px){.topbar{padding:0 11px}.top-left{gap:7px}.top-title{font-size:12px}.top-right .tag,.topbar .divider{display:none}.welcome{padding-left:17px;padding-right:17px}.welcome h1{font-size:clamp(27px,8vw,34px)}.suggestions{grid-template-columns:1fr;gap:7px}.suggestion{min-height:auto}.chat-log{padding:18px 13px 0}.message{max-width:100%}.message.user{margin-left:14px}.composer-wrap{padding:9px 10px max(10px,env(safe-area-inset-bottom))}.composer-box{border-radius:15px;padding:12px}.community-shell,.notifications-shell,.mod-shell,.admin-control-shell{padding:18px 12px 38px}.community-heading,.notifications-head,.mod-heading,.admin-control-head{flex-direction:column;align-items:flex-start}.creation-grid{grid-template-columns:1fr}.admin-kpi-grid,.mod-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-overview-grid,.admin-system-grid,.mod-member-layout{grid-template-columns:1fr}.admin-toolbar,.mod-toolbar{align-items:stretch}.admin-toolbar .search-input,.mod-toolbar .search-input{min-width:100%}.dm-app{grid-template-columns:1fr}.dm-sidebar{display:flex}.dm-thread-pane{display:none}#dmsView.dm-mobile-thread .dm-sidebar{display:none}#dmsView.dm-mobile-thread .dm-thread-pane{display:flex}.groups-app{position:relative;grid-template-columns:60px minmax(0,1fr)}.groups-rail{z-index:3}.group-channels{display:flex!important;position:absolute;left:60px;top:0;bottom:0;width:min(268px,calc(100% - 60px));z-index:11;transform:translateX(-110%);transition:transform .18s ease;box-shadow:18px 0 45px #0004}.group-channels.mobile-open{transform:translateX(0)}.group-mobile-channels{display:inline-flex}.group-chat-head{padding:0 8px}.group-chat-actions{gap:3px}.group-chat-actions .btn{padding:6px 7px;font-size:8px}#groupCopyInviteHeader{display:none}.group-messages{padding:12px 8px 14px}.group-message{grid-template-columns:33px minmax(0,1fr);padding:5px 3px}.group-message>.avatar{width:31px;height:31px;border-radius:9px}.group-composer-wrap{padding:0 8px 8px}.group-settings-dialog{width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;border-radius:0!important}.group-settings-layout{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}.group-settings-tabs{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:6px}.group-settings-tabs button{min-width:145px;min-height:45px}.group-settings-content{padding:15px 12px 28px}.group-settings-banner{height:125px}.group-image-actions{justify-content:flex-start;margin-top:34px}.group-role-create{grid-template-columns:minmax(0,1fr) 42px}.group-role-create .btn{grid-column:1/-1}.group-role-permissions{grid-template-columns:1fr}.group-permission-grid label{grid-template-columns:1fr}.group-id-settings{align-items:stretch;flex-wrap:wrap}.group-id-settings>span{width:100%;padding:7px 9px 0}.group-id-settings input{min-width:150px}.group-link-embed{width:100%}.group-link-embed-head{grid-template-columns:36px minmax(0,1fr)}.group-link-embed-icon{width:36px;height:36px}.group-link-embed .btn{grid-column:1/-1;width:100%;margin-top:5px}.group-settings-savebar{flex-direction:column;align-items:stretch}.group-settings-savebar .btn{width:100%}.field-row{grid-template-columns:1fr!important}dialog .dialog-footer{position:sticky;bottom:0;background:var(--surface);padding-bottom:max(16px,env(safe-area-inset-bottom))}}
 @media(max-width:480px){.notifications-head .btn{width:100%}.notification-filter{width:100%}.notification-filter button{flex:1}.notification-row{grid-template-columns:36px minmax(0,1fr);padding:11px 9px}.notification-kind{grid-column:2}.mod-stats,.admin-kpi-grid{grid-template-columns:1fr 1fr}.mod-meta-grid{grid-template-columns:1fr 1fr}.group-rail-item{width:43px;height:43px}.groups-app{grid-template-columns:56px minmax(0,1fr)}.group-channels{left:56px;width:min(268px,calc(100% - 56px))}.group-settings-head{min-height:58px}.group-settings-head p{display:none}}
+
+.group-member-section{padding:10px 7px 4px;color:var(--muted);font-size:8px;font-weight:750;text-transform:uppercase;letter-spacing:.065em;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.group-member-section span:last-child{font-size:8px;font-weight:500;letter-spacing:0}
+.group-member-copy strong.role-colored{color:var(--role-color)}
+.group-role-display-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 9px;border-radius:8px;background:var(--soft);font-size:9px;margin-top:6px}
+.group-role-display-row span{display:flex;align-items:center;gap:7px}
+.group-role-display-row input{width:16px;height:16px;accent-color:var(--blue)}
+.group-role-order{display:flex;align-items:center;gap:4px;margin-left:auto}
+.group-role-order .btn{min-width:30px;padding:5px 7px;font-size:9px}
+.group-role-head .group-role-position{font:8px ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted);border:0;padding:0}
+.group-role-actions{gap:6px;align-items:center}
+.group-role-actions .danger{margin-left:auto}
+.group-channel-category{margin:7px 0 3px}
+.group-channel-category-head{width:100%;height:29px;display:flex;align-items:center;gap:6px;padding:0 7px;color:var(--muted);font-size:8px;font-weight:750;text-transform:uppercase;letter-spacing:.065em;text-align:left;border-radius:6px}
+.group-channel-category-head:hover{color:var(--ink);background:var(--hover)}
+.group-channel-category-head .chevron{font-size:9px;transition:transform .15s ease}
+.group-channel-category.collapsed .chevron{transform:rotate(-90deg)}
+.group-channel-category.collapsed .group-channel-category-items{display:none}
+.group-channel-category-items{display:flex;flex-direction:column;gap:1px}
+.group-channel-manager{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden;margin-bottom:22px}
+.group-channel-manager-create{display:flex;gap:7px;padding:10px;border-bottom:1px solid var(--line)}
+.group-channel-manager-create input{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:8px 9px;font-size:10px}
+.group-channel-manager-list{padding:7px}
+.group-channel-manager-category{border:1px solid var(--line);border-radius:9px;margin:6px 0;overflow:hidden}
+.group-channel-manager-category-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:7px;padding:8px;background:var(--soft)}
+.group-channel-manager-category-head strong{font-size:10px}
+.group-channel-manager-category-actions{display:flex;gap:4px}
+.group-channel-manager-category-actions .btn{font-size:8px;padding:5px 7px}
+.group-channel-manager-channel{display:grid;grid-template-columns:18px minmax(0,1fr) auto;align-items:center;gap:7px;padding:8px;border-top:1px solid var(--line)}
+.group-channel-manager-channel>span:first-child{color:var(--muted);font-size:14px}
+.group-channel-manager-channel strong{font-size:10px;display:block}
+.group-channel-manager-channel small{display:block;color:var(--muted);font-size:8px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.group-channel-manager-channel .btn{font-size:8px;padding:5px 7px}
+.group-permission-subhead{padding-top:3px}
+#groupChannelEditDialog{width:min(500px,calc(100% - 24px))}
+@media(max-width:760px){.group-channel-manager-create{flex-direction:column}.group-channel-manager-create .btn{width:100%}.group-role-order{flex-wrap:wrap}.group-role-actions{flex-wrap:wrap}.group-role-actions .danger{margin-left:0}.group-channel-manager-category-head{grid-template-columns:1fr}.group-channel-manager-category-actions{justify-content:flex-start}}
+
 </style>
 </head>
 <body>
@@ -2394,7 +2431,7 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
   <div class="groups-app">
     <aside class="groups-rail"><div class="groups-rail-head"><strong>Groups</strong><button id="createGroupBtn" class="icon-btn" type="button" aria-label="Create Group"><svg class="icon"><use href="#i-plus"/></svg></button></div><div id="groupsList" class="groups-list"></div><button id="groupInvitesBtn" class="groups-invites-btn" type="button"><span>Invites</span><span id="groupsInviteCount">0</span></button></aside>
     <aside class="group-channels" id="groupChannelsPane"><div id="groupChannelsEmpty" class="group-empty-side">Choose a Group.</div><div id="groupChannelsBody" hidden><div class="group-profile-mini"><div id="groupMiniBanner" class="group-mini-banner"></div><div class="group-profile-mini-copy"><span id="groupMiniIcon" class="group-mini-icon"></span><div><strong id="groupMiniName"></strong><span id="groupMiniMembers"></span></div></div></div><div class="group-channel-title"><span>Channels</span><button id="groupAddChannel" class="icon-btn" type="button" aria-label="Create channel"><svg class="icon"><use href="#i-plus"/></svg></button></div><div id="groupChannelList" class="group-channel-list"></div><button id="groupSettingsBtn" class="group-settings-button" type="button"><svg class="icon"><use href="#i-settings"/></svg>Group settings</button></div></aside>
-    <section class="group-chat"><div id="groupChatEmpty" class="group-chat-empty"><svg class="group-empty-icon icon" aria-hidden="true"><use href="#i-users"/></svg><h2>Your Groups</h2><p>Create a Group, invite developers, organize channels, and build your own private space.</p><button id="groupEmptyCreate" class="btn primary" type="button">Create a Group</button></div><div id="groupChatBody" class="group-chat-body" hidden><header class="group-chat-head"><div class="group-chat-channel-copy"><button id="groupChannelsMobileBtn" class="icon-btn group-mobile-channels" type="button" aria-label="Open channels"><svg class="icon"><use href="#i-menu"/></svg></button><div><strong id="groupChannelName"># channel</strong><span id="groupChannelTopic"></span></div></div><div class="group-chat-actions"><button id="groupCopyInviteHeader" class="btn ghost" type="button">Copy invite</button><button id="groupMembersBtn" class="btn ghost" type="button">Members</button><button id="groupInviteBtn" class="btn" type="button">Invite</button></div></header><div id="groupMessages" class="group-messages"></div><div class="group-composer-wrap"><form id="groupMessageForm" class="group-composer"><textarea id="groupMessageInput" maxlength="1500" rows="1" placeholder="Message this channel…" required></textarea><div class="group-composer-bottom"><span>Enter to send · Shift + Enter for a new line</span><button id="groupMessageSend" class="send" aria-label="Send Group message"><svg class="icon"><use href="#i-up"/></svg></button></div></form></div></div></section>
+    <section class="group-chat"><div id="groupChatEmpty" class="group-chat-empty"><svg class="group-empty-icon icon" aria-hidden="true"><use href="#i-users"/></svg><h2>Your Groups</h2><p>Create a Group, invite developers, organize channels, and build your own private space.</p><button id="groupEmptyCreate" class="btn primary" type="button">Create a Group</button></div><div id="groupChatBody" class="group-chat-body" hidden><header class="group-chat-head"><div class="group-chat-channel-copy"><button id="groupChannelsMobileBtn" class="icon-btn group-mobile-channels" type="button" aria-label="Open channels"><svg class="icon"><use href="#i-menu"/></svg></button><div><strong id="groupChannelName"># channel</strong><span id="groupChannelTopic"></span></div></div><div class="group-chat-actions"><button id="groupChannelEditBtn" class="btn ghost" type="button">Channel</button><button id="groupCopyInviteHeader" class="btn ghost" type="button">Copy invite</button><button id="groupMembersBtn" class="btn ghost" type="button">Members</button><button id="groupInviteBtn" class="btn" type="button">Invite</button></div></header><div id="groupMessages" class="group-messages"></div><div class="group-composer-wrap"><form id="groupMessageForm" class="group-composer"><textarea id="groupMessageInput" maxlength="1500" rows="1" placeholder="Message this channel…" required></textarea><div class="group-composer-bottom"><span>Enter to send · Shift + Enter for a new line</span><button id="groupMessageSend" class="send" aria-label="Send Group message"><svg class="icon"><use href="#i-up"/></svg></button></div></form></div></div></section>
     <aside class="group-members-pane" id="groupMembersPane"><div class="group-members-head"><strong>Members</strong><span id="groupMemberCount"></span></div><div id="groupMembersList" class="group-members-list"></div></aside>
   </div>
 </section>
@@ -2402,7 +2439,8 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 <dialog id="createGroupDialog"><div class="dialog-header"><h2>Create a Group</h2><button class="icon-btn" data-close="createGroupDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="createGroupForm"><div class="dialog-body"><div class="field"><label for="createGroupName">Name</label><input id="createGroupName" maxlength="48" required placeholder="Roblox UI nerds"></div><div class="field"><label for="createGroupId">Group ID <span class="muted">optional</span></label><div class="group-id-input"><span>invite/</span><input id="createGroupId" maxlength="24" autocomplete="off" spellcheck="false" placeholder="AXIOM"></div><p class="help">3–24 letters, numbers, underscores, or dashes. Leave blank for a random ID.</p></div><div class="field"><label for="createGroupBio">Bio</label><textarea id="createGroupBio" maxlength="240" placeholder="What is this Group about?"></textarea></div><p id="createGroupError" class="form-error"></p></div><div class="dialog-footer"><button class="btn" type="button" data-close="createGroupDialog">Cancel</button><span class="spacer"></span><button class="btn primary" id="createGroupSubmit">Create Group</button></div></form></dialog>
 <dialog id="groupInviteDialog"><div class="dialog-header"><h2>Invite developer</h2><button class="icon-btn" data-close="groupInviteDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="groupInviteForm"><div class="dialog-body"><div class="field"><label for="groupInviteUsername">Axiom username</label><input id="groupInviteUsername" maxlength="24" required placeholder="username"></div><p id="groupInviteError" class="form-error"></p></div><div class="dialog-footer"><button class="btn" type="button" data-close="groupInviteDialog">Cancel</button><span class="spacer"></span><button class="btn primary" id="groupInviteSubmit">Send invite</button></div></form></dialog>
 <dialog id="groupInvitesDialog"><div class="dialog-header"><h2>Group invitations</h2><button class="icon-btn" data-close="groupInvitesDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><div id="groupInvitesList" class="group-invites-list"></div></div></dialog>
-<dialog id="groupChannelDialog"><div class="dialog-header"><h2>Create channel</h2><button class="icon-btn" data-close="groupChannelDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="groupChannelForm"><div class="dialog-body"><div class="field"><label for="groupChannelNewName">Channel name</label><input id="groupChannelNewName" maxlength="32" required placeholder="ui-feedback"></div><div class="field"><label for="groupChannelNewTopic">Topic</label><input id="groupChannelNewTopic" maxlength="120" placeholder="What belongs here?"></div><p id="groupChannelError" class="form-error"></p></div><div class="dialog-footer"><button class="btn" type="button" data-close="groupChannelDialog">Cancel</button><span class="spacer"></span><button class="btn primary" id="groupChannelSubmit">Create channel</button></div></form></dialog>
+<dialog id="groupChannelDialog"><div class="dialog-header"><h2>Create channel</h2><button class="icon-btn" data-close="groupChannelDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="groupChannelForm"><div class="dialog-body"><div class="field"><label for="groupChannelNewName">Channel name</label><input id="groupChannelNewName" maxlength="32" required placeholder="ui-feedback"></div><div class="field"><label for="groupChannelNewTopic">Topic</label><input id="groupChannelNewTopic" maxlength="120" placeholder="What belongs here?"></div><div class="field"><label for="groupChannelNewCategory">Category</label><select id="groupChannelNewCategory"><option value="">No category</option></select></div><p id="groupChannelError" class="form-error"></p></div><div class="dialog-footer"><button class="btn" type="button" data-close="groupChannelDialog">Cancel</button><span class="spacer"></span><button class="btn primary" id="groupChannelSubmit">Create channel</button></div></form></dialog>
+<dialog id="groupChannelEditDialog" aria-labelledby="groupChannelEditTitle"><div class="dialog-header"><h2 id="groupChannelEditTitle">Channel settings</h2><button class="icon-btn" data-close="groupChannelEditDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><div class="field"><label for="groupChannelEditName">Channel name</label><input id="groupChannelEditName" maxlength="32"></div><div class="field"><label for="groupChannelEditTopic">Topic</label><input id="groupChannelEditTopic" maxlength="120"></div><div class="field"><label for="groupChannelEditCategory">Category</label><select id="groupChannelEditCategory"><option value="">No category</option></select></div><p id="groupChannelEditError" class="form-error"></p></div><div class="dialog-footer"><button id="groupChannelDelete" class="btn danger" type="button">Delete channel</button><span class="spacer"></span><button id="groupChannelEditSave" class="btn primary" type="button">Save changes</button></div></dialog>
 <dialog id="groupMemberDialog"><div class="dialog-header"><h2 id="groupMemberDialogTitle">Group member</h2><button class="icon-btn" data-close="groupMemberDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><div id="groupMemberDialogProfile"></div><div id="groupMemberRoleAssignments" class="group-role-permissions" style="margin-top:14px"></div><div id="groupMemberModeration" class="group-image-actions"></div><p id="groupMemberError" class="form-error"></p></div></dialog>
 <dialog id="groupSettingsDialog" class="group-settings-dialog">
   <div class="dialog-header group-settings-head">
@@ -2479,7 +2517,19 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 
       <section data-group-settings-panel="permissions" hidden>
         <div class="group-settings-section-head">
-          <div><h3>Channel permissions</h3><p>Override a role for one specific channel.</p></div>
+          <div><h3>Channels</h3><p>Organize channels into categories and control role access.</p></div>
+        </div>
+
+        <div class="group-channel-manager">
+          <div class="group-channel-manager-create">
+            <input id="groupCategoryName" maxlength="32" placeholder="New category">
+            <button id="groupCreateCategory" class="btn" type="button">Create category</button>
+          </div>
+          <div id="groupChannelManagerList" class="group-channel-manager-list"></div>
+        </div>
+
+        <div class="group-settings-section-head group-permission-subhead">
+          <div><h3>Role overrides</h3><p>Set channel-specific access for a role.</p></div>
         </div>
 
         <div class="group-channel-permission-card">
@@ -4509,73 +4559,62 @@ function updateGroupInviteBadge(){const n=groupInvites.length;$('groupsInviteCou
 async function refreshGroupInvites(){if(!sessionToken)return;try{groupInvites=(await api('/groups/invites')).invites||[];updateGroupInviteBadge();if($('groupInvitesDialog').open)renderGroupInvites();}catch{}}
 async function loadGroups(){try{groups=(await api('/groups')).groups||[];renderGroups();}catch(e){toast(e.message);}}
 function renderGroups(){const h=$('groupsList');h.replaceChildren();for(const g of groups){const b=document.createElement('button');b.type='button';b.className='group-rail-item'+(currentGroup?.group.id===g.id?' active':'');b.title=g.name;renderGroupVisual(b,g);b.onclick=()=>openGroup(g.id);h.append(b);}if(!groups.length){const x=document.createElement('span');x.className='small muted';x.textContent='—';h.append(x);}}
-function renderGroupWorkspace(){const ok=!!currentGroup;$('groupChannelsEmpty').hidden=ok;$('groupChannelsBody').hidden=!ok;$('groupChatEmpty').hidden=ok;$('groupChatBody').hidden=!ok;$('groupMembersPane').style.visibility=ok?'visible':'hidden';if(!ok)return;const g=currentGroup.group;$('groupMiniName').textContent=g.name;$('groupMiniMembers').textContent=`${g.memberCount} member${g.memberCount===1?'':'s'}`;renderGroupVisual($('groupMiniIcon'),g);$('groupMiniBanner').style.backgroundImage=g.bannerId?`url("${mediaURL(g.bannerId)}")`:'';$('groupMiniBanner').classList.toggle('has-image',!!g.bannerId);const p=new Set(currentGroup.viewerPermissions||[]);$('groupAddChannel').hidden=!p.has('manage_channels');$('groupSettingsBtn').hidden=!(p.has('manage_group')||p.has('manage_roles')||p.has('manage_channels'));$('groupInviteBtn').hidden=!p.has('invite_members');$('groupCopyInviteHeader').hidden=!g.inviteUrl;renderGroupChannels();renderGroupMembers();renderGroups();}
-function renderGroupChannels(){const h=$('groupChannelList');h.replaceChildren();for(const c of currentGroup?.channels||[]){const b=document.createElement('button');b.type='button';b.className='group-channel'+(currentChannel?.id===c.id?' active':'');b.textContent=c.name;b.onclick=()=>openGroupChannel(c.id);h.append(b);}}
-function renderGroupMembers(){
-  const h=$('groupMembersList');
-  h.replaceChildren();
-
-  const roles=new Map((currentGroup?.roles||[]).map(r=>[r.id,r]));
-  $('groupMemberCount').textContent=String(currentGroup?.members?.length||0);
-
-  for(const m of currentGroup?.members||[]){
-    const b=document.createElement('button');
-    b.type='button';
-    b.className='group-member';
-
-    const av=document.createElement('span');
-    av.className='avatar';
-    avatar(av,m.user,mediaURL(m.user.avatarId));
-
-    const copy=document.createElement('div');
-    copy.className='group-member-copy';
-
-    const name=document.createElement('strong');
-    name.textContent=m.nickname||m.user.displayName||m.user.username;
-
-    const sub=document.createElement('span');
-    const assigned=(m.roleIds||[])
-      .map(id=>roles.get(id))
-      .filter(Boolean)
-      .sort((a,b)=>(b.position||0)-(a.position||0));
-
-    if(m.user.id===currentGroup.group.ownerId){
-      sub.textContent='Owner · @'+m.user.username;
-    }else if(assigned.length){
-      sub.textContent=assigned[0].name+' · @'+m.user.username;
-      sub.style.color=assigned[0].color;
-    }else{
-      sub.textContent='@'+m.user.username;
-    }
-
-    const dots=document.createElement('div');
-    dots.className='group-role-dots';
-
-    for(const r of assigned.slice(0,4)){
-      const d=document.createElement('span');
-      d.className='group-role-dot';
-      d.style.background=r.color;
-      d.title=r.name;
-      dots.append(d);
-    }
-
-    copy.append(name,sub,dots);
-    b.append(av,copy);
-    b.onclick=()=>openGroupMember(m);
-    h.append(b);
+function renderGroupWorkspace(){const ok=!!currentGroup;$('groupChannelsEmpty').hidden=ok;$('groupChannelsBody').hidden=!ok;$('groupChatEmpty').hidden=ok;$('groupChatBody').hidden=!ok;$('groupMembersPane').style.visibility=ok?'visible':'hidden';if(!ok)return;const g=currentGroup.group;$('groupMiniName').textContent=g.name;$('groupMiniMembers').textContent=`${g.memberCount} member${g.memberCount===1?'':'s'}`;renderGroupVisual($('groupMiniIcon'),g);$('groupMiniBanner').style.backgroundImage=g.bannerId?`url("${mediaURL(g.bannerId)}")`:'';$('groupMiniBanner').classList.toggle('has-image',!!g.bannerId);const p=new Set(currentGroup.viewerPermissions||[]);$('groupAddChannel').hidden=!p.has('manage_channels');$('groupChannelEditBtn').hidden=!p.has('manage_channels');$('groupSettingsBtn').hidden=!(p.has('manage_group')||p.has('manage_roles')||p.has('manage_channels'));$('groupInviteBtn').hidden=!p.has('invite_members');$('groupCopyInviteHeader').hidden=!g.inviteUrl;renderGroupChannels();renderGroupMembers();renderGroups();}
+function groupChannelButton(c){const b=document.createElement('button');b.type='button';b.className='group-channel'+(currentChannel?.id===c.id?' active':'');b.textContent=c.name;b.onclick=()=>openGroupChannel(c.id);return b;}
+function renderGroupChannels(){
+  const h=$('groupChannelList');h.replaceChildren();
+  const channels=currentGroup?.channels||[],categories=currentGroup?.categories||[];
+  const uncategorized=channels.filter(c=>!c.categoryId);
+  for(const c of uncategorized)h.append(groupChannelButton(c));
+  for(const category of categories){
+    const items=channels.filter(c=>c.categoryId===category.id);if(!items.length)continue;
+    const wrap=document.createElement('div');wrap.className='group-channel-category';
+    const head=document.createElement('button');head.type='button';head.className='group-channel-category-head';
+    const chevron=document.createElement('span');chevron.className='chevron';chevron.textContent='▾';
+    const label=document.createElement('span');label.textContent=category.name;
+    head.append(chevron,label);head.onclick=()=>wrap.classList.toggle('collapsed');
+    const body=document.createElement('div');body.className='group-channel-category-items';for(const c of items)body.append(groupChannelButton(c));
+    wrap.append(head,body);h.append(wrap);
   }
 }
-async function openGroup(id){try{const d=await api('/groups/'+encodeURIComponent(id));currentGroup=d.group;currentChannel=currentGroup.channels.find(c=>c.id===currentChannel?.id)||currentGroup.channels[0]||null;renderGroupWorkspace();if(currentChannel)await openGroupChannel(currentChannel.id);}catch(e){toast(e.message);}}
-function renderGroupMessages(){const h=$('groupMessages');h.replaceChildren();if(!currentGroupMessages.length){h.innerHTML='<div class="feed-empty"><h2>Start the channel.</h2><p>Send the first message here.</p></div>';return;}for(const m of currentGroupMessages){const row=document.createElement('article');row.className='group-message';const av=document.createElement('span');av.className='avatar';avatar(av,m.author,mediaURL(m.author.avatarId));const copy=document.createElement('div');const head=document.createElement('div');head.className='group-message-head';const n=document.createElement('strong');n.textContent=m.author.displayName||m.author.username;const t=document.createElement('time');t.textContent=new Date(m.ts).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});head.append(n,t);const text=document.createElement('p');text.textContent=m.text;copy.append(head,text);row.append(av,copy);h.append(row);appendGroupInviteEmbeds(copy,m.text);}requestAnimationFrame(()=>h.scrollTop=h.scrollHeight);}
+function groupMemberTopRole(member,roles){return(member.roleIds||[]).map(id=>roles.get(id)).filter(Boolean).sort((a,b)=>(b.position||0)-(a.position||0))[0]||null;}
+function groupMemberRow(member,roles){
+  const b=document.createElement('button');b.type='button';b.className='group-member';
+  const av=document.createElement('span');av.className='avatar';avatar(av,member.user,mediaURL(member.user.avatarId));
+  const copy=document.createElement('div');copy.className='group-member-copy';
+  const name=document.createElement('strong');name.textContent=member.nickname||member.user.displayName||member.user.username;
+  const top=groupMemberTopRole(member,roles);
+  if(top){name.classList.add('role-colored');name.style.setProperty('--role-color',top.color);}
+  const sub=document.createElement('span');sub.textContent=member.user.id===currentGroup.group.ownerId?'Owner · @'+member.user.username:top?top.name+' · @'+member.user.username:'@'+member.user.username;
+  const dots=document.createElement('div');dots.className='group-role-dots';
+  for(const role of(member.roleIds||[]).map(id=>roles.get(id)).filter(Boolean).sort((a,b)=>(b.position||0)-(a.position||0)).slice(0,4)){const d=document.createElement('span');d.className='group-role-dot';d.style.background=role.color;d.title=role.name;dots.append(d);}
+  copy.append(name,sub,dots);b.append(av,copy);b.onclick=()=>openGroupMember(member);return b;
+}
+function renderGroupMembers(){
+  const h=$('groupMembersList');h.replaceChildren();
+  const members=currentGroup?.members||[],roles=new Map((currentGroup?.roles||[]).map(r=>[r.id,r]));
+  $('groupMemberCount').textContent=String(members.length);
+  const rendered=new Set();
+  const addSection=(label,list,color='')=>{if(!list.length)return;const head=document.createElement('div');head.className='group-member-section';const left=document.createElement('span');left.textContent=label;if(color)left.style.color=color;const count=document.createElement('span');count.textContent=String(list.length);head.append(left,count);h.append(head);for(const member of list){rendered.add(member.user.id);h.append(groupMemberRow(member,roles));}};
+  const owner=members.filter(m=>m.user.id===currentGroup.group.ownerId);addSection('Owner',owner);
+  const hoisted=(currentGroup?.roles||[]).filter(r=>r.hoist&&!r.managed).sort((a,b)=>(b.position||0)-(a.position||0));
+  for(const role of hoisted){const list=members.filter(m=>!rendered.has(m.user.id)&&groupMemberTopRole(m,roles)?.id===role.id);addSection(role.name,list,role.color);}
+  addSection('Members',members.filter(m=>!rendered.has(m.user.id)));
+}async function openGroup(id){try{const d=await api('/groups/'+encodeURIComponent(id));currentGroup=d.group;currentChannel=currentGroup.channels.find(c=>c.id===currentChannel?.id)||currentGroup.channels[0]||null;renderGroupWorkspace();if(currentChannel)await openGroupChannel(currentChannel.id);}catch(e){toast(e.message);}}
+function renderGroupMessages(){const h=$('groupMessages');h.replaceChildren();if(!currentGroupMessages.length){h.innerHTML='<div class="feed-empty"><h2>Start the channel.</h2><p>Send the first message here.</p></div>';return;}for(const m of currentGroupMessages){const row=document.createElement('article');row.className='group-message';const av=document.createElement('span');av.className='avatar';avatar(av,m.author,mediaURL(m.author.avatarId));const copy=document.createElement('div');const head=document.createElement('div');head.className='group-message-head';const n=document.createElement('strong');n.textContent=m.author.displayName||m.author.username;const member=currentGroup?.members?.find(x=>x.user.id===m.author.id);if(member){const roles=new Map((currentGroup.roles||[]).map(r=>[r.id,r]));const top=groupMemberTopRole(member,roles);if(top)n.style.color=top.color;}const t=document.createElement('time');t.textContent=new Date(m.ts).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});head.append(n,t);const text=document.createElement('p');text.textContent=m.text;copy.append(head,text);row.append(av,copy);h.append(row);appendGroupInviteEmbeds(copy,m.text);}requestAnimationFrame(()=>h.scrollTop=h.scrollHeight);}
 async function openGroupChannel(id,silent=false){if(!currentGroup)return;if(!silent){currentChannel=currentGroup.channels.find(c=>c.id===id)||currentChannel;renderGroupChannels();$('groupChannelsPane').classList.remove('mobile-open');}try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent(id));currentChannel={...currentChannel,...d.channel};currentGroupMessages=d.messages||[];$('groupChannelName').textContent='# '+currentChannel.name;$('groupChannelTopic').textContent=currentChannel.topic||'';$('groupMessageInput').disabled=!currentChannel.canSend;$('groupMessageSend').disabled=!currentChannel.canSend;$('groupMessageInput').placeholder=currentChannel.canSend?'Message #'+currentChannel.name+'…':'You do not have permission to send here.';renderGroupChannels();renderGroupMessages();}catch(e){toast(e.message);}}
 function openGroups(){if(!communityView('groups','Groups','Private developer spaces','groupsNav'))return;loadGroups();refreshGroupInvites();groupTimer=setInterval(()=>{if(view==='groups'&&!document.hidden){if(currentGroup&&currentChannel)openGroupChannel(currentChannel.id,true);refreshGroupInvites();}},6500);}
 $('groupsNav').onclick=openGroups;$('groupChannelsMobileBtn').onclick=()=>{$('groupChannelsPane').classList.toggle('mobile-open');};$('groupCopyInviteHeader').onclick=()=>currentGroup?.group.inviteUrl&&copyText(currentGroup.group.inviteUrl);function openCreateGroup(){$('createGroupForm').reset();$('createGroupError').textContent='';$('createGroupDialog').showModal();$('createGroupName').focus();}$('createGroupBtn').onclick=openCreateGroup;$('groupEmptyCreate').onclick=openCreateGroup;$('createGroupForm').onsubmit=async e=>{e.preventDefault();$('createGroupSubmit').disabled=true;try{const d=await api('/groups',{method:'POST',body:{name:$('createGroupName').value.trim(),inviteCode:$('createGroupId').value.trim(),bio:$('createGroupBio').value.trim()}});$('createGroupDialog').close();await loadGroups();await openGroup(d.group.group.id);toast('Group created.');}catch(x){$('createGroupError').textContent=x.message;}finally{$('createGroupSubmit').disabled=false;}};
 function openGroupInvites(){renderGroupInvites();$('groupInvitesDialog').showModal();refreshGroupInvites();}$('groupInvitesBtn').onclick=openGroupInvites;function renderGroupInvites(){const h=$('groupInvitesList');h.replaceChildren();if(!groupInvites.length){h.innerHTML='<div class="feed-empty"><h2>No pending invitations.</h2><p>You’re caught up.</p></div>';return;}for(const i of groupInvites){const c=document.createElement('article');c.className='group-invite-card';const v=document.createElement('span');v.className='group-invite-icon';renderGroupVisual(v,i.group);const copy=document.createElement('div');copy.className='group-invite-copy';const n=document.createElement('strong');n.textContent=i.group.name;const sub=document.createElement('span');sub.textContent='Invited by @'+i.inviter.username+' · '+modAgo(i.createdAt);copy.append(n,sub);const a=document.createElement('div');a.className='group-invite-actions';for(const [label,accept,cls] of [['Decline',false,'btn'],['Join',true,'btn primary']]){const b=document.createElement('button');b.className=cls;b.type='button';b.textContent=label;b.onclick=()=>respondGroupInvite(i,accept);a.append(b);}c.append(v,copy,a);h.append(c);}}
 async function respondGroupInvite(i,accept){try{await api('/groups/invites/'+encodeURIComponent(i.id)+'/respond',{method:'POST',body:{accept}});groupInvites=groupInvites.filter(x=>x.id!==i.id);updateGroupInviteBadge();renderGroupInvites();refreshNotificationUnread();if(accept){await loadGroups();$('groupInvitesDialog').close();if(view!=='groups')openGroups();await openGroup(i.group.id);}}catch(e){toast(e.message);}}
 $('groupInviteBtn').onclick=()=>{$('groupInviteForm').reset();$('groupInviteError').textContent='';$('groupInviteDialog').showModal();};$('groupInviteForm').onsubmit=async e=>{e.preventDefault();$('groupInviteSubmit').disabled=true;try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/invites',{method:'POST',body:{username:$('groupInviteUsername').value.trim()}});$('groupInviteDialog').close();toast('Group invitation sent.');}catch(x){$('groupInviteError').textContent=x.message;}finally{$('groupInviteSubmit').disabled=false;}};
-$('groupAddChannel').onclick=()=>{$('groupChannelForm').reset();$('groupChannelError').textContent='';$('groupChannelDialog').showModal();};$('groupChannelForm').onsubmit=async e=>{e.preventDefault();$('groupChannelSubmit').disabled=true;try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels',{method:'POST',body:{name:$('groupChannelNewName').value.trim(),topic:$('groupChannelNewTopic').value.trim()}});$('groupChannelDialog').close();await openGroup(currentGroup.group.id);await openGroupChannel(d.channel.id);}catch(x){$('groupChannelError').textContent=x.message;}finally{$('groupChannelSubmit').disabled=false;}};
-function resizeGroupInput(){const i=$('groupMessageInput');i.style.height='auto';i.style.height=Math.min(150,Math.max(44,i.scrollHeight))+'px';}$('groupMessageInput').oninput=resizeGroupInput;$('groupMessageInput').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('groupMessageForm').requestSubmit();}};$('groupMessageForm').onsubmit=async e=>{e.preventDefault();if(!currentGroup||!currentChannel?.canSend)return;const i=$('groupMessageInput'),text=i.value.trim();if(!text)return;$('groupMessageSend').disabled=true;try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent(currentChannel.id),{method:'POST',body:{text,requestId:uid()}});currentGroupMessages.push(d.message);i.value='';resizeGroupInput();renderGroupMessages();}catch(x){toast(x.message);}finally{$('groupMessageSend').disabled=!currentChannel.canSend;}};
-function selectGroupSettingsTab(tab){document.querySelectorAll('[data-group-settings-tab]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.groupSettingsTab===tab)));document.querySelectorAll('[data-group-settings-panel]').forEach(p=>p.hidden=p.dataset.groupSettingsPanel!==tab);}document.querySelectorAll('[data-group-settings-tab]').forEach(b=>b.onclick=()=>selectGroupSettingsTab(b.dataset.groupSettingsTab));
+$('groupAddChannel').onclick=()=>{$('groupChannelForm').reset();$('groupChannelError').textContent='';fillGroupCategorySelect($('groupChannelNewCategory'));$('groupChannelDialog').showModal();};$('groupChannelForm').onsubmit=async e=>{e.preventDefault();$('groupChannelSubmit').disabled=true;try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels',{method:'POST',body:{name:$('groupChannelNewName').value.trim(),topic:$('groupChannelNewTopic').value.trim(),categoryId:$('groupChannelNewCategory').value||null}});$('groupChannelDialog').close();await openGroup(currentGroup.group.id);await openGroupChannel(d.channel.id);}catch(x){$('groupChannelError').textContent=x.message;}finally{$('groupChannelSubmit').disabled=false;}};
+function resizeGroupInput(){const i=$('groupMessageInput');i.style.height='auto';i.style.height=Math.min(150,Math.max(44,i.scrollHeight))+'px';}$('groupMessageInput').oninput=resizeGroupInput;$('groupMessageInput').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('groupMessageForm').requestSubmit();}};$('groupCreateCategory').onclick=async()=>{const name=$('groupCategoryName').value.trim();if(!name)return;try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/categories',{method:'POST',body:{name}});$('groupCategoryName').value='';await openGroup(currentGroup.group.id);renderGroupPermissionSelectors();}catch(e){$('groupSettingsError').textContent=e.message;}};
+$('groupChannelEditBtn').onclick=()=>openGroupChannelEdit(currentChannel);
+$('groupChannelEditSave').onclick=async()=>{if(!currentGroup||!currentChannel)return;$('groupChannelEditSave').disabled=true;try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent(currentChannel.id),{method:'PATCH',body:{name:$('groupChannelEditName').value.trim(),topic:$('groupChannelEditTopic').value.trim(),categoryId:$('groupChannelEditCategory').value||null}});$('groupChannelEditDialog').close();await openGroup(currentGroup.group.id);await openGroupChannel(d.channel.id);toast('Channel updated.');}catch(e){$('groupChannelEditError').textContent=e.message;}finally{$('groupChannelEditSave').disabled=false;}};
+$('groupChannelDelete').onclick=async()=>{if(!currentGroup||!currentChannel)return;if(!await confirmAction('Delete #'+currentChannel.name+'?','Messages in this channel will be removed.','Delete channel'))return;try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent(currentChannel.id),{method:'DELETE'});$('groupChannelEditDialog').close();currentChannel=null;await openGroup(currentGroup.group.id);toast('Channel deleted.');}catch(e){$('groupChannelEditError').textContent=e.message;}};
+$('groupMessageForm').onsubmit=async e=>{e.preventDefault();if(!currentGroup||!currentChannel?.canSend)return;const i=$('groupMessageInput'),text=i.value.trim();if(!text)return;$('groupMessageSend').disabled=true;try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent(currentChannel.id),{method:'POST',body:{text,requestId:uid()}});currentGroupMessages.push(d.message);i.value='';resizeGroupInput();renderGroupMessages();}catch(x){toast(x.message);}finally{$('groupMessageSend').disabled=!currentChannel.canSend;}};
+function selectGroupSettingsTab(tab){document.querySelectorAll('[data-group-settings-tab]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.groupSettingsTab===tab)));document.querySelectorAll('[data-group-settings-panel]').forEach(p=>p.hidden=p.dataset.groupSettingsPanel!==tab);if(tab==='permissions')renderGroupPermissionSelectors();}document.querySelectorAll('[data-group-settings-tab]').forEach(b=>b.onclick=()=>selectGroupSettingsTab(b.dataset.groupSettingsTab));
 $('groupSettingsBtn').onclick=()=>{if(!currentGroup)return;groupIconDraft=null;groupBannerDraft=null;groupIconRemoved=false;groupBannerRemoved=false;$('groupSettingsError').textContent='';$('groupSettingsName').value=currentGroup.group.name;$('groupSettingsInviteCode').value=currentGroup.group.inviteCode||'';$('groupSettingsBio').value=currentGroup.group.bio||'';renderGroupSettingsPreview();renderGroupRolesEditor();renderGroupPermissionSelectors();selectGroupSettingsTab('profile');$('groupSettingsDialog').showModal();};
 let groupIconRemoved=false,groupBannerRemoved=false;
 function renderGroupSettingsPreview(){if(groupIconRemoved){renderGroupVisual($('groupSettingsIcon'),{...currentGroup.group,iconId:null});}else renderGroupVisual($('groupSettingsIcon'),currentGroup.group);$('groupSettingsBanner').style.backgroundImage=groupBannerRemoved?'':currentGroup.group.bannerId?`url("${mediaURL(currentGroup.group.bannerId)}")`:'';$('groupSettingsBanner').classList.toggle('has-image',!groupBannerRemoved&&!!currentGroup.group.bannerId);}
@@ -4588,134 +4627,38 @@ $('groupIconFile').onchange=async e=>{const file=e.target.files[0];e.target.valu
 $('groupBannerFile').onchange=async e=>{const file=e.target.files[0];e.target.value='';if(!file)return;$('groupSettingsError').textContent='';try{await validImage(file);groupBannerDraft=file;groupBannerRemoved=false;$('groupSettingsBanner').style.backgroundImage=`url("${URL.createObjectURL(file)}")`;$('groupSettingsBanner').classList.add('has-image');}catch(error){$('groupSettingsError').textContent=error.message;}};
 $('groupSaveProfile').onclick=async()=>{const button=$('groupSaveProfile');button.disabled=true;const previous=button.textContent;button.textContent='Saving…';$('groupSettingsError').textContent='';try{let iconId=groupIconRemoved?null:currentGroup.group.iconId,bannerId=groupBannerRemoved?null:currentGroup.group.bannerId;if(groupIconDraft)iconId=(await uploadFile(groupIconDraft,'group-icon')).id;if(groupBannerDraft)bannerId=(await uploadFile(groupBannerDraft,'group-banner')).id;const data=await api('/groups/'+encodeURIComponent(currentGroup.group.id),{method:'PATCH',body:{name:$('groupSettingsName').value.trim(),inviteCode:$('groupSettingsInviteCode').value.trim(),bio:$('groupSettingsBio').value.trim(),iconId,bannerId}});currentGroup=data.group;groupIconDraft=null;groupBannerDraft=null;groupIconRemoved=false;groupBannerRemoved=false;$('groupSettingsInviteCode').value=currentGroup.group.inviteCode||'';groupInviteEmbedCache.clear();renderGroupWorkspace();renderGroupSettingsPreview();await loadGroups();toast('Group profile updated.');}catch(error){$('groupSettingsError').textContent=error.message;}finally{button.disabled=false;button.textContent=previous;}};
 $('groupCreateRole').onclick=async()=>{const name=$('groupRoleName').value.trim();if(!name)return;try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/roles',{method:'POST',body:{name,color:$('groupRoleColor').value,permissions:[]}});currentGroup.roles.push(d.role);$('groupRoleName').value='';renderGroupRolesEditor();renderGroupPermissionSelectors();}catch(e){$('groupSettingsError').textContent=e.message;}};function renderGroupRolesEditor(){
-  const holder=$('groupRolesEditor');
-  holder.replaceChildren();
-
-  for(const role of currentGroup.roles){
-    const card=document.createElement('article');
-    card.className='group-role-card';
-
-    const head=document.createElement('div');
-    head.className='group-role-head';
-
-    const swatch=document.createElement('span');
-    swatch.className='group-role-swatch';
-    swatch.style.background=role.color;
-
-    const title=document.createElement('strong');
-    title.textContent=role.name;
-
-    const type=document.createElement('span');
-    type.textContent=role.managed?'Default role':'Custom role';
-
-    head.append(swatch,title,type);
-    card.append(head);
-
-    let roleNameInput=null;
-    let roleColorInput=null;
-
-    if(!role.managed){
-      const fields=document.createElement('div');
-      fields.className='group-role-editor-fields';
-
-      roleNameInput=document.createElement('input');
-      roleNameInput.type='text';
-      roleNameInput.maxLength=32;
-      roleNameInput.value=role.name;
-      roleNameInput.setAttribute('aria-label','Role name');
-
-      roleColorInput=document.createElement('input');
-      roleColorInput.type='color';
-      roleColorInput.value=role.color;
-      roleColorInput.setAttribute('aria-label','Role color');
-
-      roleColorInput.oninput=()=>{
-        swatch.style.background=roleColorInput.value;
-      };
-
-      fields.append(roleNameInput,roleColorInput);
-      card.append(fields);
-    }
-
-    const permissions=document.createElement('div');
-    permissions.className='group-role-permissions';
-    const checks=[];
-
-    for(const [key,label] of Object.entries(GROUP_PERMISSION_LABELS)){
-      const row=document.createElement('label');
-
-      const text=document.createElement('span');
-      text.textContent=label;
-
-      const check=document.createElement('input');
-      check.type='checkbox';
-      check.checked=role.permissions.includes(key);
-      check.disabled=role.managed;
-      check.dataset.permission=key;
-
-      row.append(text,check);
-      permissions.append(row);
-      checks.push(check);
-    }
-
-    card.append(permissions);
-
-    if(!role.managed){
-      const actions=document.createElement('div');
-      actions.className='group-role-actions';
-
-      const save=document.createElement('button');
-      save.className='btn primary';
-      save.type='button';
-      save.textContent='Save role';
-
-      save.onclick=async()=>{
-        const nextName=roleNameInput.value.trim();
-        if(!nextName){
-          $('groupSettingsError').textContent='Role name cannot be empty.';
-          roleNameInput.focus();
-          return;
-        }
-
-        save.disabled=true;
-        $('groupSettingsError').textContent='';
-
-        try{
-          const data=await api(
-            '/groups/'+encodeURIComponent(currentGroup.group.id)+
-            '/roles/'+encodeURIComponent(role.id),
-            {
-              method:'PATCH',
-              body:{
-                name:nextName,
-                color:roleColorInput.value,
-                permissions:checks
-                  .filter(check=>check.checked)
-                  .map(check=>check.dataset.permission)
-              }
-            }
-          );
-
-          Object.assign(role,data.role);
-          renderGroupRolesEditor();
-          renderGroupMembers();
-          renderGroupPermissionSelectors();
-          toast('Role updated.');
-        }catch(error){
-          $('groupSettingsError').textContent=error.message;
-        }finally{
-          save.disabled=false;
-        }
-      };
-
-      actions.append(save);
-      card.append(actions);
-    }
-
-    holder.append(card);
+  const holder=$('groupRolesEditor');holder.replaceChildren();
+  const roles=[...(currentGroup?.roles||[])].sort((a,b)=>(b.position||0)-(a.position||0));
+  for(const role of roles){
+    const card=document.createElement('article');card.className='group-role-card';
+    const head=document.createElement('div');head.className='group-role-head';
+    const swatch=document.createElement('span');swatch.className='group-role-swatch';swatch.style.background=role.color;
+    const title=document.createElement('strong');title.textContent=role.name;
+    const pos=document.createElement('span');pos.className='group-role-position';pos.textContent=role.managed?'default':'#'+role.position;
+    const order=document.createElement('div');order.className='group-role-order';
+    if(!role.managed){for(const [direction,label] of [['up','↑'],['down','↓']]){const move=document.createElement('button');move.className='btn ghost';move.type='button';move.textContent=label;move.title='Move role '+direction;move.onclick=()=>moveGroupRole(role,direction);order.append(move);}}
+    head.append(swatch,title,pos,order);card.append(head);
+    let nameInput=null,colorInput=null;
+    if(!role.managed){const fields=document.createElement('div');fields.className='group-role-editor-fields';nameInput=document.createElement('input');nameInput.type='text';nameInput.maxLength=32;nameInput.value=role.name;colorInput=document.createElement('input');colorInput.type='color';colorInput.value=role.color;colorInput.oninput=()=>swatch.style.background=colorInput.value;fields.append(nameInput,colorInput);card.append(fields);}
+    const display=document.createElement('label');display.className='group-role-display-row';const displayText=document.createElement('span');displayText.innerHTML='<b>Display role members separately</b>';const displayCheck=document.createElement('input');displayCheck.type='checkbox';displayCheck.checked=!!role.hoist;displayCheck.disabled=role.managed;display.append(displayText,displayCheck);card.append(display);
+    const permissions=document.createElement('div');permissions.className='group-role-permissions';const checks=[];
+    for(const[key,label]of Object.entries(GROUP_PERMISSION_LABELS)){const row=document.createElement('label'),text=document.createElement('span'),check=document.createElement('input');text.textContent=label;check.type='checkbox';check.checked=role.permissions.includes(key);check.disabled=role.managed;check.dataset.permission=key;row.append(text,check);permissions.append(row);checks.push(check);}card.append(permissions);
+    if(!role.managed){const actions=document.createElement('div');actions.className='group-role-actions';const save=document.createElement('button');save.className='btn primary';save.type='button';save.textContent='Save role';save.onclick=async()=>{const nextName=nameInput.value.trim();if(!nextName){$('groupSettingsError').textContent='Role name cannot be empty.';return;}save.disabled=true;try{const data=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/roles/'+encodeURIComponent(role.id),{method:'PATCH',body:{name:nextName,color:colorInput.value,hoist:displayCheck.checked,permissions:checks.filter(x=>x.checked).map(x=>x.dataset.permission)}});Object.assign(role,data.role);await openGroup(currentGroup.group.id);renderGroupRolesEditor();renderGroupPermissionSelectors();toast('Role updated.');}catch(e){$('groupSettingsError').textContent=e.message;}finally{save.disabled=false;}};const del=document.createElement('button');del.className='btn danger';del.type='button';del.textContent='Delete role';del.onclick=async()=>{if(!await confirmAction('Delete '+role.name+'?','Members will lose this role and its channel overrides.','Delete role'))return;try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/roles/'+encodeURIComponent(role.id),{method:'DELETE'});await openGroup(currentGroup.group.id);renderGroupRolesEditor();renderGroupPermissionSelectors();toast('Role deleted.');}catch(e){$('groupSettingsError').textContent=e.message;}};actions.append(save,del);card.append(actions);}holder.append(card);
   }
 }
-function renderGroupPermissionSelectors(){const cs=$('groupPermissionChannel'),rs=$('groupPermissionRole');cs.replaceChildren();rs.replaceChildren();for(const c of currentGroup.channels){const o=document.createElement('option');o.value=c.id;o.textContent='# '+c.name;cs.append(o);}for(const r of currentGroup.roles){const o=document.createElement('option');o.value=r.id;o.textContent=r.name;rs.append(o);}cs.onchange=loadGroupPermissionOverride;rs.onchange=loadGroupPermissionOverride;loadGroupPermissionOverride();}
+async function moveGroupRole(role,direction){try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/roles/'+encodeURIComponent(role.id)+'/reorder',{method:'POST',body:{direction}});await openGroup(currentGroup.group.id);renderGroupRolesEditor();renderGroupMembers();}catch(e){$('groupSettingsError').textContent=e.message;}}
+function fillGroupCategorySelect(select,value=''){select.replaceChildren();const none=document.createElement('option');none.value='';none.textContent='No category';select.append(none);for(const category of currentGroup?.categories||[]){const option=document.createElement('option');option.value=category.id;option.textContent=category.name;select.append(option);}select.value=value||'';}
+function renderGroupChannelManager(){
+  const holder=$('groupChannelManagerList');if(!holder||!currentGroup)return;holder.replaceChildren();
+  const channels=currentGroup.channels||[],categories=currentGroup.categories||[];
+  const addChannel=(container,channel)=>{const row=document.createElement('div');row.className='group-channel-manager-channel';const hash=document.createElement('span');hash.textContent='#';const copy=document.createElement('div');const name=document.createElement('strong');name.textContent=channel.name;const topic=document.createElement('small');topic.textContent=channel.topic||'No topic';copy.append(name,topic);const edit=document.createElement('button');edit.className='btn ghost';edit.type='button';edit.textContent='Edit';edit.onclick=()=>openGroupChannelEdit(channel);row.append(hash,copy,edit);container.append(row);};
+  const loose=channels.filter(c=>!c.categoryId);if(loose.length){const box=document.createElement('div');box.className='group-channel-manager-category';const head=document.createElement('div');head.className='group-channel-manager-category-head';head.innerHTML='<strong>Uncategorized</strong>';box.append(head);for(const c of loose)addChannel(box,c);holder.append(box);}
+  for(const category of categories){const box=document.createElement('div');box.className='group-channel-manager-category';const head=document.createElement('div');head.className='group-channel-manager-category-head';const title=document.createElement('strong');title.textContent=category.name;const actions=document.createElement('div');actions.className='group-channel-manager-category-actions';const rename=document.createElement('button');rename.className='btn ghost';rename.type='button';rename.textContent='Rename';rename.onclick=()=>renameGroupCategory(category);const del=document.createElement('button');del.className='btn danger';del.type='button';del.textContent='Delete';del.onclick=()=>deleteGroupCategory(category);actions.append(rename,del);head.append(title,actions);box.append(head);for(const c of channels.filter(c=>c.categoryId===category.id))addChannel(box,c);holder.append(box);}
+}
+async function renameGroupCategory(category){const name=prompt('Category name:',category.name)?.trim();if(!name)return;try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/categories/'+encodeURIComponent(category.id),{method:'PATCH',body:{name}});await openGroup(currentGroup.group.id);renderGroupChannelManager();}catch(e){$('groupSettingsError').textContent=e.message;}}
+async function deleteGroupCategory(category){if(!await confirmAction('Delete '+category.name+'?','Channels will move to Uncategorized.','Delete category'))return;try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/categories/'+encodeURIComponent(category.id),{method:'DELETE'});await openGroup(currentGroup.group.id);renderGroupChannelManager();}catch(e){$('groupSettingsError').textContent=e.message;}}
+function openGroupChannelEdit(channel=currentChannel){if(!channel)return;$('groupChannelEditError').textContent='';$('groupChannelEditName').value=channel.name;$('groupChannelEditTopic').value=channel.topic||'';fillGroupCategorySelect($('groupChannelEditCategory'),channel.categoryId);$('groupChannelEditDialog').showModal();}
+function renderGroupPermissionSelectors(){const cs=$('groupPermissionChannel'),rs=$('groupPermissionRole');cs.replaceChildren();rs.replaceChildren();for(const c of currentGroup.channels){const o=document.createElement('option');o.value=c.id;o.textContent='# '+c.name;cs.append(o);}for(const r of currentGroup.roles){const o=document.createElement('option');o.value=r.id;o.textContent=r.name;rs.append(o);}cs.onchange=loadGroupPermissionOverride;rs.onchange=loadGroupPermissionOverride;renderGroupChannelManager();loadGroupPermissionOverride();}
 async function loadGroupPermissionOverride(){if(!currentGroup)return;const cid=$('groupPermissionChannel').value,rid=$('groupPermissionRole').value;if(!cid||!rid){$('groupPermView').value='inherit';$('groupPermSend').value='inherit';return;}try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent(cid)+'/permissions/'+encodeURIComponent(rid));const state=p=>d.allow.includes(p)?'allow':d.deny.includes(p)?'deny':'inherit';$('groupPermView').value=state('view_channel');$('groupPermSend').value=state('send_messages');}catch(e){$('groupSettingsError').textContent=e.message;}}$('groupSavePermissions').onclick=async()=>{const allow=[],deny=[];for(const [value,p] of [[$('groupPermView').value,'view_channel'],[$('groupPermSend').value,'send_messages']]){if(value==='allow')allow.push(p);if(value==='deny')deny.push(p);}try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent($('groupPermissionChannel').value)+'/permissions/'+encodeURIComponent($('groupPermissionRole').value),{method:'PATCH',body:{allow,deny}});await openGroup(currentGroup.group.id);toast('Channel permissions updated.');}catch(e){$('groupSettingsError').textContent=e.message;}};
 function openGroupMember(m){$('groupMemberError').textContent='';$('groupMemberDialogTitle').textContent=m.user.displayName||m.user.username;const p=$('groupMemberDialogProfile');p.replaceChildren();const row=document.createElement('div');row.className='mod-profile-head';const av=document.createElement('span');av.className='avatar';avatar(av,m.user,mediaURL(m.user.avatarId));const copy=document.createElement('div');copy.className='mod-profile-copy';const n=document.createElement('h2');n.textContent=m.user.displayName||m.user.username;const h=document.createElement('p');h.textContent='@'+m.user.username;copy.append(n,h);row.append(av,copy);p.append(row);const roles=$('groupMemberRoleAssignments');roles.replaceChildren();const perms=new Set(currentGroup.viewerPermissions||[]),owner=m.user.id===currentGroup.group.ownerId;for(const r of currentGroup.roles.filter(x=>!x.managed)){const l=document.createElement('label'),t=document.createElement('span'),ch=document.createElement('input');t.textContent=r.name;ch.type='checkbox';ch.checked=m.roleIds.includes(r.id);ch.disabled=!perms.has('manage_roles')||owner;ch.onchange=async()=>{try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/members/'+encodeURIComponent(m.user.id)+'/roles/'+encodeURIComponent(r.id),{method:ch.checked?'POST':'DELETE'});m.roleIds=ch.checked?[...new Set([...m.roleIds,r.id])]:m.roleIds.filter(x=>x!==r.id);renderGroupMembers();}catch(e){ch.checked=!ch.checked;$('groupMemberError').textContent=e.message;}};l.append(t,ch);roles.append(l);}const actions=$('groupMemberModeration');actions.replaceChildren();const profileBtn=document.createElement('button');profileBtn.className='btn';profileBtn.type='button';profileBtn.textContent='View profile';profileBtn.onclick=()=>openPublicProfile(m.user.id);actions.append(profileBtn);if(!owner&&m.user.id!==account.id&&perms.has('kick_members')){const kick=document.createElement('button');kick.className='btn danger';kick.type='button';kick.textContent='Kick';kick.onclick=async()=>{if(await confirmAction('Kick @'+m.user.username+'?','They can be invited again.','Kick member'))await groupMemberAction(m,'kick','');};actions.append(kick);}if(!owner&&m.user.id!==account.id&&perms.has('ban_members')){const ban=document.createElement('button');ban.className='btn danger';ban.type='button';ban.textContent='Ban';ban.onclick=async()=>{const reason=await openModerationReason('Ban @'+m.user.username,'They will be removed and blocked from rejoining this Group until unbanned.','Ban member');if(reason)await groupMemberAction(m,'ban',reason);};actions.append(ban);}$('groupMemberDialog').showModal();}
 async function groupMemberAction(m,action,reason){try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/members/'+encodeURIComponent(m.user.id)+'/action',{method:'POST',body:{action,reason}});$('groupMemberDialog').close();await openGroup(currentGroup.group.id);toast(action==='ban'?'Member banned.':'Member kicked.');}catch(e){$('groupMemberError').textContent=e.message;}}
