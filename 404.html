@@ -779,6 +779,73 @@ html[data-custom-gradient=true] .creation-card{
 .dm-note{font-size:11px;color:var(--muted);margin:7px 0 0}.profile-action-row .profile-message,.profile-action-row .profile-follow{display:inline-flex;align-items:center;gap:6px}
 @media(max-width:760px){.dm-layout{grid-template-columns:1fr;height:auto;min-height:620px}.dm-sidebar{border-right:0;border-bottom:1px solid var(--line);max-height:230px}.dm-thread{min-height:390px}.dm-bubble{max-width:88%}}
 
+
+/* Axiom model profiles */
+.model-picker{position:relative}
+.model-trigger{
+  min-width:204px;height:42px;display:flex;align-items:center;gap:9px;
+  padding:6px 9px 6px 7px;border:1px solid color-mix(in srgb,var(--line) 92%,transparent);
+  border-radius:12px;background:color-mix(in srgb,var(--soft) 86%,var(--surface));
+  color:var(--ink);text-align:left;transition:border-color .16s ease,background .16s ease,box-shadow .16s ease
+}
+.model-trigger:hover{background:var(--hover);border-color:color-mix(in srgb,var(--muted) 42%,var(--line))}
+.model-trigger[aria-expanded=true]{
+  border-color:color-mix(in srgb,var(--blue) 58%,var(--line));
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 10%,transparent)
+}
+.model-trigger-icon,.model-option-icon{
+  width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid color-mix(in srgb,var(--line) 85%,transparent);flex:0 0 30px
+}
+.model-trigger-icon .asset-icon,.model-option-icon .asset-icon{width:18px;height:18px}
+.model-trigger-copy{display:flex;flex-direction:column;min-width:0;flex:1;line-height:1.12}
+.model-trigger-copy strong{font-size:12.5px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.model-trigger-copy small{font-size:10.5px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.model-chevron{width:15px;height:15px;color:var(--muted);transition:transform .16s ease}
+.model-trigger[aria-expanded=true] .model-chevron{transform:rotate(180deg)}
+.model-menu{
+  position:absolute;right:0;bottom:calc(100% + 9px);z-index:85;width:330px;padding:7px;
+  border:1px solid color-mix(in srgb,var(--line) 90%,transparent);border-radius:15px;
+  background:color-mix(in srgb,var(--surface) 96%,transparent);
+  box-shadow:0 18px 55px #17120b24,0 4px 12px #17120b12;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)
+}
+html[data-theme=dark] .model-menu{box-shadow:0 20px 60px #0009}
+.model-option{
+  width:100%;display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:10px;
+  padding:10px 9px;border-radius:10px;text-align:left;color:var(--ink)
+}
+.model-option:hover,.model-option:focus-visible{background:var(--soft);outline:none}
+.model-option[aria-selected=true]{background:var(--blue-soft)}
+.model-option>span:nth-child(2){display:flex;flex-direction:column;min-width:0}
+.model-option strong{font-size:13px;font-weight:650}
+.model-option small{font-size:11px;color:var(--muted);margin-top:3px}
+.model-badge{
+  font-size:9.5px;border:1px solid var(--line);border-radius:999px;padding:3px 6px;color:var(--muted);
+  white-space:nowrap
+}
+.model-option[aria-selected=true] .model-badge{border-color:color-mix(in srgb,var(--blue) 36%,var(--line));color:var(--blue)}
+.model-usage-card{
+  margin:7px 2px 2px;padding:10px 11px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:3px 10px
+}
+.model-usage-card span{font-size:10.5px;color:var(--muted)}
+.model-usage-card strong{font-size:11px;font-weight:650;text-align:right}
+.model-usage-card small{grid-column:1/-1;font-size:10px;color:var(--muted);margin-top:2px}
+.response-usage{
+  margin-top:9px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  font-size:10.5px;color:var(--muted)
+}
+.response-usage img{width:13px;height:13px}
+.response-usage .usage-sep{opacity:.5}
+.settings-token-note{
+  margin-top:6px;font-size:11px;color:var(--muted);line-height:1.45
+}
+@media(max-width:760px){
+  .model-trigger{min-width:0;width:44px;padding:6px}
+  .model-trigger-copy,.model-trigger>.model-chevron{display:none}
+  .model-menu{right:-46px;width:min(330px,calc(100vw - 24px))}
+}
+
 </style>
 </head>
 <body>
@@ -829,7 +896,7 @@ html[data-custom-gradient=true] .creation-card{
 <main class="main"><header class="topbar"><div class="top-left"><button class="icon-btn mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button><span class="top-title" id="topTitle">Axiom</span><span class="divider"></span><span class="top-sub" id="topSub">Roblox workspace</span></div><div class="top-right"><span class="tag">Beta</span><button class="icon-btn" id="themeToggle" aria-label="Toggle light and dark appearance"><svg class="icon"><use href="#i-moon"/></svg></button><button class="icon-btn" id="clearChat" aria-label="Delete current chat"><svg class="icon"><use href="#i-trash"/></svg></button></div></header>
 <section id="chatView" aria-label="AI conversation"><div class="chat-area" id="chatArea"><div class="welcome" id="welcome"><img class="welcome-logo" data-logo alt=""><p class="eyebrow" id="greeting">Your workspace, ready.</p><h1 id="welcomeTitle">What are we <span>building today?</span></h1><p id="welcomeSub">A new interface, a better script, or your next big idea.</p><div class="suggestions" id="suggestions"></div><div class="mode-note"><svg class="icon"><use href="#i-code"/></svg><span>Built around Roblox Studio & Luau</span></div></div><div class="chat-log" id="chatLog" hidden></div></div>
 <button class="icon-btn jump-bottom" id="jumpBottom" aria-label="Scroll to latest message" hidden><svg class="icon"><use href="#i-down"/></svg></button>
-<div class="composer-wrap"><div id="chatError" class="error-strip" role="alert" hidden><span></span><button class="btn ghost" id="retryRequest">Retry</button><button class="icon-btn" id="dismissError" aria-label="Dismiss error"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="chatForm" class="composer-box"><div class="attachments" id="attachments" hidden></div><label class="sr-only" for="prompt">Message Axiom</label><textarea id="prompt" rows="2" maxlength="60000" placeholder="Ask Axiom to build something…"></textarea><div class="composer-tools"><div class="composer-left"><button class="icon-btn" id="attachBtn" type="button" aria-label="Attach images or code files" title="Attach images or code files"><svg class="icon"><use href="#i-clip"/></svg></button><label class="sr-only" for="modeSelect">Assistant mode</label><select class="sr-only" id="modeSelect" tabindex="-1" aria-hidden="true"><option value="axiom">Axiom</option><option value="ui">Interface designer</option><option value="code">Script developer</option></select><div class="mode-picker" id="modePicker"><button class="mode-trigger" id="modePickerButton" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="mode-trigger-icon" id="modePickerIcon"><svg class="icon"><use href="#i-chat"/></svg></span><span class="mode-trigger-copy"><strong id="modePickerLabel">Axiom</strong><small id="modePickerSub">Roblox workspace</small></span><svg class="icon mode-chevron"><use href="#i-down"/></svg></button><div class="mode-menu" id="modePickerMenu" role="listbox" aria-label="Choose Axiom mode" hidden><button type="button" class="mode-option" role="option" data-mode-choice="axiom"><span class="mode-option-icon"><svg class="icon"><use href="#i-chat"/></svg></span><span><strong>Axiom</strong><small>Build across your Roblox project</small></span><span class="mode-check">✓</span></button><button type="button" class="mode-option" role="option" data-mode-choice="ui"><span class="mode-option-icon"><svg class="icon"><use href="#i-layout"/></svg></span><span><strong>Interface designer</strong><small>Polished Roblox UI and UX</small></span><span class="mode-check">✓</span></button><button type="button" class="mode-option" role="option" data-mode-choice="code"><span class="mode-option-icon"><svg class="icon"><use href="#i-code"/></svg></span><span><strong>Script developer</strong><small>Luau scripts and game systems</small></span><span class="mode-check">✓</span></button></div></div></div><div class="composer-right"><span class="model-label" id="modelLabel">Axiom · Deep Build</span><button class="send" id="sendBtn" type="submit" aria-label="Send message"><svg class="icon"><use href="#i-up"/></svg></button><button class="send" id="stopBtn" type="button" aria-label="Stop generating" hidden><svg class="icon"><use href="#i-stop"/></svg></button></div></div></form><p class="composer-hint">Axiom can make mistakes. Test generated code in Roblox Studio.</p></div>
+<div class="composer-wrap"><div id="chatError" class="error-strip" role="alert" hidden><span></span><button class="btn ghost" id="retryRequest">Retry</button><button class="icon-btn" id="dismissError" aria-label="Dismiss error"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="chatForm" class="composer-box"><div class="attachments" id="attachments" hidden></div><label class="sr-only" for="prompt">Message Axiom</label><textarea id="prompt" rows="2" maxlength="60000" placeholder="Ask Axiom to build something…"></textarea><div class="composer-tools"><div class="composer-left"><button class="icon-btn" id="attachBtn" type="button" aria-label="Attach images or code files" title="Attach images or code files"><svg class="icon"><use href="#i-clip"/></svg></button><label class="sr-only" for="modeSelect">Assistant mode</label><select class="sr-only" id="modeSelect" tabindex="-1" aria-hidden="true"><option value="axiom">Axiom</option><option value="ui">Interface designer</option><option value="code">Script developer</option></select><div class="mode-picker" id="modePicker"><button class="mode-trigger" id="modePickerButton" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="mode-trigger-icon" id="modePickerIcon"><svg class="icon"><use href="#i-chat"/></svg></span><span class="mode-trigger-copy"><strong id="modePickerLabel">Axiom</strong><small id="modePickerSub">Roblox workspace</small></span><svg class="icon mode-chevron"><use href="#i-down"/></svg></button><div class="mode-menu" id="modePickerMenu" role="listbox" aria-label="Choose Axiom mode" hidden><button type="button" class="mode-option" role="option" data-mode-choice="axiom"><span class="mode-option-icon"><svg class="icon"><use href="#i-chat"/></svg></span><span><strong>Axiom</strong><small>Build across your Roblox project</small></span><span class="mode-check">✓</span></button><button type="button" class="mode-option" role="option" data-mode-choice="ui"><span class="mode-option-icon"><svg class="icon"><use href="#i-layout"/></svg></span><span><strong>Interface designer</strong><small>Polished Roblox UI and UX</small></span><span class="mode-check">✓</span></button><button type="button" class="mode-option" role="option" data-mode-choice="code"><span class="mode-option-icon"><svg class="icon"><use href="#i-code"/></svg></span><span><strong>Script developer</strong><small>Luau scripts and game systems</small></span><span class="mode-check">✓</span></button></div></div></div><div class="composer-right"><div class="model-picker" id="modelPicker"><button class="model-trigger" id="modelPickerButton" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="model-trigger-icon" id="modelPickerIcon"><img class="asset-icon" src="/icons/ai.png" alt=""></span><span class="model-trigger-copy"><strong id="modelPickerLabel">Axiom Core 1</strong><small id="modelUsageSummary">~0 tokens · No cap</small></span><svg class="icon model-chevron"><use href="#i-down"/></svg></button><div class="model-menu" id="modelPickerMenu" role="listbox" aria-label="Choose Axiom model" hidden><button type="button" class="model-option" role="option" data-model-choice="core-1"><span class="model-option-icon"><img class="asset-icon" src="/icons/ai.png" alt=""></span><span><strong>Axiom Core 1</strong><small>Best for everything.</small></span><span class="model-badge">Recommended</span></button><button type="button" class="model-option" role="option" data-model-choice="fast"><span class="model-option-icon"><img class="asset-icon" src="/icons/activity.png" alt=""></span><span><strong>Axiom Fast</strong><small>Fast coding + quick questions.</small></span><span class="model-badge">Fast</span></button><button type="button" class="model-option" role="option" data-model-choice="deep-dive"><span class="model-option-icon"><img class="asset-icon" src="/icons/experimental.png" alt=""></span><span><strong>Axiom Deep Dive</strong><small>Complex debugging + architecture.</small></span><span class="model-badge">Reasoning</span></button><button type="button" class="model-option" role="option" data-model-choice="vision"><span class="model-option-icon"><img class="asset-icon" src="/icons/creation.png" alt=""></span><span><strong>Axiom Vision</strong><small>Best for visualizing UI screenshots + images.</small></span><span class="model-badge">Vision</span></button><div class="model-usage-card"><span>Current chat</span><strong id="modelUsageDetail">~0 tokens</strong><small>Estimated chat tokens. Axiom has no account-level token usage quota; single requests still use normal context/output limits.</small></div></div></div><button class="send" id="sendBtn" type="submit" aria-label="Send message"><svg class="icon"><use href="#i-up"/></svg></button><button class="send" id="stopBtn" type="button" aria-label="Stop generating" hidden><svg class="icon"><use href="#i-stop"/></svg></button></div></div></form><p class="composer-hint">Axiom can make mistakes. Test generated code in Roblox Studio.</p></div>
 </section>
 <section class="hub-view" id="hubView" hidden aria-label="DevHub community"><div class="hub-header"><h1>DevHub</h1><p>A shared space for developers. <strong id="onlineCount">0 developers online</strong></p><div class="online-members" id="onlineMembers" aria-label="Online developers"></div><button class="btn ghost" id="legacyBoardBtn">View earlier board</button><p id="hubStatus" role="status"></p></div><div class="chat-area" id="hubArea"><div class="hub-log" id="hubLog"></div></div><div class="composer-wrap"><form id="hubForm" class="composer-box"><label class="sr-only" for="hubInput">Public message</label><textarea id="hubInput" rows="2" maxlength="500" placeholder="Share what you’re working on…" required></textarea><div class="composer-tools"><span class="small muted">Visible to everyone on DevHub</span><button class="send" id="hubSend" aria-label="Post message"><svg class="icon"><use href="#i-up"/></svg></button></div></form></div></section>
 <section id="creationsView" class="shared-view" hidden aria-label="Community creations"><div class="community-shell"><div class="community-heading"><div><h1>Creations</h1><p>A little inspiration. A lot of work worth sharing.</p></div><button id="newCreation" class="btn primary"><img class="asset-icon" src="/icons/creation.png" alt="">Share a creation</button></div><div class="feed-toolbar"><div class="filter-tabs" id="creationFilters" role="group" aria-label="Filter creations"><button data-category="All" aria-pressed="true">All work</button><button data-category="Interface" aria-pressed="false">Interfaces</button><button data-category="Script" aria-pressed="false">Scripts</button><button data-category="Game" aria-pressed="false">Games</button><button data-category="Other" aria-pressed="false">Other</button></div><button class="btn ghost" id="clearAuthorFilter" hidden>Show everyone</button></div><p id="creationStatus" class="inline-error" role="status"></p><div id="creationGrid" class="creation-grid"></div><button id="moreCreations" class="btn feed-more" hidden>Load more</button></div></section>
@@ -838,7 +905,7 @@ html[data-custom-gradient=true] .creation-card{
 </main></div>
 <dialog id="settingsDialog" aria-labelledby="settingsTitle"><div class="dialog-header"><h2 id="settingsTitle">Settings</h2><button class="icon-btn" data-close="settingsDialog" aria-label="Close settings"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="settingsForm"><div class="dialog-body"><div class="settings-tabs" role="tablist" aria-label="Settings sections"><button type="button" role="tab" id="profileTab" aria-controls="profilePanel" aria-selected="true" data-tab="profile">Profile</button><button type="button" role="tab" id="preferencesTab" aria-controls="preferencesPanel" aria-selected="false" tabindex="-1" data-tab="preferences">Preferences</button></div>
 <div id="profilePanel" role="tabpanel" aria-labelledby="profileTab"><div class="banner-editor"><div class="banner-editor-head"><div><strong>Profile banner</strong><p>Shown across the top of your public Axiom profile.</p></div><div class="banner-actions"><button class="btn" type="button" id="viewOwnProfile">View profile</button><button class="btn" type="button" id="uploadBanner"><svg class="icon"><use href="#i-upload"/></svg>Change banner</button><button class="btn ghost" type="button" id="removeBanner">Remove</button></div></div><div class="banner-preview" id="bannerPreview"></div></div><div class="profile-theme-setting"><strong>Profile theme</strong><p>Choose the look people see when they open your profile.</p><div class="profile-theme-grid" id="profileThemeGrid"><button type="button" data-profile-theme-choice="classic"><span class="theme-swatch classic"></span><span>Classic</span></button><button type="button" data-profile-theme-choice="ocean"><span class="theme-swatch ocean"></span><span>Ocean</span></button><button type="button" data-profile-theme-choice="sunset"><span class="theme-swatch sunset"></span><span>Sunset</span></button><button type="button" data-profile-theme-choice="midnight"><span class="theme-swatch midnight"></span><span>Midnight</span></button><button type="button" data-profile-theme-choice="forest"><span class="theme-swatch forest"></span><span>Forest</span></button><button type="button" data-profile-theme-choice="rose"><span class="theme-swatch rose"></span><span>Rose</span></button></div></div><div class="avatar-editor"><div class="avatar" id="avatarPreview"></div><div><button class="btn" type="button" id="uploadAvatar"><svg class="icon"><use href="#i-upload"/></svg>Change photo</button> <button class="btn ghost" type="button" id="removeAvatar">Remove</button><p>PNG, JPG, WebP, GIF, AVIF or BMP · up to 5 MB<br>Animated GIFs and WebP stay animated.</p></div></div><div class="field"><label for="displayName">Display name</label><input id="displayName" maxlength="40" required><p class="help">Shown in your workspace and on DevHub.</p></div><div class="field-row"><div class="field"><label for="usernameReadOnly">Username</label><input id="usernameReadOnly" readonly></div><div class="field"><label for="profileEmail">Connected email <span id="emailState" class="email-state"></span></label><input id="profileEmail" type="email" readonly placeholder="Not connected"></div></div><div class="account-security"><div class="setting-row"><div><strong>Email & recovery</strong><p id="emailHelp">Connect and verify an email to sign in by email and reset your password.</p></div><button id="manageEmail" class="btn" type="button">Connect email</button></div><div class="setting-row"><div><strong>Discord</strong><p id="discordHelp">Link Discord to your Axiom profile with the /connect command.</p></div><button id="manageDiscord" class="btn" type="button">Connect Discord</button></div><div class="setting-row"><div><strong>Password</strong><p>Change your password and sign out other sessions.</p></div><button id="changePassword" class="btn" type="button">Change password</button></div></div><div class="field"><label for="profileBio">Bio</label><textarea id="profileBio" maxlength="180" placeholder="A little about what you build…"></textarea></div><div class="field profile-links-editor"><label>Profile links</label><p class="help">Optional links shown on your public profile.</p><div class="profile-link-editor-grid"><input id="profileGithub" type="url" maxlength="220" placeholder="https://github.com/username" aria-label="GitHub profile link"><input id="profileRoblox" type="url" maxlength="220" placeholder="https://www.roblox.com/users/..." aria-label="Roblox profile link"><input id="profileWebsite" type="url" maxlength="220" placeholder="https://your-site.com" aria-label="Website link"><input id="profileDiscord" type="url" maxlength="220" placeholder="https://discord.com/users/..." aria-label="Discord profile link"></div></div><div class="field"><label>Avatar color</label><div class="colors" id="avatarColors" role="group" aria-label="Avatar color"></div></div><div class="status-setting"><strong>Status <span class="email-state verified" id="currentPresenceLabel"></span></strong><p>Auto shows Online while active and Idle after about 2 minutes. Invisible always appears Offline.</p><div class="status-options" id="statusOptions" role="group" aria-label="Profile status"><button type="button" class="status-option" data-status-mode="auto"><span class="auto-dot"></span><span>Auto</span></button><button type="button" class="status-option" data-status-mode="online"><span class="presence-dot online"></span><span>Online</span></button><button type="button" class="status-option" data-status-mode="idle"><span class="presence-dot idle"></span><span>Idle</span></button><button type="button" class="status-option" data-status-mode="dnd"><span class="presence-dot dnd"></span><span>DND</span></button><button type="button" class="status-option invisible" data-status-mode="invisible"><span class="presence-dot offline"></span><span>Invisible</span></button></div></div><div class="custom-status-field"><label for="statusQuote">Custom status <span id="statusQuoteCount">0/80</span></label><input id="statusQuote" maxlength="80" placeholder="What are you working on?"></div><div class="badge-settings"><strong>Your badges</strong><div id="myBadges" class="readonly-badges"></div><p>Badges are assigned by the Axiom team.</p></div><div class="info-box">Your email is private. Your name, photo, banner, bio, status, and awarded badges are shown on your public profile.</div></div>
-<div id="preferencesPanel" role="tabpanel" aria-labelledby="preferencesTab" hidden><div class="setting-row"><div><strong>Appearance</strong><p>Make yourself at home.</p></div><label class="sr-only" for="themeSelect">Appearance</label><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option><option value="system">System</option></select></div><div class="gradient-setting"><div class="gradient-heading"><div><strong>Custom workspace background</strong><p>Blend two colors into your own Axiom background.</p></div><label class="gradient-switch"><input id="gradientEnabled" type="checkbox" aria-label="Use custom gradient background"><span></span></label></div><div class="gradient-editor" id="gradientEditor"><div class="gradient-preview" id="gradientPreview" aria-label="Gradient preview"></div><div class="gradient-colors"><label><span>Color one</span><span class="color-input-wrap"><input id="gradientA" type="color" value="#eaf2ff"><code id="gradientAText">#EAF2FF</code></span></label><label><span>Color two</span><span class="color-input-wrap"><input id="gradientB" type="color" value="#f5eaff"><code id="gradientBText">#F5EAFF</code></span></label></div><button class="btn ghost gradient-reset" id="gradientReset" type="button">Reset gradient</button></div></div><div class="setting-row"><div><strong>Send with Enter</strong><p>Shift + Enter adds a new line.</p></div><input id="enterSend" type="checkbox" aria-label="Send with Enter"></div><div class="setting-row"><div><strong>Reduce motion</strong><p>Turn off interface animations.</p></div><input id="reduceMotion" type="checkbox" aria-label="Reduce motion"></div><div class="setting-row"><div><strong>Response length</strong><p>Longer responses use more of your API quota.</p></div><label class="sr-only" for="tokenLimit">Response length</label><select id="tokenLimit"><option value="4096">Standard · 4K</option><option value="8192">Extended · 8K</option><option value="16384">Large · 16K</option></select></div><div class="info-box">Chat content and reference images are sent to the AI provider when you send a message. Your account and public profile sync across devices. AI chat history stays in this browser.</div><div class="account-import"><button id="openImport" class="btn" type="button">Import older local chats</button><p>Bring conversations from your previous Axiom profile into this account.</p></div></div><p class="form-error" id="settingsError" role="alert"></p></div><div class="dialog-footer"><button class="btn ghost danger" id="logoutBtn" type="button">Log out</button><span class="spacer"></span><button class="btn" type="button" data-close="settingsDialog">Cancel</button><button class="btn primary" id="saveSettings">Save changes</button></div></form></dialog>
+<div id="preferencesPanel" role="tabpanel" aria-labelledby="preferencesTab" hidden><div class="setting-row"><div><strong>Appearance</strong><p>Make yourself at home.</p></div><label class="sr-only" for="themeSelect">Appearance</label><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option><option value="system">System</option></select></div><div class="gradient-setting"><div class="gradient-heading"><div><strong>Custom workspace background</strong><p>Blend two colors into your own Axiom background.</p></div><label class="gradient-switch"><input id="gradientEnabled" type="checkbox" aria-label="Use custom gradient background"><span></span></label></div><div class="gradient-editor" id="gradientEditor"><div class="gradient-preview" id="gradientPreview" aria-label="Gradient preview"></div><div class="gradient-colors"><label><span>Color one</span><span class="color-input-wrap"><input id="gradientA" type="color" value="#eaf2ff"><code id="gradientAText">#EAF2FF</code></span></label><label><span>Color two</span><span class="color-input-wrap"><input id="gradientB" type="color" value="#f5eaff"><code id="gradientBText">#F5EAFF</code></span></label></div><button class="btn ghost gradient-reset" id="gradientReset" type="button">Reset gradient</button></div></div><div class="setting-row"><div><strong>Send with Enter</strong><p>Shift + Enter adds a new line.</p></div><input id="enterSend" type="checkbox" aria-label="Send with Enter"></div><div class="setting-row"><div><strong>Reduce motion</strong><p>Turn off interface animations.</p></div><input id="reduceMotion" type="checkbox" aria-label="Reduce motion"></div><div class="setting-row"><div><strong>Maximum response size</strong><p>Controls the ceiling for one reply, not an account usage quota.</p><div class="settings-token-note">Your Axiom account has no token usage cap. A single request still uses normal context and output limits so the model stays reliable.</div></div><label class="sr-only" for="tokenLimit">Maximum response size</label><select id="tokenLimit"><option value="4096">Standard · up to 4K</option><option value="8192">Extended · up to 8K</option><option value="16384">Maximum · up to 16K</option></select></div><div class="info-box">Chat content and reference images are sent to the AI provider when you send a message. Your account and public profile sync across devices. AI chat history stays in this browser.</div><div class="account-import"><button id="openImport" class="btn" type="button">Import older local chats</button><p>Bring conversations from your previous Axiom profile into this account.</p></div></div><p class="form-error" id="settingsError" role="alert"></p></div><div class="dialog-footer"><button class="btn ghost danger" id="logoutBtn" type="button">Log out</button><span class="spacer"></span><button class="btn" type="button" data-close="settingsDialog">Cancel</button><button class="btn primary" id="saveSettings">Save changes</button></div></form></dialog>
 <dialog id="searchDialog" aria-labelledby="searchTitle"><div class="dialog-header"><h2 id="searchTitle">Find a conversation</h2><button class="icon-btn" data-close="searchDialog" aria-label="Close search"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><label class="sr-only" for="chatSearch">Search chats</label><input id="chatSearch" class="search-input" placeholder="Search your conversations…"><div id="searchResults"></div></div></dialog>
 <dialog id="confirmDialog" aria-labelledby="confirmTitle"><div class="dialog-header"><h2 id="confirmTitle">Delete conversation?</h2></div><div class="dialog-body">This removes the conversation from this browser.</div><div class="dialog-footer"><span class="spacer"></span><button class="btn" id="confirmCancel">Keep chat</button><button class="btn danger" id="confirmDelete">Delete chat</button></div></dialog>
 <dialog id="legacyBoardDialog" aria-labelledby="legacyBoardTitle"><div class="dialog-header"><h2 id="legacyBoardTitle">Earlier DevHub messages</h2><button class="icon-btn" data-close="legacyBoardDialog" aria-label="Close earlier messages"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><p class="small muted">Read-only history from the local-profile version. These names were not verified and are not linked to current accounts.</p><div id="legacyBoardContent"></div></div></dialog>
@@ -877,8 +944,15 @@ const MODES = {
   ui: {name:'Interface designer',sub:'Roblox GUI design',title:'Give your game <span>its own look.</span>',description:'Thoughtful layouts. Clear hierarchy. Interfaces that feel good to use.',suggestions:[['layout','Create a shop','Categories, details & purchases','Create a polished Roblox shop UI with categories, item details, and a purchase flow. Use a coherent visual style and responsive layout. Include safe server-side purchase handling with a clearly defined item catalog.'],['box','Design a HUD','Keep gameplay in focus','Build a clean Roblox HUD with health, stamina, and currency. Keep it readable on mobile and respect Roblox safe areas. Show how the values connect to gameplay.'],['file','Improve my interface','Start from a screenshot','I want to improve an existing Roblox interface. Ask me to attach a screenshot or paste the GUI script, then help rework it.']]},
   code: {name:'Script developer',sub:'Luau & game systems',title:'Good ideas deserve <span>good code.</span>',description:'Build systems, fix tricky errors, and understand how it all fits together.',suggestions:[['code','Fix an error','Find the cause, keep the intent','Help me debug a Roblox script. Ask for the script and exact Output error, then explain the root cause and provide a corrected script.'],['box','Build a round system','Lobby, rounds & cleanup','Build a complete Roblox round system with intermission, player readiness, map selection, win conditions, and cleanup. Keep authoritative logic on the server.'],['file','Review my script','Reliability, security & speed','Review my Roblox code for correctness, client/server security, and performance. Ask me to paste the script first.']]}
 };
+const AXIOM_MODELS={
+  'core-1':{label:'Axiom Core 1',sub:'Best for everything.',icon:'ai',badge:'Recommended'},
+  fast:{label:'Axiom Fast',sub:'Fast coding + quick questions.',icon:'activity',badge:'Fast'},
+  'deep-dive':{label:'Axiom Deep Dive',sub:'Complex debugging + architecture.',icon:'experimental',badge:'Reasoning'},
+  vision:{label:'Axiom Vision',sub:'Best for visualizing UI screenshots + images.',icon:'creation',badge:'Vision'}
+};
+
 let account = null, localKey = null, sessionToken = sessionStorage.getItem('axiom_session_v3') || '';
-let username = null, profile = null, prefs = null, threads = [], activeId = null, mode = 'axiom', view = 'chat';
+let username = null, profile = null, prefs = null, threads = [], activeId = null, mode = 'axiom', modelProfile = 'core-1', view = 'chat';
 let avatarBlob = null, avatarURL = null, profileDraft = null, draftBlob = null, draftURL = null, avatarLoading = false, bannerDraftBlob = null, bannerDraftURL = null, bannerChanged = false, bannerSelection = 0, bannerLoading = false;
 let pending = [], attachmentLoading = false, activeRequest = null, chatFailure = null, hubTimer = null, hubLoading = false, hubController = null, hubPending = [];
 let authMode = 'login', toastTimer, pendingDelete = null, avatarSelection = 0, presenceTimer = null, lastPresenceActivity = Date.now();
@@ -1208,9 +1282,9 @@ async function boot(user){
   account=user;username=user.username;localKey='account:'+user.id;
   const saved=await dbRead('conversations',localKey);threads=Array.isArray(saved)?saved:[];
   profile={displayName:username,color:COLORS[0],email:'',emailVerified:false,discordConnected:false,bio:'',badges:[],bannerId:null,status:'offline',presenceMode:'auto',statusQuote:'',links:{},profileTheme:'classic',...user};
-  prefs={theme:read('axiom_theme','light'),enterSend:true,reduceMotion:false,tokenLimit:8192,gradientEnabled:false,gradientA:'#eaf2ff',gradientB:'#f5eaff',...read('axiom_preferences_'+localKey,{})};
+  prefs={theme:read('axiom_theme','light'),enterSend:true,reduceMotion:false,tokenLimit:16384,gradientEnabled:false,gradientA:'#eaf2ff',gradientB:'#f5eaff',...read('axiom_preferences_'+localKey,{})};
   if(avatarURL?.startsWith('blob:'))URL.revokeObjectURL(avatarURL);avatarBlob=null;avatarURL=mediaURL(user.avatarId);
-  $('authWrap').hidden=true;$('app').hidden=false;$('adminNav').hidden=!user.canAdmin;applyAppearance(prefs.theme);updateProfile();startPresence();loadMyPins();activeId=threads[0]?.id||null;mode=threads[0]?.mode||'axiom';setMode(mode,false);renderRecent();
+  $('authWrap').hidden=true;$('app').hidden=false;$('adminNav').hidden=!user.canAdmin;applyAppearance(prefs.theme);updateProfile();startPresence();loadMyPins();activeId=threads[0]?.id||null;mode=threads[0]?.mode||'axiom';modelProfile=threads[0]?.modelProfile||read('axiom_model_'+localKey,'core-1');if(!AXIOM_MODELS[modelProfile])modelProfile='core-1';setMode(mode,false);syncModelPicker();renderRecent();
   refreshDMUnread();
   const requestedProfile=profileUsernameFromPath();
   if(requestedProfile)openPublicProfile('@'+requestedProfile,false);
@@ -1282,6 +1356,109 @@ $('modePicker').addEventListener('keydown',event=>{
   }
 });
 
+
+function estimateClientTokens(messages){
+  let total=0;
+  for(const message of messages||[]){
+    total+=4;
+    const content=message?.content;
+    if(typeof content==='string'){
+      total+=Math.ceil(content.length/4);
+    }else if(Array.isArray(content)){
+      for(const part of content){
+        if(part?.type==='text')total+=Math.ceil(String(part.text||'').length/4);
+        else if(part?.type==='image_url')total+=850;
+      }
+    }
+  }
+  return Math.max(0,total);
+}
+
+function shortTokenCount(value){
+  const n=Math.max(0,Number(value)||0);
+  if(n>=1000000)return (n/1000000).toFixed(n>=10000000?0:1).replace(/\.0$/,'')+'M';
+  if(n>=1000)return (n/1000).toFixed(n>=10000?0:1).replace(/\.0$/,'')+'K';
+  return String(Math.round(n));
+}
+
+function currentModelProfile(){
+  const t=currentThread();
+  return AXIOM_MODELS[t?.modelProfile]?t.modelProfile:modelProfile;
+}
+
+function currentChatTokenEstimate(){
+  return estimateClientTokens(currentThread()?.messages||[]);
+}
+
+function syncModelUsage(){
+  const total=currentChatTokenEstimate();
+  $('modelUsageSummary').textContent='~'+shortTokenCount(total)+' tokens · No cap';
+  $('modelUsageDetail').textContent='~'+shortTokenCount(total)+' tokens';
+}
+
+function syncModelPicker(){
+  const selected=currentModelProfile();
+  const meta=AXIOM_MODELS[selected]||AXIOM_MODELS['core-1'];
+  modelProfile=selected;
+  $('modelPickerLabel').textContent=meta.label;
+  $('modelPickerIcon').innerHTML=`<img class="asset-icon" src="/icons/${meta.icon}.png" alt="">`;
+  document.querySelectorAll('[data-model-choice]').forEach(button=>{
+    button.setAttribute('aria-selected',String(button.dataset.modelChoice===selected));
+  });
+  syncModelUsage();
+}
+
+function closeModelPicker(){
+  $('modelPickerMenu').hidden=true;
+  $('modelPickerButton').setAttribute('aria-expanded','false');
+}
+
+function openModelPicker(){
+  if(activeRequest)return toast('Stop the current reply before switching models.');
+  closeModePicker();
+  const open=$('modelPickerMenu').hidden;
+  if(!open)return closeModelPicker();
+  $('modelPickerMenu').hidden=false;
+  $('modelPickerButton').setAttribute('aria-expanded','true');
+  syncModelPicker();
+  requestAnimationFrame(()=>{
+    document.querySelector(`[data-model-choice="${currentModelProfile()}"]`)?.focus();
+  });
+}
+
+function setModelProfile(next){
+  if(!AXIOM_MODELS[next]||activeRequest)return;
+  modelProfile=next;
+  write('axiom_model_'+localKey,next);
+  const t=currentThread();
+  if(t){
+    t.modelProfile=next;
+    t.updated=Date.now();
+    saveThreads().catch(()=>{});
+  }
+  closeModelPicker();
+  syncModelPicker();
+  updateControls();
+}
+
+$('modelPickerButton').onclick=openModelPicker;
+document.querySelectorAll('[data-model-choice]').forEach(button=>{
+  button.onclick=()=>{
+    setModelProfile(button.dataset.modelChoice);
+    $('modelPickerButton').focus();
+  };
+});
+document.addEventListener('click',event=>{
+  if(!$('modelPicker').contains(event.target))closeModelPicker();
+});
+$('modelPicker').addEventListener('keydown',event=>{
+  if(event.key==='Escape'){
+    event.preventDefault();
+    closeModelPicker();
+    $('modelPickerButton').focus();
+  }
+});
+
 function setMode(next,newConversation=true){
   if(!MODES[next])return;
   if(newConversation){activeId=null;pending=[];renderAttachments();$('prompt').value='';resizePrompt();}
@@ -1292,12 +1469,12 @@ function setMode(next,newConversation=true){
   $('welcomeTitle').innerHTML=MODES[mode].title;$('welcomeSub').textContent=MODES[mode].description;
   $('suggestions').replaceChildren();
   for(const [i,title,sub,prompt] of MODES[mode].suggestions){const b=document.createElement('button');b.className='suggestion';b.innerHTML=icon(i)+`<strong>${title}</strong><span>${sub}</span>`;b.onclick=()=>{$('prompt').value=prompt;resizePrompt();$('prompt').focus();};$('suggestions').append(b);}
-  closeSidebar();renderChat();renderRecent();updateControls();
+  closeSidebar();renderChat();renderRecent();syncModelPicker();updateControls();
 }
 document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{if(activeRequest)return toast('Stop the current reply before switching assistants.');setMode(b.dataset.mode);});
 $('modeSelect').onchange=e=>{if(activeRequest){e.target.value=mode;return;}if(currentThread()?.messages.length){setMode(e.target.value);}else{mode=e.target.value;setMode(mode,false);}};
 $('newChat').onclick=()=>{if(activeRequest)return toast('Stop the current reply before starting another chat.');setMode(mode);$('prompt').focus();};
-function openThread(id){if(activeRequest)return toast('Stop the current reply before opening another chat.');const t=threads.find(t=>t.id===id);if(!t)return;activeId=t.id;pending=[];renderAttachments();$('prompt').value='';setMode(t.mode,false);$('searchDialog').close();}
+function openThread(id){if(activeRequest)return toast('Stop the current reply before opening another chat.');const t=threads.find(t=>t.id===id);if(!t)return;activeId=t.id;modelProfile=AXIOM_MODELS[t.modelProfile]?t.modelProfile:'core-1';pending=[];renderAttachments();$('prompt').value='';setMode(t.mode,false);syncModelPicker();$('searchDialog').close();}
 function renderRecent(target=$('recentChats'),query=''){
   target.replaceChildren();const list=[...threads].sort((a,b)=>b.updated-a.updated).filter(t=>!query||(t.title+' '+t.messages.map(m=>plainContent(m.content)).join(' ')).toLowerCase().includes(query.toLowerCase()));
   if(!list.length){const p=document.createElement('p');p.className='recent-empty';p.textContent=query?'No matching conversations.':'Your conversations will appear here.';target.append(p);return;}
@@ -1487,6 +1664,13 @@ function renderChat(scroll=true){
       if(!m.content&&activeRequest?.messageId===m.id)content.innerHTML='<div class="thinking"><i></i><i></i><i></i><span>Working on your request…</span></div>';
     }
     row.append(content);
+    if(m.role==='assistant'&&m.usage&&m.content){
+      const usage=document.createElement('div');
+      usage.className='response-usage';
+      const meta=AXIOM_MODELS[m.usage.model]||AXIOM_MODELS['core-1'];
+      usage.innerHTML=`<img src="/icons/${meta.icon}.png" alt=""><span>${escapeHTML(m.usage.label||meta.label)}</span><span class="usage-sep">•</span><span>~${shortTokenCount(m.usage.input)} in</span><span class="usage-sep">•</span><span>~${shortTokenCount(m.usage.output)} out</span>${m.usage.noCap?'<span class="usage-sep">•</span><span>No Axiom cap</span>':''}`;
+      row.append(usage);
+    }
     if(m.role==='assistant'&&!activeRequest){
       if(m.status){const note=document.createElement('p');note.className='status-note';note.textContent=m.status==='length'?'Response limit reached. Continue to finish the remaining code.':m.status==='stopped'?'Generation stopped. This reply may be incomplete.':m.status==='error'?'Connection interrupted. This reply may be incomplete.':'';row.append(note);}
       const actions=document.createElement('div');actions.className='response-actions';const b=document.createElement('button');b.className='icon-btn';b.ariaLabel='Copy response';b.innerHTML=icon('copy');b.onclick=()=>copyText(m.content);actions.append(b);
@@ -1495,9 +1679,9 @@ function renderChat(scroll=true){
     }
     $('chatLog').append(row);
   });
-  if(scroll)toBottom();showChatError();
+  if(scroll)toBottom();showChatError();syncModelUsage();
 }
-function updateControls(){const busy=!!activeRequest;$('sendBtn').hidden=busy;$('stopBtn').hidden=!busy;$('sendBtn').disabled=attachmentLoading||(!($('prompt').value.trim()||pending.length));$('modeSelect').disabled=busy;$('attachBtn').disabled=busy||attachmentLoading;$('prompt').disabled=busy;$('clearChat').disabled=busy||!currentThread();$('modelLabel').textContent=pending.some(x=>x.kind==='image')||currentThread()?.messages.some(m=>Array.isArray(m.content)&&m.content.some(c=>c.type==='image_url'))?'Axiom Core · Vision':'Axiom Core';}
+function updateControls(){const busy=!!activeRequest;$('sendBtn').hidden=busy;$('stopBtn').hidden=!busy;$('sendBtn').disabled=attachmentLoading||(!($('prompt').value.trim()||pending.length));$('modeSelect').disabled=busy;$('modelPickerButton').disabled=busy;$('attachBtn').disabled=busy||attachmentLoading;$('prompt').disabled=busy;$('clearChat').disabled=busy||!currentThread();syncModelPicker();}
 $('chatArea').onscroll=()=>{$('jumpBottom').hidden=nearBottom()||!currentThread()?.messages.length;};$('jumpBottom').onclick=toBottom;
 function resizePrompt(){const p=$('prompt');p.style.height='auto';p.style.height=Math.min(200,Math.max(52,p.scrollHeight))+'px';updateControls();}
 $('prompt').oninput=resizePrompt;
@@ -1527,7 +1711,7 @@ $('attachFile').onchange=async e=>{
 function renderAttachments(){const wrap=$('attachments');wrap.replaceChildren();wrap.hidden=!pending.length;pending.forEach(a=>{const c=document.createElement('div');c.className='attachment';if(a.kind==='image'){const im=document.createElement('img');im.src=a.data;im.alt='';c.append(im);}else c.innerHTML=icon('file');const name=document.createElement('span');name.textContent=a.name;const x=document.createElement('button');x.type='button';x.className='icon-btn';x.ariaLabel='Remove '+a.name;x.innerHTML=icon('x');x.onclick=()=>{pending=pending.filter(p=>p.id!==a.id);renderAttachments();updateControls();};c.append(name,x);wrap.append(c);});updateControls();}
 function makeUserMessage(text,files){let complete=text;for(const f of files.filter(f=>f.kind==='text'))complete+='\n\nAttached source file: '+f.name+'\n<source_file>\n'+f.data+'\n</source_file>';const images=files.filter(f=>f.kind==='image');const content=images.length?[{type:'text',text:complete||'Use these reference images for my Roblox project.'},...images.map(f=>({type:'image_url',image_url:{url:f.data}}))]:complete;return {id:uid(),role:'user',content,displayText:text||'Attached references',files:files.map(({name,kind})=>({name,kind})),ts:Date.now()};}
 async function submitText(text){if(activeRequest||attachmentLoading||!(text.trim()||pending.length))return;
-  let t=currentThread();if(!t){t={id:uid(),mode,title:text.trim().slice(0,55)||pending[0]?.name||'New conversation',updated:Date.now(),messages:[]};threads.unshift(t);activeId=t.id;}
+  let t=currentThread();if(!t){t={id:uid(),mode,modelProfile,title:text.trim().slice(0,55)||pending[0]?.name||'New conversation',updated:Date.now(),messages:[]};threads.unshift(t);activeId=t.id;}
   t.messages.push(makeUserMessage(text.trim(),pending));pending=[];$('prompt').value='';renderAttachments();resizePrompt();t.updated=Date.now();saveThreads().catch(()=>{});renderRecent();renderChat();await generate();
 }
 $('chatForm').onsubmit=e=>{e.preventDefault();submitText($('prompt').value);};
@@ -1559,7 +1743,16 @@ async function generate(action='retry'){
   const arm=()=>{clearTimeout(timer);timer=setTimeout(()=>{controller.abort('timeout');},240000);};arm();
   try{
     const hasImages=messages.some(m=>Array.isArray(m.content)&&m.content.some(c=>c.type==='image_url'));
-    const res=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+sessionToken},signal:controller.signal,body:JSON.stringify({mode:t.mode,stream:true,max_completion_tokens:Number(prefs.tokenLimit)||8192,messages})});
+    const res=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+sessionToken},signal:controller.signal,body:JSON.stringify({mode:t.mode,model_profile:t.modelProfile||modelProfile||'core-1',stream:true,max_completion_tokens:Number(prefs.tokenLimit)||16384,messages})});
+    reply.usage={
+      model:res.headers.get('x-axiom-model-profile')||t.modelProfile||modelProfile||'core-1',
+      label:res.headers.get('x-axiom-model-label')||AXIOM_MODELS[t.modelProfile||modelProfile]?.label||'Axiom Core 1',
+      input:Number(res.headers.get('x-axiom-input-tokens-estimate'))||0,
+      output:Number(res.headers.get('x-axiom-output-tokens-estimate'))||0,
+      budget:Number(res.headers.get('x-axiom-output-budget'))||0,
+      pipeline:res.headers.get('x-axiom-pipeline')||'',
+      noCap:res.headers.get('x-axiom-usage-cap')==='none'
+    };
     if(!res.ok){let data={};try{data=await res.json();}catch{}const retry=res.headers.get('retry-after');throw new Error(data.error?.message||(res.status===429?`AI rate limit reached. ${retry?'Try again in '+retry+' seconds.':'Wait a moment and retry.'}`:`Could not generate a reply (${res.status}).`));}
     if((res.headers.get('content-type')||'').includes('text/event-stream')){
       await consumeSSE(res,token=>{arm();gotAny=true;reply.content+=token;if(Date.now()-lastDraw>100){lastDraw=Date.now();paint();}},reason=>{if(reason==='length')reply.status='length';});
@@ -1687,7 +1880,7 @@ document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.c
 document.querySelectorAll('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){if(d.id==='creationDialog'&&creationPublishing||d.id==='settingsDialog'&&profileSaving)return;const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}}));
 $('themeToggle').onclick=()=>{prefs.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';applyAppearance(prefs.theme);try{write('axiom_preferences_'+localKey,prefs);write('axiom_theme',prefs.theme);}catch{toast('Appearance changed but could not be saved.');}};
 $('logoutBtn').onclick=async()=>{if(activeRequest)return toast('Stop the current reply before logging out.');try{await saveQueue;await api('/auth/logout',{method:'POST'});sessionStorage.removeItem('axiom_session_v3');stopHub();stopPresence();location.reload();}catch(err){$('settingsError').textContent=err.message;}};
-async function copyLegacyChats(oldName){const marker='axiom_imported_'+localKey+'_'+oldName;if(read(marker,false))return 0;let imported=await dbRead('conversations',oldName);if(!Array.isArray(imported)){const history=read('axiom_history_'+oldName,{});imported=Object.keys(MODES).filter(m=>Array.isArray(history[m])&&history[m].length).map(m=>({id:uid(),mode:m,title:MODES[m].name+' conversation',updated:Date.now(),messages:history[m]}));}if(!imported.length)return 0;const copied=imported.map(t=>({...t,id:uid(),messages:t.messages.map(m=>({...m,id:uid()}))}));await dbWrite('conversations',localKey,[...threads,...copied]);threads.push(...copied);write(marker,true);renderRecent();return copied.length;}
+async function copyLegacyChats(oldName){const marker='axiom_imported_'+localKey+'_'+oldName;if(read(marker,false))return 0;let imported=await dbRead('conversations',oldName);if(!Array.isArray(imported)){const history=read('axiom_history_'+oldName,{});imported=Object.keys(MODES).filter(m=>Array.isArray(history[m])&&history[m].length).map(m=>({id:uid(),mode:m,title:MODES[m].name+' conversation',updated:Date.now(),messages:history[m]}));}if(!imported.length)return 0;const copied=imported.map(t=>({...t,id:uid(),modelProfile:AXIOM_MODELS[t.modelProfile]?t.modelProfile:'core-1',messages:t.messages.map(m=>({...m,id:uid()}))}));await dbWrite('conversations',localKey,[...threads,...copied]);threads.push(...copied);write(marker,true);renderRecent();return copied.length;}
 $('openImport').onclick=()=>{$('settingsDialog').close();$('legacyUsername').value=read('axiom_current_user',username)||username;$('legacyPassword').value='';$('importError').textContent='';$('importDialog').showModal();};
 $('importForm').onsubmit=async e=>{e.preventDefault();$('importSubmit').disabled=true;$('importError').textContent='';try{
   const oldName=$('legacyUsername').value.trim(),password=$('legacyPassword').value,users=read('axiom_users',{}),old=Object.hasOwn(users,oldName)?users[oldName]:null;
