@@ -2272,6 +2272,75 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 #groupChannelEditDialog{width:min(500px,calc(100% - 24px))}
 @media(max-width:760px){.group-channel-manager-create{flex-direction:column}.group-channel-manager-create .btn{width:100%}.group-role-order{flex-wrap:wrap}.group-role-actions{flex-wrap:wrap}.group-role-actions .danger{margin-left:0}.group-channel-manager-category-head{grid-template-columns:1fr}.group-channel-manager-category-actions{justify-content:flex-start}}
 
+
+.chat-log,.composer-wrap{width:min(100%,1380px)}
+.chat-log{padding-left:clamp(24px,4vw,70px);padding-right:clamp(24px,4vw,70px)}
+.composer-wrap{padding-left:clamp(24px,4vw,70px);padding-right:clamp(24px,4vw,70px)}
+.response{max-width:none}
+.code-card pre{max-height:760px}
+.paste-file-card{margin-top:9px;border:1px solid var(--line);border-radius:11px;background:var(--surface);overflow:hidden}
+.paste-file-head{min-height:42px;display:flex;align-items:center;gap:9px;padding:8px 10px}
+.paste-file-head>.icon{width:16px;color:var(--muted)}
+.paste-file-copy{flex:1;min-width:0}
+.paste-file-copy strong{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.paste-file-copy span{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+.paste-file-head .btn{font-size:9px;padding:5px 7px}
+.paste-file-body{border-top:1px solid var(--line);max-height:360px;overflow:auto;background:var(--code);color:#d9e2f0;padding:12px;font:11px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre;tab-size:4}
+.response-activity{margin:8px 0 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface);overflow:hidden}
+.response-activity summary{cursor:pointer;list-style:none;padding:8px 10px;font-size:10px;color:var(--muted);display:flex;align-items:center;gap:7px}
+.response-activity summary::-webkit-details-marker{display:none}
+.response-activity summary::after{content:"›";margin-left:auto;font-size:15px;transition:transform .15s}
+.response-activity[open] summary::after{transform:rotate(90deg)}
+.response-activity-body{border-top:1px solid var(--line);padding:8px 10px;display:flex;flex-direction:column;gap:5px;font-size:9px;color:var(--muted)}
+.report-btn{opacity:.72}
+.report-btn:hover{opacity:1}
+.updates-shell{width:min(920px,100%);margin:auto;padding:30px 32px 55px}
+.updates-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.updates-heading h1{margin:0;font-size:27px;letter-spacing:-.8px}
+.updates-heading p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.update-composer{border:1px solid var(--line);border-radius:13px;background:var(--surface);padding:12px;margin-bottom:15px}
+.update-composer-row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:8px}
+.update-composer input,.update-composer textarea{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:9px;font-size:11px}
+.update-composer textarea{width:100%;min-height:110px;margin-top:8px;resize:vertical}
+.update-composer-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+.updates-list{display:flex;flex-direction:column;gap:9px}
+.update-card{border:1px solid var(--line);border-radius:13px;background:var(--surface);padding:14px}
+.update-card-head{display:flex;align-items:flex-start;gap:10px}
+.update-card-head>.avatar{width:34px;height:34px;border-radius:10px}
+.update-card-meta{min-width:0;flex:1}
+.update-card-meta strong{display:block;font-size:12px}
+.update-card-meta span{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+.update-version{font:9px ui-monospace,SFMono-Regular,Consolas,monospace;border:1px solid var(--line);border-radius:999px;padding:3px 6px;color:var(--blue)}
+.update-card h2{font-size:15px;margin:12px 0 6px}
+.update-card p{font-size:11px;color:var(--muted);line-height:1.6;white-space:pre-wrap;margin:0}
+.mod-report-list{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.mod-report-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px}
+.mod-report-top{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.mod-report-type,.mod-report-status{font-size:8px;text-transform:uppercase;letter-spacing:.05em;border:1px solid var(--line);border-radius:999px;padding:3px 6px;color:var(--muted)}
+.mod-report-top time{margin-left:auto;color:var(--muted);font-size:9px}
+.mod-report-card h3{margin:9px 0 4px;font-size:12px}
+.mod-report-card p{margin:3px 0;color:var(--muted);font-size:10px;line-height:1.5;overflow-wrap:anywhere}
+.mod-report-actions{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.mod-report-actions .btn{font-size:9px;padding:6px 8px}
+.mod-filter-card{border:1px solid var(--line);border-radius:13px;background:var(--surface);overflow:hidden}
+.mod-filter-head{padding:13px;border-bottom:1px solid var(--line)}
+.mod-filter-head strong{display:block;font-size:12px}
+.mod-filter-head span{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+.mod-filter-form{display:flex;gap:7px;padding:12px;border-bottom:1px solid var(--line)}
+.mod-filter-form input{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:9px}
+.mod-filter-list{padding:7px}
+.mod-filter-row{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:8px 9px;border-radius:8px}
+.mod-filter-row:nth-child(odd){background:var(--soft)}
+.mod-filter-row code{font-size:10px}
+@media(max-width:760px){
+  .chat-log,.composer-wrap{width:100%;padding-left:12px;padding-right:12px}
+  .message.user{margin-left:8px}
+  .updates-shell{padding:18px 12px 38px}
+  .updates-heading{flex-direction:column}
+  .update-composer-row{grid-template-columns:1fr}
+  .mod-filter-form{flex-direction:column}
+}
+
 </style>
 </head>
 <body>
@@ -2304,7 +2373,7 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/></symbol>
 <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
 <symbol id="i-pin" viewBox="0 0 24 24"><path d="m14 4 6 6-3 1-3 3-1 6-3-7-7-3 6-1 3-3 1-3Z"/><path d="m10 14-6 6"/></symbol>
-</defs></svg>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4m0 0h10l-1.5 3L15 10H5"/></symbol></defs></svg>
 <section id="authWrap">
   <div class="auth-intro"><div class="brand"><img data-logo alt="">Axiom<em>.</em></div><div><h1>Your next game<br>starts with <span>an idea.</span></h1><p>A place to build interfaces, work through scripts, and bring your Roblox projects to life.</p><div class="auth-capabilities"><span><svg class="icon"><use href="#i-layout"/></svg>Interfaces</span><span><svg class="icon"><use href="#i-code"/></svg>Scripts</span><span><svg class="icon"><use href="#i-box"/></svg>Systems</span></div></div><span class="small muted">Made for Roblox developers.</span></div>
   <main class="auth-main"><form class="auth-card" id="authForm"><h2 id="authTitle">Welcome back.</h2><p id="authSub">Open your workspace and keep building.</p><div class="field"><label id="authUserLabel" for="authUser">Username or email</label><input id="authUser" autocomplete="username" maxlength="254" required placeholder="Username or verified email"></div><div class="field" id="authEmailField" hidden><label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com"><p class="help">Private. Used for verification and account recovery.</p></div><div class="field"><label for="authPass">Password</label><input id="authPass" type="password" autocomplete="current-password" maxlength="128" minlength="8" required placeholder="Your password"></div><div class="field" id="authConfirmField" hidden><label for="authConfirm">Confirm password</label><input id="authConfirm" type="password" autocomplete="new-password" maxlength="128" minlength="8" placeholder="Type it again"></div><details id="ownerSignup" class="owner-signup" hidden><summary>Registering a reserved owner account?</summary><label class="sr-only" for="ownerSignupCode">Owner registration code</label><input id="ownerSignupCode" type="password" autocomplete="off" maxlength="128" placeholder="Owner registration code"></details><p id="authError" class="form-error" role="alert"></p><button class="btn primary" id="authSubmit">Open workspace</button><div class="auth-secondary"><button type="button" class="auth-link" id="forgotPassword">Forgot password?</button><button type="button" class="auth-link" id="legacyClaimBtn">Claim an old local account</button></div><div class="auth-switch"><span id="authSwitchText">First time here?</span> <button type="button" id="authSwitch">Create an account</button></div><div class="auth-note">Usernames are unique across Axiom. Verified emails can be used to sign in and recover your account.</div></form></main>
@@ -2316,7 +2385,7 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
   <button class="btn new-chat" id="newChat"><svg class="icon"><use href="#i-plus"/></svg>New chat<kbd>Alt N</kbd></button>
   <div class="nav-label">Workspace</div><nav class="nav" id="modeNav"><button class="nav-item active" data-mode="axiom"><img class="asset-icon" src="/icons/ai.png" alt="">Axiom<span class="nav-dot"></span></button><button class="nav-item" data-mode="ui"><img class="asset-icon" src="/icons/studio.png" alt="">Interface designer<span class="nav-dot"></span></button><button class="nav-item" data-mode="code"><img class="asset-icon" src="/icons/api.png" alt="">Script developer<span class="nav-dot"></span></button></nav>
   <hr class="side-line"><button class="nav-item" id="devhubNav"><img class="asset-icon" src="/icons/post.png" alt="">DevHub</button>
-  <button class="nav-item" id="creationsNav"><img class="asset-icon" src="/icons/creation.png" alt="">Creations</button><button class="nav-item" id="dmsNav"><img class="asset-icon" src="/icons/message.png" alt="">Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><button class="nav-item" id="notificationsNav"><img class="asset-icon" src="/icons/activity.png" alt="">Notifications<span class="nav-unread" id="notificationUnreadBadge" hidden>0</span></button><button class="nav-item" id="groupsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-users"/></svg>Groups<span class="nav-unread" id="groupInviteBadge" hidden>0</span></button><div class="recent-heading"><div class="nav-label">Recent chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
+  <button class="nav-item" id="creationsNav"><img class="asset-icon" src="/icons/creation.png" alt="">Creations</button><button class="nav-item" id="dmsNav"><img class="asset-icon" src="/icons/message.png" alt="">Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><button class="nav-item" id="notificationsNav"><img class="asset-icon" src="/icons/activity.png" alt="">Notifications<span class="nav-unread" id="notificationUnreadBadge" hidden>0</span></button><button class="nav-item" id="groupsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-users"/></svg>Groups<span class="nav-unread" id="groupInviteBadge" hidden>0</span></button><button class="nav-item" id="updatesNav"><img class="asset-icon" src="/icons/activity.png" alt="">Updates</button><div class="recent-heading"><div class="nav-label">Recent chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
   <div class="staff-nav" id="staffNav" hidden>
     <div class="nav-label">Staff</div>
     <button class="nav-item" id="moderationNav" hidden><img class="asset-icon" src="/icons/support.png" alt="">Moderation</button>
@@ -2569,6 +2638,23 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
     </div>
   </div>
 </dialog>
+<section id="updatesView" class="shared-view" hidden aria-label="Axiom updates">
+  <div class="updates-shell">
+    <div class="updates-heading">
+      <div><h1>Axiom Updates</h1><p>Live development notes from the Axiom team.</p></div>
+      <button id="updatesRefresh" class="btn" type="button">Refresh</button>
+    </div>
+    <form id="updateComposer" class="update-composer" hidden>
+      <div class="update-composer-row">
+        <input id="updateVersion" maxlength="32" placeholder="v9.3.0" aria-label="Version">
+        <input id="updateTitle" maxlength="100" required placeholder="What changed?" aria-label="Update title">
+      </div>
+      <textarea id="updateBody" maxlength="5000" required placeholder="Write the update details…"></textarea>
+      <div class="update-composer-foot"><span id="updateStatus" class="inline-error"></span><button id="publishUpdate" class="btn primary">Publish update</button></div>
+    </form>
+    <div id="updatesList" class="updates-list"></div>
+  </div>
+</section>
 <section id="moderationView" class="shared-view" hidden aria-label="Moderation dashboard">
   <div class="mod-shell">
     <div class="mod-heading">
@@ -2589,6 +2675,8 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
     <div class="mod-tabs" role="tablist" aria-label="Moderation sections">
       <button type="button" data-mod-tab="members" aria-selected="true">Members</button>
       <button type="button" data-mod-tab="content" aria-selected="false">Content</button>
+      <button type="button" data-mod-tab="reports" aria-selected="false">Reports</button>
+      <button type="button" data-mod-tab="filters" aria-selected="false">Word filter</button>
       <button type="button" data-mod-tab="audit" aria-selected="false">Audit log</button>
     </div>
 
@@ -2641,7 +2729,31 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
       <button id="modMoreContent" class="btn mod-more" type="button" hidden>Load more</button>
     </section>
 
-    <section class="mod-panel" data-mod-panel="audit" hidden>
+    <section class="mod-panel" data-mod-panel="reports" hidden>
+  <div class="mod-toolbar">
+    <input id="modReportSearch" class="search-input" placeholder="Search reports…">
+    <select id="modReportStatus" aria-label="Report status">
+      <option value="open">Open</option>
+      <option value="reviewing">Reviewing</option>
+      <option value="all">All</option>
+      <option value="resolved">Resolved</option>
+      <option value="dismissed">Dismissed</option>
+    </select>
+  </div>
+  <div id="modReportList" class="mod-report-list"></div>
+  <button id="modMoreReports" class="btn mod-more" type="button" hidden>Load more</button>
+</section>
+<section class="mod-panel" data-mod-panel="filters" hidden>
+  <div class="mod-filter-card">
+    <div class="mod-filter-head"><div><strong>Blocked words</strong><span>Applied to community text, DMs, and Group messages.</span></div></div>
+    <form id="modFilterForm" class="mod-filter-form">
+      <input id="modFilterWord" maxlength="60" autocomplete="off" placeholder="Add a blocked word…" required>
+      <button id="modFilterAdd" class="btn primary">Add word</button>
+    </form>
+    <div id="modFilterList" class="mod-filter-list"></div>
+  </div>
+</section>
+<section class="mod-panel" data-mod-panel="audit" hidden>
       <div class="mod-toolbar">
         <input id="modAuditSearch" class="search-input" placeholder="Search moderation actions or reasons…">
       </div>
@@ -2778,6 +2890,18 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 </div><p class="form-error" id="settingsError" role="alert"></p></div><div class="dialog-footer"><button class="btn ghost danger" id="logoutBtn" type="button">Log out</button><span class="spacer"></span><button class="btn" type="button" data-close="settingsDialog">Cancel</button><button class="btn primary" id="saveSettings">Save changes</button></div></form></dialog>
 <dialog id="searchDialog" aria-labelledby="searchTitle"><div class="dialog-header"><h2 id="searchTitle">Find a conversation</h2><button class="icon-btn" data-close="searchDialog" aria-label="Close search"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><label class="sr-only" for="chatSearch">Search chats</label><input id="chatSearch" class="search-input" placeholder="Search your conversations…"><div id="searchResults"></div></div></dialog>
 <dialog id="confirmDialog" aria-labelledby="confirmTitle"><div class="dialog-header"><h2 id="confirmTitle">Delete conversation?</h2></div><div class="dialog-body">This removes the conversation from this browser.</div><div class="dialog-footer"><span class="spacer"></span><button class="btn" id="confirmCancel">Keep chat</button><button class="btn danger" id="confirmDelete">Delete chat</button></div></dialog>
+<dialog id="reportDialog" aria-labelledby="reportTitle">
+  <div class="dialog-header"><h2 id="reportTitle">Report</h2><button class="icon-btn" data-close="reportDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div>
+  <form id="reportForm">
+    <div class="dialog-body">
+      <p id="reportTargetLabel" class="small muted"></p>
+      <div class="field"><label for="reportReason">Reason</label><select id="reportReason" required><option value="spam">Spam</option><option value="harassment">Harassment</option><option value="hate">Hate or slurs</option><option value="impersonation">Impersonation</option><option value="inappropriate">Inappropriate content</option><option value="other">Other</option></select></div>
+      <div class="field"><label for="reportDetail">Details <span class="muted">optional</span></label><textarea id="reportDetail" maxlength="800" placeholder="Anything the moderators should know?"></textarea></div>
+      <p id="reportError" class="form-error"></p>
+    </div>
+    <div class="dialog-footer"><button class="btn" data-close="reportDialog" type="button">Cancel</button><span class="spacer"></span><button id="reportSubmit" class="btn danger">Submit report</button></div>
+  </form>
+</dialog>
 <dialog id="legacyBoardDialog" aria-labelledby="legacyBoardTitle"><div class="dialog-header"><h2 id="legacyBoardTitle">Earlier DevHub messages</h2><button class="icon-btn" data-close="legacyBoardDialog" aria-label="Close earlier messages"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><p class="small muted">Read-only history from the local-profile version. These names were not verified and are not linked to current accounts.</p><div id="legacyBoardContent"></div></div></dialog>
 <dialog id="publicProfileDialog" aria-label="Member profile"><div class="profile-hero"><button class="icon-btn" data-close="publicProfileDialog" aria-label="Close profile"><svg class="icon"><use href="#i-x"/></svg></button></div><div id="publicProfileBody"></div></dialog>
 <dialog id="creationDialog" aria-labelledby="creationDialogTitle"><div class="dialog-header"><h2 id="creationDialogTitle">Share your work</h2><button class="icon-btn" data-close="creationDialog" aria-label="Close creation editor"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="creationForm"><div class="dialog-body"><div class="field"><label for="creationTitle">Title</label><input id="creationTitle" maxlength="100" required placeholder="Give your creation a name"></div><div class="field"><label for="creationCategory">Category</label><select id="creationCategory"><option>Interface</option><option>Script</option><option>Game</option><option>Other</option></select></div><div class="field"><label for="creationDescription">About your creation</label><textarea id="creationDescription" maxlength="3000" rows="4" required placeholder="What did you build? Tell us how it works."></textarea></div><div class="field"><label>Attachments <span class="muted small">(up to 4)</span></label><button type="button" class="drop-zone" id="creationAttach"><svg class="icon"><use href="#i-upload"/></svg><strong>Add screenshots, a clip, or project files</strong><span>Images · 5 MB / videos · 15 MB / code & Roblox files · 10 MB</span></button><div class="creation-drafts" id="creationDrafts"></div></div><p id="creationError" class="form-error" role="alert"></p><p class="small muted">Your post and attachments will be visible to the community. Only share work you have permission to publish.</p></div><div class="dialog-footer"><span class="spacer"></span><button class="btn" type="button" data-close="creationDialog">Cancel</button><button class="btn primary" id="publishCreation">Publish creation</button></div></form></dialog>
@@ -3190,7 +3314,7 @@ async function boot(user){
   if(requestedProfile)openPublicProfile('@'+requestedProfile,false);
   else consumeGroupInviteFromURL();
 }
-function hideCommunityViews(){for(const id of ['creationsView','dmsView','notificationsView','groupsView','moderationView','adminView'])$(id).hidden=true;for(const id of ['creationsNav','dmsNav','notificationsNav','groupsNav','moderationNav','adminNav'])$(id).classList.remove('active');}
+function hideCommunityViews(){for(const id of ['creationsView','dmsView','notificationsView','groupsView','updatesView','moderationView','adminView'])$(id).hidden=true;for(const id of ['creationsNav','dmsNav','notificationsNav','groupsNav','updatesNav','moderationNav','adminNav'])$(id).classList.remove('active');}
 function communityView(name,title,sub,nav){
   if(activeRequest){toast('Stop the current reply before switching views.');return false;}
   view=name;stopHub();stopDMs();clearInterval(notificationTimer);notificationTimer=null;clearInterval(groupTimer);groupTimer=null;hideCommunityViews();$('chatView').hidden=true;$('hubView').hidden=true;$('clearChat').hidden=true;$('topTitle').textContent=title;$('topSub').textContent=sub;document.querySelectorAll('[data-mode]').forEach(b=>b.classList.remove('active'));$('devhubNav').classList.remove('active');$(name+'View').hidden=false;$(nav).classList.add('active');closeSidebar();return true;
@@ -3558,12 +3682,13 @@ function renderChat(scroll=true){
       const images=Array.isArray(m.content)?m.content.filter(c=>c.type==='image_url'):[];
       if(images.length){const strip=document.createElement('div');strip.className='user-images';images.forEach(im=>{if(!/^data:image\/(png|jpeg|webp|gif);base64,/i.test(im.image_url?.url||''))return;const img=document.createElement('img');img.src=im.image_url.url;img.alt='Attached reference';strip.append(img);});content.append(strip);}
       const p=document.createElement('div');p.textContent=m.displayText??m._preview??plainContent(m.content);content.append(p);
-      if(m.files?.length){const note=document.createElement('div');note.className='small muted';note.textContent=m.files.map(f=>f.name).join(' · ');content.append(note);}
+      if(m.files?.length)renderUserFiles(m,content);
     }else{
       renderResponse(content,m.content,activeRequest?.messageId===m.id);
       if(!m.content&&activeRequest?.messageId===m.id)content.innerHTML='<div class="thinking"><i></i><i></i><i></i><span>Working on your request…</span></div>';
     }
     row.append(content);
+    if(m.role==='assistant'&&m.usage&&m.content)renderResponseActivity(m,row);
     if(m.role==='assistant'&&m.usage&&m.content){
       const usage=document.createElement('div');
       usage.className='response-usage';
@@ -3585,6 +3710,138 @@ function updateControls(){const busy=!!activeRequest;$('sendBtn').hidden=busy;$(
 $('chatArea').onscroll=()=>{$('jumpBottom').hidden=nearBottom()||!currentThread()?.messages.length;};$('jumpBottom').onclick=toBottom;
 function resizePrompt(){const p=$('prompt');p.style.height='auto';p.style.height=Math.min(200,Math.max(52,p.scrollHeight))+'px';updateControls();}
 $('prompt').oninput=resizePrompt;
+
+let pastedTextCounter=0;
+
+$('prompt').addEventListener('paste',event=>{
+  if(activeRequest||attachmentLoading)return;
+
+  const text=event.clipboardData?.getData('text/plain')||'';
+
+  if(text.length<4500)return;
+
+  if(pending.length>=5){
+    toast('Remove an attachment before adding pasted text.');
+    return;
+  }
+
+  if(text.length>200000){
+    toast('That paste is over 200 KB. Split it into smaller parts.');
+    return;
+  }
+
+  event.preventDefault();
+  pastedTextCounter+=1;
+
+  pending.push({
+    id:uid(),
+    name:'Pasted text '+pastedTextCounter+'.txt',
+    kind:'text',
+    data:text,
+    pasted:true
+  });
+
+  renderAttachments();
+  updateControls();
+  toast('Large paste added as a file.');
+});
+
+function sourceFileText(message,name){
+  const source=plainContent(message.content);
+  const escaped=String(name||'').replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const match=new RegExp(
+    '<source_file name=\"'+escaped+'\">\\n([\\s\\S]*?)\\n</source_file>'
+  ).exec(source);
+
+  if(match)return match[1];
+
+  const legacy=/<source_file>\n([\s\S]*?)\n<\/source_file>/.exec(source);
+  return legacy?.[1]||'';
+}
+
+function renderUserFiles(message,container){
+  for(const file of message.files||[]){
+    if(file.kind!=='text')continue;
+
+    const card=document.createElement('div');
+    card.className='paste-file-card';
+
+    const head=document.createElement('div');
+    head.className='paste-file-head';
+    head.innerHTML=icon('file');
+
+    const copy=document.createElement('div');
+    copy.className='paste-file-copy';
+
+    const name=document.createElement('strong');
+    name.textContent=file.name;
+
+    const meta=document.createElement('span');
+    meta.textContent=
+      (file.pasted?'Pasted text':'Source file')+
+      (file.chars?' · '+shortTokenCount(file.chars)+' chars':'');
+
+    copy.append(name,meta);
+
+    const toggle=document.createElement('button');
+    toggle.className='btn ghost';
+    toggle.type='button';
+    toggle.textContent='View';
+
+    const body=document.createElement('pre');
+    body.className='paste-file-body';
+    body.hidden=true;
+    body.textContent=sourceFileText(message,file.name);
+
+    toggle.onclick=()=>{
+      body.hidden=!body.hidden;
+      toggle.textContent=body.hidden?'View':'Hide';
+    };
+
+    head.append(copy,toggle);
+    card.append(head,body);
+    container.append(card);
+  }
+}
+
+function renderResponseActivity(message,row){
+  if(!message.usage)return;
+
+  const details=document.createElement('details');
+  details.className='response-activity';
+
+  const files=Number(message.activity?.files)||0;
+  const summary=document.createElement('summary');
+
+  summary.textContent=
+    (files?`Worked with ${files} file${files===1?'':'s'} · `:'')+
+    (message.usage.label||'Axiom Core')+
+    ' · ~'+shortTokenCount(message.usage.input)+' context tokens';
+
+  const body=document.createElement('div');
+  body.className='response-activity-body';
+
+  const pipeline=document.createElement('span');
+  pipeline.textContent='Pipeline: '+(message.usage.pipeline||'Axiom Core');
+
+  const output=document.createElement('span');
+  output.textContent=
+    'Generated ~'+shortTokenCount(message.usage.output)+' output tokens';
+
+  body.append(pipeline,output);
+
+  if(files){
+    const fileLine=document.createElement('span');
+    fileLine.textContent=
+      'Referenced '+files+' attached source/image file'+(files===1?'':'s');
+    body.append(fileLine);
+  }
+
+  details.append(summary,body);
+  row.append(details);
+}
+
+
 $('prompt').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing&&prefs.enterSend){e.preventDefault();if(!activeRequest)$('chatForm').requestSubmit();}};
 function dataURL(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('Could not read that file.'));r.readAsDataURL(file);});}
 async function validImage(file,limit=5*1024*1024){
@@ -3604,12 +3861,12 @@ $('attachFile').onchange=async e=>{
       await validImage(file,2*1024*1024);pending.push({id:uid(),name:file.name,kind:'image',data:await dataURL(file)});
     }else{
       if(!/\.(lua|luau|txt|json|md|html|css|js|ts|log)$/i.test(file.name))throw new Error('Attach an image or a supported text/code file.');
-      if(file.size>100000)throw new Error('Keep each code file under 100 KB.');const text=await file.text();if(text.includes('\u0000'))throw new Error('That file does not look like text.');pending.push({id:uid(),name:file.name,kind:'text',data:text});
+      if(file.size>200000)throw new Error('Keep each code file under 200 KB.');const text=await file.text();if(text.includes('\u0000'))throw new Error('That file does not look like text.');pending.push({id:uid(),name:file.name,kind:'text',data:text,pasted:false});
     }
   }}catch(err){toast(err.message);}finally{e.target.value='';attachmentLoading=false;renderAttachments();updateControls();}
 };
 function renderAttachments(){const wrap=$('attachments');wrap.replaceChildren();wrap.hidden=!pending.length;pending.forEach(a=>{const c=document.createElement('div');c.className='attachment';if(a.kind==='image'){const im=document.createElement('img');im.src=a.data;im.alt='';c.append(im);}else c.innerHTML=icon('file');const name=document.createElement('span');name.textContent=a.name;const x=document.createElement('button');x.type='button';x.className='icon-btn';x.ariaLabel='Remove '+a.name;x.innerHTML=icon('x');x.onclick=()=>{pending=pending.filter(p=>p.id!==a.id);renderAttachments();updateControls();};c.append(name,x);wrap.append(c);});updateControls();}
-function makeUserMessage(text,files){let complete=text;for(const f of files.filter(f=>f.kind==='text'))complete+='\n\nAttached source file: '+f.name+'\n<source_file>\n'+f.data+'\n</source_file>';const images=files.filter(f=>f.kind==='image');const content=images.length?[{type:'text',text:complete||'Use these reference images for my Roblox project.'},...images.map(f=>({type:'image_url',image_url:{url:f.data}}))]:complete;return {id:uid(),role:'user',content,displayText:text||'Attached references',files:files.map(({name,kind})=>({name,kind})),ts:Date.now()};}
+function makeUserMessage(text,files){let complete=text;for(const f of files.filter(f=>f.kind==='text'))complete+='\n\nAttached source file: '+f.name+'\n<source_file name="'+f.name.replaceAll('"','')+'">\n'+f.data+'\n</source_file>';const images=files.filter(f=>f.kind==='image');const content=images.length?[{type:'text',text:complete||'Use these reference images for my Roblox project.'},...images.map(f=>({type:'image_url',image_url:{url:f.data}}))]:complete;return {id:uid(),role:'user',content,displayText:text||'Attached references',files:files.map(f=>({name:f.name,kind:f.kind,pasted:!!f.pasted,chars:f.kind==='text'?f.data.length:0})),ts:Date.now()};}
 async function submitText(text){if(activeRequest||attachmentLoading||!(text.trim()||pending.length))return;
   let t=currentThread();if(!t){t={id:uid(),mode,modelProfile,title:text.trim().slice(0,55)||pending[0]?.name||'New conversation',updated:Date.now(),messages:[]};threads.unshift(t);activeId=t.id;}
   t.messages.push(makeUserMessage(text.trim(),pending));pending=[];$('prompt').value='';renderAttachments();resizePrompt();t.updated=Date.now();saveThreads().catch(()=>{});renderRecent();renderChat();await generate();
@@ -3673,7 +3930,8 @@ async function generate(action='retry'){
   const last=t.messages.at(-1),old=last?.role==='assistant'?last:null;
   const source=old?t.messages.slice(0,-1):t.messages;
   let messages;try{messages=contextMessages(source);}catch(err){chatFailure={threadId:t.id,message:err.message};showChatError();return;}
-  const controller=new AbortController(),reply={id:uid(),role:'assistant',content:'',ts:Date.now()};
+  const attachedFileCount=(source.at(-1)?.files||[]).length;
+  const controller=new AbortController(),reply={id:uid(),role:'assistant',content:'',ts:Date.now(),activity:{files:attachedFileCount}};
   if(old)t.messages.pop();t.messages.push(reply);activeRequest={controller,threadId:t.id,messageId:reply.id};chatFailure=null;updateControls();renderChat();
   let timer,lastDraw=0,gotAny=false;
   const paint=()=>{if(activeId!==t.id)return;const follow=nearBottom();const node=$('chatLog').querySelector(`[data-message="${reply.id}"] .response`);if(node)renderResponse(node,reply.content,true);if(follow)toBottom();};
@@ -3991,6 +4249,10 @@ async function openPublicProfile(ref,pushUrl=true){
         openDMs(user);
       };
       actions.append(message);
+
+      actions.append(
+        reportButton('profile',user.id,'@'+user.username)
+      );
     }
 
     if(sessionToken){
@@ -4125,6 +4387,195 @@ let latestHub=[];
 $('legacyBoardBtn').onclick=async()=>{$('legacyBoardContent').textContent='Loading earlier messages…';$('legacyBoardDialog').showModal();try{const data=await api('/devhub/archive');$('legacyBoardContent').replaceChildren();if(!data.messages.length)$('legacyBoardContent').textContent='No earlier messages are available.';for(const m of data.messages){const row=document.createElement('article');row.className='admin-post';const body=document.createElement('div');const name=document.createElement('strong');name.textContent=m.name+' · legacy profile';const text=document.createElement('p');text.textContent=m.text;body.append(name,text);row.append(body);$('legacyBoardContent').append(row);}}catch(err){$('legacyBoardContent').textContent=err.message;}};
 
 
+
+let reportTarget=null;
+
+function reportButton(type,id,label){
+  const button=document.createElement('button');
+  button.type='button';
+  button.className='icon-btn report-btn';
+  button.ariaLabel='Report';
+  button.title='Report';
+  button.innerHTML=icon('flag');
+  button.onclick=e=>{
+    e.stopPropagation();
+    openReport(type,id,label);
+  };
+  return button;
+}
+
+function openReport(type,id,label='this content'){
+  reportTarget={type,id,label};
+  $('reportTargetLabel').textContent='Reporting '+label;
+  $('reportReason').value='spam';
+  $('reportDetail').value='';
+  $('reportError').textContent='';
+  $('reportDialog').showModal();
+}
+
+$('reportForm').onsubmit=async e=>{
+  e.preventDefault();
+
+  if(!reportTarget)return;
+
+  $('reportSubmit').disabled=true;
+  $('reportError').textContent='';
+
+  try{
+    await api('/reports',{
+      method:'POST',
+      body:{
+        type:reportTarget.type,
+        targetId:reportTarget.id,
+        reason:$('reportReason').value,
+        detail:$('reportDetail').value.trim()
+      }
+    });
+
+    $('reportDialog').close();
+    reportTarget=null;
+    toast('Report submitted to the moderation team.');
+  }catch(err){
+    $('reportError').textContent=err.message;
+  }finally{
+    $('reportSubmit').disabled=false;
+  }
+};
+
+let updatesTimer=null;
+let latestUpdates=[];
+
+function openUpdates(){
+  if(!communityView('updates','Updates','Axiom development log','updatesNav'))return;
+
+  loadUpdates();
+  clearInterval(updatesTimer);
+
+  updatesTimer=setInterval(()=>{
+    if(view==='updates'&&!document.hidden)loadUpdates(true);
+  },10000);
+}
+
+$('updatesNav').onclick=openUpdates;
+$('updatesRefresh').onclick=()=>loadUpdates();
+
+async function loadUpdates(silent=false){
+  try{
+    const data=await api('/updates');
+    latestUpdates=data.updates||[];
+    $('updateComposer').hidden=!data.canPost;
+    renderUpdates();
+
+    if(!silent)$('updateStatus').textContent='';
+  }catch(err){
+    $('updateStatus').textContent=err.message;
+  }
+}
+
+function renderUpdates(){
+  const list=$('updatesList');
+  list.replaceChildren();
+
+  if(!latestUpdates.length){
+    list.innerHTML='<div class="feed-empty"><h2>No update logs yet.</h2><p>Axiom team updates will appear here live.</p></div>';
+    return;
+  }
+
+  for(const item of latestUpdates){
+    const card=document.createElement('article');
+    card.className='update-card';
+
+    const head=document.createElement('div');
+    head.className='update-card-head';
+
+    const av=document.createElement('span');
+    av.className='avatar';
+    avatar(av,item.author,mediaURL(item.author.avatarId));
+
+    const meta=document.createElement('div');
+    meta.className='update-card-meta';
+
+    const author=document.createElement('strong');
+    author.textContent=item.author.displayName||item.author.username;
+
+    const info=document.createElement('span');
+    info.textContent='@'+item.author.username+' · '+modAgo(item.ts);
+
+    meta.append(author,info);
+    head.append(av,meta);
+
+    if(item.version){
+      const version=document.createElement('span');
+      version.className='update-version';
+      version.textContent=item.version;
+      head.append(version);
+    }
+
+    if(item.author.id===account.id||account.canAdmin){
+      const remove=document.createElement('button');
+      remove.className='icon-btn';
+      remove.type='button';
+      remove.ariaLabel='Delete update';
+      remove.innerHTML=icon('trash');
+
+      remove.onclick=async()=>{
+        if(!await confirmAction(
+          'Delete this update?',
+          'This removes it from the live update log.'
+        ))return;
+
+        try{
+          await api(
+            '/updates/'+encodeURIComponent(item.id),
+            {method:'DELETE'}
+          );
+          latestUpdates=latestUpdates.filter(x=>x.id!==item.id);
+          renderUpdates();
+        }catch(err){
+          toast(err.message);
+        }
+      };
+
+      head.append(remove);
+    }
+
+    const title=document.createElement('h2');
+    title.textContent=item.title;
+
+    const body=document.createElement('p');
+    body.textContent=item.body;
+
+    card.append(head,title,body);
+    list.append(card);
+  }
+}
+
+$('updateComposer').onsubmit=async e=>{
+  e.preventDefault();
+  $('publishUpdate').disabled=true;
+  $('updateStatus').textContent='';
+
+  try{
+    await api('/updates',{
+      method:'POST',
+      body:{
+        version:$('updateVersion').value.trim(),
+        title:$('updateTitle').value.trim(),
+        body:$('updateBody').value.trim()
+      }
+    });
+
+    $('updateComposer').reset();
+    await loadUpdates();
+    toast('Update published.');
+  }catch(err){
+    $('updateStatus').textContent=err.message;
+  }finally{
+    $('publishUpdate').disabled=false;
+  }
+};
+
+
 function renderOnlineMembers(data){
   const wrap=$('onlineMembers');
   wrap.replaceChildren();
@@ -4172,6 +4623,7 @@ function renderHub(messages){
   if(!messages.length){const p=document.createElement('p');p.className='empty-hub';p.textContent='Nothing here yet. Share what you’re building.';$('hubLog').append(p);return;}
   for(const m of messages){const row=document.createElement('article');row.className='hub-message';const avatarBtn=document.createElement('button');avatarBtn.className='member-button';avatarBtn.ariaLabel='View @'+m.author.username;avatarBtn.onclick=()=>openPublicProfile(m.author.id);const av=document.createElement('span');av.className='avatar';avatar(av,m.author,mediaURL(m.author.avatarId));avatarBtn.append(av);const body=document.createElement('div');const meta=document.createElement('div');meta.className='hub-meta';meta.append(personLink(m.author));const handle=document.createElement('span');handle.className='person-handle';handle.textContent='@'+m.author.username;const time=document.createElement('time');time.dateTime=new Date(m.ts).toISOString();time.textContent=new Date(m.ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});meta.append(handle,time);
     if(m.author.id===account.id||account.canAdmin&&account.adminUntil>Date.now()){const del=document.createElement('button');del.className='icon-btn message-delete';del.ariaLabel='Delete message';del.innerHTML=icon('trash');del.onclick=async()=>{if(!await confirmAction('Delete this message?','This removes the message from DevHub.'))return;try{await api('/devhub/'+m.id,{method:'DELETE'});await loadHub();}catch(err){toast(err.message);}};meta.append(del);}
+    if(m.author.id!==account.id)meta.append(reportButton('devhub',m.id,'this DevHub post'));
     const p=document.createElement('p');p.textContent=m.text;body.append(meta,p);row.append(avatarBtn,body);$('hubLog').append(row);appendGroupInviteEmbeds(body,m.text);
   }if(follow)area.scrollTop=area.scrollHeight;
 }
@@ -4289,6 +4741,10 @@ function creationCommentRow(c,comment,panel,commentButton){
       }catch(err){toast(err.message);}
     };
     meta.append(del);
+  }
+
+  if(comment.author.id!==account.id){
+    meta.append(reportButton('comment',comment.id,'this comment'));
   }
 
   const text=document.createElement('p');
@@ -4509,6 +4965,12 @@ function renderCreations(){
       footerActions.append(pin);
     }
 
+    if(c.author.id!==account.id){
+      footerActions.append(
+        reportButton('creation',c.id,'“'+c.title+'”')
+      );
+    }
+
     if(c.author.id===account.id||account.canAdmin&&account.adminUntil>Date.now()){
       const del=document.createElement('button');
       del.className='icon-btn';
@@ -4640,7 +5102,7 @@ function renderGroupMembers(){
   for(const role of hoisted){const list=members.filter(m=>!rendered.has(m.user.id)&&groupMemberTopRole(m,roles)?.id===role.id);addSection(role.name,list,role.color);}
   addSection('Members',members.filter(m=>!rendered.has(m.user.id)));
 }async function openGroup(id){try{const d=await api('/groups/'+encodeURIComponent(id));currentGroup=d.group;currentChannel=currentGroup.channels.find(c=>c.id===currentChannel?.id)||currentGroup.channels[0]||null;renderGroupWorkspace();if(currentChannel)await openGroupChannel(currentChannel.id);}catch(e){toast(e.message);}}
-function renderGroupMessages(){const h=$('groupMessages');h.replaceChildren();if(!currentGroupMessages.length){h.innerHTML='<div class="feed-empty"><h2>Start the channel.</h2><p>Send the first message here.</p></div>';return;}for(const m of currentGroupMessages){const row=document.createElement('article');row.className='group-message';const av=document.createElement('span');av.className='avatar';avatar(av,m.author,mediaURL(m.author.avatarId));const copy=document.createElement('div');const head=document.createElement('div');head.className='group-message-head';const n=document.createElement('strong');n.textContent=m.author.displayName||m.author.username;const member=currentGroup?.members?.find(x=>x.user.id===m.author.id);if(member){const roles=new Map((currentGroup.roles||[]).map(r=>[r.id,r]));const top=groupMemberTopRole(member,roles);if(top)n.style.color=top.color;}const t=document.createElement('time');t.textContent=new Date(m.ts).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});head.append(n,t);const text=document.createElement('p');text.textContent=m.text;copy.append(head,text);row.append(av,copy);h.append(row);appendGroupInviteEmbeds(copy,m.text);}requestAnimationFrame(()=>h.scrollTop=h.scrollHeight);}
+function renderGroupMessages(){const h=$('groupMessages');h.replaceChildren();if(!currentGroupMessages.length){h.innerHTML='<div class="feed-empty"><h2>Start the channel.</h2><p>Send the first message here.</p></div>';return;}for(const m of currentGroupMessages){const row=document.createElement('article');row.className='group-message';const av=document.createElement('span');av.className='avatar';avatar(av,m.author,mediaURL(m.author.avatarId));const copy=document.createElement('div');const head=document.createElement('div');head.className='group-message-head';const n=document.createElement('strong');n.textContent=m.author.displayName||m.author.username;const member=currentGroup?.members?.find(x=>x.user.id===m.author.id);if(member){const roles=new Map((currentGroup.roles||[]).map(r=>[r.id,r]));const top=groupMemberTopRole(member,roles);if(top)n.style.color=top.color;}const t=document.createElement('time');t.textContent=new Date(m.ts).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});head.append(n,t);const text=document.createElement('p');text.textContent=m.text;copy.append(head,text);if(m.author.id!==account.id){const tools=document.createElement('div');tools.className='response-actions';tools.append(reportButton('group-message',m.id,'this Group message'));copy.append(tools);}row.append(av,copy);h.append(row);appendGroupInviteEmbeds(copy,m.text);}requestAnimationFrame(()=>h.scrollTop=h.scrollHeight);}
 async function openGroupChannel(id,silent=false){if(!currentGroup)return;if(!silent){currentChannel=currentGroup.channels.find(c=>c.id===id)||currentChannel;renderGroupChannels();$('groupChannelsPane').classList.remove('mobile-open');}try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent(id));currentChannel={...currentChannel,...d.channel};currentGroupMessages=d.messages||[];$('groupChannelName').textContent='# '+currentChannel.name;$('groupChannelTopic').textContent=currentChannel.topic||'';$('groupMessageInput').disabled=!currentChannel.canSend;$('groupMessageSend').disabled=!currentChannel.canSend;$('groupMessageInput').placeholder=currentChannel.canSend?'Message #'+currentChannel.name+'…':'You do not have permission to send here.';renderGroupChannels();renderGroupMessages();}catch(e){toast(e.message);}}
 function openGroups(){if(!communityView('groups','Groups','Private developer spaces','groupsNav'))return;loadGroups();refreshGroupInvites();groupTimer=setInterval(()=>{if(view==='groups'&&!document.hidden){if(currentGroup&&currentChannel)openGroupChannel(currentChannel.id,true);refreshGroupInvites();}},6500);}
 $('groupsNav').onclick=openGroups;$('groupChannelsMobileBtn').onclick=()=>{$('groupChannelsPane').classList.toggle('mobile-open');};$('groupCopyInviteHeader').onclick=()=>currentGroup?.group.inviteUrl&&copyText(currentGroup.group.inviteUrl);function openCreateGroup(){$('createGroupForm').reset();$('createGroupError').textContent='';$('createGroupDialog').showModal();$('createGroupName').focus();}$('createGroupBtn').onclick=openCreateGroup;$('groupEmptyCreate').onclick=openCreateGroup;$('createGroupForm').onsubmit=async e=>{e.preventDefault();$('createGroupSubmit').disabled=true;try{const d=await api('/groups',{method:'POST',body:{name:$('createGroupName').value.trim(),inviteCode:$('createGroupId').value.trim(),bio:$('createGroupBio').value.trim()}});$('createGroupDialog').close();await loadGroups();await openGroup(d.group.group.id);toast('Group created.');}catch(x){$('createGroupError').textContent=x.message;}finally{$('createGroupSubmit').disabled=false;}};
@@ -4827,6 +5289,8 @@ function selectModTab(tab){
 
   if(tab==='members')loadModOverview().then(()=>loadModUsers(true));
   if(tab==='content')loadModContent(true);
+  if(tab==='reports')loadModReports(true);
+  if(tab==='filters')loadModFilters();
   if(tab==='audit')loadModAudit(true);
 }
 
@@ -4873,7 +5337,8 @@ function renderModOverview(data){
     ['active24h','Active 24h'],
     ['banned','Banned'],
     ['hiddenContent','Hidden content'],
-    ['actions24h','Actions 24h']
+    ['actions24h','Actions 24h'],
+    ['openReports','Open reports']
   ];
 
   const holder=$('modStats');
@@ -5467,6 +5932,206 @@ function renderModContentItem(item){
   return card;
 }
 
+
+let modReportsNext=null;
+let modReportTimer=null;
+
+$('modReportSearch').oninput=()=>{
+  clearTimeout(modReportTimer);
+  modReportTimer=setTimeout(()=>loadModReports(true),220);
+};
+
+$('modReportStatus').onchange=()=>loadModReports(true);
+$('modMoreReports').onclick=()=>loadModReports(false);
+
+async function loadModReports(reset){
+  const params=new URLSearchParams({
+    q:$('modReportSearch').value.trim(),
+    status:$('modReportStatus').value,
+    offset:String(reset?0:(modReportsNext||0))
+  });
+
+  try{
+    const data=await api('/moderation/reports?'+params);
+    const list=$('modReportList');
+
+    if(reset)list.replaceChildren();
+
+    if(reset&&!data.reports.length){
+      list.innerHTML='<p class="recent-empty">No reports match these filters.</p>';
+    }else{
+      list.querySelector('.recent-empty')?.remove();
+
+      for(const report of data.reports){
+        list.append(renderModReport(report));
+      }
+    }
+
+    modReportsNext=data.next;
+    $('modMoreReports').hidden=modReportsNext===null;
+  }catch(err){
+    modSetStatus(err.message);
+  }
+}
+
+function renderModReport(report){
+  const card=document.createElement('article');
+  card.className='mod-report-card';
+
+  const top=document.createElement('div');
+  top.className='mod-report-top';
+
+  const type=document.createElement('span');
+  type.className='mod-report-type';
+  type.textContent=report.targetType;
+
+  const status=document.createElement('span');
+  status.className='mod-report-status';
+  status.textContent=report.status;
+
+  const time=document.createElement('time');
+  time.textContent=modAgo(report.createdAt);
+
+  top.append(type,status,time);
+
+  const title=document.createElement('h3');
+  title.textContent=report.context?.label||'Reported content';
+
+  const reporter=document.createElement('p');
+  reporter.textContent=
+    'Reported by @'+report.reporter.username+
+    ' · '+report.reason;
+
+  const preview=document.createElement('p');
+  preview.textContent=
+    (report.context?.preview||'Content is no longer available.')
+      .slice(0,500);
+
+  card.append(top,title,reporter,preview);
+
+  if(report.detail){
+    const detail=document.createElement('p');
+    detail.textContent='Details: '+report.detail;
+    card.append(detail);
+  }
+
+  const actions=document.createElement('div');
+  actions.className='mod-report-actions';
+
+  for(const [next,label] of [
+    ['reviewing','Reviewing'],
+    ['resolved','Resolve'],
+    ['dismissed','Dismiss']
+  ]){
+    const button=document.createElement('button');
+    button.className='btn'+(next==='resolved'?' primary':'');
+    button.type='button';
+    button.textContent=label;
+    button.disabled=report.status===next;
+
+    button.onclick=async()=>{
+      button.disabled=true;
+
+      try{
+        await api(
+          '/moderation/reports/'+encodeURIComponent(report.id),
+          {method:'PATCH',body:{status:next}}
+        );
+        await loadModReports(true);
+      }catch(err){
+        modSetStatus(err.message);
+      }finally{
+        button.disabled=false;
+      }
+    };
+
+    actions.append(button);
+  }
+
+  if(report.context?.authorId){
+    const member=document.createElement('button');
+    member.className='btn';
+    member.type='button';
+    member.textContent='Open member';
+    member.onclick=()=>{
+      selectModTab('members');
+      loadModUserDetail(report.context.authorId);
+    };
+    actions.append(member);
+  }
+
+  card.append(actions);
+  return card;
+}
+
+$('modFilterForm').onsubmit=async e=>{
+  e.preventDefault();
+
+  const word=$('modFilterWord').value.trim();
+  if(!word)return;
+
+  $('modFilterAdd').disabled=true;
+
+  try{
+    await api('/moderation/filters',{
+      method:'POST',
+      body:{word}
+    });
+
+    $('modFilterWord').value='';
+    await loadModFilters();
+  }catch(err){
+    modSetStatus(err.message);
+  }finally{
+    $('modFilterAdd').disabled=false;
+  }
+};
+
+async function loadModFilters(){
+  try{
+    const data=await api('/moderation/filters');
+    const list=$('modFilterList');
+    list.replaceChildren();
+
+    for(const item of data.words){
+      const row=document.createElement('div');
+      row.className='mod-filter-row';
+
+      const word=document.createElement('code');
+      word.textContent=item.word;
+
+      const remove=document.createElement('button');
+      remove.type='button';
+      remove.className='btn danger';
+      remove.textContent='Remove';
+
+      remove.onclick=async()=>{
+        remove.disabled=true;
+
+        try{
+          await api(
+            '/moderation/filters/'+encodeURIComponent(item.id),
+            {method:'DELETE'}
+          );
+          await loadModFilters();
+        }catch(err){
+          modSetStatus(err.message);
+        }
+      };
+
+      row.append(word,remove);
+      list.append(row);
+    }
+
+    if(!list.children.length){
+      list.innerHTML='<p class="recent-empty">No blocked words configured.</p>';
+    }
+  }catch(err){
+    modSetStatus(err.message);
+  }
+}
+
+
 $('modAuditSearch').oninput=()=>{
   clearTimeout(modAuditTimer);
   modAuditTimer=setTimeout(()=>loadModAudit(true),220);
@@ -6000,6 +6665,12 @@ function renderDMThread(){
         tools.append(del);
         row.append(tools);
       }else{
+        const tools=document.createElement('div');
+        tools.className='dm-message-tools';
+        tools.append(
+          reportButton('dm',message.id,'this direct message')
+        );
+        row.append(tools);
         row.append(compactTime);
       }
 
