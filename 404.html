@@ -2828,6 +2828,251 @@ $('creationForm').onsubmit=async e=>{
   }catch(err){$('creationError').textContent=err.message;}finally{creationPublishing=false;$('publishCreation').disabled=false;$('publishCreation').textContent='Publish creation';$('creationAttach').disabled=false;document.querySelectorAll('[data-close="creationDialog"]').forEach(b=>b.disabled=false);renderCreationDrafts();}
 };
 // Admin access is checked on every server request. UI visibility is only convenience.
+function stopDMs(){
+  clearInterval(dmTimer);
+  dmTimer=null;
+}
+
+function updateDMUnread(count){
+  const badge=$('dmUnreadBadge');
+  const total=Number(count)||0;
+  badge.textContent=total>99?'99+':String(total);
+  badge.hidden=total<1;
+}
+
+async function refreshDMUnread(){
+  if(!sessionToken)return;
+  try{
+    const data=await api('/dms');
+    updateDMUnread(data.unread);
+    if(view==='dms'){
+      dmConversations=data.conversations||[];
+      renderDMList();
+    }
+  }catch{}
+}
+
+function dmConversationMatches(item,query){
+  if(!query)return true;
+  const q=query.toLowerCase();
+  return (item.user.displayName||'').toLowerCase().includes(q)
+    ||(item.user.username||'').toLowerCase().includes(q)
+    ||(item.last?.text||'').toLowerCase().includes(q);
+}
+
+function renderDMList(){
+  const list=$('dmList');
+  list.replaceChildren();
+  const query=$('dmSearch').value.trim();
+  const items=dmConversations.filter(item=>dmConversationMatches(item,query));
+
+  if(!items.length){
+    const empty=document.createElement('p');
+    empty.className='recent-empty';
+    empty.textContent=query?'No matching conversations.':'No DMs yet. Open a profile and choose Message.';
+    list.append(empty);
+    return;
+  }
+
+  for(const item of items){
+    const button=document.createElement('button');
+    button.type='button';
+    button.className='dm-conversation'+(dmPartner?.id===item.user.id?' active':'');
+
+    const av=document.createElement('span');
+    av.className='avatar';
+    avatar(av,item.user,mediaURL(item.user.avatarId));
+
+    const copy=document.createElement('div');
+    copy.className='dm-conversation-copy';
+
+    const name=document.createElement('strong');
+    name.textContent=item.user.displayName||item.user.username;
+    const last=document.createElement('span');
+    last.textContent=(item.last?.mine?'You: ':'')+(item.last?.text||'Start a conversation');
+
+    copy.append(name,last);
+    button.append(av,copy);
+
+    if(item.unread){
+      const unread=document.createElement('span');
+      unread.className='dm-unread';
+      unread.textContent=item.unread>99?'99+':String(item.unread);
+      button.append(unread);
+    }
+
+    button.onclick=()=>openDMThread(item.user.id);
+    list.append(button);
+  }
+}
+
+async function loadDMList(){
+  if(dmLoading)return;
+  dmLoading=true;
+  try{
+    const data=await api('/dms');
+    dmConversations=data.conversations||[];
+    updateDMUnread(data.unread);
+    renderDMList();
+  }catch(err){toast(err.message);}
+  finally{dmLoading=false;}
+}
+
+function renderDMThread(){
+  const thread=$('dmThread');
+  const empty=$('dmThreadEmpty');
+
+  if(!dmPartner){
+    thread.hidden=true;
+    empty.hidden=false;
+    return;
+  }
+
+  empty.hidden=true;
+  thread.hidden=false;
+
+  const userBtn=$('dmThreadUser');
+  userBtn.replaceChildren();
+
+  const av=document.createElement('span');
+  av.className='avatar';
+  avatar(av,dmPartner,mediaURL(dmPartner.avatarId));
+
+  const info=document.createElement('span');
+  const name=document.createElement('strong');
+  name.textContent=dmPartner.displayName||dmPartner.username;
+
+  const state=document.createElement('span');
+  state.textContent='@'+dmPartner.username+' · '+STATUS_LABELS[normalizeStatus(dmPartner.status)];
+
+  info.append(name,state);
+  userBtn.append(av,info);
+  userBtn.onclick=()=>openPublicProfile(dmPartner.id);
+
+  const area=$('dmMessages');
+  area.replaceChildren();
+
+  if(!dmMessages.length){
+    const first=document.createElement('div');
+    first.className='dm-thread-empty';
+    first.style.margin='auto';
+
+    const iconImg=document.createElement('img');
+    iconImg.src='/icons/message.png';
+    iconImg.alt='';
+
+    const title=document.createElement('h2');
+    title.textContent='Start the conversation.';
+
+    const note=document.createElement('p');
+    note.textContent='Say hey to @'+dmPartner.username+'.';
+
+    first.append(iconImg,title,note);
+    area.append(first);
+  }else{
+    for(const message of dmMessages){
+      const row=document.createElement('div');
+      row.className='dm-bubble-row'+(message.mine?' mine':'');
+
+      if(message.mine){
+        const del=document.createElement('button');
+        del.className='icon-btn dm-message-delete';
+        del.ariaLabel='Delete direct message';
+        del.innerHTML=icon('trash');
+        del.onclick=async()=>{
+          try{
+            await api('/dms/messages/'+encodeURIComponent(message.id),{method:'DELETE'});
+            dmMessages=dmMessages.filter(item=>item.id!==message.id);
+            renderDMThread();
+            loadDMList();
+          }catch(err){toast(err.message);}
+        };
+        row.append(del);
+      }
+
+      const bubble=document.createElement('div');
+      bubble.className='dm-bubble';
+      const text=document.createElement('p');
+      text.textContent=message.text;
+      const time=document.createElement('time');
+      time.dateTime=new Date(message.ts).toISOString();
+      time.textContent=new Date(message.ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+
+      bubble.append(text,time);
+      row.append(bubble);
+      area.append(row);
+    }
+  }
+
+  requestAnimationFrame(()=>{area.scrollTop=area.scrollHeight;});
+}
+
+async function openDMThread(partnerId,silent=false){
+  const request=++dmFetch;
+  if(!silent)$('dmThreadStatus').textContent='Loading…';
+
+  try{
+    const data=await api('/dms/'+encodeURIComponent(partnerId));
+    if(request!==dmFetch)return;
+    dmPartner=data.user;
+    dmMessages=data.messages||[];
+    $('dmThreadStatus').textContent='';
+    renderDMThread();
+    await loadDMList();
+  }catch(err){
+    if(request===dmFetch)$('dmThreadStatus').textContent=err.message;
+  }
+}
+
+function openDMs(partner=null){
+  if(!communityView('dms','Messages','Private developer conversations','dmsNav'))return;
+
+  loadDMList();
+  if(partner?.id)openDMThread(partner.id);
+  else renderDMThread();
+
+  dmTimer=setInterval(()=>{
+    if(document.hidden||view!=='dms')return;
+    if(dmPartner?.id)openDMThread(dmPartner.id,true);
+    else loadDMList();
+  },6000);
+}
+
+$('dmsNav').onclick=()=>openDMs();
+$('dmSearch').oninput=renderDMList;
+
+$('dmForm').onsubmit=async e=>{
+  e.preventDefault();
+  if(!dmPartner)return;
+
+  const input=$('dmInput');
+  const text=input.value.trim();
+  if(!text)return;
+
+  $('dmSend').disabled=true;
+  try{
+    const result=await api(
+      '/dms/'+encodeURIComponent(dmPartner.id),
+      {method:'POST',body:{text,requestId:uid()}}
+    );
+    dmMessages.push(result.message);
+    input.value='';
+    renderDMThread();
+    await loadDMList();
+  }catch(err){toast(err.message);}
+  finally{
+    $('dmSend').disabled=false;
+    input.focus();
+  }
+};
+
+$('dmInput').addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&!e.shiftKey){
+    e.preventDefault();
+    $('dmForm').requestSubmit();
+  }
+});
+
 let adminUsers=[];
 let adminNext=null;
 let selectedAdminUser=null;
@@ -2856,10 +3101,11 @@ function adminAgo(ts){
   const n=Number(ts)||0;
   if(!n)return 'Never';
   const diff=Math.max(0,Date.now()-n);
+  const day=86400000;
   if(diff<60000)return 'Just now';
   if(diff<3600000)return Math.floor(diff/60000)+'m ago';
-  if(diff<DAY)return Math.floor(diff/3600000)+'h ago';
-  if(diff<7*DAY)return Math.floor(diff/DAY)+'d ago';
+  if(diff<day)return Math.floor(diff/3600000)+'h ago';
+  if(diff<7*day)return Math.floor(diff/day)+'d ago';
   return new Date(n).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
 }
 
