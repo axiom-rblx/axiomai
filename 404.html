@@ -1490,6 +1490,97 @@ html[data-theme=dark] .model-menu{box-shadow:0 20px 60px #0009}
   .dm-composer{padding:0 10px 10px}
 }
 
+
+/* Moderation dashboard v8.8 */
+.mod-shell{width:min(1180px,100%);margin:auto;padding:30px 32px 56px}
+.mod-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+.mod-title-line{display:flex;align-items:center;gap:10px}
+.mod-heading h1{font-size:28px;letter-spacing:-.9px;margin:0;font-weight:620}
+.mod-heading p{font-size:13px;color:var(--muted);margin:5px 0 0}
+.mod-role-pill{font-size:9px;text-transform:uppercase;letter-spacing:.07em;padding:4px 7px;border-radius:999px;background:#edf8f4;color:#28856e;border:1px solid #2f9b7f35}
+html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
+.mod-permission-note{margin:17px 0 18px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--soft);color:var(--muted);font-size:11px}
+.mod-tabs{display:flex;gap:5px;padding:4px;border-radius:10px;background:var(--soft);margin-bottom:18px;width:max-content;max-width:100%;overflow:auto}
+.mod-tabs button{padding:7px 12px;border-radius:7px;color:var(--muted);font-size:12px;white-space:nowrap}
+.mod-tabs button[aria-selected=true]{background:var(--surface);color:var(--ink);box-shadow:0 1px 4px #0000000d;font-weight:620}
+.mod-panel[hidden]{display:none!important}
+.mod-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin-bottom:15px}
+.mod-stat{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:13px}
+.mod-stat span{display:block;color:var(--muted);font-size:10px}
+.mod-stat strong{display:block;margin-top:3px;font-size:22px;font-weight:620;letter-spacing:-.55px}
+.mod-member-layout{display:grid;grid-template-columns:minmax(280px,.78fr) minmax(460px,1.22fr);gap:14px;align-items:start}
+.mod-member-card,.mod-detail,.mod-audit-card{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.mod-toolbar{display:flex;align-items:center;gap:8px;padding:12px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.mod-toolbar .search-input{margin:0;flex:1;min-width:190px}
+.mod-toolbar select{height:39px;border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:0 9px;font-size:11px}
+.mod-user-list{max-height:600px;overflow:auto;padding:6px}
+.mod-user{width:100%;display:grid;grid-template-columns:37px minmax(0,1fr) auto;align-items:center;gap:9px;padding:9px;border-radius:9px;text-align:left}
+.mod-user:hover,.mod-user.selected{background:var(--soft)}
+.mod-user>.avatar{width:37px;height:37px;border-radius:11px;font-size:12px}
+.mod-user-copy{min-width:0}
+.mod-user-copy strong{display:block;font-size:12px;font-weight:620;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mod-user-copy span{display:block;margin-top:2px;color:var(--muted);font-size:10px}
+.mod-tags{display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.mod-tag{font-size:8px;padding:3px 5px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.mod-tag.bad{color:var(--danger)}
+.mod-tag.protected{color:#9b7833}
+.mod-detail{min-height:520px;padding:19px}
+.mod-detail-empty{min-height:470px;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:12px;padding:30px}
+.mod-profile-head{display:flex;align-items:center;gap:11px;padding-bottom:15px;border-bottom:1px solid var(--line)}
+.mod-profile-head>.avatar{width:48px;height:48px;border-radius:14px;font-size:17px}
+.mod-profile-copy{flex:1;min-width:0}
+.mod-profile-copy h2{margin:0;font-size:17px;letter-spacing:-.4px}
+.mod-profile-copy p{margin:2px 0 0;color:var(--muted);font-size:10px}
+.mod-account-state{font-size:9px;padding:4px 7px;border-radius:999px;background:var(--soft);color:var(--muted)}
+.mod-account-state.banned{color:var(--danger)}
+.mod-meta-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:14px 0}
+.mod-meta{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:9px;min-width:0}
+.mod-meta span{display:block;color:var(--muted);font-size:9px}
+.mod-meta strong{display:block;margin-top:2px;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mod-section{padding-top:14px;margin-top:14px;border-top:1px solid var(--line)}
+.mod-section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}
+.mod-section-head strong{font-size:12px}
+.mod-section-head span{font-size:9px;color:var(--muted)}
+.mod-note{width:100%;min-height:80px;resize:vertical;border:1px solid var(--line);border-radius:9px;background:var(--bg);padding:9px;font-size:11px}
+.mod-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.mod-actions .btn{font-size:11px;justify-content:flex-start}
+.mod-session-list{display:flex;flex-direction:column;gap:6px}
+.mod-session{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:9px;padding:8px 9px}
+.mod-session-copy{min-width:0}
+.mod-session-copy strong{display:block;font:10px ui-monospace,SFMono-Regular,Consolas,monospace}
+.mod-session-copy span{display:block;margin-top:2px;color:var(--muted);font-size:9px}
+.mod-session .btn{font-size:9px;padding:6px 8px}
+.mod-history{display:flex;flex-direction:column;gap:6px}
+.mod-history-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;font-size:10px}
+.mod-history-row strong{font-weight:620}
+.mod-history-row p{margin:2px 0 0;color:var(--muted)}
+.mod-history-row time{color:var(--muted);font-size:9px;white-space:nowrap}
+.mod-more{display:block;margin:10px auto}
+.mod-content-toolbar{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:var(--surface)}
+.mod-content-list{display:flex;flex-direction:column;gap:8px}
+.mod-content-item{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:13px;display:flex;align-items:flex-start;gap:12px}
+.mod-content-main{min-width:0;flex:1}
+.mod-content-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.mod-type{font-size:8px;text-transform:uppercase;letter-spacing:.06em;padding:3px 5px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.mod-content-top time{margin-left:auto;color:var(--muted);font-size:9px}
+.mod-content-main h3{font-size:12px;margin:7px 0 4px}
+.mod-content-main p{font-size:11px;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere;margin:0;max-height:120px;overflow:auto}
+.mod-content-actions{display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.mod-content-actions .btn{font-size:9px;padding:6px 8px}
+.mod-audit-card{padding:7px}
+.mod-audit-list{display:flex;flex-direction:column}
+.mod-audit-row{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:9px;padding:10px 7px;border-bottom:1px solid var(--line)}
+.mod-audit-row:last-child{border-bottom:0}
+.mod-audit-icon{width:30px;height:30px;border-radius:9px;background:var(--soft);display:grid;place-items:center;font-size:12px}
+.mod-audit-copy strong{display:block;font-size:11px}
+.mod-audit-copy p{margin:2px 0 0;color:var(--muted);font-size:9px}
+.mod-audit-copy .mod-reason{margin-top:4px;color:var(--ink)}
+.mod-audit-row time{color:var(--muted);font-size:9px;white-space:nowrap}
+#moderationReasonDialog{width:min(520px,calc(100% - 28px))}
+#moderationReasonInput{width:100%;min-height:95px;resize:vertical;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px}
+@media(max-width:1050px){.mod-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.mod-member-layout{grid-template-columns:1fr}.mod-user-list{max-height:300px}}
+@media(max-width:760px){.mod-shell{padding:22px 16px 45px}.mod-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.mod-meta-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mod-actions{grid-template-columns:1fr}.mod-content-item{flex-direction:column}.mod-content-actions{justify-content:flex-start}}
+
 </style>
 </head>
 <body>
@@ -1534,7 +1625,7 @@ html[data-theme=dark] .model-menu{box-shadow:0 20px 60px #0009}
   <button class="btn new-chat" id="newChat"><svg class="icon"><use href="#i-plus"/></svg>New chat<kbd>Alt N</kbd></button>
   <div class="nav-label">Workspace</div><nav class="nav" id="modeNav"><button class="nav-item active" data-mode="axiom"><img class="asset-icon" src="/icons/ai.png" alt="">Axiom<span class="nav-dot"></span></button><button class="nav-item" data-mode="ui"><img class="asset-icon" src="/icons/studio.png" alt="">Interface designer<span class="nav-dot"></span></button><button class="nav-item" data-mode="code"><img class="asset-icon" src="/icons/api.png" alt="">Script developer<span class="nav-dot"></span></button></nav>
   <hr class="side-line"><button class="nav-item" id="devhubNav"><img class="asset-icon" src="/icons/post.png" alt="">DevHub</button>
-  <button class="nav-item" id="creationsNav"><img class="asset-icon" src="/icons/creation.png" alt="">Creations</button><button class="nav-item" id="dmsNav"><img class="asset-icon" src="/icons/message.png" alt="">Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><button class="nav-item" id="adminNav" hidden><img class="asset-icon" src="/icons/support.png" alt="">Admin dashboard</button><div class="recent-heading"><div class="nav-label">Recent chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
+  <button class="nav-item" id="creationsNav"><img class="asset-icon" src="/icons/creation.png" alt="">Creations</button><button class="nav-item" id="dmsNav"><img class="asset-icon" src="/icons/message.png" alt="">Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><button class="nav-item" id="moderationNav" hidden><img class="asset-icon" src="/icons/support.png" alt="">Moderation</button><button class="nav-item" id="adminNav" hidden><img class="asset-icon" src="/icons/support.png" alt="">Admin dashboard</button><div class="recent-heading"><div class="nav-label">Recent chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
   <div class="side-bottom"><button class="nav-item" id="settingsBtn"><img class="asset-icon" src="/icons/settings.png" alt="">Settings</button><button class="user-chip" id="userChip"><span class="sidebar-avatar-wrap"><span class="avatar" id="sidebarAvatar"></span><span class="presence-dot offline" id="sidebarPresence" aria-hidden="true"></span></span><span class="user-info"><strong id="userName"></strong><span>Personal workspace</span><span class="sidebar-status-quote" id="sidebarStatusQuote" hidden></span></span><svg class="icon muted"><use href="#i-settings"/></svg></button></div>
 </aside>
 <main class="main"><header class="topbar"><div class="top-left"><button class="icon-btn mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button><span class="top-title" id="topTitle">Axiom</span><span class="divider"></span><span class="top-sub" id="topSub">Roblox workspace</span></div><div class="top-right"><span class="tag">Beta</span><button class="icon-btn" id="themeToggle" aria-label="Toggle light and dark appearance"><svg class="icon"><use href="#i-moon"/></svg></button><button class="icon-btn" id="clearChat" aria-label="Delete current chat"><svg class="icon"><use href="#i-trash"/></svg></button></div></header>
@@ -1631,6 +1722,90 @@ html[data-theme=dark] .model-menu{box-shadow:0 20px 60px #0009}
     </aside>
   </div>
 </section></div><p class="dm-note">DMs are not public. They are stored by Axiom and are not shown in DevHub or public profiles.</p></div></section>
+<section id="moderationView" class="shared-view" hidden aria-label="Moderation dashboard">
+  <div class="mod-shell">
+    <div class="mod-heading">
+      <div>
+        <div class="mod-title-line">
+          <h1>Moderation</h1>
+          <span class="mod-role-pill">Moderator</span>
+        </div>
+        <p>Account enforcement, session controls, and community moderation.</p>
+      </div>
+      <button class="btn" id="modRefresh" type="button">Refresh</button>
+    </div>
+
+    <div class="mod-permission-note">
+      Moderators can manage regular members. Owner accounts are protected, and moderators cannot moderate other moderators.
+    </div>
+
+    <div class="mod-tabs" role="tablist" aria-label="Moderation sections">
+      <button type="button" data-mod-tab="members" aria-selected="true">Members</button>
+      <button type="button" data-mod-tab="content" aria-selected="false">Content</button>
+      <button type="button" data-mod-tab="audit" aria-selected="false">Audit log</button>
+    </div>
+
+    <p class="inline-error" id="modStatus" role="status"></p>
+
+    <section class="mod-panel" data-mod-panel="members">
+      <div class="mod-stats" id="modStats"></div>
+
+      <div class="mod-member-layout">
+        <div class="mod-member-card">
+          <div class="mod-toolbar">
+            <input id="modUserSearch" class="search-input" placeholder="Search username or display name…">
+            <select id="modUserStatus" aria-label="Member status">
+              <option value="all">All members</option>
+              <option value="online">Online</option>
+              <option value="active">Active</option>
+              <option value="banned">Banned</option>
+            </select>
+          </div>
+
+          <div id="modUserList" class="mod-user-list"></div>
+          <button id="modMoreUsers" class="btn ghost mod-more" type="button" hidden>Load more</button>
+        </div>
+
+        <div id="modUserDetail" class="mod-detail">
+          <div class="mod-detail-empty">
+            Select a member to view sessions and moderation actions.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mod-panel" data-mod-panel="content" hidden>
+      <div class="mod-toolbar mod-content-toolbar">
+        <input id="modContentSearch" class="search-input" placeholder="Search community content…">
+        <select id="modContentType" aria-label="Content type">
+          <option value="all">All content</option>
+          <option value="message">DevHub posts</option>
+          <option value="creation">Creations</option>
+          <option value="comment">Comments</option>
+        </select>
+        <select id="modContentState" aria-label="Content state">
+          <option value="active">Visible</option>
+          <option value="hidden">Hidden</option>
+          <option value="all">All states</option>
+        </select>
+      </div>
+
+      <div id="modContentList" class="mod-content-list"></div>
+      <button id="modMoreContent" class="btn mod-more" type="button" hidden>Load more</button>
+    </section>
+
+    <section class="mod-panel" data-mod-panel="audit" hidden>
+      <div class="mod-toolbar">
+        <input id="modAuditSearch" class="search-input" placeholder="Search moderation actions or reasons…">
+      </div>
+
+      <div class="mod-audit-card">
+        <div id="modAuditList" class="mod-audit-list"></div>
+      </div>
+      <button id="modMoreAudit" class="btn mod-more" type="button" hidden>Load more</button>
+    </section>
+  </div>
+</section>
 <section id="adminView" class="shared-view" hidden aria-label="Admin dashboard">
   <div class="admin-control-shell">
     <div class="admin-control-head">
@@ -1752,6 +1927,36 @@ html[data-theme=dark] .model-menu{box-shadow:0 20px 60px #0009}
 <dialog id="legacyBoardDialog" aria-labelledby="legacyBoardTitle"><div class="dialog-header"><h2 id="legacyBoardTitle">Earlier DevHub messages</h2><button class="icon-btn" data-close="legacyBoardDialog" aria-label="Close earlier messages"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><p class="small muted">Read-only history from the local-profile version. These names were not verified and are not linked to current accounts.</p><div id="legacyBoardContent"></div></div></dialog>
 <dialog id="publicProfileDialog" aria-label="Member profile"><div class="profile-hero"><button class="icon-btn" data-close="publicProfileDialog" aria-label="Close profile"><svg class="icon"><use href="#i-x"/></svg></button></div><div id="publicProfileBody"></div></dialog>
 <dialog id="creationDialog" aria-labelledby="creationDialogTitle"><div class="dialog-header"><h2 id="creationDialogTitle">Share your work</h2><button class="icon-btn" data-close="creationDialog" aria-label="Close creation editor"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="creationForm"><div class="dialog-body"><div class="field"><label for="creationTitle">Title</label><input id="creationTitle" maxlength="100" required placeholder="Give your creation a name"></div><div class="field"><label for="creationCategory">Category</label><select id="creationCategory"><option>Interface</option><option>Script</option><option>Game</option><option>Other</option></select></div><div class="field"><label for="creationDescription">About your creation</label><textarea id="creationDescription" maxlength="3000" rows="4" required placeholder="What did you build? Tell us how it works."></textarea></div><div class="field"><label>Attachments <span class="muted small">(up to 4)</span></label><button type="button" class="drop-zone" id="creationAttach"><svg class="icon"><use href="#i-upload"/></svg><strong>Add screenshots, a clip, or project files</strong><span>Images · 5 MB / videos · 15 MB / code & Roblox files · 10 MB</span></button><div class="creation-drafts" id="creationDrafts"></div></div><p id="creationError" class="form-error" role="alert"></p><p class="small muted">Your post and attachments will be visible to the community. Only share work you have permission to publish.</p></div><div class="dialog-footer"><span class="spacer"></span><button class="btn" type="button" data-close="creationDialog">Cancel</button><button class="btn primary" id="publishCreation">Publish creation</button></div></form></dialog>
+<dialog id="moderationReasonDialog" aria-labelledby="moderationReasonTitle">
+  <div class="dialog-header">
+    <h2 id="moderationReasonTitle">Moderation action</h2>
+    <button class="icon-btn" id="moderationReasonClose" type="button" aria-label="Close">
+      <svg class="icon"><use href="#i-x"/></svg>
+    </button>
+  </div>
+
+  <form id="moderationReasonForm">
+    <div class="dialog-body">
+      <p class="muted small" id="moderationReasonDescription"></p>
+      <div class="field">
+        <label for="moderationReasonInput">Reason</label>
+        <textarea
+          id="moderationReasonInput"
+          maxlength="500"
+          required
+          placeholder="Short reason for the moderation log…"
+        ></textarea>
+      </div>
+      <p id="moderationReasonError" class="form-error"></p>
+    </div>
+
+    <div class="dialog-footer">
+      <button class="btn" id="moderationReasonCancel" type="button">Cancel</button>
+      <span class="spacer"></span>
+      <button class="btn danger" id="moderationReasonSubmit">Confirm</button>
+    </div>
+  </form>
+</dialog>
 <dialog id="adminUnlockDialog" aria-labelledby="adminUnlockTitle"><div class="dialog-header"><h2 id="adminUnlockTitle">Unlock admin</h2><button class="icon-btn" data-close="adminUnlockDialog" aria-label="Close admin sign-in"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="adminUnlockForm"><div class="dialog-body"><p class="muted small">Confirm your admin code to manage members and community posts. Access expires after 15 minutes.</p><div class="field"><label for="adminCode">Admin code</label><input id="adminCode" type="password" autocomplete="off" maxlength="128" required></div><p id="adminUnlockError" class="form-error" role="alert"></p></div><div class="dialog-footer"><span class="spacer"></span><button class="btn primary" id="adminUnlockSubmit">Unlock dashboard</button></div></form></dialog>
 <dialog id="actionDialog" aria-labelledby="actionTitle"><div class="dialog-header"><h2 id="actionTitle">Confirm action</h2></div><div class="dialog-body" id="actionDescription"></div><div class="dialog-footer"><span class="spacer"></span><button class="btn" id="actionCancel">Cancel</button><button class="btn danger" id="actionConfirm">Confirm</button></div></dialog>
 <dialog id="mediaDialog" aria-label="Creation attachment"><div class="dialog-header"><h2 id="mediaTitle">Attachment</h2><button class="icon-btn" data-close="mediaDialog" aria-label="Close attachment"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body" id="mediaBody"></div></dialog>
@@ -2125,12 +2330,12 @@ async function boot(user){
   profile={displayName:username,color:COLORS[0],email:'',emailVerified:false,discordConnected:false,bio:'',badges:[],bannerId:null,status:'offline',presenceMode:'auto',statusQuote:'',links:{},profileTheme:'classic',...user};
   prefs={theme:read('axiom_theme','light'),enterSend:true,reduceMotion:false,tokenLimit:16384,gradientEnabled:false,gradientA:'#eaf2ff',gradientB:'#f5eaff',...read('axiom_preferences_'+localKey,{})};
   if(avatarURL?.startsWith('blob:'))URL.revokeObjectURL(avatarURL);avatarBlob=null;avatarURL=mediaURL(user.avatarId);
-  $('authWrap').hidden=true;$('app').hidden=false;$('adminNav').hidden=!user.canAdmin;applyAppearance(prefs.theme);updateProfile();startPresence();loadMyPins();activeId=threads[0]?.id||null;mode=threads[0]?.mode||'axiom';modelProfile=threads[0]?.modelProfile||read('axiom_model_'+localKey,'core-1');if(!AXIOM_MODELS[modelProfile])modelProfile='core-1';setMode(mode,false);syncModelPicker();renderRecent();
+  $('authWrap').hidden=true;$('app').hidden=false;$('moderationNav').hidden=!user.canModerate;$('adminNav').hidden=!user.canAdmin;applyAppearance(prefs.theme);updateProfile();startPresence();loadMyPins();activeId=threads[0]?.id||null;mode=threads[0]?.mode||'axiom';modelProfile=threads[0]?.modelProfile||read('axiom_model_'+localKey,'core-1');if(!AXIOM_MODELS[modelProfile])modelProfile='core-1';setMode(mode,false);syncModelPicker();renderRecent();
   refreshDMUnread();
   const requestedProfile=profileUsernameFromPath();
   if(requestedProfile)openPublicProfile('@'+requestedProfile,false);
 }
-function hideCommunityViews(){for(const id of ['creationsView','dmsView','adminView'])$(id).hidden=true;for(const id of ['creationsNav','dmsNav','adminNav'])$(id).classList.remove('active');}
+function hideCommunityViews(){for(const id of ['creationsView','dmsView','moderationView','adminView'])$(id).hidden=true;for(const id of ['creationsNav','dmsNav','moderationNav','adminNav'])$(id).classList.remove('active');}
 function communityView(name,title,sub,nav){
   if(activeRequest){toast('Stop the current reply before switching views.');return false;}
   view=name;stopHub();stopDMs();hideCommunityViews();$('chatView').hidden=true;$('hubView').hidden=true;$('clearChat').hidden=true;$('topTitle').textContent=title;$('topSub').textContent=sub;document.querySelectorAll('[data-mode]').forEach(b=>b.classList.remove('active'));$('devhubNav').classList.remove('active');$(name+'View').hidden=false;$(nav).classList.add('active');closeSidebar();return true;
@@ -3457,6 +3662,845 @@ $('creationForm').onsubmit=async e=>{
     $('publishCreation').textContent='Publishing…';await api('/creations',{method:'POST',body:{...draft,attachments:creationFiles.map(f=>f.uploaded.id)}});creationPublishing=false;$('creationDialog').close();creationCategory='All';document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category==='All')));openCreations();toast('Your creation is live.');
   }catch(err){$('creationError').textContent=err.message;}finally{creationPublishing=false;$('publishCreation').disabled=false;$('publishCreation').textContent='Publish creation';$('creationAttach').disabled=false;document.querySelectorAll('[data-close="creationDialog"]').forEach(b=>b.disabled=false);renderCreationDrafts();}
 };
+
+// ── Moderator dashboard ─────────────────────────────────────────────
+let modTab='members';
+let modUsers=[];
+let modUsersNext=null;
+let modSelectedUser=null;
+let modUserDetail=null;
+let modUserSearchTimer=null;
+let modContentNext=null;
+let modContentRequest=0;
+let modContentTimer=null;
+let modAuditNext=null;
+let modAuditRequest=0;
+let modAuditTimer=null;
+let moderationReasonResolver=null;
+
+function modAgo(ts){
+  const value=Number(ts)||0;
+  if(!value)return 'Never';
+
+  const diff=Math.max(0,Date.now()-value);
+  const day=86400000;
+
+  if(diff<60000)return 'Just now';
+  if(diff<3600000)return Math.floor(diff/60000)+'m ago';
+  if(diff<day)return Math.floor(diff/3600000)+'h ago';
+  if(diff<7*day)return Math.floor(diff/day)+'d ago';
+
+  return new Date(value).toLocaleDateString(undefined,{
+    month:'short',
+    day:'numeric',
+    year:'numeric'
+  });
+}
+
+function modActionLabel(action){
+  return String(action||'action')
+    .replace(/-/g,' ')
+    .replace(/\b\w/g,c=>c.toUpperCase());
+}
+
+function modSetStatus(text=''){
+  $('modStatus').textContent=text;
+}
+
+function modMeta(label,value){
+  const box=document.createElement('div');
+  box.className='mod-meta';
+
+  const l=document.createElement('span');
+  const v=document.createElement('strong');
+
+  l.textContent=label;
+  v.textContent=value;
+
+  box.append(l,v);
+  return box;
+}
+
+function openModerationReason(title,description,buttonLabel='Confirm'){
+  return new Promise(resolve=>{
+    moderationReasonResolver=resolve;
+
+    $('moderationReasonTitle').textContent=title;
+    $('moderationReasonDescription').textContent=description;
+    $('moderationReasonInput').value='';
+    $('moderationReasonError').textContent='';
+    $('moderationReasonSubmit').textContent=buttonLabel;
+
+    $('moderationReasonDialog').showModal();
+
+    requestAnimationFrame(()=>$('moderationReasonInput').focus());
+  });
+}
+
+function closeModerationReason(value=null){
+  if($('moderationReasonDialog').open){
+    $('moderationReasonDialog').close();
+  }
+
+  const resolve=moderationReasonResolver;
+  moderationReasonResolver=null;
+  if(resolve)resolve(value);
+}
+
+$('moderationReasonClose').onclick=()=>closeModerationReason(null);
+$('moderationReasonCancel').onclick=()=>closeModerationReason(null);
+
+$('moderationReasonForm').onsubmit=e=>{
+  e.preventDefault();
+
+  const reason=$('moderationReasonInput').value.trim();
+
+  if(reason.length<3){
+    $('moderationReasonError').textContent='Add a short reason.';
+    return;
+  }
+
+  closeModerationReason(reason);
+};
+
+$('moderationReasonDialog').addEventListener('cancel',e=>{
+  e.preventDefault();
+  closeModerationReason(null);
+});
+
+$('moderationReasonDialog').addEventListener('close',()=>{
+  if(moderationReasonResolver){
+    const resolve=moderationReasonResolver;
+    moderationReasonResolver=null;
+    resolve(null);
+  }
+});
+
+function selectModTab(tab){
+  modTab=tab;
+
+  document.querySelectorAll('[data-mod-tab]').forEach(button=>{
+    button.setAttribute('aria-selected',String(button.dataset.modTab===tab));
+  });
+
+  document.querySelectorAll('[data-mod-panel]').forEach(panel=>{
+    panel.hidden=panel.dataset.modPanel!==tab;
+  });
+
+  if(tab==='members')loadModOverview().then(()=>loadModUsers(true));
+  if(tab==='content')loadModContent(true);
+  if(tab==='audit')loadModAudit(true);
+}
+
+document.querySelectorAll('[data-mod-tab]').forEach(button=>{
+  button.onclick=()=>selectModTab(button.dataset.modTab);
+});
+
+$('moderationNav').onclick=()=>{
+  if(!account.canModerate)return;
+  if(!communityView('moderation','Moderation','Member & community safety','moderationNav'))return;
+
+  modSetStatus('');
+  selectModTab(modTab);
+};
+
+$('modRefresh').onclick=async()=>{
+  modSetStatus('Refreshing…');
+
+  try{
+    if(modTab==='members'){
+      await loadModOverview();
+      await loadModUsers(true);
+      if(modSelectedUser?.id)await loadModUserDetail(modSelectedUser.id);
+    }
+
+    if(modTab==='content')await loadModContent(true);
+    if(modTab==='audit')await loadModAudit(true);
+
+    modSetStatus('');
+  }catch(err){
+    modSetStatus(err.message);
+  }
+};
+
+async function loadModOverview(){
+  const data=await api('/moderation/overview');
+  renderModOverview(data);
+}
+
+function renderModOverview(data){
+  const stats=data.stats||{};
+  const items=[
+    ['users','Members'],
+    ['active24h','Active 24h'],
+    ['banned','Banned'],
+    ['hiddenContent','Hidden content'],
+    ['actions24h','Actions 24h']
+  ];
+
+  const holder=$('modStats');
+  holder.replaceChildren();
+
+  for(const [key,label] of items){
+    const card=document.createElement('div');
+    card.className='mod-stat';
+
+    const l=document.createElement('span');
+    const v=document.createElement('strong');
+
+    l.textContent=label;
+    v.textContent=String(Number(stats[key])||0);
+
+    card.append(l,v);
+    holder.append(card);
+  }
+}
+
+$('modUserSearch').oninput=()=>{
+  clearTimeout(modUserSearchTimer);
+  modUserSearchTimer=setTimeout(()=>loadModUsers(true),220);
+};
+
+$('modUserStatus').onchange=()=>loadModUsers(true);
+$('modMoreUsers').onclick=()=>loadModUsers(false);
+
+async function loadModUsers(reset){
+  const query=new URLSearchParams({
+    q:$('modUserSearch').value.trim(),
+    status:$('modUserStatus').value,
+    offset:String(reset?0:(modUsersNext||0))
+  });
+
+  try{
+    const data=await api('/moderation/users?'+query);
+
+    modUsers=reset?data.users:[...modUsers,...data.users];
+    modUsersNext=data.next;
+
+    renderModUsers();
+    $('modMoreUsers').hidden=modUsersNext===null;
+  }catch(err){
+    modSetStatus(err.message);
+  }
+}
+
+function renderModUsers(){
+  const list=$('modUserList');
+  list.replaceChildren();
+
+  if(!modUsers.length){
+    list.innerHTML='<p class="recent-empty">No members match this search.</p>';
+    return;
+  }
+
+  for(const user of modUsers){
+    const row=document.createElement('button');
+    row.type='button';
+    row.className='mod-user'+
+      (modSelectedUser?.id===user.id?' selected':'');
+
+    const av=document.createElement('span');
+    av.className='avatar';
+    avatar(av,user,mediaURL(user.avatarId));
+
+    const copy=document.createElement('span');
+    copy.className='mod-user-copy';
+
+    const name=document.createElement('strong');
+    name.textContent=user.displayName||user.username;
+
+    const sub=document.createElement('span');
+    sub.textContent='@'+user.username+' · '+modAgo(user.lastSeen||user.createdAt);
+
+    copy.append(name,sub);
+
+    const tags=document.createElement('span');
+    tags.className='mod-tags';
+
+    if(user.suspended){
+      const tag=document.createElement('span');
+      tag.className='mod-tag bad';
+      tag.textContent='Banned';
+      tags.append(tag);
+    }
+
+    if(user.owner){
+      const tag=document.createElement('span');
+      tag.className='mod-tag protected';
+      tag.textContent='Owner';
+      tags.append(tag);
+    }else if(user.moderator){
+      const tag=document.createElement('span');
+      tag.className='mod-tag protected';
+      tag.textContent='Moderator';
+      tags.append(tag);
+    }
+
+    if(user.protected&&!user.owner&&!user.moderator){
+      const tag=document.createElement('span');
+      tag.className='mod-tag protected';
+      tag.textContent='Protected';
+      tags.append(tag);
+    }
+
+    row.append(av,copy,tags);
+    row.onclick=()=>loadModUserDetail(user.id);
+    list.append(row);
+  }
+}
+
+async function loadModUserDetail(id){
+  modSetStatus('Loading member…');
+
+  try{
+    const data=await api('/moderation/users/'+encodeURIComponent(id));
+    modUserDetail=data;
+    modSelectedUser=data.user;
+
+    const index=modUsers.findIndex(user=>user.id===id);
+    if(index>=0)modUsers[index]={...modUsers[index],...data.user};
+
+    renderModUsers();
+    renderModUserDetail(data);
+    modSetStatus('');
+  }catch(err){
+    modSetStatus(err.message);
+  }
+}
+
+function renderModUserDetail(data){
+  const user=data.user;
+  const panel=$('modUserDetail');
+  panel.replaceChildren();
+
+  const head=document.createElement('div');
+  head.className='mod-profile-head';
+
+  const av=document.createElement('span');
+  av.className='avatar';
+  avatar(av,user,mediaURL(user.avatarId));
+
+  const copy=document.createElement('div');
+  copy.className='mod-profile-copy';
+
+  const name=document.createElement('h2');
+  name.textContent=user.displayName||user.username;
+
+  const handle=document.createElement('p');
+  handle.textContent='@'+user.username+' · '+user.id;
+
+  copy.append(name,handle);
+
+  const state=document.createElement('span');
+  state.className='mod-account-state'+(user.suspended?' banned':'');
+  state.textContent=user.suspended?'Banned':'Active';
+
+  head.append(av,copy,state);
+  panel.append(head);
+
+  const meta=document.createElement('div');
+  meta.className='mod-meta-grid';
+
+  meta.append(
+    modMeta('Last seen',modAgo(user.lastSeen)),
+    modMeta('Sessions',String(user.sessionCount)),
+    modMeta('Creations',String(user.creationCount)),
+    modMeta('DevHub',String(user.messageCount)),
+    modMeta('Comments',String(user.commentCount)),
+    modMeta('Followers',String(user.followerCount)),
+    modMeta('Discord',user.discordLinked?'Linked':'Not linked'),
+    modMeta('Joined',new Date(user.createdAt).toLocaleDateString())
+  );
+
+  panel.append(meta);
+
+  if(user.protected){
+    const protectedNote=document.createElement('div');
+    protectedNote.className='mod-permission-note';
+    protectedNote.style.margin='12px 0 0';
+    protectedNote.textContent=user.owner
+      ? 'Owner account — moderation enforcement is disabled.'
+      : user.moderator
+        ? 'Moderator account — peer moderators cannot take enforcement actions.'
+        : 'This account is protected from your current moderation role.';
+    panel.append(protectedNote);
+  }
+
+  const actionsSection=document.createElement('div');
+  actionsSection.className='mod-section';
+
+  const actionsHead=document.createElement('div');
+  actionsHead.className='mod-section-head';
+  actionsHead.innerHTML='<strong>Enforcement</strong><span>Account-level actions</span>';
+
+  const actions=document.createElement('div');
+  actions.className='mod-actions';
+
+  const ban=document.createElement('button');
+  ban.className='btn '+(user.suspended?'':'danger');
+  ban.type='button';
+  ban.textContent=user.suspended?'Unban account':'Ban account';
+  ban.disabled=user.protected;
+  ban.onclick=async()=>{
+    if(user.suspended){
+      if(!await confirmAction(
+        'Unban @'+user.username+'?',
+        'This account will be able to sign in again.',
+        'Unban account'
+      ))return;
+
+      await runModUserAction(user,'unban','');
+      return;
+    }
+
+    const reason=await openModerationReason(
+      'Ban @'+user.username,
+      'Banning suspends the account and immediately ends every active session.',
+      'Ban account'
+    );
+
+    if(reason)await runModUserAction(user,'ban',reason);
+  };
+
+  const kick=document.createElement('button');
+  kick.className='btn';
+  kick.type='button';
+  kick.textContent='Kick user';
+  kick.disabled=user.protected||user.suspended;
+  kick.onclick=async()=>{
+    const reason=await openModerationReason(
+      'Kick @'+user.username,
+      'Kick signs the user out of every active session and sets their presence offline. They can sign back in.',
+      'Kick user'
+    );
+
+    if(reason)await runModUserAction(user,'kick',reason);
+  };
+
+  const clearStatus=document.createElement('button');
+  clearStatus.className='btn';
+  clearStatus.type='button';
+  clearStatus.textContent='Clear status';
+  clearStatus.disabled=user.protected;
+  clearStatus.onclick=async()=>{
+    if(!await confirmAction(
+      'Clear @'+user.username+' status?',
+      'Their custom status and current Axiom presence will be cleared.',
+      'Clear status'
+    ))return;
+
+    await runModUserAction(user,'clear-status','');
+  };
+
+  const hideContent=document.createElement('button');
+  hideContent.className='btn danger';
+  hideContent.type='button';
+  hideContent.textContent='Hide all community content';
+  hideContent.disabled=user.protected;
+  hideContent.onclick=async()=>{
+    if(!await confirmAction(
+      'Hide all community content?',
+      'This soft-hides their DevHub posts, creations, and comments. It can be restored later.',
+      'Hide content'
+    ))return;
+
+    await runModUserAction(user,'hide-content','');
+  };
+
+  const restoreContent=document.createElement('button');
+  restoreContent.className='btn';
+  restoreContent.type='button';
+  restoreContent.textContent='Restore community content';
+  restoreContent.disabled=user.protected;
+  restoreContent.onclick=async()=>{
+    if(!await confirmAction(
+      'Restore community content?',
+      'Soft-hidden DevHub posts, creations, and comments from this member will become visible again.',
+      'Restore content'
+    ))return;
+
+    await runModUserAction(user,'restore-content','');
+  };
+
+  actions.append(ban,kick,clearStatus,hideContent,restoreContent);
+  actionsSection.append(actionsHead,actions);
+  panel.append(actionsSection);
+
+  const sessionsSection=document.createElement('div');
+  sessionsSection.className='mod-section';
+
+  const sessionsHead=document.createElement('div');
+  sessionsHead.className='mod-section-head';
+  sessionsHead.innerHTML='<strong>Active sessions</strong><span>Revoke one login without banning the account</span>';
+
+  const sessions=document.createElement('div');
+  sessions.className='mod-session-list';
+
+  if(!(data.sessions||[]).length){
+    sessions.innerHTML='<span class="small muted">No active sessions.</span>';
+  }else{
+    for(const session of data.sessions){
+      const row=document.createElement('div');
+      row.className='mod-session';
+
+      const info=document.createElement('div');
+      info.className='mod-session-copy';
+
+      const id=document.createElement('strong');
+      id.textContent='session_'+session.id;
+
+      const expiry=document.createElement('span');
+      expiry.textContent='Expires '+new Date(session.expiresAt).toLocaleString();
+
+      info.append(id,expiry);
+
+      const revoke=document.createElement('button');
+      revoke.className='btn danger';
+      revoke.type='button';
+      revoke.textContent='Revoke';
+      revoke.disabled=user.protected;
+      revoke.onclick=()=>revokeModSession(user,session.id,revoke);
+
+      row.append(info,revoke);
+      sessions.append(row);
+    }
+  }
+
+  sessionsSection.append(sessionsHead,sessions);
+  panel.append(sessionsSection);
+
+  const noteSection=document.createElement('div');
+  noteSection.className='mod-section';
+
+  const noteHead=document.createElement('div');
+  noteHead.className='mod-section-head';
+  noteHead.innerHTML='<strong>Moderator note</strong><span>Visible to moderators and owners</span>';
+
+  const note=document.createElement('textarea');
+  note.className='mod-note';
+  note.maxLength=2500;
+  note.placeholder='Internal context, warnings, previous issues, follow-up notes…';
+  note.value=data.note?.note||'';
+
+  const saveNote=document.createElement('button');
+  saveNote.className='btn';
+  saveNote.type='button';
+  saveNote.style.marginTop='7px';
+  saveNote.textContent='Save note';
+  saveNote.onclick=async()=>{
+    saveNote.disabled=true;
+
+    try{
+      await api(
+        '/moderation/users/'+encodeURIComponent(user.id)+'/note',
+        {method:'PATCH',body:{note:note.value}}
+      );
+      toast('Moderator note saved.');
+      await loadModUserDetail(user.id);
+    }catch(err){
+      modSetStatus(err.message);
+    }finally{
+      saveNote.disabled=false;
+    }
+  };
+
+  noteSection.append(noteHead,note,saveNote);
+  panel.append(noteSection);
+
+  const historySection=document.createElement('div');
+  historySection.className='mod-section';
+
+  const historyHead=document.createElement('div');
+  historyHead.className='mod-section-head';
+  historyHead.innerHTML='<strong>Moderation history</strong><span>Recent actions on this account</span>';
+
+  const history=document.createElement('div');
+  history.className='mod-history';
+
+  for(const item of data.actions||[]){
+    const row=document.createElement('div');
+    row.className='mod-history-row';
+
+    const copy=document.createElement('div');
+    const action=document.createElement('strong');
+    action.textContent=modActionLabel(item.action);
+
+    const details=document.createElement('p');
+    details.textContent=
+      '@'+(item.actor_username||'moderator')+
+      (item.reason?' · '+item.reason:'');
+
+    copy.append(action,details);
+
+    const time=document.createElement('time');
+    time.textContent=modAgo(item.created_at);
+
+    row.append(copy,time);
+    history.append(row);
+  }
+
+  if(!history.children.length){
+    history.innerHTML='<span class="small muted">No moderation actions recorded for this member.</span>';
+  }
+
+  historySection.append(historyHead,history);
+  panel.append(historySection);
+}
+
+async function runModUserAction(user,action,reason=''){
+  modSetStatus('Running '+modActionLabel(action).toLowerCase()+'…');
+
+  try{
+    const result=await api(
+      '/moderation/users/'+encodeURIComponent(user.id)+'/action',
+      {method:'POST',body:{action,reason}}
+    );
+
+    Object.assign(user,result.user||{});
+
+    const index=modUsers.findIndex(item=>item.id===user.id);
+    if(index>=0)modUsers[index]={...modUsers[index],...user};
+
+    renderModUsers();
+    await loadModOverview();
+    await loadModUserDetail(user.id);
+    modSetStatus('');
+    toast('Moderation action complete.');
+  }catch(err){
+    modSetStatus(err.message);
+  }
+}
+
+async function revokeModSession(user,sessionId,button){
+  if(!await confirmAction(
+    'Revoke this session?',
+    'Only this login session will be signed out. The account will remain active.',
+    'Revoke session'
+  ))return;
+
+  button.disabled=true;
+
+  try{
+    await api(
+      '/moderation/users/'+encodeURIComponent(user.id)+'/sessions/'+encodeURIComponent(sessionId),
+      {method:'DELETE'}
+    );
+
+    toast('Session revoked.');
+    await loadModOverview();
+    await loadModUserDetail(user.id);
+  }catch(err){
+    modSetStatus(err.message);
+  }finally{
+    button.disabled=false;
+  }
+}
+
+$('modContentSearch').oninput=()=>{
+  clearTimeout(modContentTimer);
+  modContentTimer=setTimeout(()=>loadModContent(true),220);
+};
+
+$('modContentType').onchange=()=>loadModContent(true);
+$('modContentState').onchange=()=>loadModContent(true);
+$('modMoreContent').onclick=()=>loadModContent(false);
+
+async function loadModContent(reset){
+  const request=++modContentRequest;
+  const query=new URLSearchParams({
+    q:$('modContentSearch').value.trim(),
+    type:$('modContentType').value,
+    state:$('modContentState').value,
+    offset:String(reset?0:(modContentNext||0))
+  });
+
+  try{
+    const data=await api('/moderation/content?'+query);
+
+    if(request!==modContentRequest)return;
+
+    const list=$('modContentList');
+    if(reset)list.replaceChildren();
+
+    if(reset&&!data.items.length){
+      list.innerHTML='<div class="feed-empty"><h2>Nothing to review.</h2><p>No content matches these filters.</p></div>';
+    }else{
+      list.querySelector('.feed-empty')?.remove();
+      for(const item of data.items)list.append(renderModContentItem(item));
+    }
+
+    modContentNext=data.next;
+    $('modMoreContent').hidden=modContentNext===null;
+  }catch(err){
+    modSetStatus(err.message);
+  }
+}
+
+function renderModContentItem(item){
+  const card=document.createElement('article');
+  card.className='mod-content-item';
+
+  const main=document.createElement('div');
+  main.className='mod-content-main';
+
+  const top=document.createElement('div');
+  top.className='mod-content-top';
+
+  const type=document.createElement('span');
+  type.className='mod-type';
+  type.textContent=item.type;
+
+  const author=personLink(item.author,true);
+
+  const time=document.createElement('time');
+  time.textContent=modAgo(item.ts);
+
+  top.append(type,author,time);
+
+  const title=document.createElement('h3');
+  title.textContent=item.title||modActionLabel(item.type);
+
+  const text=document.createElement('p');
+  text.textContent=item.text||'No text content.';
+
+  main.append(top,title,text);
+
+  const actions=document.createElement('div');
+  actions.className='mod-content-actions';
+
+  const state=document.createElement('span');
+  state.className='mod-tag '+(item.hidden?'bad':'');
+  state.textContent=item.hidden?'Hidden':'Visible';
+
+  const member=document.createElement('button');
+  member.className='btn ghost';
+  member.type='button';
+  member.textContent='Member';
+  member.onclick=()=>{
+    selectModTab('members');
+    $('modUserSearch').value=item.author.username;
+    loadModUsers(true).then(()=>loadModUserDetail(item.author.id));
+  };
+
+  const toggle=document.createElement('button');
+  toggle.className='btn '+(item.hidden?'':'danger');
+  toggle.type='button';
+  toggle.textContent=item.hidden?'Restore':'Hide';
+  toggle.disabled=item.protected;
+
+  toggle.onclick=async()=>{
+    if(!await confirmAction(
+      (item.hidden?'Restore ':'Hide ')+item.type+'?',
+      item.hidden
+        ? 'This content will become visible to the Axiom community again.'
+        : 'This content will be soft-hidden from the Axiom community.',
+      item.hidden?'Restore':'Hide'
+    ))return;
+
+    toggle.disabled=true;
+
+    try{
+      await api(
+        '/moderation/content/'+encodeURIComponent(item.type)+'/'+encodeURIComponent(item.id),
+        {method:'PATCH',body:{hidden:!item.hidden}}
+      );
+
+      item.hidden=!item.hidden;
+      card.replaceWith(renderModContentItem(item));
+      await loadModOverview();
+      toast(item.hidden?'Content hidden.':'Content restored.');
+    }catch(err){
+      modSetStatus(err.message);
+    }finally{
+      toggle.disabled=false;
+    }
+  };
+
+  actions.append(state,member,toggle);
+
+  if(item.protected){
+    const protectedTag=document.createElement('span');
+    protectedTag.className='mod-tag protected';
+    protectedTag.textContent='Protected author';
+    actions.append(protectedTag);
+  }
+
+  card.append(main,actions);
+  return card;
+}
+
+$('modAuditSearch').oninput=()=>{
+  clearTimeout(modAuditTimer);
+  modAuditTimer=setTimeout(()=>loadModAudit(true),220);
+};
+
+$('modMoreAudit').onclick=()=>loadModAudit(false);
+
+async function loadModAudit(reset){
+  const request=++modAuditRequest;
+  const query=new URLSearchParams({
+    q:$('modAuditSearch').value.trim(),
+    offset:String(reset?0:(modAuditNext||0))
+  });
+
+  try{
+    const data=await api('/moderation/audit?'+query);
+
+    if(request!==modAuditRequest)return;
+
+    const list=$('modAuditList');
+    if(reset)list.replaceChildren();
+
+    if(reset&&!data.items.length){
+      list.innerHTML='<p class="recent-empty">No moderation actions recorded yet.</p>';
+    }else{
+      list.querySelector('.recent-empty')?.remove();
+
+      for(const item of data.items){
+        const row=document.createElement('div');
+        row.className='mod-audit-row';
+
+        const iconBox=document.createElement('span');
+        iconBox.className='mod-audit-icon';
+        iconBox.textContent='M';
+
+        const copy=document.createElement('div');
+        copy.className='mod-audit-copy';
+
+        const action=document.createElement('strong');
+        action.textContent=modActionLabel(item.action);
+
+        const target=document.createElement('p');
+        target.textContent=
+          '@'+(item.actor_username||'moderator')+
+          (item.target_username?' → @'+item.target_username:' → '+item.target_id);
+
+        copy.append(action,target);
+
+        if(item.reason){
+          const reason=document.createElement('p');
+          reason.className='mod-reason';
+          reason.textContent=item.reason;
+          copy.append(reason);
+        }
+
+        const time=document.createElement('time');
+        time.textContent=modAgo(item.created_at);
+        time.title=new Date(item.created_at).toLocaleString();
+
+        row.append(iconBox,copy,time);
+        list.append(row);
+      }
+    }
+
+    modAuditNext=data.next;
+    $('modMoreAudit').hidden=modAuditNext===null;
+  }catch(err){
+    modSetStatus(err.message);
+  }
+}
+
+
 // Admin access is checked on every server request. UI visibility is only convenience.
 function stopDMs(){
   clearInterval(dmTimer);
