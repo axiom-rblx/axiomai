@@ -742,6 +742,43 @@ html[data-custom-gradient=true] .creation-card{
   .pinned-profile-grid{grid-template-columns:1fr 1fr}
 }
 
+
+/* Axiom v8.4 community */
+.asset-icon{width:18px;height:18px;object-fit:contain;display:inline-block;flex:0 0 auto;vertical-align:-4px}
+.nav-item .asset-icon{width:18px;height:18px}
+.btn .asset-icon,.icon-btn .asset-icon{width:16px;height:16px}
+.asset-icon.large{width:26px;height:26px}.asset-icon.tiny{width:14px;height:14px}
+.nav-unread{margin-left:auto;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--blue);color:white;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.creation-social{display:flex;align-items:center;gap:7px;padding:13px 0 15px;border-top:1px solid var(--line)}
+.social-action{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:7px 9px;font-size:12px;color:var(--muted)}
+.social-action:hover{background:var(--soft);color:var(--ink)}
+.social-action.active{color:var(--ink);background:color-mix(in srgb,#ff6b8a 12%,var(--surface));border-color:color-mix(in srgb,#ff6b8a 38%,var(--line))}
+.social-action strong{font-size:11px;font-weight:650;color:inherit}
+.creation-comments{border-top:1px solid var(--line);padding:15px 0 2px;margin-top:-3px}.creation-comments[hidden]{display:none}
+.comment-list{display:flex;flex-direction:column;gap:11px;max-height:320px;overflow:auto}
+.comment-row{display:flex;gap:9px;align-items:flex-start}.comment-row>.avatar{width:28px;height:28px;border-radius:9px;flex:0 0 28px;font-size:11px}
+.comment-content{flex:1;min-width:0}.comment-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.comment-meta .person-name{font-size:12px}.comment-meta time{font-size:10px;color:var(--muted)}
+.comment-text{font-size:13px;margin:3px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.comment-delete{margin-left:auto;width:25px!important;height:25px!important;min-width:25px!important}
+.comment-form{display:flex;gap:8px;margin-top:13px}.comment-form input{flex:1;min-width:0;border:1px solid var(--line);border-radius:9px;background:var(--bg);padding:9px 10px;font-size:12px}.comment-form button{flex:0 0 auto}
+.comment-empty{font-size:12px;color:var(--muted);padding:4px 0 8px}
+.dm-shell{height:100%;display:flex;flex-direction:column}
+.dm-layout{min-height:0;flex:1;display:grid;grid-template-columns:minmax(245px,320px) minmax(0,1fr);border:1px solid var(--line);border-radius:15px;overflow:hidden;background:var(--surface)}
+.dm-sidebar{border-right:1px solid var(--line);min-width:0;display:flex;flex-direction:column;background:var(--surface)}
+.dm-sidebar-head{padding:14px;border-bottom:1px solid var(--line)}.dm-sidebar-head input{width:100%;border:1px solid var(--line);border-radius:9px;background:var(--bg);padding:9px 10px;font-size:13px}
+.dm-list{padding:7px;overflow:auto;flex:1;min-height:0}
+.dm-conversation{width:100%;display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;text-align:left;color:var(--ink)}.dm-conversation:hover,.dm-conversation.active{background:var(--soft)}
+.dm-conversation>.avatar{width:38px;height:38px;border-radius:11px;flex:0 0 38px}.dm-conversation-copy{min-width:0;flex:1}.dm-conversation-copy strong{display:block;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dm-conversation-copy span{display:block;font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
+.dm-unread{min-width:19px;height:19px;border-radius:999px;background:var(--blue);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.dm-thread{display:flex;flex-direction:column;min-width:0;min-height:0}.dm-thread-empty{margin:auto;text-align:center;padding:35px;color:var(--muted);max-width:360px}.dm-thread-empty img{width:44px;height:44px;margin-bottom:12px}.dm-thread-empty h2{font-size:18px;margin:0 0 6px;color:var(--ink)}
+.dm-thread-head{min-height:66px;padding:12px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.dm-thread-user{display:flex;align-items:center;gap:10px;text-align:left;min-width:0}.dm-thread-user>.avatar{width:38px;height:38px;border-radius:11px}.dm-thread-user strong{display:block;font-size:13px}.dm-thread-user span{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.dm-messages{flex:1;min-height:0;overflow:auto;padding:20px;display:flex;flex-direction:column;gap:8px;background:color-mix(in srgb,var(--bg) 55%,var(--surface))}
+.dm-bubble-row{display:flex;align-items:flex-end;gap:6px}.dm-bubble-row.mine{justify-content:flex-end}.dm-bubble{max-width:min(72%,620px);border:1px solid var(--line);background:var(--surface);border-radius:13px 13px 13px 4px;padding:9px 11px}.dm-bubble-row.mine .dm-bubble{background:var(--blue);border-color:var(--blue);color:white;border-radius:13px 13px 4px 13px}
+.dm-bubble p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.42}.dm-bubble time{display:block;font-size:9px;color:var(--muted);margin-top:4px}.dm-bubble-row.mine .dm-bubble time{color:#ffffffbb;text-align:right}
+.dm-message-delete{opacity:0}.dm-bubble-row:hover .dm-message-delete{opacity:1}
+.dm-form{border-top:1px solid var(--line);padding:12px;display:flex;gap:8px;background:var(--surface)}.dm-form textarea{flex:1;resize:none;max-height:120px;min-height:42px;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:10px 11px;font-size:13px}.dm-form button{align-self:flex-end}
+.dm-note{font-size:11px;color:var(--muted);margin:7px 0 0}.profile-action-row .profile-message,.profile-action-row .profile-follow{display:inline-flex;align-items:center;gap:6px}
+@media(max-width:760px){.dm-layout{grid-template-columns:1fr;height:auto;min-height:620px}.dm-sidebar{border-right:0;border-bottom:1px solid var(--line);max-height:230px}.dm-thread{min-height:390px}.dm-bubble{max-width:88%}}
+
 </style>
 </head>
 <body>
@@ -784,10 +821,10 @@ html[data-custom-gradient=true] .creation-card{
 <aside class="sidebar" id="sidebar" aria-label="Main navigation">
   <div class="brand"><img data-logo alt="">Axiom<em>.</em></div>
   <button class="btn new-chat" id="newChat"><svg class="icon"><use href="#i-plus"/></svg>New chat<kbd>Alt N</kbd></button>
-  <div class="nav-label">Workspace</div><nav class="nav" id="modeNav"><button class="nav-item active" data-mode="axiom"><svg class="icon"><use href="#i-chat"/></svg>Axiom<span class="nav-dot"></span></button><button class="nav-item" data-mode="ui"><svg class="icon"><use href="#i-layout"/></svg>Interface designer<span class="nav-dot"></span></button><button class="nav-item" data-mode="code"><svg class="icon"><use href="#i-code"/></svg>Script developer<span class="nav-dot"></span></button></nav>
-  <hr class="side-line"><button class="nav-item" id="devhubNav"><svg class="icon"><use href="#i-users"/></svg>DevHub</button>
-  <button class="nav-item" id="creationsNav"><svg class="icon"><use href="#i-grid"/></svg>Creations</button><button class="nav-item" id="adminNav" hidden><svg class="icon"><use href="#i-shield"/></svg>Admin dashboard</button><div class="recent-heading"><div class="nav-label">Recent chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
-  <div class="side-bottom"><button class="nav-item" id="settingsBtn"><svg class="icon"><use href="#i-settings"/></svg>Settings</button><button class="user-chip" id="userChip"><span class="sidebar-avatar-wrap"><span class="avatar" id="sidebarAvatar"></span><span class="presence-dot offline" id="sidebarPresence" aria-hidden="true"></span></span><span class="user-info"><strong id="userName"></strong><span>Personal workspace</span><span class="sidebar-status-quote" id="sidebarStatusQuote" hidden></span></span><svg class="icon muted"><use href="#i-settings"/></svg></button></div>
+  <div class="nav-label">Workspace</div><nav class="nav" id="modeNav"><button class="nav-item active" data-mode="axiom"><img class="asset-icon" src="/icons/axiom/ai.png" alt="">Axiom<span class="nav-dot"></span></button><button class="nav-item" data-mode="ui"><img class="asset-icon" src="/icons/axiom/studio.png" alt="">Interface designer<span class="nav-dot"></span></button><button class="nav-item" data-mode="code"><img class="asset-icon" src="/icons/axiom/api.png" alt="">Script developer<span class="nav-dot"></span></button></nav>
+  <hr class="side-line"><button class="nav-item" id="devhubNav"><img class="asset-icon" src="/icons/social/post.png" alt="">DevHub</button>
+  <button class="nav-item" id="creationsNav"><img class="asset-icon" src="/icons/social/creation.png" alt="">Creations</button><button class="nav-item" id="dmsNav"><img class="asset-icon" src="/icons/social/message.png" alt="">Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><button class="nav-item" id="adminNav" hidden><img class="asset-icon" src="/icons/staff/support.png" alt="">Admin dashboard</button><div class="recent-heading"><div class="nav-label">Recent chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
+  <div class="side-bottom"><button class="nav-item" id="settingsBtn"><img class="asset-icon" src="/icons/actions/settings.png" alt="">Settings</button><button class="user-chip" id="userChip"><span class="sidebar-avatar-wrap"><span class="avatar" id="sidebarAvatar"></span><span class="presence-dot offline" id="sidebarPresence" aria-hidden="true"></span></span><span class="user-info"><strong id="userName"></strong><span>Personal workspace</span><span class="sidebar-status-quote" id="sidebarStatusQuote" hidden></span></span><svg class="icon muted"><use href="#i-settings"/></svg></button></div>
 </aside>
 <main class="main"><header class="topbar"><div class="top-left"><button class="icon-btn mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button><span class="top-title" id="topTitle">Axiom</span><span class="divider"></span><span class="top-sub" id="topSub">Roblox workspace</span></div><div class="top-right"><span class="tag">Beta</span><button class="icon-btn" id="themeToggle" aria-label="Toggle light and dark appearance"><svg class="icon"><use href="#i-moon"/></svg></button><button class="icon-btn" id="clearChat" aria-label="Delete current chat"><svg class="icon"><use href="#i-trash"/></svg></button></div></header>
 <section id="chatView" aria-label="AI conversation"><div class="chat-area" id="chatArea"><div class="welcome" id="welcome"><img class="welcome-logo" data-logo alt=""><p class="eyebrow" id="greeting">Your workspace, ready.</p><h1 id="welcomeTitle">What are we <span>building today?</span></h1><p id="welcomeSub">A new interface, a better script, or your next big idea.</p><div class="suggestions" id="suggestions"></div><div class="mode-note"><svg class="icon"><use href="#i-code"/></svg><span>Built around Roblox Studio & Luau</span></div></div><div class="chat-log" id="chatLog" hidden></div></div>
@@ -795,7 +832,8 @@ html[data-custom-gradient=true] .creation-card{
 <div class="composer-wrap"><div id="chatError" class="error-strip" role="alert" hidden><span></span><button class="btn ghost" id="retryRequest">Retry</button><button class="icon-btn" id="dismissError" aria-label="Dismiss error"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="chatForm" class="composer-box"><div class="attachments" id="attachments" hidden></div><label class="sr-only" for="prompt">Message Axiom</label><textarea id="prompt" rows="2" maxlength="60000" placeholder="Ask Axiom to build something…"></textarea><div class="composer-tools"><div class="composer-left"><button class="icon-btn" id="attachBtn" type="button" aria-label="Attach images or code files" title="Attach images or code files"><svg class="icon"><use href="#i-clip"/></svg></button><label class="sr-only" for="modeSelect">Assistant mode</label><select class="sr-only" id="modeSelect" tabindex="-1" aria-hidden="true"><option value="axiom">Axiom</option><option value="ui">Interface designer</option><option value="code">Script developer</option></select><div class="mode-picker" id="modePicker"><button class="mode-trigger" id="modePickerButton" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="mode-trigger-icon" id="modePickerIcon"><svg class="icon"><use href="#i-chat"/></svg></span><span class="mode-trigger-copy"><strong id="modePickerLabel">Axiom</strong><small id="modePickerSub">Roblox workspace</small></span><svg class="icon mode-chevron"><use href="#i-down"/></svg></button><div class="mode-menu" id="modePickerMenu" role="listbox" aria-label="Choose Axiom mode" hidden><button type="button" class="mode-option" role="option" data-mode-choice="axiom"><span class="mode-option-icon"><svg class="icon"><use href="#i-chat"/></svg></span><span><strong>Axiom</strong><small>Build across your Roblox project</small></span><span class="mode-check">✓</span></button><button type="button" class="mode-option" role="option" data-mode-choice="ui"><span class="mode-option-icon"><svg class="icon"><use href="#i-layout"/></svg></span><span><strong>Interface designer</strong><small>Polished Roblox UI and UX</small></span><span class="mode-check">✓</span></button><button type="button" class="mode-option" role="option" data-mode-choice="code"><span class="mode-option-icon"><svg class="icon"><use href="#i-code"/></svg></span><span><strong>Script developer</strong><small>Luau scripts and game systems</small></span><span class="mode-check">✓</span></button></div></div></div><div class="composer-right"><span class="model-label" id="modelLabel">Axiom · Deep Build</span><button class="send" id="sendBtn" type="submit" aria-label="Send message"><svg class="icon"><use href="#i-up"/></svg></button><button class="send" id="stopBtn" type="button" aria-label="Stop generating" hidden><svg class="icon"><use href="#i-stop"/></svg></button></div></div></form><p class="composer-hint">Axiom can make mistakes. Test generated code in Roblox Studio.</p></div>
 </section>
 <section class="hub-view" id="hubView" hidden aria-label="DevHub community"><div class="hub-header"><h1>DevHub</h1><p>A shared space for developers. <strong id="onlineCount">0 developers online</strong></p><div class="online-members" id="onlineMembers" aria-label="Online developers"></div><button class="btn ghost" id="legacyBoardBtn">View earlier board</button><p id="hubStatus" role="status"></p></div><div class="chat-area" id="hubArea"><div class="hub-log" id="hubLog"></div></div><div class="composer-wrap"><form id="hubForm" class="composer-box"><label class="sr-only" for="hubInput">Public message</label><textarea id="hubInput" rows="2" maxlength="500" placeholder="Share what you’re working on…" required></textarea><div class="composer-tools"><span class="small muted">Visible to everyone on DevHub</span><button class="send" id="hubSend" aria-label="Post message"><svg class="icon"><use href="#i-up"/></svg></button></div></form></div></section>
-<section id="creationsView" class="shared-view" hidden aria-label="Community creations"><div class="community-shell"><div class="community-heading"><div><h1>Creations</h1><p>A little inspiration. A lot of work worth sharing.</p></div><button id="newCreation" class="btn primary"><svg class="icon"><use href="#i-plus"/></svg>Share a creation</button></div><div class="feed-toolbar"><div class="filter-tabs" id="creationFilters" role="group" aria-label="Filter creations"><button data-category="All" aria-pressed="true">All work</button><button data-category="Interface" aria-pressed="false">Interfaces</button><button data-category="Script" aria-pressed="false">Scripts</button><button data-category="Game" aria-pressed="false">Games</button><button data-category="Other" aria-pressed="false">Other</button></div><button class="btn ghost" id="clearAuthorFilter" hidden>Show everyone</button></div><p id="creationStatus" class="inline-error" role="status"></p><div id="creationGrid" class="creation-grid"></div><button id="moreCreations" class="btn feed-more" hidden>Load more</button></div></section>
+<section id="creationsView" class="shared-view" hidden aria-label="Community creations"><div class="community-shell"><div class="community-heading"><div><h1>Creations</h1><p>A little inspiration. A lot of work worth sharing.</p></div><button id="newCreation" class="btn primary"><img class="asset-icon" src="/icons/social/creation.png" alt="">Share a creation</button></div><div class="feed-toolbar"><div class="filter-tabs" id="creationFilters" role="group" aria-label="Filter creations"><button data-category="All" aria-pressed="true">All work</button><button data-category="Interface" aria-pressed="false">Interfaces</button><button data-category="Script" aria-pressed="false">Scripts</button><button data-category="Game" aria-pressed="false">Games</button><button data-category="Other" aria-pressed="false">Other</button></div><button class="btn ghost" id="clearAuthorFilter" hidden>Show everyone</button></div><p id="creationStatus" class="inline-error" role="status"></p><div id="creationGrid" class="creation-grid"></div><button id="moreCreations" class="btn feed-more" hidden>Load more</button></div></section>
+<section id="dmsView" class="shared-view" hidden aria-label="Direct messages"><div class="community-shell dm-shell"><div class="community-heading"><div><h1>Messages</h1><p>Account-to-account messages with other Axiom developers.</p></div><span class="feed-note">Text-only · account members</span></div><div class="dm-layout"><aside class="dm-sidebar"><div class="dm-sidebar-head"><label class="sr-only" for="dmSearch">Search conversations</label><input id="dmSearch" placeholder="Search messages…"></div><div class="dm-list" id="dmList"></div></aside><section class="dm-thread"><div class="dm-thread-empty" id="dmThreadEmpty"><img src="/icons/social/message.png" alt=""><h2>Your messages</h2><p>Open a developer’s profile and choose Message, or pick a conversation here.</p></div><div id="dmThread" class="dm-thread" hidden><div class="dm-thread-head"><button class="dm-thread-user" id="dmThreadUser" type="button"></button><span class="feed-note" id="dmThreadStatus"></span></div><div class="dm-messages" id="dmMessages"></div><form class="dm-form" id="dmForm"><label class="sr-only" for="dmInput">Direct message</label><textarea id="dmInput" maxlength="1000" rows="1" placeholder="Message this developer…" required></textarea><button class="send" id="dmSend" aria-label="Send direct message"><svg class="icon"><use href="#i-up"/></svg></button></form></div></section></div><p class="dm-note">DMs are not public. They are stored by Axiom and are not shown in DevHub or public profiles.</p></div></section>
 <section id="adminView" class="shared-view" hidden aria-label="Admin dashboard"><div class="community-shell"><div class="community-heading"><div><h1>Admin dashboard</h1><p>Look after the people and work that make Axiom.</p></div><button id="lockAdmin" class="btn"><svg class="icon"><use href="#i-shield"/></svg>Lock dashboard</button></div><div class="admin-stats" id="adminStats"></div><div class="feed-toolbar admin-tabs"><div class="filter-tabs" role="group" aria-label="Admin sections"><button id="adminMembersTab" aria-pressed="true">Members & badges</button><button id="adminContentTab" aria-pressed="false">Community</button></div><span class="feed-note" id="adminExpiry"></span></div><p id="adminStatus" class="inline-error" role="status"></p><div id="adminMembersPanel" class="admin-layout"><section class="admin-members" aria-label="Members"><div class="admin-search"><label class="sr-only" for="adminSearch">Find a member</label><input id="adminSearch" class="search-input" placeholder="Find a member by name…"></div><div id="adminUserList" class="admin-user-list"></div><button id="adminMoreUsers" class="btn ghost" hidden>Load more members</button></section><section class="admin-detail" id="adminUserDetail" aria-label="Selected member"><div class="admin-detail-empty">Choose a member to manage their badges and account.</div></section></div><section id="adminContentPanel" hidden aria-label="Community moderation"><div id="adminContentList"></div><button id="adminMoreContent" class="btn" hidden>Load more creations</button></section></div></section>
 </main></div>
 <dialog id="settingsDialog" aria-labelledby="settingsTitle"><div class="dialog-header"><h2 id="settingsTitle">Settings</h2><button class="icon-btn" data-close="settingsDialog" aria-label="Close settings"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="settingsForm"><div class="dialog-body"><div class="settings-tabs" role="tablist" aria-label="Settings sections"><button type="button" role="tab" id="profileTab" aria-controls="profilePanel" aria-selected="true" data-tab="profile">Profile</button><button type="button" role="tab" id="preferencesTab" aria-controls="preferencesPanel" aria-selected="false" tabindex="-1" data-tab="preferences">Preferences</button></div>
@@ -828,6 +866,7 @@ const PROXY_URL = 'https://axiom-proxy.itsizzydudee.workers.dev';
 const LOGO = 'data:image/png;base64,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';
 const $ = id => document.getElementById(id);
 const icon = name => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"/></svg>`;
+const assetIcon=(group,name)=>`<img class="asset-icon" src="/icons/${group}/${name}.png" alt="" aria-hidden="true">`;
 const escapeHTML = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const read = (key, fallback) => { try { const v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); } catch { return fallback; } };
 const write = (key, value) => localStorage.setItem(key, JSON.stringify(value));
@@ -843,6 +882,7 @@ let username = null, profile = null, prefs = null, threads = [], activeId = null
 let avatarBlob = null, avatarURL = null, profileDraft = null, draftBlob = null, draftURL = null, avatarLoading = false, bannerDraftBlob = null, bannerDraftURL = null, bannerChanged = false, bannerSelection = 0, bannerLoading = false;
 let pending = [], attachmentLoading = false, activeRequest = null, chatFailure = null, hubTimer = null, hubLoading = false, hubController = null, hubPending = [];
 let authMode = 'login', toastTimer, pendingDelete = null, avatarSelection = 0, presenceTimer = null, lastPresenceActivity = Date.now();
+let dmConversations=[],dmPartner=null,dmMessages=[],dmTimer=null,dmLoading=false,dmFetch=0;
 let dbPromise;
 // Keep original image bytes in IndexedDB: no canvas conversion, so animation is preserved.
 function database() {
@@ -1171,13 +1211,14 @@ async function boot(user){
   prefs={theme:read('axiom_theme','light'),enterSend:true,reduceMotion:false,tokenLimit:8192,gradientEnabled:false,gradientA:'#eaf2ff',gradientB:'#f5eaff',...read('axiom_preferences_'+localKey,{})};
   if(avatarURL?.startsWith('blob:'))URL.revokeObjectURL(avatarURL);avatarBlob=null;avatarURL=mediaURL(user.avatarId);
   $('authWrap').hidden=true;$('app').hidden=false;$('adminNav').hidden=!user.canAdmin;applyAppearance(prefs.theme);updateProfile();startPresence();loadMyPins();activeId=threads[0]?.id||null;mode=threads[0]?.mode||'axiom';setMode(mode,false);renderRecent();
+  refreshDMUnread();
   const requestedProfile=profileUsernameFromPath();
   if(requestedProfile)openPublicProfile('@'+requestedProfile,false);
 }
-function hideCommunityViews(){for(const id of ['creationsView','adminView'])$(id).hidden=true;for(const id of ['creationsNav','adminNav'])$(id).classList.remove('active');}
+function hideCommunityViews(){for(const id of ['creationsView','dmsView','adminView'])$(id).hidden=true;for(const id of ['creationsNav','dmsNav','adminNav'])$(id).classList.remove('active');}
 function communityView(name,title,sub,nav){
   if(activeRequest){toast('Stop the current reply before switching views.');return false;}
-  view=name;stopHub();hideCommunityViews();$('chatView').hidden=true;$('hubView').hidden=true;$('clearChat').hidden=true;$('topTitle').textContent=title;$('topSub').textContent=sub;document.querySelectorAll('[data-mode]').forEach(b=>b.classList.remove('active'));$('devhubNav').classList.remove('active');$(name+'View').hidden=false;$(nav).classList.add('active');closeSidebar();return true;
+  view=name;stopHub();stopDMs();hideCommunityViews();$('chatView').hidden=true;$('hubView').hidden=true;$('clearChat').hidden=true;$('topTitle').textContent=title;$('topSub').textContent=sub;document.querySelectorAll('[data-mode]').forEach(b=>b.classList.remove('active'));$('devhubNav').classList.remove('active');$(name+'View').hidden=false;$(nav).classList.add('active');closeSidebar();return true;
 }
 function currentThread(){return threads.find(t=>t.id===activeId);}
 function closeSidebar(){$('sidebar').classList.remove('open');$('sidebarBackdrop').classList.remove('show');$('mobileToggle').setAttribute('aria-expanded','false');if(matchMedia('(max-width:760px)').matches)$('sidebar').inert=true;}
@@ -1244,10 +1285,10 @@ $('modePicker').addEventListener('keydown',event=>{
 function setMode(next,newConversation=true){
   if(!MODES[next])return;
   if(newConversation){activeId=null;pending=[];renderAttachments();$('prompt').value='';resizePrompt();}
-  mode=next;view='chat';stopHub();hideCommunityViews();
+  mode=next;view='chat';stopHub();stopDMs();hideCommunityViews();
   $('chatView').hidden=false;$('hubView').hidden=true;$('clearChat').hidden=false;
   $('topTitle').textContent=MODES[mode].name;$('topSub').textContent=MODES[mode].sub;$('modeSelect').value=mode;syncModePicker();
-  $('devhubNav').classList.remove('active');document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));
+  $('devhubNav').classList.remove('active');$('dmsNav').classList.remove('active');document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));
   $('welcomeTitle').innerHTML=MODES[mode].title;$('welcomeSub').textContent=MODES[mode].description;
   $('suggestions').replaceChildren();
   for(const [i,title,sub,prompt] of MODES[mode].suggestions){const b=document.createElement('button');b.className='suggestion';b.innerHTML=icon(i)+`<strong>${title}</strong><span>${sub}</span>`;b.onclick=()=>{$('prompt').value=prompt;resizePrompt();$('prompt').focus();};$('suggestions').append(b);}
@@ -1764,7 +1805,7 @@ async function openPublicProfile(ref,pushUrl=true){
       a.href=url;
       a.target='_blank';
       a.rel='noopener noreferrer';
-      a.innerHTML=icon('link');
+      a.innerHTML=assetIcon('actions','link');
       const label=document.createElement('span');
       label.textContent=profileLinkHostLabel(key,url);
       a.append(label);
@@ -1793,22 +1834,34 @@ async function openPublicProfile(ref,pushUrl=true){
 
     if(sessionToken&&account&&user.id!==account.id){
       const follow=document.createElement('button');
-      follow.className='btn '+(viewerFollows?'':'primary');
-      follow.textContent=viewerFollows?'Following':'Follow';
+      follow.className='btn profile-follow '+(viewerFollows?'':'primary');
+      follow.innerHTML=assetIcon('social','follow')+'<span>'+(viewerFollows?'Unfollow':'Follow')+'</span>';
+      follow.dataset.following=String(!!viewerFollows);
       follow.onclick=async()=>{
         follow.disabled=true;
         try{
+          const currentlyFollowing=follow.dataset.following==='true';
           const result=await api('/profiles/'+encodeURIComponent(user.id)+'/follow',{
-            method:follow.textContent==='Following'?'DELETE':'POST'
+            method:currentlyFollowing?'DELETE':'POST'
           });
-          follow.textContent=result.following?'Following':'Follow';
-          follow.className='btn '+(result.following?'':'primary');
+          follow.dataset.following=String(!!result.following);
+          follow.innerHTML=assetIcon('social','follow')+'<span>'+(result.following?'Unfollow':'Follow')+'</span>';
+          follow.className='btn profile-follow '+(result.following?'':'primary');
           const statValues=stats.querySelectorAll('strong');
           if(statValues[1])statValues[1].textContent=String(result.counts.followers);
         }catch(err){toast(err.message);}
         finally{follow.disabled=false;}
       };
       actions.append(follow);
+
+      const message=document.createElement('button');
+      message.className='btn profile-message';
+      message.innerHTML=assetIcon('social','message')+'<span>Message</span>';
+      message.onclick=()=>{
+        $('publicProfileDialog').close();
+        openDMs(user);
+      };
+      actions.append(message);
     }
 
     if(sessionToken){
@@ -1901,7 +1954,7 @@ async function openPublicProfile(ref,pushUrl=true){
         row.className='activity-row';
         const badge=document.createElement('span');
         badge.className='activity-icon';
-        badge.innerHTML=icon(item.kind==='creation'?'grid':'chat');
+        badge.innerHTML=assetIcon('social',item.kind==='creation'?'creation':'post');
 
         const copyWrap=document.createElement('div');
         const strong=document.createElement('strong');
@@ -2034,15 +2087,314 @@ async function toggleCreationPin(creation){
   }
 }
 
+
+async function toggleCreationLike(c,button){
+  if(button.disabled)return;
+  button.disabled=true;
+  try{
+    const data=await api('/creations/'+encodeURIComponent(c.id)+'/like',{
+      method:c.liked?'DELETE':'POST'
+    });
+    c.liked=!!data.liked;
+    c.likeCount=Number(data.likeCount)||0;
+    button.classList.toggle('active',c.liked);
+    button.setAttribute('aria-pressed',String(c.liked));
+    const count=button.querySelector('[data-like-count]');
+    if(count)count.textContent=String(c.likeCount);
+  }catch(err){toast(err.message);}
+  finally{button.disabled=false;}
+}
+
+function creationCommentRow(c,comment,panel,commentButton){
+  const row=document.createElement('div');
+  row.className='comment-row';
+
+  const av=document.createElement('span');
+  av.className='avatar';
+  avatar(av,comment.author,mediaURL(comment.author.avatarId));
+
+  const content=document.createElement('div');
+  content.className='comment-content';
+
+  const meta=document.createElement('div');
+  meta.className='comment-meta';
+  meta.append(personLink(comment.author));
+
+  const time=document.createElement('time');
+  time.dateTime=new Date(comment.ts).toISOString();
+  time.textContent=new Date(comment.ts).toLocaleString([],{
+    month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'
+  });
+  meta.append(time);
+
+  if(comment.author.id===account.id||account.canAdmin&&account.adminUntil>Date.now()){
+    const del=document.createElement('button');
+    del.className='icon-btn comment-delete';
+    del.ariaLabel='Delete comment';
+    del.innerHTML=icon('trash');
+    del.onclick=async()=>{
+      if(!await confirmAction(
+        'Delete this comment?',
+        'The comment will be removed from this creation.'
+      ))return;
+      try{
+        const result=await api(
+          '/creations/'+encodeURIComponent(c.id)+'/comments/'+encodeURIComponent(comment.id),
+          {method:'DELETE'}
+        );
+        c.commentCount=Number(result.commentCount)||0;
+        const count=commentButton.querySelector('[data-comment-count]');
+        if(count)count.textContent=String(c.commentCount);
+        row.remove();
+        if(!panel.querySelector('.comment-row')){
+          const empty=document.createElement('p');
+          empty.className='comment-empty';
+          empty.textContent='No comments yet. Start the conversation.';
+          panel.querySelector('.comment-list')?.append(empty);
+        }
+      }catch(err){toast(err.message);}
+    };
+    meta.append(del);
+  }
+
+  const text=document.createElement('p');
+  text.className='comment-text';
+  text.textContent=comment.text;
+
+  content.append(meta,text);
+  row.append(av,content);
+  return row;
+}
+
+function renderCreationComments(c,panel,commentButton,comments){
+  panel.replaceChildren();
+  const list=document.createElement('div');
+  list.className='comment-list';
+
+  if(!comments.length){
+    const empty=document.createElement('p');
+    empty.className='comment-empty';
+    empty.textContent='No comments yet. Start the conversation.';
+    list.append(empty);
+  }else{
+    for(const comment of comments){
+      list.append(creationCommentRow(c,comment,panel,commentButton));
+    }
+  }
+
+  const form=document.createElement('form');
+  form.className='comment-form';
+
+  const input=document.createElement('input');
+  input.maxLength=500;
+  input.required=true;
+  input.placeholder='Add a comment…';
+  input.setAttribute('aria-label','Comment');
+
+  const send=document.createElement('button');
+  send.className='btn';
+  send.type='submit';
+  send.innerHTML=assetIcon('social','post')+'<span>Post</span>';
+
+  form.onsubmit=async e=>{
+    e.preventDefault();
+    const text=input.value.trim();
+    if(!text)return;
+    send.disabled=true;
+    try{
+      const result=await api(
+        '/creations/'+encodeURIComponent(c.id)+'/comments',
+        {method:'POST',body:{text,requestId:uid()}}
+      );
+      c.commentCount=Number(result.commentCount)||c.commentCount+1;
+      const count=commentButton.querySelector('[data-comment-count]');
+      if(count)count.textContent=String(c.commentCount);
+      input.value='';
+      list.querySelector('.comment-empty')?.remove();
+      list.append(creationCommentRow(c,result.comment,panel,commentButton));
+      list.scrollTop=list.scrollHeight;
+    }catch(err){toast(err.message);}
+    finally{send.disabled=false;}
+  };
+
+  form.append(input,send);
+  panel.append(list,form);
+}
+
+async function toggleCreationComments(c,panel,commentButton){
+  if(!panel.hidden){
+    panel.hidden=true;
+    return;
+  }
+  panel.hidden=false;
+  if(panel.dataset.loaded==='true')return;
+
+  panel.innerHTML='<p class="comment-empty">Loading comments…</p>';
+  try{
+    const data=await api('/creations/'+encodeURIComponent(c.id)+'/comments');
+    panel.dataset.loaded='true';
+    renderCreationComments(c,panel,commentButton,data.comments||[]);
+  }catch(err){
+    panel.innerHTML='';
+    const p=document.createElement('p');
+    p.className='inline-error';
+    p.textContent=err.message;
+    panel.append(p);
+  }
+}
+
 function renderCreations(){
-  const grid=$('creationGrid');grid.replaceChildren();if(!creations.length){const empty=document.createElement('div');empty.className='feed-empty';empty.innerHTML=icon('grid')+'<h2>Good work deserves a place.</h2><p>No creations here yet. Share something you’ve been building.</p>';grid.append(empty);return;}
-  for(const c of creations){const card=document.createElement('article');card.className='creation-card';const preview=c.attachments.find(a=>a.kind==='image'||a.kind==='video');
-    if(preview?.kind==='image'){const b=document.createElement('button');b.className='creation-preview';b.ariaLabel='View '+preview.name;const img=document.createElement('img');img.src=mediaURL(preview.id);img.alt=c.title;img.loading='lazy';b.append(img);b.onclick=()=>showMedia(preview);card.append(b);}
-    else if(preview?.kind==='video'){const video=document.createElement('video');video.className='creation-preview';video.src=mediaURL(preview.id);video.controls=true;video.preload='metadata';video.playsInline=true;card.append(video);}
-    else{const blank=document.createElement('div');blank.className='creation-preview creation-preview-empty';blank.innerHTML=icon(c.category==='Script'?'code':'box');const title=document.createElement('span');title.textContent=c.attachments.length?'Project files included':c.category+' creation';blank.append(title);card.append(blank);}
-    const body=document.createElement('div');body.className='creation-body';const kicker=document.createElement('div');kicker.className='creation-kicker';const category=document.createElement('span');category.className='category-label';category.textContent=c.category;const time=document.createElement('time');time.className='small muted';time.textContent=new Date(c.ts).toLocaleDateString(undefined,{month:'short',day:'numeric'});kicker.append(category,time);const h=document.createElement('h2');h.textContent=c.title;const description=document.createElement('p');description.className='creation-description';description.textContent=c.description;body.append(kicker,h,description);
-    if(c.attachments.length){const files=document.createElement('div');files.className='creation-files';for(const file of c.attachments){const a=document.createElement('a');a.className='file-link';a.href=mediaURL(file.id);a.target='_blank';a.rel='noopener noreferrer';a.innerHTML=icon('file');const label=document.createElement('span');label.textContent=file.name;a.append(label);if(file.kind!=='file'){a.onclick=e=>{e.preventDefault();showMedia(file);};}files.append(a);}body.append(files);}
-    const footer=document.createElement('div');footer.className='creation-author';footer.append(personLink(c.author,true));if(c.author.id===account.id){const pin=document.createElement('button');pin.className='btn ghost pin-control'+(myPinnedIds.has(c.id)?' pinned':'');pin.type='button';pin.innerHTML=icon('pin')+'<span>'+(myPinnedIds.has(c.id)?'Pinned':'Pin')+'</span>';pin.onclick=()=>toggleCreationPin(c);footer.append(pin);}if(c.author.id===account.id||account.canAdmin&&account.adminUntil>Date.now()){const del=document.createElement('button');del.className='icon-btn';del.ariaLabel='Delete '+c.title;del.innerHTML=icon('trash');del.onclick=async()=>{if(!await confirmAction('Delete this creation?','The post and its attachments will no longer be public.'))return;try{await api('/creations/'+c.id,{method:'DELETE'});creations=creations.filter(item=>item.id!==c.id);renderCreations();}catch(err){toast(err.message);}};footer.append(del);}body.append(footer);card.append(body);grid.append(card);
+  const grid=$('creationGrid');
+  grid.replaceChildren();
+
+  if(!creations.length){
+    const empty=document.createElement('div');
+    empty.className='feed-empty';
+    empty.innerHTML=assetIcon('social','creation')+'<h2>Good work deserves a place.</h2><p>No creations here yet. Share something you’ve been building.</p>';
+    grid.append(empty);
+    return;
+  }
+
+  for(const c of creations){
+    const card=document.createElement('article');
+    card.className='creation-card';
+
+    const preview=c.attachments.find(a=>a.kind==='image'||a.kind==='video');
+
+    if(preview?.kind==='image'){
+      const b=document.createElement('button');
+      b.className='creation-preview';
+      b.ariaLabel='View '+preview.name;
+      const img=document.createElement('img');
+      img.src=mediaURL(preview.id);
+      img.alt=c.title;
+      img.loading='lazy';
+      b.append(img);
+      b.onclick=()=>showMedia(preview);
+      card.append(b);
+    }else if(preview?.kind==='video'){
+      const video=document.createElement('video');
+      video.className='creation-preview';
+      video.src=mediaURL(preview.id);
+      video.controls=true;
+      video.preload='metadata';
+      video.playsInline=true;
+      card.append(video);
+    }else{
+      const blank=document.createElement('div');
+      blank.className='creation-preview creation-preview-empty';
+      blank.innerHTML=assetIcon('social','creation');
+      const title=document.createElement('span');
+      title.textContent=c.attachments.length?'Project files included':c.category+' creation';
+      blank.append(title);
+      card.append(blank);
+    }
+
+    const body=document.createElement('div');
+    body.className='creation-body';
+
+    const kicker=document.createElement('div');
+    kicker.className='creation-kicker';
+    const category=document.createElement('span');
+    category.className='category-label';
+    category.textContent=c.category;
+    const time=document.createElement('time');
+    time.className='small muted';
+    time.textContent=new Date(c.ts).toLocaleDateString(undefined,{month:'short',day:'numeric'});
+    kicker.append(category,time);
+
+    const h=document.createElement('h2');
+    h.textContent=c.title;
+    const description=document.createElement('p');
+    description.className='creation-description';
+    description.textContent=c.description;
+    body.append(kicker,h,description);
+
+    if(c.attachments.length){
+      const files=document.createElement('div');
+      files.className='creation-files';
+      for(const file of c.attachments){
+        const a=document.createElement('a');
+        a.className='file-link';
+        a.href=mediaURL(file.id);
+        a.target='_blank';
+        a.rel='noopener noreferrer';
+        a.innerHTML=assetIcon('actions','download');
+        const label=document.createElement('span');
+        label.textContent=file.name;
+        a.append(label);
+        if(file.kind!=='file'){
+          a.onclick=e=>{
+            e.preventDefault();
+            showMedia(file);
+          };
+        }
+        files.append(a);
+      }
+      body.append(files);
+    }
+
+    const social=document.createElement('div');
+    social.className='creation-social';
+
+    const like=document.createElement('button');
+    like.type='button';
+    like.className='social-action'+(c.liked?' active':'');
+    like.setAttribute('aria-pressed',String(!!c.liked));
+    like.innerHTML=assetIcon('social','like')+'<span>Like</span><strong data-like-count>'+String(Number(c.likeCount)||0)+'</strong>';
+    like.onclick=()=>toggleCreationLike(c,like);
+
+    const commentsButton=document.createElement('button');
+    commentsButton.type='button';
+    commentsButton.className='social-action';
+    commentsButton.innerHTML=assetIcon('social','message')+'<span>Comments</span><strong data-comment-count>'+String(Number(c.commentCount)||0)+'</strong>';
+
+    const commentsPanel=document.createElement('div');
+    commentsPanel.className='creation-comments';
+    commentsPanel.hidden=true;
+    commentsButton.onclick=()=>toggleCreationComments(c,commentsPanel,commentsButton);
+
+    social.append(like,commentsButton);
+    body.append(social,commentsPanel);
+
+    const footer=document.createElement('div');
+    footer.className='creation-author';
+    footer.append(personLink(c.author,true));
+
+    const footerActions=document.createElement('div');
+    footerActions.style.display='flex';
+    footerActions.style.alignItems='center';
+    footerActions.style.gap='6px';
+
+    if(c.author.id===account.id){
+      const pin=document.createElement('button');
+      pin.className='btn ghost pin-control'+(myPinnedIds.has(c.id)?' pinned':'');
+      pin.type='button';
+      pin.innerHTML=assetIcon('social','pinned')+'<span>'+(myPinnedIds.has(c.id)?'Pinned':'Pin')+'</span>';
+      pin.onclick=()=>toggleCreationPin(c);
+      footerActions.append(pin);
+    }
+
+    if(c.author.id===account.id||account.canAdmin&&account.adminUntil>Date.now()){
+      const del=document.createElement('button');
+      del.className='icon-btn';
+      del.ariaLabel='Delete '+c.title;
+      del.innerHTML=icon('trash');
+      del.onclick=async()=>{
+        if(!await confirmAction('Delete this creation?','The post and its attachments will no longer be public.'))return;
+        try{
+          await api('/creations/'+c.id,{method:'DELETE'});
+          creations=creations.filter(item=>item.id!==c.id);
+          renderCreations();
+        }catch(err){toast(err.message);}
+      };
+      footerActions.append(del);
+    }
+
+    footer.append(footerActions);
+    body.append(footer);
+    card.append(body);
+    grid.append(card);
   }
 }
 $('newCreation').onclick=()=>{creationEdit++;creationFiles=[];creationRequestId=uid();$('creationForm').reset();$('creationError').textContent='';renderCreationDrafts();$('creationDialog').showModal();};
@@ -2073,6 +2425,252 @@ $('creationForm').onsubmit=async e=>{
 };
 // Admin access is checked on every server request. UI visibility is only convenience.
 let adminUsers=[],adminNext=null,selectedAdminUser=null,adminSearchTimer,adminSearchRequest=0,adminContentCursor=null;
+
+function stopDMs(){
+  clearInterval(dmTimer);
+  dmTimer=null;
+}
+
+function updateDMUnread(count){
+  const badge=$('dmUnreadBadge');
+  const total=Number(count)||0;
+  badge.textContent=total>99?'99+':String(total);
+  badge.hidden=total<1;
+}
+
+async function refreshDMUnread(){
+  if(!sessionToken)return;
+  try{
+    const data=await api('/dms');
+    updateDMUnread(data.unread);
+    if(view==='dms'){
+      dmConversations=data.conversations||[];
+      renderDMList();
+    }
+  }catch{}
+}
+
+function dmConversationMatches(item,query){
+  if(!query)return true;
+  const q=query.toLowerCase();
+  return (item.user.displayName||'').toLowerCase().includes(q)
+    ||(item.user.username||'').toLowerCase().includes(q)
+    ||(item.last?.text||'').toLowerCase().includes(q);
+}
+
+function renderDMList(){
+  const list=$('dmList');
+  list.replaceChildren();
+  const query=$('dmSearch').value.trim();
+  const items=dmConversations.filter(item=>dmConversationMatches(item,query));
+
+  if(!items.length){
+    const empty=document.createElement('p');
+    empty.className='recent-empty';
+    empty.textContent=query?'No matching conversations.':'No DMs yet. Open a profile and choose Message.';
+    list.append(empty);
+    return;
+  }
+
+  for(const item of items){
+    const button=document.createElement('button');
+    button.type='button';
+    button.className='dm-conversation'+(dmPartner?.id===item.user.id?' active':'');
+
+    const av=document.createElement('span');
+    av.className='avatar';
+    avatar(av,item.user,mediaURL(item.user.avatarId));
+
+    const copy=document.createElement('div');
+    copy.className='dm-conversation-copy';
+
+    const name=document.createElement('strong');
+    name.textContent=item.user.displayName||item.user.username;
+    const last=document.createElement('span');
+    last.textContent=(item.last?.mine?'You: ':'')+(item.last?.text||'Start a conversation');
+
+    copy.append(name,last);
+    button.append(av,copy);
+
+    if(item.unread){
+      const unread=document.createElement('span');
+      unread.className='dm-unread';
+      unread.textContent=item.unread>99?'99+':String(item.unread);
+      button.append(unread);
+    }
+
+    button.onclick=()=>openDMThread(item.user.id);
+    list.append(button);
+  }
+}
+
+async function loadDMList(){
+  if(dmLoading)return;
+  dmLoading=true;
+  try{
+    const data=await api('/dms');
+    dmConversations=data.conversations||[];
+    updateDMUnread(data.unread);
+    renderDMList();
+  }catch(err){toast(err.message);}
+  finally{dmLoading=false;}
+}
+
+function renderDMThread(){
+  const thread=$('dmThread');
+  const empty=$('dmThreadEmpty');
+
+  if(!dmPartner){
+    thread.hidden=true;
+    empty.hidden=false;
+    return;
+  }
+
+  empty.hidden=true;
+  thread.hidden=false;
+
+  const userBtn=$('dmThreadUser');
+  userBtn.replaceChildren();
+
+  const av=document.createElement('span');
+  av.className='avatar';
+  avatar(av,dmPartner,mediaURL(dmPartner.avatarId));
+
+  const info=document.createElement('span');
+  const name=document.createElement('strong');
+  name.textContent=dmPartner.displayName||dmPartner.username;
+
+  const state=document.createElement('span');
+  state.textContent='@'+dmPartner.username+' · '+STATUS_LABELS[normalizeStatus(dmPartner.status)];
+
+  info.append(name,state);
+  userBtn.append(av,info);
+  userBtn.onclick=()=>openPublicProfile(dmPartner.id);
+
+  const area=$('dmMessages');
+  area.replaceChildren();
+
+  if(!dmMessages.length){
+    const first=document.createElement('div');
+    first.className='dm-thread-empty';
+    first.style.margin='auto';
+
+    const iconImg=document.createElement('img');
+    iconImg.src='/icons/social/message.png';
+    iconImg.alt='';
+
+    const title=document.createElement('h2');
+    title.textContent='Start the conversation.';
+
+    const note=document.createElement('p');
+    note.textContent='Say hey to @'+dmPartner.username+'.';
+
+    first.append(iconImg,title,note);
+    area.append(first);
+  }else{
+    for(const message of dmMessages){
+      const row=document.createElement('div');
+      row.className='dm-bubble-row'+(message.mine?' mine':'');
+
+      if(message.mine){
+        const del=document.createElement('button');
+        del.className='icon-btn dm-message-delete';
+        del.ariaLabel='Delete direct message';
+        del.innerHTML=icon('trash');
+        del.onclick=async()=>{
+          try{
+            await api('/dms/messages/'+encodeURIComponent(message.id),{method:'DELETE'});
+            dmMessages=dmMessages.filter(item=>item.id!==message.id);
+            renderDMThread();
+            loadDMList();
+          }catch(err){toast(err.message);}
+        };
+        row.append(del);
+      }
+
+      const bubble=document.createElement('div');
+      bubble.className='dm-bubble';
+      const text=document.createElement('p');
+      text.textContent=message.text;
+      const time=document.createElement('time');
+      time.dateTime=new Date(message.ts).toISOString();
+      time.textContent=new Date(message.ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+
+      bubble.append(text,time);
+      row.append(bubble);
+      area.append(row);
+    }
+  }
+
+  requestAnimationFrame(()=>{area.scrollTop=area.scrollHeight;});
+}
+
+async function openDMThread(partnerId,silent=false){
+  const request=++dmFetch;
+  if(!silent)$('dmThreadStatus').textContent='Loading…';
+
+  try{
+    const data=await api('/dms/'+encodeURIComponent(partnerId));
+    if(request!==dmFetch)return;
+    dmPartner=data.user;
+    dmMessages=data.messages||[];
+    $('dmThreadStatus').textContent='';
+    renderDMThread();
+    await loadDMList();
+  }catch(err){
+    if(request===dmFetch)$('dmThreadStatus').textContent=err.message;
+  }
+}
+
+function openDMs(partner=null){
+  if(!communityView('dms','Messages','Private developer conversations','dmsNav'))return;
+
+  loadDMList();
+  if(partner?.id)openDMThread(partner.id);
+  else renderDMThread();
+
+  dmTimer=setInterval(()=>{
+    if(document.hidden||view!=='dms')return;
+    if(dmPartner?.id)openDMThread(dmPartner.id,true);
+    else loadDMList();
+  },6000);
+}
+
+$('dmsNav').onclick=()=>openDMs();
+$('dmSearch').oninput=renderDMList;
+
+$('dmForm').onsubmit=async e=>{
+  e.preventDefault();
+  if(!dmPartner)return;
+
+  const input=$('dmInput');
+  const text=input.value.trim();
+  if(!text)return;
+
+  $('dmSend').disabled=true;
+  try{
+    const result=await api(
+      '/dms/'+encodeURIComponent(dmPartner.id),
+      {method:'POST',body:{text,requestId:uid()}}
+    );
+    dmMessages.push(result.message);
+    input.value='';
+    renderDMThread();
+    await loadDMList();
+  }catch(err){toast(err.message);}
+  finally{
+    $('dmSend').disabled=false;
+    input.focus();
+  }
+};
+
+$('dmInput').addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&!e.shiftKey){
+    e.preventDefault();
+    $('dmForm').requestSubmit();
+  }
+});
+
 $('adminNav').onclick=()=>{if(activeRequest)return toast('Stop the current reply before opening admin.');if(!account.canAdmin)return;if(account.adminUntil>Date.now())openAdmin();else{$('adminCode').value='';$('adminUnlockError').textContent='';$('adminUnlockDialog').showModal();closeSidebar();}};
 $('adminUnlockForm').onsubmit=async e=>{e.preventDefault();$('adminUnlockSubmit').disabled=true;$('adminUnlockError').textContent='';try{const result=await api('/admin/unlock',{method:'POST',body:{code:$('adminCode').value}});account.adminUntil=result.adminUntil;$('adminCode').value='';$('adminUnlockDialog').close();await openAdmin();}catch(err){$('adminUnlockError').textContent=err.message;}finally{$('adminUnlockSubmit').disabled=false;}};
 $('adminUnlockDialog').addEventListener('close',()=>{$('adminCode').value='';});
