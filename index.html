@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f8faff">
 <meta name="description" content="Axiom — your workspace for Roblox interfaces, scripts, and game systems.">
-<title>Axiom — Roblox workspace</title>
+<title>Axiom - Roblox workspace</title>
 <style>
 :root{color-scheme:light;--bg:#fff;--side:#f7f9fc;--surface:#fff;--soft:#f3f6fa;--hover:#eaf0f8;--ink:#182331;--muted:#647184;--line:#e5eaf1;--blue:#2468e8;--blue-hover:#1856ca;--blue-soft:#edf3ff;--shadow:0 12px 45px #182b5010;--danger:#bd3546;--code:#101722;--ring:#91b6ff;--radius:16px}
 html[data-theme=dark]{color-scheme:dark;--bg:#13171e;--side:#0e1218;--surface:#1b202a;--soft:#1f2631;--hover:#262f3c;--ink:#e9edf4;--muted:#9aa8ba;--line:#2c3442;--blue:#81abff;--blue-hover:#a1c0ff;--blue-soft:#202d46;--shadow:0 12px 45px #0003;--danger:#ff98a5;--code:#0b1018;--ring:#5c8de8}
 *{box-sizing:border-box}body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}button,input,textarea,select{font:inherit}button{cursor:pointer}button,input,textarea,select{color:inherit}button{border:0;background:none}button:disabled{cursor:not-allowed;opacity:.45}a{color:var(--blue)}button,select,input,textarea{outline:none}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--ring);outline-offset:3px}::selection{background:#abcaff80}*{scrollbar-width:thin;scrollbar-color:var(--line) transparent}[hidden]{display:none!important}.icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.icon-btn{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;border-radius:10px;color:var(--muted)}.icon-btn:hover,.ghost:hover{background:var(--hover);color:var(--ink)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 15px;font-size:14px;font-weight:600;transition:background .15s,transform .15s}.btn:hover{background:var(--soft)}.primary{background:var(--blue);color:var(--bg);border-color:transparent}.primary:hover{background:var(--blue-hover)}html[data-theme=light] .primary{color:white}.ghost{border-color:transparent;background:transparent}.danger{color:var(--danger)}.muted{color:var(--muted)}.small{font-size:13px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:23px;letter-spacing:-1px}.brand img{width:31px;height:31px;object-fit:contain}.brand em{font-style:normal;color:var(--blue)}
-/* Workspace */
+
 #app{display:flex;height:100dvh;overflow:hidden}.sidebar{width:256px;flex:0 0 256px;background:var(--side);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:24px 14px 14px;transition:transform .22s}.sidebar .brand{padding:0 12px 28px}.new-chat{width:100%;justify-content:flex-start;background:var(--surface);margin-bottom:25px;box-shadow:0 2px 3px #00000003}.new-chat kbd{margin-left:auto;font-size:12px;font-weight:400;color:var(--muted)}.nav-label{font-size:12px;letter-spacing:.08em;font-weight:600;text-transform:uppercase;color:var(--muted);padding:0 12px;margin:0 0 8px}.nav{display:flex;flex-direction:column;gap:4px}.nav-item{width:100%;text-align:left;padding:11px 12px;display:flex;align-items:center;gap:12px;color:var(--muted);border-radius:10px;font-size:14px;font-weight:500;transition:background .15s}.nav-item:hover{background:var(--hover);color:var(--ink)}.nav-item.active{background:var(--blue-soft);color:var(--blue)}.nav-item.active .nav-dot{margin-left:auto;width:5px;height:5px;border-radius:50%;background:currentColor}.side-line{border:0;border-top:1px solid var(--line);margin:20px 10px}.recent-heading{display:flex;align-items:center;justify-content:space-between;padding-right:8px;margin-top:25px}.recent-heading .nav-label{margin:0}.recent{flex:1;min-height:40px;overflow:auto;margin:8px 0 12px}.recent-row{display:flex;align-items:center;border-radius:8px}.recent-row:hover,.recent-row.selected{background:var(--hover)}.recent-row>button:first-child{padding:9px 12px;flex:1;min-width:0;text-align:left;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:13px;color:var(--muted)}.recent-row .icon-btn{min-width:28px;width:28px;height:28px}.recent-row .icon{width:15px}.recent-empty{font-size:13px;color:var(--muted);padding:8px 12px}.side-bottom{border-top:1px solid var(--line);padding-top:12px}.user-chip{display:flex;align-items:center;width:100%;gap:10px;text-align:left;padding:11px 8px;border-radius:10px}.user-chip:hover{background:var(--hover)}.user-info{flex:1;min-width:0}.user-info strong{display:block;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}.user-info span{display:block;color:var(--muted);font-size:12px}.avatar{width:34px;height:34px;flex-shrink:0;border-radius:11px;display:inline-flex;align-items:center;justify-content:center;background:var(--blue-soft);color:var(--blue);font-size:14px;font-weight:650;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.main{flex:1;min-width:0;display:flex;flex-direction:column}.topbar{height:76px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid var(--line);gap:15px}.top-left,.top-right{display:flex;align-items:center;gap:12px;min-width:0}.top-title{font-size:14px;font-weight:600;white-space:nowrap}.top-sub{font-size:13px;color:var(--muted)}.divider{height:16px;width:1px;background:var(--line)}.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 7px}.mobile-toggle{display:none}#chatView{flex:1;min-height:0;display:flex;flex-direction:column;position:relative}.chat-area{flex:1;min-height:0;overflow:auto;scroll-behavior:smooth}.chat-log{width:min(100%,830px);padding:30px 32px 0;margin:auto}.welcome{width:min(100%,790px);margin:auto;padding:clamp(34px,9vh,105px) 32px 25px}.welcome-logo{width:47px;height:47px;object-fit:contain;margin-bottom:20px}.eyebrow{font-size:14px;color:var(--muted);margin:0 0 8px}.welcome h1{font-size:clamp(28px,3vw,39px);letter-spacing:-1.4px;font-weight:550;line-height:1.2;margin:0 0 14px}.welcome h1 span{color:var(--blue)}.welcome>p:last-of-type{font-size:15px;color:var(--muted);margin:0}.suggestions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:33px}.suggestion{text-align:left;border:1px solid var(--line);padding:17px 15px;border-radius:13px;background:var(--surface);transition:border-color .15s,transform .15s;min-height:126px}.suggestion:hover{border-color:var(--blue);transform:translateY(-2px)}.suggestion .icon{color:var(--blue);margin-bottom:9px}.suggestion strong{display:block;font-size:14px;font-weight:600}.suggestion span{display:block;font-size:13px;color:var(--muted);margin-top:5px}.mode-note{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;margin-top:23px}.mode-note .icon{width:15px;height:15px}.composer-wrap{width:min(100%,830px);padding:20px 32px 15px;margin:0 auto}.composer-box{border:1px solid var(--line);border-radius:19px;background:var(--surface);box-shadow:var(--shadow);padding:16px 16px 12px;transition:border-color .18s}.composer-box:focus-within{border-color:#90b5f2}.composer-box textarea{display:block;resize:none;border:0;background:transparent;width:100%;min-height:52px;max-height:200px;padding:0 3px;line-height:1.6;font-size:15px;outline:none}.composer-box textarea::placeholder{color:var(--muted)}.composer-tools{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:10px}.composer-left,.composer-right{display:flex;align-items:center;gap:7px}.model-label{font-size:12px;color:var(--muted)}.mode-select{font-size:13px;border:0;background:var(--soft);border-radius:8px;padding:6px 9px;max-width:150px}.send{width:36px;height:36px;min-width:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:var(--blue);color:var(--bg)}html[data-theme=light] .send{color:white}.send:hover{background:var(--blue-hover)}.composer-hint{text-align:center;font-size:12px;color:var(--muted);margin:12px 0 0}.attachments{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.attachment{position:relative;display:flex;align-items:center;gap:8px;font-size:12px;background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:6px;max-width:240px}.attachment img{width:47px;height:42px;object-fit:cover;border-radius:5px}.attachment span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.attachment .icon-btn{height:27px;min-width:27px}.attachment .icon{width:15px}.error-strip{background:var(--soft);border:1px solid var(--line);border-left:3px solid var(--danger);border-radius:9px;padding:12px 14px;font-size:14px;margin:0 0 12px;display:flex;align-items:center;gap:10px}.error-strip span{flex:1}.jump-bottom{position:absolute;bottom:210px;left:50%;border:1px solid var(--line);background:var(--surface);border-radius:50%;box-shadow:var(--shadow)}
-/* Conversation */
+
 .message{margin-bottom:34px;min-width:0}.message-head{display:flex;align-items:center;gap:9px;margin-bottom:12px;font-size:14px;font-weight:600}.message-head .avatar{width:27px;height:27px;border-radius:8px;font-size:12px}.message-head .axiom-avatar{width:25px;height:25px;object-fit:contain}.message-head time{color:var(--muted);font-weight:400;font-size:12px;margin-left:auto}.message.user{margin-left:42px}.message.user .message-head{justify-content:flex-end}.user-content{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--soft);padding:14px 18px;border-radius:15px 4px 15px 15px;font-size:15px}.user-images{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}.user-images img{max-width:200px;max-height:150px;border-radius:10px;object-fit:contain;border:1px solid var(--line)}.response{font-size:15px;line-height:1.8;overflow-wrap:anywhere;min-width:0}.response p{margin:0 0 14px}.response h2,.response h3,.response h4{margin:22px 0 10px;font-size:18px;line-height:1.4;font-weight:650;letter-spacing:-.3px}.response ul,.response ol{padding-left:24px;margin:10px 0 17px}.response li{margin:6px 0}.response blockquote{border-left:3px solid var(--line);margin:16px 0;padding-left:16px;color:var(--muted)}.response code.inline{font:13px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--soft);border:1px solid var(--line);padding:2px 5px;border-radius:5px}.code-card{border:1px solid #2c3646;background:var(--code);color:#dae3f2;border-radius:12px;margin:17px 0;overflow:hidden}.code-header{background:#ffffff05;border-bottom:1px solid #ffffff13;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;gap:10px;font:12px ui-monospace,Consolas,monospace;color:#a4b2c7}.code-header>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.code-actions{display:flex;gap:4px}.code-actions button{color:#bdc9da;font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:5px 8px;border-radius:5px}.code-actions button:hover{background:#ffffff13}.code-card pre{margin:0;padding:18px;overflow:auto;max-height:640px;font:13px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:4}.code-card code{white-space:pre}.tok-comment{color:#74849b}.tok-string{color:#a7d9a6}.tok-keyword{color:#bfa7fb}.tok-number{color:#efbd83}.response-actions{display:flex;align-items:center;gap:3px;margin-top:9px;color:var(--muted)}.response-actions .btn{font-size:12px;padding:5px 8px;font-weight:400}.response-actions .icon{width:15px;height:15px}.status-note{font-size:13px;color:var(--muted);margin:10px 0}.thinking{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:13px;padding:8px 0}.thinking i{width:5px;height:5px;background:var(--blue);border-radius:50%;animation:pulse 1.2s infinite}.thinking i:nth-child(2){animation-delay:.15s}.thinking i:nth-child(3){animation-delay:.3s}.thinking span{margin-left:6px}@keyframes pulse{0%,80%,100%{opacity:.3}40%{opacity:1}}.table-wrap{overflow:auto;margin:14px 0}.response table{width:100%;border-collapse:collapse;font-size:14px}.response th,.response td{padding:8px 12px;border:1px solid var(--line);text-align:left}.response th{background:var(--soft)}
-/* Settings and local profile sign-in */
+
 dialog{padding:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:20px;box-shadow:0 30px 120px #0004;width:min(680px,calc(100% - 28px));max-height:calc(100dvh - 40px)}dialog::backdrop{background:#0d18294d;backdrop-filter:blur(5px)}.dialog-header{display:flex;align-items:center;justify-content:space-between;padding:21px 26px;border-bottom:1px solid var(--line)}.dialog-header h2{font-size:18px;letter-spacing:-.4px;margin:0;font-weight:650}.dialog-body{padding:23px 26px;overflow:auto}.settings-tabs{display:flex;gap:6px;background:var(--soft);border-radius:10px;padding:4px;margin-bottom:25px}.settings-tabs button{flex:1;font-size:14px;border-radius:7px;padding:8px}.settings-tabs button[aria-selected=true]{background:var(--surface);box-shadow:0 1px 4px #0000000c;font-weight:600}.avatar-editor{display:flex;align-items:center;gap:18px;margin:3px 0 24px}.avatar-editor .avatar{width:78px;height:78px;border-radius:22px;font-size:27px}.avatar-editor p{font-size:12px;color:var(--muted);margin:8px 0 0}.field{margin:18px 0}.field label{display:block;font-size:14px;font-weight:550;margin-bottom:7px}.field input,.field textarea,.field select{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px}.field textarea{resize:vertical;min-height:76px}.field .help{font-size:12px;color:var(--muted);margin:7px 0}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}.colors{display:flex;gap:10px;flex-wrap:wrap}.color{width:28px;height:28px;border-radius:50%;background:var(--swatch);border:3px solid var(--surface);box-shadow:0 0 0 1px var(--line)}.color[aria-pressed=true]{box-shadow:0 0 0 2px var(--ink)}.setting-row{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:19px 0;border-bottom:1px solid var(--line);font-size:14px}.setting-row:first-child{padding-top:0}.setting-row strong{font-weight:550}.setting-row p{font-size:13px;color:var(--muted);margin:4px 0}.setting-row select{background:var(--soft);border:1px solid var(--line);padding:8px;border-radius:9px;font-size:14px}.setting-row input[type=checkbox]{width:19px;height:19px;accent-color:var(--blue)}.dialog-footer{display:flex;align-items:center;gap:8px;padding:17px 26px;border-top:1px solid var(--line)}.dialog-footer .spacer{flex:1}.form-error{font-size:14px;color:var(--danger);margin:8px 0}.info-box{background:var(--soft);padding:12px 14px;border-radius:10px;font-size:13px;color:var(--muted);margin-top:20px}#authWrap{min-height:100dvh;display:grid;grid-template-columns:1fr 1fr}.auth-intro{background:var(--side);border-right:1px solid var(--line);padding:45px;display:flex;flex-direction:column;justify-content:space-between}.auth-intro>div:nth-child(2){max-width:440px;margin:70px auto}.auth-intro h1{font-size:clamp(32px,4vw,55px);line-height:1.12;font-weight:550;letter-spacing:-2px;margin-bottom:22px}.auth-intro h1 span{color:var(--blue)}.auth-intro p{color:var(--muted);font-size:16px;max-width:380px}.auth-capabilities{display:flex;gap:18px;margin-top:35px;font-size:13px;color:var(--muted)}.auth-capabilities span{display:flex;gap:7px;align-items:center}.auth-capabilities .icon{width:17px;color:var(--blue)}.auth-main{display:flex;align-items:center;justify-content:center;padding:35px}.auth-card{width:100%;max-width:350px}.auth-card h2{font-size:25px;letter-spacing:-.8px;font-weight:600;margin:0 0 7px}.auth-card>p{font-size:14px;color:var(--muted);margin:0 0 25px}.auth-card .primary{width:100%;margin-top:8px}.auth-switch{text-align:center;font-size:13px;margin-top:22px;color:var(--muted)}.auth-switch button{color:var(--blue);font-weight:600;font-size:13px}.auth-note{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;font-size:12px;color:var(--muted)}#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);box-shadow:var(--shadow);padding:10px 17px;border-radius:11px;font-size:14px;z-index:100;max-width:90vw}.hub-view{display:flex;flex-direction:column;flex:1;min-height:0}.hub-header{max-width:830px;width:100%;padding:24px 32px 0;margin:0 auto}.hub-header h1{font-size:23px;margin:0;letter-spacing:-.7px}.hub-header p{font-size:14px;color:var(--muted);margin:5px 0 0}.hub-log{max-width:830px;width:100%;margin:0 auto;padding:25px 32px}.hub-message{display:flex;gap:12px;margin-bottom:23px}.hub-message>div:last-child{min-width:0;flex:1}.hub-message strong{font-size:14px;font-weight:600}.hub-message time{color:var(--muted);font-size:12px;margin-left:10px}.hub-message p{margin:4px 0 0;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}.empty-hub{padding:45px 0;color:var(--muted);font-size:14px}.backdrop{display:none}.search-input{width:100%;padding:12px;border:1px solid var(--line);background:var(--bg);border-radius:10px;margin-bottom:16px}
 .auth-secondary{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:12px}.auth-link{font-size:13px;color:var(--blue);font-weight:600}.account-security{border-top:1px solid var(--line);margin-top:22px}.account-security .setting-row:last-child{border-bottom:0}.email-state{font-size:12px;font-weight:600;margin-left:6px}.email-state.verified{color:#278164}.email-state.pending{color:#b56a25}.dialog-code{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:end}.dialog-code .field{margin-bottom:0}.dialog-code .btn{height:42px}.auth-card details.owner-signup{margin-top:16px}.auth-note button{margin-top:8px}.security-note{font-size:12px;color:var(--muted);margin:7px 0 0}.legacy-claim{width:100%;margin-top:10px}.inline-success{font-size:14px;color:#278164;margin:10px 0}.auth-card .field[hidden]{display:none!important}
 @media(min-width:1500px){.welcome{padding-top:15vh}.sidebar{width:275px;flex-basis:275px}}
@@ -23,15 +23,13 @@ dialog{padding:0;border:1px solid var(--line);background:var(--surface);color:va
 @media(max-width:380px){.suggestions{grid-template-columns:1fr}.suggestion{min-height:0}.suggestion .icon,.suggestion span{display:none}.welcome{padding-top:25px}.avatar-editor{flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 html[data-reduce-motion=true] *,html[data-reduce-motion=true] *::before{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-/* Shared profiles and community */
+
 .user-info strong>span{display:inline}.user-info .badge-strip{display:inline-flex;margin-left:5px}.user-info .member-badge{display:inline-flex;color:var(--badge-color)}
 .badge-strip{display:inline-flex;align-items:center;gap:5px;vertical-align:middle}.member-badge{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;color:var(--badge-color);flex-shrink:0}.member-badge .icon{width:19px;height:19px;stroke-width:1.8}.member-badge.verified{--badge-color:#4389f7}.member-badge.developer{--badge-color:#b394fb}.member-badge.owner{--badge-color:#d99825}.member-badge.moderator{--badge-color:#42a58f}.member-badge.discord{--badge-color:#5865f2}.person-link{display:inline-flex;align-items:center;gap:8px;text-align:left;padding:0;min-width:0;color:var(--ink)}.person-link:hover .person-name{text-decoration:underline;text-underline-offset:3px}.person-name{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px}.person-handle{font-size:12px;color:var(--muted)}.hub-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.hub-meta time{margin:0}.hub-message .message-delete{margin-left:auto;width:28px;min-width:28px;height:28px}.hub-message .message-delete .icon{width:15px}.member-button{border-radius:11px;padding:0;flex-shrink:0}.member-button:hover{outline:2px solid var(--ring);outline-offset:2px}.profile-hero{height:90px;background:var(--blue-soft);border-bottom:1px solid var(--line);position:relative}.profile-hero .icon-btn{position:absolute;right:13px;top:13px;background:var(--surface)}.public-profile{padding:0 28px 26px}.public-profile>.avatar{width:86px;height:86px;border-radius:23px;border:5px solid var(--surface);margin-top:-35px;position:relative;font-size:28px}.public-profile h2{margin:12px 0 0;font-size:24px;letter-spacing:-.7px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}.public-profile .profile-bio{white-space:pre-wrap;overflow-wrap:anywhere;margin:20px 0;font-size:15px}.profile-stats{display:flex;gap:28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:17px 0;margin:20px 0}.profile-stats strong{display:block;font-size:20px}.profile-stats span{font-size:12px;color:var(--muted)}.profile-joined{font-size:12px;color:var(--muted);margin:10px 0}.profile-status{padding:30px;color:var(--muted)}.shared-view{flex:1;min-height:0;overflow:auto;background:var(--bg)}.community-shell{width:min(1080px,100%);margin:auto;padding:30px 32px 48px}.community-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:26px}.community-heading h1{font-size:27px;letter-spacing:-.9px;line-height:1.25;margin:0 0 7px;font-weight:600}.community-heading p{margin:0;color:var(--muted);font-size:14px}.feed-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:23px;flex-wrap:wrap}.filter-tabs{display:flex;gap:5px;flex-wrap:wrap}.filter-tabs button{border-radius:8px;color:var(--muted);font-size:13px;padding:7px 12px;border:1px solid transparent}.filter-tabs button[aria-pressed=true]{border-color:var(--line);background:var(--soft);color:var(--ink);font-weight:600}.feed-note{font-size:12px;color:var(--muted)}.creation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.creation-card{border:1px solid var(--line);border-radius:17px;overflow:hidden;background:var(--surface);min-width:0;transition:border-color .18s}.creation-card:hover{border-color:color-mix(in srgb,var(--muted) 40%,var(--line))}.creation-preview{aspect-ratio:16/10;width:100%;background:var(--soft);display:block;object-fit:contain;border-bottom:1px solid var(--line)}button.creation-preview{padding:0;cursor:zoom-in}button.creation-preview img{width:100%;height:100%;object-fit:contain}.creation-preview-empty{display:flex;align-items:center;justify-content:center;gap:12px;padding:35px;color:var(--muted);font-size:14px}.creation-preview-empty .icon{width:32px;height:32px;stroke-width:1.3}.creation-body{padding:20px}.creation-kicker{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;gap:12px}.category-label{font-size:12px;color:var(--blue);background:var(--blue-soft);border-radius:6px;padding:3px 8px}.creation-body h2{font-size:19px;letter-spacing:-.4px;line-height:1.4;margin:0 0 9px;overflow-wrap:anywhere}.creation-description{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;color:var(--muted);margin:0 0 18px;max-height:140px;overflow:auto}.creation-author{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:17px;border-top:1px solid var(--line)}.creation-author .avatar{width:28px;height:28px;border-radius:9px;font-size:12px}.creation-author .person-name{max-width:150px;font-size:13px}.creation-files{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}.file-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;max-width:100%;text-decoration:none;color:var(--ink);border:1px solid var(--line);padding:5px 8px;border-radius:7px}.file-link span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.file-link .icon{width:14px;height:14px}.file-link:hover{background:var(--soft)}.feed-empty{padding:65px 25px;text-align:center;border:1px dashed var(--line);border-radius:16px;grid-column:1/-1}.feed-empty>.icon{width:35px;height:35px;color:var(--blue);margin-bottom:12px}.feed-empty h2{font-size:20px;letter-spacing:-.5px;margin:0 0 8px}.feed-empty p{font-size:14px;color:var(--muted);margin:0}.feed-more{display:block;margin:25px auto 0}.drop-zone{width:100%;padding:24px;border:1px dashed var(--line);border-radius:12px;background:var(--soft);text-align:center;transition:border-color .15s}.drop-zone:hover,.drop-zone.dragging{border-color:var(--blue)}.drop-zone .icon{color:var(--blue);margin-bottom:5px}.drop-zone strong{display:block;font-size:14px;font-weight:600}.drop-zone span{display:block;font-size:12px;color:var(--muted);margin-top:5px}.creation-drafts{display:flex;flex-direction:column;gap:8px;margin:12px 0}.draft-file{display:flex;gap:10px;align-items:center;padding:9px;border:1px solid var(--line);border-radius:10px}.draft-file img{width:46px;height:40px;object-fit:cover;border-radius:6px}.draft-file>div{flex:1;min-width:0}.draft-file strong{display:block;font-size:13px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.draft-file span{font-size:12px;color:var(--muted)}.badge-settings{padding:15px;background:var(--soft);border-radius:11px;margin-top:20px}.badge-settings p{font-size:12px;color:var(--muted);margin:5px 0 0}.badge-settings strong{font-size:14px;font-weight:600}.admin-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:23px 0}.stat-card{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:17px}.stat-card span{display:block;font-size:13px;color:var(--muted)}.stat-card strong{font-size:27px;letter-spacing:-.8px;font-weight:600}.admin-tabs{border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:22px}.admin-layout{display:grid;grid-template-columns:minmax(230px,.85fr) minmax(270px,1.15fr);gap:22px;align-items:start}.admin-members,.admin-detail{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}.admin-search{padding:14px;border-bottom:1px solid var(--line)}.admin-search .search-input{margin:0;font-size:14px}.admin-user-list{max-height:470px;overflow:auto;padding:7px}.admin-user{width:100%;display:flex;align-items:center;gap:10px;padding:12px 9px;border-radius:9px;text-align:left}.admin-user:hover,.admin-user.selected{background:var(--soft)}.admin-user>div{flex:1;min-width:0}.admin-user strong{display:block;font-size:14px;font-weight:600}.admin-user small{font-size:12px;color:var(--muted)}.suspended-tag{font-size:11px;color:var(--danger)}.admin-detail{padding:22px}.admin-detail-header{display:flex;align-items:center;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:20px}.admin-detail-header .avatar{width:49px;height:49px;border-radius:15px;font-size:19px}.admin-detail-header h2{font-size:18px;letter-spacing:-.4px;margin:0}.admin-detail-header p{font-size:13px;color:var(--muted);margin:3px 0}.badge-choices{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0 20px}.badge-choice{display:flex;align-items:center;gap:9px;cursor:pointer;padding:13px 11px;border:1px solid var(--line);border-radius:10px;font-size:13px}.badge-choice:has(input:checked){background:var(--blue-soft);border-color:var(--ring)}.badge-choice input{margin-left:auto;accent-color:var(--blue);width:16px;height:16px}.admin-detail-empty{padding:70px 25px;text-align:center;color:var(--muted);font-size:14px}.admin-post{display:flex;align-items:start;gap:13px;border:1px solid var(--line);border-radius:11px;padding:15px;margin-bottom:10px}.admin-post>div{flex:1;min-width:0}.admin-post p{font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere;margin:7px 0 0;color:var(--muted)}.admin-post strong{font-size:14px}.admin-post small{font-size:12px;color:var(--muted)}.inline-error{color:var(--danger);font-size:14px;margin:12px 0}.admin-section-title{font-size:16px;margin:20px 0 12px}.owner-signup{font-size:13px;color:var(--muted);margin:18px 0}.owner-signup summary{cursor:pointer}.owner-signup input{width:100%;margin-top:8px;border:1px solid var(--line);padding:9px;border-radius:9px;background:var(--bg)}#mediaDialog{width:min(1000px,calc(100% - 28px))}#mediaDialog img,#mediaDialog video{max-width:100%;max-height:75dvh;display:block;margin:auto}.media-caption{font-size:13px;color:var(--muted);padding:0 20px 17px}.account-import{margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}.account-import p{font-size:13px;color:var(--muted)}.field .counter{float:right;color:var(--muted);font-size:12px}.readonly-badges .member-badge{width:26px;height:26px}
 @media(max-width:1000px){.community-shell{padding:25px}.creation-grid{gap:15px}.admin-layout{grid-template-columns:1fr}.admin-user-list{max-height:270px}}
 @media(max-width:760px){.community-shell{padding:24px 18px}.community-heading{align-items:start;gap:12px}.community-heading h1{font-size:24px}.community-heading .btn{padding:9px 11px;white-space:nowrap}.creation-grid{grid-template-columns:1fr}.admin-stats{grid-template-columns:1fr 1fr;gap:9px}.stat-card{padding:14px}.person-name{max-width:150px}.profile-stats{gap:23px}.badge-choices{gap:7px}.badge-choice{font-size:12px;padding:12px 8px}}
 
 
-
-/* Axiom spacious UI polish — warm, calm, code-first */
 :root{
   --bg:#fbfaf7;
   --side:#f4f2ed;
@@ -393,7 +391,6 @@ dialog{border-radius:18px}
 }
 
 
-/* Axiom custom assistant picker */
 .mode-picker{position:relative}
 .mode-trigger{
   min-width:190px;height:42px;display:flex;align-items:center;gap:10px;
@@ -437,7 +434,6 @@ html[data-theme=dark] .mode-menu{box-shadow:0 20px 60px #0009}
 .mode-option .mode-check{font-size:13px;color:var(--blue);opacity:0;text-align:center}
 .mode-option[aria-selected=true] .mode-check{opacity:1}
 
-/* Custom two-color workspace gradient */
 :root{--gradient-a:#eaf2ff;--gradient-b:#f5eaff}
 html[data-custom-gradient=true] #app{
   background:
@@ -512,7 +508,6 @@ html[data-custom-gradient=true] .creation-card{
 }
 
 
-/* Profile banners + Discord-style presence */
 .profile-hero{
   height:156px;
   background:
@@ -651,7 +646,6 @@ html[data-custom-gradient=true] .creation-card{
 }
 
 
-/* Axiom social profile system */
 .profile-theme-setting{margin:0 0 22px}
 .profile-theme-setting>strong{font-size:14px;font-weight:550}
 .profile-theme-setting>p{font-size:12px;color:var(--muted);margin:4px 0 10px}
@@ -742,8 +736,6 @@ html[data-custom-gradient=true] .creation-card{
   .pinned-profile-grid{grid-template-columns:1fr 1fr}
 }
 
-
-/* Axiom v8.4 community */
 .asset-icon{width:18px;height:18px;object-fit:contain;display:inline-block;flex:0 0 auto;vertical-align:-4px}
 .nav-item .asset-icon{width:18px;height:18px}
 .btn .asset-icon,.icon-btn .asset-icon{width:16px;height:16px}
@@ -780,7 +772,6 @@ html[data-custom-gradient=true] .creation-card{
 @media(max-width:760px){.dm-layout{grid-template-columns:1fr;height:auto;min-height:620px}.dm-sidebar{border-right:0;border-bottom:1px solid var(--line);max-height:230px}.dm-thread{min-height:390px}.dm-bubble{max-width:88%}}
 
 
-/* Axiom model profiles */
 .model-picker{position:relative}
 .model-trigger{
   min-width:204px;height:42px;display:flex;align-items:center;gap:9px;
@@ -846,8 +837,6 @@ html[data-theme=dark] .model-menu{box-shadow:0 20px 60px #0009}
   .model-menu{right:-46px;width:min(330px,calc(100vw - 24px))}
 }
 
-
-/* Admin Control Center v8.6 */
 .admin-control-shell{width:min(1220px,100%);margin:auto;padding:30px 32px 60px}
 .admin-control-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:18px}
 .admin-control-head h1{font-size:29px;letter-spacing:-1px;line-height:1.2;margin:0 0 7px;font-weight:620}
@@ -947,7 +936,6 @@ html[data-theme=dark] .model-menu{box-shadow:0 20px 60px #0009}
 @media(max-width:760px){.admin-control-shell{padding:22px 16px 45px}.admin-control-head{align-items:flex-start}.admin-control-head h1{font-size:24px}.admin-head-actions{justify-content:flex-start}.admin-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-overview-grid,.admin-system-grid{grid-template-columns:1fr}.admin-actions-grid{grid-template-columns:1fr}.admin-toolbar .search-input{min-width:100%}.admin-mod-item{flex-direction:column}.admin-mod-actions{width:100%;justify-content:flex-start}}
 
 
-/* DMs v8.7 — full workspace messenger */
 .dm-stage{overflow:hidden!important;background:var(--bg)}
 .dm-app{
   height:100%;
@@ -1612,6 +1600,624 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 .group-stage{overflow:hidden!important}.groups-app{height:100%;min-height:0;display:grid;grid-template-columns:88px 230px minmax(0,1fr) 240px}.groups-rail,.group-channels,.group-members-pane{min-height:0;background:var(--side)}.groups-rail{border-right:1px solid var(--line);display:flex;flex-direction:column;padding:9px 7px}.groups-rail-head{height:46px;display:flex;align-items:center;justify-content:space-between;color:var(--muted)}.groups-rail-head strong{font-size:9px;text-transform:uppercase;letter-spacing:.07em}.groups-list{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;align-items:center;gap:8px}.group-rail-item{width:50px;height:50px;border-radius:16px;overflow:hidden;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);font-size:13px;font-weight:700}.group-rail-item:hover,.group-rail-item.active{border-radius:12px;background:var(--blue-soft);color:var(--blue)}.group-rail-item img,.group-mini-icon img,.group-invite-icon img,.group-settings-icon img{width:100%;height:100%;object-fit:cover}.groups-invites-btn{padding-top:8px;border-top:1px solid var(--line);display:flex;flex-direction:column;align-items:center;color:var(--muted);font-size:8px}.groups-invites-btn span:last-child{min-width:18px;height:18px;border-radius:999px;background:var(--soft);display:grid;place-items:center}.group-channels{border-right:1px solid var(--line);display:flex;flex-direction:column}.group-empty-side{margin:auto;color:var(--muted);font-size:11px}#groupChannelsBody{height:100%;display:flex;flex-direction:column}.group-mini-banner{height:72px;background:var(--blue-soft);background-size:cover;background-position:center}.group-profile-mini-copy{display:flex;align-items:center;gap:8px;padding:0 12px 12px;margin-top:-16px}.group-mini-icon{width:38px;height:38px;border-radius:12px;background:var(--surface);border:3px solid var(--side);display:grid;place-items:center;overflow:hidden;font-size:12px;font-weight:700}.group-profile-mini-copy strong{display:block;font-size:12px;max-width:145px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.group-profile-mini-copy span span{display:block;color:var(--muted);font-size:9px}.group-channel-title{display:flex;align-items:center;justify-content:space-between;padding:12px 8px 5px 13px;color:var(--muted)}.group-channel-title>span{font-size:9px;text-transform:uppercase;letter-spacing:.07em}.group-channel-list{flex:1;min-height:0;overflow:auto;padding:4px 7px}.group-channel{width:100%;height:34px;display:flex;align-items:center;gap:7px;padding:0 8px;border-radius:7px;color:var(--muted);font-size:11px;text-align:left}.group-channel:before{content:"#";font-size:16px}.group-channel:hover,.group-channel.active{background:var(--hover);color:var(--ink)}.group-settings-button{height:45px;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:0 13px;color:var(--muted);font-size:10px}.group-chat{min-width:0;min-height:0;display:flex}.group-chat-empty{margin:auto;text-align:center;max-width:390px;padding:34px;color:var(--muted)}.group-chat-empty img{width:50px;height:50px}.group-empty-icon{width:50px;height:50px;margin-bottom:13px;color:var(--blue)}
 .group-chat-empty h2{font-size:20px;margin:8px 0;color:var(--ink)}.group-chat-empty p{font-size:11px;line-height:1.6}.group-chat-body{height:100%;min-width:0;min-height:0;flex:1;display:flex;flex-direction:column}.group-chat-head{height:62px;flex:0 0 62px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:var(--surface)}.group-chat-head strong{font-size:13px}.group-chat-head span{display:block;color:var(--muted);font-size:9px}.group-chat-actions{display:flex;gap:5px}.group-chat-actions .btn{font-size:10px;padding:7px 9px}.group-messages{flex:1;min-height:0;overflow:auto;padding:18px}.group-message{display:grid;grid-template-columns:38px minmax(0,1fr);gap:9px;padding:4px 5px;border-radius:7px}.group-message:hover{background:var(--hover)}.group-message>.avatar{width:36px;height:36px;border-radius:11px}.group-message-head{display:flex;gap:7px;align-items:baseline}.group-message-head strong{font-size:11px}.group-message-head time{font-size:8px;color:var(--muted)}.group-message p{margin:2px 0 0;font-size:12px;line-height:1.45;white-space:pre-wrap}.group-composer-wrap{padding:0 14px 14px}.group-composer{border:1px solid var(--line);background:var(--surface);border-radius:13px;overflow:hidden}.group-composer textarea{width:100%;min-height:44px;max-height:150px;resize:none;border:0;background:transparent;padding:11px 12px 4px;font-size:12px}.group-composer-bottom{display:flex;align-items:center;justify-content:space-between;padding:4px 6px 6px 12px;color:var(--muted);font-size:8px}.group-composer .send{width:30px;height:30px;min-width:30px;border-radius:8px}.group-members-pane{border-left:1px solid var(--line);display:flex;flex-direction:column}.group-members-head{height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 13px;border-bottom:1px solid var(--line)}.group-members-head strong{font-size:11px}.group-members-head span{font-size:9px;color:var(--muted)}.group-members-list{flex:1;overflow:auto;padding:7px}.group-member{width:100%;display:grid;grid-template-columns:34px minmax(0,1fr);gap:8px;align-items:center;padding:7px;border-radius:8px;text-align:left}.group-member:hover{background:var(--hover)}.group-member>.avatar{width:34px;height:34px;border-radius:10px}.group-member-copy strong{display:block;font-size:10px}.group-member-copy span{display:block;font-size:8px;color:var(--muted)}.group-role-dots{display:flex;gap:3px;margin-top:3px}.group-role-dot{width:6px;height:6px;border-radius:50%}.group-invites-list{display:flex;flex-direction:column;gap:8px}.group-invite-card{display:flex;align-items:center;gap:11px;padding:11px;border:1px solid var(--line);border-radius:11px}.group-invite-icon{width:42px;height:42px;border-radius:12px;background:var(--blue-soft);display:grid;place-items:center;overflow:hidden}.group-invite-copy{flex:1}.group-invite-copy strong{font-size:12px}.group-invite-copy span{display:block;font-size:9px;color:var(--muted)}.group-invite-actions{display:flex;gap:5px}.group-settings-dialog{width:min(760px,calc(100% - 28px))}.group-settings-tabs{display:flex;gap:5px;padding:4px;background:var(--soft);border-radius:9px;margin-bottom:18px}.group-settings-tabs button{flex:1;padding:7px;border-radius:6px;color:var(--muted);font-size:10px}.group-settings-tabs button[aria-selected=true]{background:var(--surface);color:var(--ink)}.group-settings-banner{height:120px;border-radius:12px;background:var(--blue-soft);background-size:cover;background-position:center}.group-media-preview{position:relative;margin-bottom:14px}.group-settings-icon{position:absolute;left:15px;bottom:-20px;width:58px;height:58px;border-radius:17px;background:var(--surface);border:4px solid var(--surface);box-shadow:0 0 0 1px var(--line);display:grid;place-items:center;overflow:hidden}.group-image-actions{display:flex;gap:7px;margin:27px 0 10px}.group-role-create{display:grid;grid-template-columns:minmax(0,1fr) 44px auto;gap:7px;margin-bottom:12px}.group-role-create input{border:1px solid var(--line);border-radius:9px;background:var(--bg);padding:8px}.group-roles-editor{display:flex;flex-direction:column;gap:8px}.group-role-card{border:1px solid var(--line);border-radius:11px;padding:11px}.group-role-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}.group-role-swatch{width:10px;height:10px;border-radius:50%}.group-role-head strong{flex:1;font-size:11px}.group-role-head span{font-size:8px;color:var(--muted)}.group-role-permissions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.group-role-permissions label{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 8px;border-radius:8px;background:var(--soft);font-size:9px}.group-role-actions{display:flex;justify-content:flex-end;margin-top:8px}.group-permission-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}.group-permission-grid label{display:flex;flex-direction:column;gap:5px;font-size:10px}.group-permission-grid select{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:8px}@media(max-width:1120px){.groups-app{grid-template-columns:82px 220px minmax(0,1fr)}.group-members-pane{display:none}.group-members-pane.show{display:flex;position:absolute;right:0;top:0;bottom:0;width:245px;z-index:5;box-shadow:var(--shadow)}}@media(max-width:680px){.notifications-shell{padding:22px 16px}.groups-app{grid-template-columns:64px minmax(0,1fr)}.group-channels,.group-members-pane{display:none}.group-role-permissions,.group-permission-grid{grid-template-columns:1fr}}
 
+
+/* Axiom Groups v9.0.1 — layout + roles polish */
+#groupsView{
+  min-height:0;
+  overflow:hidden!important;
+}
+
+.groups-app{
+  height:100%;
+  min-height:0;
+  display:grid;
+  grid-template-columns:76px 264px minmax(420px,1fr) 258px;
+  background:var(--bg);
+}
+
+.groups-rail{
+  padding:10px 7px 8px;
+  background:color-mix(in srgb,var(--side) 96%,var(--bg));
+}
+.groups-rail-head{
+  height:40px;
+  padding:0 3px 6px;
+}
+.groups-rail-head strong{
+  font-size:8px;
+}
+.groups-list{
+  gap:7px;
+  padding-top:4px;
+}
+.group-rail-item{
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  flex:0 0 auto;
+}
+.group-rail-item:hover,
+.group-rail-item.active{
+  border-radius:11px;
+}
+.groups-invites-btn{
+  min-height:47px;
+  justify-content:center;
+  gap:3px;
+}
+
+.group-channels{
+  min-width:0;
+  background:var(--side);
+}
+#groupChannelsBody{
+  min-height:0;
+}
+.group-profile-mini{
+  position:relative;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.group-mini-banner{
+  height:88px;
+  position:relative;
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb,var(--blue) 19%,var(--surface)),
+      color-mix(in srgb,var(--surface) 93%,var(--blue))
+    );
+}
+.group-mini-banner::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,transparent 35%,rgba(0,0,0,.26));
+  pointer-events:none;
+}
+.group-profile-mini-copy{
+  min-height:64px;
+  margin-top:-23px;
+  position:relative;
+  z-index:1;
+  padding:0 13px 12px;
+  align-items:flex-end;
+}
+.group-mini-icon{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  border:4px solid var(--side);
+  background:var(--surface);
+  box-shadow:0 1px 7px rgba(0,0,0,.14);
+  font-size:14px;
+}
+.group-profile-mini-copy>div{
+  min-width:0;
+  padding-bottom:3px;
+}
+.group-profile-mini-copy strong{
+  max-width:165px;
+  font-size:12px;
+  line-height:1.2;
+}
+.group-profile-mini-copy span span{
+  margin-top:2px;
+  font-size:9px;
+}
+.group-channel-title{
+  padding:14px 9px 7px 13px;
+}
+.group-channel-list{
+  padding:2px 8px 10px;
+}
+.group-channel{
+  height:35px;
+  padding:0 9px;
+  border-radius:8px;
+  font-size:11px;
+}
+.group-channel::before{
+  opacity:.68;
+}
+.group-channel.active{
+  background:var(--hover);
+  font-weight:650;
+}
+.group-settings-button{
+  flex:0 0 48px;
+  height:48px;
+  padding:0 14px;
+  background:color-mix(in srgb,var(--side) 94%,var(--surface));
+}
+.group-settings-button:hover{
+  background:var(--hover);
+}
+
+.group-chat{
+  min-width:0;
+  min-height:0;
+  background:var(--bg);
+}
+.group-chat-body{
+  min-width:0;
+}
+.group-chat-head{
+  height:56px;
+  flex-basis:56px;
+  padding:0 15px;
+  background:color-mix(in srgb,var(--surface) 96%,var(--bg));
+}
+.group-chat-head strong{
+  font-size:12px;
+}
+.group-chat-head span{
+  margin-top:1px;
+  font-size:8px;
+}
+.group-chat-actions .btn{
+  min-height:31px;
+  padding:6px 9px;
+}
+
+.group-messages{
+  padding:18px clamp(14px,2vw,26px) 18px;
+  scroll-padding-bottom:18px;
+}
+.group-message{
+  grid-template-columns:38px minmax(0,1fr);
+  gap:10px;
+  max-width:980px;
+  padding:5px 7px;
+}
+.group-message>.avatar{
+  width:36px;
+  height:36px;
+}
+.group-message-head strong{
+  font-size:11px;
+}
+.group-message p{
+  margin-top:3px;
+  font-size:11px;
+  line-height:1.52;
+}
+
+.group-composer-wrap{
+  padding:0 clamp(14px,2vw,26px) 14px;
+}
+.group-composer{
+  max-width:1040px;
+  margin:0 auto;
+  border-radius:12px;
+  position:relative;
+}
+.group-composer textarea{
+  min-height:50px;
+  max-height:132px;
+  padding:13px 50px 13px 13px;
+  line-height:1.4;
+}
+.group-composer-bottom{
+  position:absolute;
+  right:8px;
+  bottom:8px;
+  min-height:auto;
+  padding:0;
+}
+.group-composer-bottom>span{
+  display:none;
+}
+.group-composer .send{
+  width:32px;
+  height:32px;
+  min-width:32px;
+  border-radius:9px;
+}
+
+.group-members-pane{
+  min-width:0;
+  background:var(--side);
+}
+.group-members-head{
+  height:56px;
+  flex-basis:56px;
+  padding:0 13px;
+}
+.group-members-list{
+  padding:8px;
+}
+.group-member{
+  grid-template-columns:34px minmax(0,1fr);
+  gap:9px;
+  padding:8px;
+}
+.group-member>.avatar{
+  width:34px;
+  height:34px;
+}
+.group-member-copy strong{
+  font-size:10px;
+}
+.group-member-copy span{
+  margin-top:1px;
+}
+.group-role-dots{
+  gap:4px;
+  margin-top:4px;
+}
+.group-role-dot{
+  width:auto;
+  min-width:7px;
+  height:7px;
+  padding:0;
+  border-radius:999px;
+}
+
+/* Broken Group images fall back cleanly instead of showing browser broken-image UI. */
+.group-rail-item img,
+.group-mini-icon img,
+.group-settings-icon img,
+.group-invite-icon img{
+  display:block;
+}
+
+/* Settings */
+.group-settings-dialog{
+  width:min(920px,calc(100% - 30px));
+  height:min(720px,calc(100dvh - 38px));
+  max-height:none;
+  padding:0;
+  overflow:hidden;
+}
+.group-settings-head{
+  min-height:66px;
+  padding:13px 16px;
+}
+.group-settings-head>div:first-child{
+  min-width:0;
+}
+.group-settings-head h2{
+  margin:0;
+}
+.group-settings-head p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:9px;
+}
+.group-settings-layout{
+  height:calc(100% - 66px);
+  min-height:0;
+  display:grid;
+  grid-template-columns:220px minmax(0,1fr);
+}
+.group-settings-tabs{
+  margin:0;
+  padding:12px 9px;
+  border-radius:0;
+  border-right:1px solid var(--line);
+  background:var(--side);
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.group-settings-tabs button{
+  flex:none;
+  width:100%;
+  min-height:54px;
+  padding:9px 10px;
+  display:grid;
+  grid-template-columns:24px minmax(0,1fr);
+  align-items:center;
+  gap:8px;
+  text-align:left;
+  border-radius:9px;
+}
+.group-settings-tabs button .icon{
+  width:16px;
+  height:16px;
+}
+.group-settings-tabs button span{
+  min-width:0;
+}
+.group-settings-tabs button strong{
+  display:block;
+  font-size:10px;
+  font-weight:650;
+  color:inherit;
+}
+.group-settings-tabs button small{
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:8px;
+  font-weight:400;
+}
+.group-settings-tabs button[aria-selected=true]{
+  background:var(--hover);
+  box-shadow:none;
+}
+.group-settings-content{
+  min-height:0;
+  overflow:auto;
+  padding:22px 24px 28px;
+}
+.group-settings-content>[data-group-settings-panel]{
+  width:min(100%,650px);
+  margin:0 auto;
+}
+.group-settings-section-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:15px;
+}
+.group-settings-section-head h3{
+  margin:0;
+  font-size:16px;
+  letter-spacing:-.35px;
+}
+.group-settings-section-head p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.group-media-preview{
+  margin-bottom:0;
+}
+.group-settings-banner{
+  height:150px;
+  border-radius:13px;
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb,var(--blue) 18%,var(--surface)),
+      color-mix(in srgb,var(--surface) 93%,var(--blue))
+    );
+}
+.group-settings-icon{
+  left:17px;
+  bottom:-25px;
+  width:68px;
+  height:68px;
+  border-radius:19px;
+  border-width:4px;
+}
+.group-image-actions{
+  margin:34px 0 16px;
+  justify-content:flex-end;
+}
+.group-profile-fields{
+  display:grid;
+  gap:11px;
+}
+.group-profile-fields textarea{
+  min-height:92px;
+  resize:vertical;
+}
+.group-settings-savebar{
+  margin-top:15px;
+  padding-top:13px;
+  border-top:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.group-settings-savebar>span{
+  color:var(--muted);
+  font-size:9px;
+}
+
+.group-role-create{
+  grid-template-columns:minmax(0,1fr) 44px auto;
+  gap:8px;
+  padding:11px;
+  margin-bottom:12px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:var(--surface);
+}
+.group-role-create input{
+  min-height:38px;
+}
+.group-roles-editor{
+  gap:9px;
+}
+.group-role-card{
+  padding:0;
+  border-radius:12px;
+  overflow:hidden;
+  background:var(--surface);
+}
+.group-role-head{
+  min-height:50px;
+  margin:0;
+  padding:9px 11px;
+  border-bottom:1px solid var(--line);
+}
+.group-role-head .group-role-swatch{
+  width:11px;
+  height:11px;
+  flex:0 0 11px;
+}
+.group-role-head strong{
+  font-size:11px;
+}
+.group-role-head span:last-child{
+  padding:3px 6px;
+  border:1px solid var(--line);
+  border-radius:999px;
+}
+.group-role-editor-fields{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 48px;
+  gap:7px;
+  padding:10px 11px 0;
+}
+.group-role-editor-fields input[type="text"]{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--bg);
+  padding:8px 9px;
+  font-size:10px;
+}
+.group-role-editor-fields input[type="color"]{
+  width:48px;
+  height:35px;
+  padding:4px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--bg);
+}
+.group-role-permissions{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:6px;
+  padding:10px 11px 4px;
+}
+.group-role-permissions label{
+  min-height:36px;
+  padding:7px 9px;
+  background:var(--soft);
+}
+.group-role-permissions input{
+  width:16px;
+  height:16px;
+}
+.group-role-actions{
+  margin:0;
+  padding:8px 11px 11px;
+  border-top:1px solid transparent;
+}
+
+.group-channel-permission-card{
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--surface);
+}
+.group-channel-permission-card .field-row{
+  gap:10px;
+}
+.group-channel-permission-card select{
+  width:100%;
+}
+.group-permission-grid{
+  grid-template-columns:1fr;
+  gap:7px;
+  margin:12px 0 0;
+}
+.group-permission-grid label{
+  min-height:58px;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--bg);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 120px;
+  align-items:center;
+  gap:14px;
+}
+.group-permission-grid label>span strong{
+  display:block;
+  font-size:10px;
+}
+.group-permission-grid label>span small{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font-size:8px;
+  line-height:1.4;
+}
+.group-permission-grid select{
+  min-height:36px;
+}
+
+/* Member role dialog */
+#groupMemberDialog{
+  width:min(560px,calc(100% - 28px));
+}
+#groupMemberRoleAssignments{
+  padding:0;
+  margin-top:14px!important;
+}
+#groupMemberModeration{
+  margin:14px 0 0;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+}
+
+/* Responsive */
+@media(max-width:1280px){
+  .groups-app{
+    grid-template-columns:70px 242px minmax(390px,1fr);
+  }
+  .group-members-pane{
+    display:none;
+  }
+  .group-members-pane.show{
+    display:flex;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    width:270px;
+    z-index:8;
+    box-shadow:var(--shadow);
+  }
+}
+@media(max-width:900px){
+  .groups-app{
+    grid-template-columns:66px 220px minmax(360px,1fr);
+  }
+  .group-settings-dialog{
+    width:min(780px,calc(100% - 20px));
+  }
+  .group-settings-layout{
+    grid-template-columns:180px minmax(0,1fr);
+  }
+}
+@media(max-width:680px){
+  .groups-app{
+    grid-template-columns:60px minmax(0,1fr);
+  }
+  .group-channels{
+    display:none;
+  }
+  .group-chat-head{
+    padding:0 10px;
+  }
+  .group-settings-dialog{
+    width:calc(100% - 14px);
+    height:calc(100dvh - 14px);
+  }
+  .group-settings-layout{
+    grid-template-columns:1fr;
+    grid-template-rows:auto minmax(0,1fr);
+  }
+  .group-settings-tabs{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+    flex-direction:row;
+    padding:7px;
+    overflow:auto;
+  }
+  .group-settings-tabs button{
+    min-width:150px;
+    min-height:44px;
+  }
+  .group-settings-content{
+    padding:17px 15px 24px;
+  }
+  .group-role-permissions{
+    grid-template-columns:1fr;
+  }
+  .group-permission-grid label{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1781,7 +2387,118 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 <dialog id="groupInvitesDialog"><div class="dialog-header"><h2>Group invitations</h2><button class="icon-btn" data-close="groupInvitesDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><div id="groupInvitesList" class="group-invites-list"></div></div></dialog>
 <dialog id="groupChannelDialog"><div class="dialog-header"><h2>Create channel</h2><button class="icon-btn" data-close="groupChannelDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="groupChannelForm"><div class="dialog-body"><div class="field"><label for="groupChannelNewName">Channel name</label><input id="groupChannelNewName" maxlength="32" required placeholder="ui-feedback"></div><div class="field"><label for="groupChannelNewTopic">Topic</label><input id="groupChannelNewTopic" maxlength="120" placeholder="What belongs here?"></div><p id="groupChannelError" class="form-error"></p></div><div class="dialog-footer"><button class="btn" type="button" data-close="groupChannelDialog">Cancel</button><span class="spacer"></span><button class="btn primary" id="groupChannelSubmit">Create channel</button></div></form></dialog>
 <dialog id="groupMemberDialog"><div class="dialog-header"><h2 id="groupMemberDialogTitle">Group member</h2><button class="icon-btn" data-close="groupMemberDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><div id="groupMemberDialogProfile"></div><div id="groupMemberRoleAssignments" class="group-role-permissions" style="margin-top:14px"></div><div id="groupMemberModeration" class="group-image-actions"></div><p id="groupMemberError" class="form-error"></p></div></dialog>
-<dialog id="groupSettingsDialog" class="group-settings-dialog"><div class="dialog-header"><h2>Group settings</h2><button class="icon-btn" data-close="groupSettingsDialog" type="button" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body"><div class="group-settings-tabs"><button type="button" data-group-settings-tab="profile" aria-selected="true">Profile</button><button type="button" data-group-settings-tab="roles" aria-selected="false">Roles</button><button type="button" data-group-settings-tab="permissions" aria-selected="false">Channel permissions</button></div><section data-group-settings-panel="profile"><div class="group-media-preview"><div id="groupSettingsBanner" class="group-settings-banner"></div><span id="groupSettingsIcon" class="group-settings-icon"></span></div><div class="group-image-actions"><button id="groupUploadIcon" class="btn" type="button">Upload icon</button><button id="groupUploadBanner" class="btn" type="button">Upload banner</button><input id="groupIconFile" type="file" accept="image/*" hidden><input id="groupBannerFile" type="file" accept="image/*" hidden></div><div class="field"><label for="groupSettingsName">Group name</label><input id="groupSettingsName" maxlength="48"></div><div class="field"><label for="groupSettingsBio">Bio</label><textarea id="groupSettingsBio" maxlength="240"></textarea></div><button id="groupSaveProfile" class="btn primary" type="button">Save Group profile</button></section><section data-group-settings-panel="roles" hidden><div class="group-role-create"><input id="groupRoleName" maxlength="32" placeholder="Role name"><input id="groupRoleColor" type="color" value="#647184" aria-label="Role color"><button id="groupCreateRole" class="btn" type="button">Create role</button></div><div id="groupRolesEditor" class="group-roles-editor"></div></section><section data-group-settings-panel="permissions" hidden><p class="small muted">Set per-channel permissions for a role.</p><div class="field-row"><div class="field"><label for="groupPermissionChannel">Channel</label><select id="groupPermissionChannel"></select></div><div class="field"><label for="groupPermissionRole">Role</label><select id="groupPermissionRole"></select></div></div><div class="group-permission-grid"><label><span>View channel</span><select id="groupPermView"><option value="inherit">Inherit</option><option value="allow">Allow</option><option value="deny">Deny</option></select></label><label><span>Send messages</span><select id="groupPermSend"><option value="inherit">Inherit</option><option value="allow">Allow</option><option value="deny">Deny</option></select></label></div><button id="groupSavePermissions" class="btn primary" type="button">Save channel permissions</button></section><p id="groupSettingsError" class="form-error"></p></div></dialog>
+<dialog id="groupSettingsDialog" class="group-settings-dialog">
+  <div class="dialog-header group-settings-head">
+    <div>
+      <h2>Group settings</h2>
+      <p>Profile, roles, and channel access.</p>
+    </div>
+    <button class="icon-btn" data-close="groupSettingsDialog" type="button" aria-label="Close">
+      <svg class="icon"><use href="#i-x"/></svg>
+    </button>
+  </div>
+
+  <div class="group-settings-layout">
+    <nav class="group-settings-tabs" aria-label="Group settings sections">
+      <button type="button" data-group-settings-tab="profile" aria-selected="true">
+        <svg class="icon"><use href="#i-users"/></svg>
+        <span><strong>Profile</strong><small>Name, icon & banner</small></span>
+      </button>
+      <button type="button" data-group-settings-tab="roles" aria-selected="false">
+        <svg class="icon"><use href="#i-verified"/></svg>
+        <span><strong>Roles</strong><small>Access & staff powers</small></span>
+      </button>
+      <button type="button" data-group-settings-tab="permissions" aria-selected="false">
+        <svg class="icon"><use href="#i-settings"/></svg>
+        <span><strong>Channels</strong><small>Role overrides</small></span>
+      </button>
+    </nav>
+
+    <div class="group-settings-content">
+      <section data-group-settings-panel="profile">
+        <div class="group-settings-section-head">
+          <div><h3>Group profile</h3><p>How your Group appears to members.</p></div>
+        </div>
+
+        <div class="group-media-preview">
+          <div id="groupSettingsBanner" class="group-settings-banner"></div>
+          <span id="groupSettingsIcon" class="group-settings-icon"></span>
+        </div>
+
+        <div class="group-image-actions">
+          <button id="groupUploadIcon" class="btn" type="button">Change icon</button>
+          <button id="groupUploadBanner" class="btn" type="button">Change banner</button>
+          <input id="groupIconFile" type="file" accept="image/*" hidden>
+          <input id="groupBannerFile" type="file" accept="image/*" hidden>
+        </div>
+
+        <div class="group-profile-fields">
+          <div class="field"><label for="groupSettingsName">Group name</label><input id="groupSettingsName" maxlength="48"></div>
+          <div class="field"><label for="groupSettingsBio">Bio</label><textarea id="groupSettingsBio" maxlength="240"></textarea></div>
+        </div>
+
+        <div class="group-settings-savebar">
+          <span>Changes are visible to every Group member.</span>
+          <button id="groupSaveProfile" class="btn primary" type="button">Save changes</button>
+        </div>
+      </section>
+
+      <section data-group-settings-panel="roles" hidden>
+        <div class="group-settings-section-head">
+          <div><h3>Roles</h3><p>Create roles and decide what each role can do.</p></div>
+        </div>
+
+        <div class="group-role-create">
+          <input id="groupRoleName" maxlength="32" placeholder="New role name">
+          <input id="groupRoleColor" type="color" value="#647184" aria-label="Role color">
+          <button id="groupCreateRole" class="btn primary" type="button">Create role</button>
+        </div>
+
+        <div id="groupRolesEditor" class="group-roles-editor"></div>
+      </section>
+
+      <section data-group-settings-panel="permissions" hidden>
+        <div class="group-settings-section-head">
+          <div><h3>Channel permissions</h3><p>Override a role for one specific channel.</p></div>
+        </div>
+
+        <div class="group-channel-permission-card">
+          <div class="field-row">
+            <div class="field"><label for="groupPermissionChannel">Channel</label><select id="groupPermissionChannel"></select></div>
+            <div class="field"><label for="groupPermissionRole">Role</label><select id="groupPermissionRole"></select></div>
+          </div>
+
+          <div class="group-permission-grid">
+            <label>
+              <span><strong>View channel</strong><small>Can members with this role see the channel?</small></span>
+              <select id="groupPermView">
+                <option value="inherit">Inherit</option>
+                <option value="allow">Allow</option>
+                <option value="deny">Deny</option>
+              </select>
+            </label>
+
+            <label>
+              <span><strong>Send messages</strong><small>Can members with this role talk in the channel?</small></span>
+              <select id="groupPermSend">
+                <option value="inherit">Inherit</option>
+                <option value="allow">Allow</option>
+                <option value="deny">Deny</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="group-settings-savebar">
+            <span>Inherit uses the role's normal permissions.</span>
+            <button id="groupSavePermissions" class="btn primary" type="button">Save permissions</button>
+          </div>
+        </div>
+      </section>
+
+      <p id="groupSettingsError" class="form-error"></p>
+    </div>
+  </div>
+</dialog>
 <section id="moderationView" class="shared-view" hidden aria-label="Moderation dashboard">
   <div class="mod-shell">
     <div class="mod-heading">
@@ -3745,14 +4462,89 @@ $('notificationsNav').onclick=openNotifications;$('notificationsMore').onclick=(
 
 let groups=[],groupInvites=[],currentGroup=null,currentChannel=null,currentGroupMessages=[],groupTimer=null,groupIconDraft=null,groupBannerDraft=null;
 function groupInitial(n){return String(n||'G').trim().slice(0,1).toUpperCase()||'G';}
-function renderGroupVisual(node,g){node.replaceChildren();if(g.iconId){const img=document.createElement('img');img.src=mediaURL(g.iconId);img.alt='';node.append(img);}else node.textContent=groupInitial(g.name);}
+function renderGroupVisual(node,g){
+  node.replaceChildren();
+  node.dataset.groupInitial=groupInitial(g.name);
+
+  const fallback=()=>{
+    node.replaceChildren();
+    node.textContent=groupInitial(g.name);
+    node.classList.add('group-image-fallback');
+  };
+
+  if(!g.iconId){
+    fallback();
+    return;
+  }
+
+  node.classList.remove('group-image-fallback');
+  const img=document.createElement('img');
+  img.alt='';
+  img.decoding='async';
+  img.src=mediaURL(g.iconId);
+  img.onerror=fallback;
+  node.append(img);
+}
 function updateGroupInviteBadge(){const n=groupInvites.length;$('groupsInviteCount').textContent=String(n);$('groupInviteBadge').textContent=n>99?'99+':String(n);$('groupInviteBadge').hidden=n<1;}
 async function refreshGroupInvites(){if(!sessionToken)return;try{groupInvites=(await api('/groups/invites')).invites||[];updateGroupInviteBadge();if($('groupInvitesDialog').open)renderGroupInvites();}catch{}}
 async function loadGroups(){try{groups=(await api('/groups')).groups||[];renderGroups();}catch(e){toast(e.message);}}
 function renderGroups(){const h=$('groupsList');h.replaceChildren();for(const g of groups){const b=document.createElement('button');b.type='button';b.className='group-rail-item'+(currentGroup?.group.id===g.id?' active':'');b.title=g.name;renderGroupVisual(b,g);b.onclick=()=>openGroup(g.id);h.append(b);}if(!groups.length){const x=document.createElement('span');x.className='small muted';x.textContent='—';h.append(x);}}
-function renderGroupWorkspace(){const ok=!!currentGroup;$('groupChannelsEmpty').hidden=ok;$('groupChannelsBody').hidden=!ok;$('groupChatEmpty').hidden=ok;$('groupChatBody').hidden=!ok;$('groupMembersPane').style.visibility=ok?'visible':'hidden';if(!ok)return;const g=currentGroup.group;$('groupMiniName').textContent=g.name;$('groupMiniMembers').textContent=`${g.memberCount} member${g.memberCount===1?'':'s'}`;renderGroupVisual($('groupMiniIcon'),g);$('groupMiniBanner').style.backgroundImage=g.bannerId?`url("${mediaURL(g.bannerId)}")`:'';const p=new Set(currentGroup.viewerPermissions||[]);$('groupAddChannel').hidden=!p.has('manage_channels');$('groupSettingsBtn').hidden=!(p.has('manage_group')||p.has('manage_roles')||p.has('manage_channels'));$('groupInviteBtn').hidden=!p.has('invite_members');renderGroupChannels();renderGroupMembers();renderGroups();}
+function renderGroupWorkspace(){const ok=!!currentGroup;$('groupChannelsEmpty').hidden=ok;$('groupChannelsBody').hidden=!ok;$('groupChatEmpty').hidden=ok;$('groupChatBody').hidden=!ok;$('groupMembersPane').style.visibility=ok?'visible':'hidden';if(!ok)return;const g=currentGroup.group;$('groupMiniName').textContent=g.name;$('groupMiniMembers').textContent=`${g.memberCount} member${g.memberCount===1?'':'s'}`;renderGroupVisual($('groupMiniIcon'),g);$('groupMiniBanner').style.backgroundImage=g.bannerId?`url("${mediaURL(g.bannerId)}")`:'';$('groupMiniBanner').classList.toggle('has-image',!!g.bannerId);const p=new Set(currentGroup.viewerPermissions||[]);$('groupAddChannel').hidden=!p.has('manage_channels');$('groupSettingsBtn').hidden=!(p.has('manage_group')||p.has('manage_roles')||p.has('manage_channels'));$('groupInviteBtn').hidden=!p.has('invite_members');renderGroupChannels();renderGroupMembers();renderGroups();}
 function renderGroupChannels(){const h=$('groupChannelList');h.replaceChildren();for(const c of currentGroup?.channels||[]){const b=document.createElement('button');b.type='button';b.className='group-channel'+(currentChannel?.id===c.id?' active':'');b.textContent=c.name;b.onclick=()=>openGroupChannel(c.id);h.append(b);}}
-function renderGroupMembers(){const h=$('groupMembersList');h.replaceChildren();const roles=new Map((currentGroup?.roles||[]).map(r=>[r.id,r]));$('groupMemberCount').textContent=String(currentGroup?.members?.length||0);for(const m of currentGroup?.members||[]){const b=document.createElement('button');b.type='button';b.className='group-member';const av=document.createElement('span');av.className='avatar';avatar(av,m.user,mediaURL(m.user.avatarId));const copy=document.createElement('div');copy.className='group-member-copy';const name=document.createElement('strong');name.textContent=m.nickname||m.user.displayName||m.user.username;const sub=document.createElement('span');sub.textContent='@'+m.user.username;const dots=document.createElement('div');dots.className='group-role-dots';for(const id of m.roleIds||[]){const r=roles.get(id);if(r){const d=document.createElement('span');d.className='group-role-dot';d.style.background=r.color;d.title=r.name;dots.append(d);}}copy.append(name,sub,dots);b.append(av,copy);b.onclick=()=>openGroupMember(m);h.append(b);}}
+function renderGroupMembers(){
+  const h=$('groupMembersList');
+  h.replaceChildren();
+
+  const roles=new Map((currentGroup?.roles||[]).map(r=>[r.id,r]));
+  $('groupMemberCount').textContent=String(currentGroup?.members?.length||0);
+
+  for(const m of currentGroup?.members||[]){
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='group-member';
+
+    const av=document.createElement('span');
+    av.className='avatar';
+    avatar(av,m.user,mediaURL(m.user.avatarId));
+
+    const copy=document.createElement('div');
+    copy.className='group-member-copy';
+
+    const name=document.createElement('strong');
+    name.textContent=m.nickname||m.user.displayName||m.user.username;
+
+    const sub=document.createElement('span');
+    const assigned=(m.roleIds||[])
+      .map(id=>roles.get(id))
+      .filter(Boolean)
+      .sort((a,b)=>(b.position||0)-(a.position||0));
+
+    if(m.user.id===currentGroup.group.ownerId){
+      sub.textContent='Owner · @'+m.user.username;
+    }else if(assigned.length){
+      sub.textContent=assigned[0].name+' · @'+m.user.username;
+      sub.style.color=assigned[0].color;
+    }else{
+      sub.textContent='@'+m.user.username;
+    }
+
+    const dots=document.createElement('div');
+    dots.className='group-role-dots';
+
+    for(const r of assigned.slice(0,4)){
+      const d=document.createElement('span');
+      d.className='group-role-dot';
+      d.style.background=r.color;
+      d.title=r.name;
+      dots.append(d);
+    }
+
+    copy.append(name,sub,dots);
+    b.append(av,copy);
+    b.onclick=()=>openGroupMember(m);
+    h.append(b);
+  }
+}
 async function openGroup(id){try{const d=await api('/groups/'+encodeURIComponent(id));currentGroup=d.group;currentChannel=currentGroup.channels.find(c=>c.id===currentChannel?.id)||currentGroup.channels[0]||null;renderGroupWorkspace();if(currentChannel)await openGroupChannel(currentChannel.id);}catch(e){toast(e.message);}}
 function renderGroupMessages(){const h=$('groupMessages');h.replaceChildren();if(!currentGroupMessages.length){h.innerHTML='<div class="feed-empty"><h2>Start the channel.</h2><p>Send the first message here.</p></div>';return;}for(const m of currentGroupMessages){const row=document.createElement('article');row.className='group-message';const av=document.createElement('span');av.className='avatar';avatar(av,m.author,mediaURL(m.author.avatarId));const copy=document.createElement('div');const head=document.createElement('div');head.className='group-message-head';const n=document.createElement('strong');n.textContent=m.author.displayName||m.author.username;const t=document.createElement('time');t.textContent=new Date(m.ts).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});head.append(n,t);const text=document.createElement('p');text.textContent=m.text;copy.append(head,text);row.append(av,copy);h.append(row);}requestAnimationFrame(()=>h.scrollTop=h.scrollHeight);}
 async function openGroupChannel(id,silent=false){if(!currentGroup)return;if(!silent){currentChannel=currentGroup.channels.find(c=>c.id===id)||currentChannel;renderGroupChannels();}try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent(id));currentChannel={...currentChannel,...d.channel};currentGroupMessages=d.messages||[];$('groupChannelName').textContent='# '+currentChannel.name;$('groupChannelTopic').textContent=currentChannel.topic||'';$('groupMessageInput').disabled=!currentChannel.canSend;$('groupMessageSend').disabled=!currentChannel.canSend;$('groupMessageInput').placeholder=currentChannel.canSend?'Message #'+currentChannel.name+'…':'You do not have permission to send here.';renderGroupChannels();renderGroupMessages();}catch(e){toast(e.message);}}
@@ -3764,8 +4556,135 @@ $('groupInviteBtn').onclick=()=>{$('groupInviteForm').reset();$('groupInviteErro
 $('groupAddChannel').onclick=()=>{$('groupChannelForm').reset();$('groupChannelError').textContent='';$('groupChannelDialog').showModal();};$('groupChannelForm').onsubmit=async e=>{e.preventDefault();$('groupChannelSubmit').disabled=true;try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels',{method:'POST',body:{name:$('groupChannelNewName').value.trim(),topic:$('groupChannelNewTopic').value.trim()}});$('groupChannelDialog').close();await openGroup(currentGroup.group.id);await openGroupChannel(d.channel.id);}catch(x){$('groupChannelError').textContent=x.message;}finally{$('groupChannelSubmit').disabled=false;}};
 function resizeGroupInput(){const i=$('groupMessageInput');i.style.height='auto';i.style.height=Math.min(150,Math.max(44,i.scrollHeight))+'px';}$('groupMessageInput').oninput=resizeGroupInput;$('groupMessageInput').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('groupMessageForm').requestSubmit();}};$('groupMessageForm').onsubmit=async e=>{e.preventDefault();if(!currentGroup||!currentChannel?.canSend)return;const i=$('groupMessageInput'),text=i.value.trim();if(!text)return;$('groupMessageSend').disabled=true;try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent(currentChannel.id),{method:'POST',body:{text,requestId:uid()}});currentGroupMessages.push(d.message);i.value='';resizeGroupInput();renderGroupMessages();}catch(x){toast(x.message);}finally{$('groupMessageSend').disabled=!currentChannel.canSend;}};
 function selectGroupSettingsTab(tab){document.querySelectorAll('[data-group-settings-tab]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.groupSettingsTab===tab)));document.querySelectorAll('[data-group-settings-panel]').forEach(p=>p.hidden=p.dataset.groupSettingsPanel!==tab);}document.querySelectorAll('[data-group-settings-tab]').forEach(b=>b.onclick=()=>selectGroupSettingsTab(b.dataset.groupSettingsTab));
-$('groupSettingsBtn').onclick=()=>{if(!currentGroup)return;groupIconDraft=null;groupBannerDraft=null;$('groupSettingsError').textContent='';$('groupSettingsName').value=currentGroup.group.name;$('groupSettingsBio').value=currentGroup.group.bio||'';renderGroupSettingsPreview();renderGroupRolesEditor();renderGroupPermissionSelectors();selectGroupSettingsTab('profile');$('groupSettingsDialog').showModal();};function renderGroupSettingsPreview(){renderGroupVisual($('groupSettingsIcon'),currentGroup.group);$('groupSettingsBanner').style.backgroundImage=currentGroup.group.bannerId?`url("${mediaURL(currentGroup.group.bannerId)}")`:'';}$('groupUploadIcon').onclick=()=>$('groupIconFile').click();$('groupUploadBanner').onclick=()=>$('groupBannerFile').click();$('groupIconFile').onchange=e=>{groupIconDraft=e.target.files[0]||null;if(groupIconDraft){const img=document.createElement('img');img.src=URL.createObjectURL(groupIconDraft);$('groupSettingsIcon').replaceChildren(img);}e.target.value='';};$('groupBannerFile').onchange=e=>{groupBannerDraft=e.target.files[0]||null;if(groupBannerDraft)$('groupSettingsBanner').style.backgroundImage=`url("${URL.createObjectURL(groupBannerDraft)}")`;e.target.value='';};$('groupSaveProfile').onclick=async()=>{try{let iconId=currentGroup.group.iconId,bannerId=currentGroup.group.bannerId;if(groupIconDraft){await validImage(groupIconDraft);iconId=(await uploadFile(groupIconDraft,'avatar')).id;}if(groupBannerDraft){await validImage(groupBannerDraft);bannerId=(await uploadFile(groupBannerDraft,'banner')).id;}const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id),{method:'PATCH',body:{name:$('groupSettingsName').value.trim(),bio:$('groupSettingsBio').value.trim(),iconId,bannerId}});currentGroup=d.group;renderGroupWorkspace();renderGroupSettingsPreview();await loadGroups();toast('Group profile updated.');}catch(e){$('groupSettingsError').textContent=e.message;}};
-$('groupCreateRole').onclick=async()=>{const name=$('groupRoleName').value.trim();if(!name)return;try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/roles',{method:'POST',body:{name,color:$('groupRoleColor').value,permissions:[]}});currentGroup.roles.push(d.role);$('groupRoleName').value='';renderGroupRolesEditor();renderGroupPermissionSelectors();}catch(e){$('groupSettingsError').textContent=e.message;}};function renderGroupRolesEditor(){const h=$('groupRolesEditor');h.replaceChildren();for(const r of currentGroup.roles){const c=document.createElement('article');c.className='group-role-card';const head=document.createElement('div');head.className='group-role-head';const sw=document.createElement('span');sw.className='group-role-swatch';sw.style.background=r.color;const n=document.createElement('strong');n.textContent=r.name;const st=document.createElement('span');st.textContent=r.managed?'Managed':'Custom';head.append(sw,n,st);const perms=document.createElement('div');perms.className='group-role-permissions';const checks=[];for(const [key,label] of Object.entries(GROUP_PERMISSION_LABELS)){const l=document.createElement('label'),t=document.createElement('span'),ch=document.createElement('input');t.textContent=label;ch.type='checkbox';ch.checked=r.permissions.includes(key);ch.disabled=r.managed;ch.dataset.permission=key;l.append(t,ch);perms.append(l);checks.push(ch);}c.append(head,perms);if(!r.managed){const actions=document.createElement('div');actions.className='group-role-actions';const save=document.createElement('button');save.className='btn';save.type='button';save.textContent='Save role';save.onclick=async()=>{try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/roles/'+encodeURIComponent(r.id),{method:'PATCH',body:{name:r.name,color:r.color,permissions:checks.filter(x=>x.checked).map(x=>x.dataset.permission)}});Object.assign(r,d.role);renderGroupRolesEditor();}catch(e){$('groupSettingsError').textContent=e.message;}};actions.append(save);c.append(actions);}h.append(c);}}
+$('groupSettingsBtn').onclick=()=>{if(!currentGroup)return;groupIconDraft=null;groupBannerDraft=null;$('groupSettingsError').textContent='';$('groupSettingsName').value=currentGroup.group.name;$('groupSettingsBio').value=currentGroup.group.bio||'';renderGroupSettingsPreview();renderGroupRolesEditor();renderGroupPermissionSelectors();selectGroupSettingsTab('profile');$('groupSettingsDialog').showModal();};function renderGroupSettingsPreview(){renderGroupVisual($('groupSettingsIcon'),currentGroup.group);$('groupSettingsBanner').style.backgroundImage=currentGroup.group.bannerId?`url("${mediaURL(currentGroup.group.bannerId)}")`:'';$('groupSettingsBanner').classList.toggle('has-image',!!currentGroup.group.bannerId);}$('groupUploadIcon').onclick=()=>$('groupIconFile').click();$('groupUploadBanner').onclick=()=>$('groupBannerFile').click();$('groupIconFile').onchange=e=>{groupIconDraft=e.target.files[0]||null;if(groupIconDraft){const img=document.createElement('img');img.src=URL.createObjectURL(groupIconDraft);$('groupSettingsIcon').replaceChildren(img);}e.target.value='';};$('groupBannerFile').onchange=e=>{groupBannerDraft=e.target.files[0]||null;if(groupBannerDraft)$('groupSettingsBanner').style.backgroundImage=`url("${URL.createObjectURL(groupBannerDraft)}")`;e.target.value='';};$('groupSaveProfile').onclick=async()=>{try{let iconId=currentGroup.group.iconId,bannerId=currentGroup.group.bannerId;if(groupIconDraft){await validImage(groupIconDraft);iconId=(await uploadFile(groupIconDraft,'avatar')).id;}if(groupBannerDraft){await validImage(groupBannerDraft);bannerId=(await uploadFile(groupBannerDraft,'banner')).id;}const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id),{method:'PATCH',body:{name:$('groupSettingsName').value.trim(),bio:$('groupSettingsBio').value.trim(),iconId,bannerId}});currentGroup=d.group;renderGroupWorkspace();renderGroupSettingsPreview();await loadGroups();toast('Group profile updated.');}catch(e){$('groupSettingsError').textContent=e.message;}};
+$('groupCreateRole').onclick=async()=>{const name=$('groupRoleName').value.trim();if(!name)return;try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/roles',{method:'POST',body:{name,color:$('groupRoleColor').value,permissions:[]}});currentGroup.roles.push(d.role);$('groupRoleName').value='';renderGroupRolesEditor();renderGroupPermissionSelectors();}catch(e){$('groupSettingsError').textContent=e.message;}};function renderGroupRolesEditor(){
+  const holder=$('groupRolesEditor');
+  holder.replaceChildren();
+
+  for(const role of currentGroup.roles){
+    const card=document.createElement('article');
+    card.className='group-role-card';
+
+    const head=document.createElement('div');
+    head.className='group-role-head';
+
+    const swatch=document.createElement('span');
+    swatch.className='group-role-swatch';
+    swatch.style.background=role.color;
+
+    const title=document.createElement('strong');
+    title.textContent=role.name;
+
+    const type=document.createElement('span');
+    type.textContent=role.managed?'Default role':'Custom role';
+
+    head.append(swatch,title,type);
+    card.append(head);
+
+    let roleNameInput=null;
+    let roleColorInput=null;
+
+    if(!role.managed){
+      const fields=document.createElement('div');
+      fields.className='group-role-editor-fields';
+
+      roleNameInput=document.createElement('input');
+      roleNameInput.type='text';
+      roleNameInput.maxLength=32;
+      roleNameInput.value=role.name;
+      roleNameInput.setAttribute('aria-label','Role name');
+
+      roleColorInput=document.createElement('input');
+      roleColorInput.type='color';
+      roleColorInput.value=role.color;
+      roleColorInput.setAttribute('aria-label','Role color');
+
+      roleColorInput.oninput=()=>{
+        swatch.style.background=roleColorInput.value;
+      };
+
+      fields.append(roleNameInput,roleColorInput);
+      card.append(fields);
+    }
+
+    const permissions=document.createElement('div');
+    permissions.className='group-role-permissions';
+    const checks=[];
+
+    for(const [key,label] of Object.entries(GROUP_PERMISSION_LABELS)){
+      const row=document.createElement('label');
+
+      const text=document.createElement('span');
+      text.textContent=label;
+
+      const check=document.createElement('input');
+      check.type='checkbox';
+      check.checked=role.permissions.includes(key);
+      check.disabled=role.managed;
+      check.dataset.permission=key;
+
+      row.append(text,check);
+      permissions.append(row);
+      checks.push(check);
+    }
+
+    card.append(permissions);
+
+    if(!role.managed){
+      const actions=document.createElement('div');
+      actions.className='group-role-actions';
+
+      const save=document.createElement('button');
+      save.className='btn primary';
+      save.type='button';
+      save.textContent='Save role';
+
+      save.onclick=async()=>{
+        const nextName=roleNameInput.value.trim();
+        if(!nextName){
+          $('groupSettingsError').textContent='Role name cannot be empty.';
+          roleNameInput.focus();
+          return;
+        }
+
+        save.disabled=true;
+        $('groupSettingsError').textContent='';
+
+        try{
+          const data=await api(
+            '/groups/'+encodeURIComponent(currentGroup.group.id)+
+            '/roles/'+encodeURIComponent(role.id),
+            {
+              method:'PATCH',
+              body:{
+                name:nextName,
+                color:roleColorInput.value,
+                permissions:checks
+                  .filter(check=>check.checked)
+                  .map(check=>check.dataset.permission)
+              }
+            }
+          );
+
+          Object.assign(role,data.role);
+          renderGroupRolesEditor();
+          renderGroupMembers();
+          renderGroupPermissionSelectors();
+          toast('Role updated.');
+        }catch(error){
+          $('groupSettingsError').textContent=error.message;
+        }finally{
+          save.disabled=false;
+        }
+      };
+
+      actions.append(save);
+      card.append(actions);
+    }
+
+    holder.append(card);
+  }
+}
 function renderGroupPermissionSelectors(){const cs=$('groupPermissionChannel'),rs=$('groupPermissionRole');cs.replaceChildren();rs.replaceChildren();for(const c of currentGroup.channels){const o=document.createElement('option');o.value=c.id;o.textContent='# '+c.name;cs.append(o);}for(const r of currentGroup.roles){const o=document.createElement('option');o.value=r.id;o.textContent=r.name;rs.append(o);}cs.onchange=loadGroupPermissionOverride;rs.onchange=loadGroupPermissionOverride;loadGroupPermissionOverride();}
 async function loadGroupPermissionOverride(){if(!currentGroup)return;const cid=$('groupPermissionChannel').value,rid=$('groupPermissionRole').value;if(!cid||!rid){$('groupPermView').value='inherit';$('groupPermSend').value='inherit';return;}try{const d=await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent(cid)+'/permissions/'+encodeURIComponent(rid));const state=p=>d.allow.includes(p)?'allow':d.deny.includes(p)?'deny':'inherit';$('groupPermView').value=state('view_channel');$('groupPermSend').value=state('send_messages');}catch(e){$('groupSettingsError').textContent=e.message;}}$('groupSavePermissions').onclick=async()=>{const allow=[],deny=[];for(const [value,p] of [[$('groupPermView').value,'view_channel'],[$('groupPermSend').value,'send_messages']]){if(value==='allow')allow.push(p);if(value==='deny')deny.push(p);}try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/channels/'+encodeURIComponent($('groupPermissionChannel').value)+'/permissions/'+encodeURIComponent($('groupPermissionRole').value),{method:'PATCH',body:{allow,deny}});await openGroup(currentGroup.group.id);toast('Channel permissions updated.');}catch(e){$('groupSettingsError').textContent=e.message;}};
 function openGroupMember(m){$('groupMemberError').textContent='';$('groupMemberDialogTitle').textContent=m.user.displayName||m.user.username;const p=$('groupMemberDialogProfile');p.replaceChildren();const row=document.createElement('div');row.className='mod-profile-head';const av=document.createElement('span');av.className='avatar';avatar(av,m.user,mediaURL(m.user.avatarId));const copy=document.createElement('div');copy.className='mod-profile-copy';const n=document.createElement('h2');n.textContent=m.user.displayName||m.user.username;const h=document.createElement('p');h.textContent='@'+m.user.username;copy.append(n,h);row.append(av,copy);p.append(row);const roles=$('groupMemberRoleAssignments');roles.replaceChildren();const perms=new Set(currentGroup.viewerPermissions||[]),owner=m.user.id===currentGroup.group.ownerId;for(const r of currentGroup.roles.filter(x=>!x.managed)){const l=document.createElement('label'),t=document.createElement('span'),ch=document.createElement('input');t.textContent=r.name;ch.type='checkbox';ch.checked=m.roleIds.includes(r.id);ch.disabled=!perms.has('manage_roles')||owner;ch.onchange=async()=>{try{await api('/groups/'+encodeURIComponent(currentGroup.group.id)+'/members/'+encodeURIComponent(m.user.id)+'/roles/'+encodeURIComponent(r.id),{method:ch.checked?'POST':'DELETE'});m.roleIds=ch.checked?[...new Set([...m.roleIds,r.id])]:m.roleIds.filter(x=>x!==r.id);renderGroupMembers();}catch(e){ch.checked=!ch.checked;$('groupMemberError').textContent=e.message;}};l.append(t,ch);roles.append(l);}const actions=$('groupMemberModeration');actions.replaceChildren();const profileBtn=document.createElement('button');profileBtn.className='btn';profileBtn.type='button';profileBtn.textContent='View profile';profileBtn.onclick=()=>openPublicProfile(m.user.id);actions.append(profileBtn);if(!owner&&m.user.id!==account.id&&perms.has('kick_members')){const kick=document.createElement('button');kick.className='btn danger';kick.type='button';kick.textContent='Kick';kick.onclick=async()=>{if(await confirmAction('Kick @'+m.user.username+'?','They can be invited again.','Kick member'))await groupMemberAction(m,'kick','');};actions.append(kick);}if(!owner&&m.user.id!==account.id&&perms.has('ban_members')){const ban=document.createElement('button');ban.className='btn danger';ban.type='button';ban.textContent='Ban';ban.onclick=async()=>{const reason=await openModerationReason('Ban @'+m.user.username,'They will be removed and blocked from rejoining this Group until unbanned.','Ban member');if(reason)await groupMemberAction(m,'ban',reason);};actions.append(ban);}$('groupMemberDialog').showModal();}
