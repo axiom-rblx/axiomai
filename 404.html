@@ -1594,6 +1594,18 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
   margin-top:2px;
 }
 
+
+/* v8.8.2 moderation layout guard */
+#moderationView{
+  flex:1;
+  min-height:0;
+  overflow:auto;
+}
+#moderationView>.mod-shell{
+  width:min(1180px,100%);
+  margin:0 auto;
+}
+
 </style>
 </head>
 <body>
@@ -1739,7 +1751,7 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
       <div id="dmDetailsBody" hidden></div>
     </aside>
   </div>
-</section></div><p class="dm-note">DMs are not public. They are stored by Axiom and are not shown in DevHub or public profiles.</p></div></section>
+</section>
 <section id="moderationView" class="shared-view" hidden aria-label="Moderation dashboard">
   <div class="mod-shell">
     <div class="mod-heading">
