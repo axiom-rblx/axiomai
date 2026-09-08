@@ -2342,6 +2342,167 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 }
 
 </style>
+
+<style id="responsive-revamp-v931">
+:root{--mobile-dock-h:64px;--desktop-sidebar:258px}
+@media(min-width:1025px){
+  .sidebar{width:var(--desktop-sidebar);flex-basis:var(--desktop-sidebar);padding:16px 10px 10px;background:color-mix(in srgb,var(--side) 96%,var(--bg));border-right:1px solid color-mix(in srgb,var(--line) 78%,transparent)}
+  .sidebar .brand{padding:5px 11px 18px}
+  .new-chat{min-height:42px;margin-bottom:18px;border-radius:12px;padding:9px 12px}
+  .nav{gap:2px}.nav-item{min-height:38px;padding:8px 11px;border-radius:9px;font-size:13px}.nav-label{padding-left:11px;font-size:10px}.side-line{margin:14px 9px}.recent-heading{margin-top:17px}.recent-row>button:first-child{padding:8px 11px;font-size:12px}
+  .topbar{height:58px;padding:0 22px;background:color-mix(in srgb,var(--bg) 93%,transparent);border-bottom:1px solid color-mix(in srgb,var(--line) 72%,transparent);box-shadow:0 1px 0 #00000005;position:relative;z-index:20}
+  .top-title{font-size:13px}.top-sub{font-size:11px}.tag{font-size:10px;padding:2px 6px}
+  .chat-log{width:min(100%,1120px);padding:36px 48px 50px}.composer-wrap{width:min(100%,1040px);padding:14px 34px 20px}.welcome{width:min(100%,980px);padding:clamp(58px,11vh,118px) 48px 28px}
+  .welcome h1{font-size:clamp(32px,3.2vw,43px)}.suggestions{gap:11px;margin-top:32px}.suggestion{min-height:118px;padding:17px 16px;border-radius:14px}.mode-note{margin-top:19px}
+  .composer-box{border-radius:18px;padding:14px 14px 11px;box-shadow:0 10px 34px #18130b0c,0 1px 2px #18130b0a}.composer-box textarea{min-height:54px;max-height:220px}.composer-tools{margin-top:9px}.mode-trigger{min-width:172px;height:40px}.model-trigger{min-width:188px;height:40px}.send{width:36px;height:36px;min-width:36px}
+  .message{margin-bottom:42px}.message.user .message-head,.user-content{max-width:min(72%,700px)}.response{font-size:16px;line-height:1.82}.response>div,.response-actions,.status-note{max-width:910px}.code-card{max-width:1040px;margin-top:22px;margin-bottom:26px}
+  .community-shell{width:min(1180px,100%);padding:28px 34px 50px}.community-heading{margin-bottom:22px}.creation-grid{gap:18px}.creation-card{border-radius:15px}
+  .updates-shell{width:min(1000px,100%);padding:28px 34px 52px}.notifications-shell{width:min(1000px,100%)}.mod-shell{width:min(1240px,100%);padding:28px 34px 54px}.admin-control-shell{width:min(1280px,100%);padding:28px 34px 56px}
+  .dm-app{grid-template-columns:276px minmax(0,1fr) 232px}.dm-thread-head{min-height:62px;flex-basis:62px}.dm-messages{padding:18px}.dm-composer{padding:0 16px 14px}
+  .groups-app{grid-template-columns:76px 232px minmax(0,1fr) 220px}.groups-rail{padding:8px 6px}.group-rail-item{width:46px;height:46px}.group-chat-head{height:58px;flex-basis:58px}.group-messages{padding:16px}.group-composer-wrap{padding:0 12px 12px}
+}
+.mobile-dock,.dm-mobile-back,.group-mobile-backdrop{display:none}
+@media(max-width:1024px){
+  .sidebar{width:min(310px,88vw);padding:18px 12px 12px;padding-top:max(18px,env(safe-area-inset-top));box-shadow:22px 0 70px #0005}
+  .sidebar .brand{padding-bottom:20px}.new-chat{min-height:44px}.nav-item{min-height:42px}.topbar{height:58px;padding:0 14px}.main{width:100%;min-width:0}.top-title{max-width:38vw;overflow:hidden;text-overflow:ellipsis}
+  .chat-log{width:min(100%,980px);padding:28px 24px 42px}.composer-wrap{width:min(100%,940px);padding:12px 20px 18px}.welcome{width:min(100%,900px);padding:48px 28px 24px}.community-shell,.notifications-shell,.mod-shell,.admin-control-shell,.updates-shell{padding-left:20px;padding-right:20px}
+  .mode-trigger{min-width:150px}.model-trigger{min-width:165px}.dm-app{grid-template-columns:250px minmax(0,1fr)}.dm-details{display:none}.groups-app{grid-template-columns:64px 220px minmax(0,1fr)}.group-members-pane{display:none}.group-members-pane.show{display:flex;position:absolute;top:0;right:0;bottom:0;width:min(300px,82vw);z-index:14;box-shadow:-22px 0 65px #0005}
+}
+@media(max-width:760px){
+  body{overscroll-behavior:none}.main{padding-bottom:calc(var(--mobile-dock-h) + env(safe-area-inset-bottom));min-width:0}.topbar{height:54px;padding:0 8px 0 9px;gap:6px}.top-left{gap:5px;min-width:0}.top-title{font-size:12px;max-width:48vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.top-right{gap:1px}.topbar .icon-btn{min-width:38px;width:38px;height:38px}.topbar .tag,.topbar .divider,.top-sub{display:none}
+  .sidebar{inset:0 auto 0 0;width:min(330px,92vw);padding:16px 10px 12px;padding-top:max(16px,env(safe-area-inset-top));border-radius:0 18px 18px 0}.sidebar .brand{padding:4px 12px 18px}.new-chat{margin-bottom:15px;min-height:46px}.new-chat kbd{display:none}.nav-label{font-size:10px}.nav-item{min-height:44px;padding:10px 12px;font-size:14px}.recent-heading{margin-top:16px}.recent-row>button:first-child{min-height:40px;font-size:13px}.side-bottom{padding-bottom:max(4px,env(safe-area-inset-bottom))}
+  .mobile-dock{position:fixed;left:0;right:0;bottom:0;z-index:38;height:calc(var(--mobile-dock-h) + env(safe-area-inset-bottom));padding:5px 6px max(5px,env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;border-top:1px solid color-mix(in srgb,var(--line) 84%,transparent);background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 -8px 28px #0002}
+  .mobile-dock button{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:10px;color:var(--muted);font-size:9px;font-weight:620}.mobile-dock button .icon,.mobile-dock button .asset-icon{width:19px;height:19px}.mobile-dock button.active{color:var(--blue);background:var(--blue-soft)}
+  #chatView{min-height:0}.chat-area{scroll-padding-bottom:150px}.welcome{width:100%;padding:25px 15px 16px}.welcome-logo{width:38px;height:38px;margin-bottom:16px}.eyebrow{font-size:12px}.welcome h1{font-size:clamp(28px,8.4vw,35px);line-height:1.1;letter-spacing:-1.25px;margin-bottom:12px}.welcome>p:last-of-type{font-size:13px;line-height:1.55}.suggestions{display:flex;grid-template-columns:none;gap:9px;margin-top:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 1px 5px;scrollbar-width:none}.suggestions::-webkit-scrollbar{display:none}.suggestion{flex:0 0 min(80vw,292px);scroll-snap-align:start;min-height:118px;padding:15px 14px;border-radius:13px}.suggestion strong{font-size:13px}.suggestion span{font-size:12px}.mode-note{font-size:11px;margin-top:12px}
+  .chat-log{width:100%;padding:16px 11px 18px}.message{margin-bottom:30px}.message-head{margin-bottom:9px}.message.user{margin-left:0}.message.user .message-head,.user-content{max-width:92%}.user-content{padding:11px 13px;border-radius:15px 15px 4px 15px;font-size:14px}.response{font-size:15px;line-height:1.72}.response h2{font-size:19px}.response h3{font-size:17px}.response ul,.response ol{padding-left:21px}.code-card{width:calc(100% + 4px);margin:18px -2px 22px;border-radius:11px}.code-header{min-height:42px;padding-left:10px}.code-action{height:30px;padding:0 7px}.code-card pre{padding:16px 13px 18px;font-size:12px;line-height:1.65;max-height:56vh}.table-wrap{width:100%;max-width:100%}
+  .composer-wrap{width:100%;padding:7px 8px 8px}.composer-box{border-radius:16px;padding:10px 10px 8px;box-shadow:0 8px 30px #0002}.composer-box textarea{min-height:42px;max-height:132px;padding:0 2px;font-size:16px;line-height:1.5}.composer-tools{margin-top:7px;gap:5px}.composer-left,.composer-right{gap:4px;min-width:0}.composer-left{flex:1}.composer-right{flex:0 0 auto}.composer-box .icon-btn,.mode-trigger,.model-trigger,.send{min-width:40px;width:40px;height:40px;border-radius:11px}.mode-trigger,.model-trigger{padding:5px;justify-content:center}.mode-trigger-copy,.model-trigger-copy,.mode-trigger>.mode-chevron,.model-trigger>.model-chevron{display:none}.mode-trigger-icon,.model-trigger-icon{width:28px;height:28px;flex-basis:28px}.mode-menu,.model-menu{width:min(330px,calc(100vw - 20px))}.composer-hint{display:none}.attachments{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.attachments::-webkit-scrollbar{display:none}.attachment{flex:0 0 auto;max-width:78vw}.error-strip{font-size:12px;padding:9px 10px;gap:6px;flex-wrap:wrap}.jump-bottom{bottom:155px}
+  .hub-header,.hub-log{padding-left:12px;padding-right:12px}.hub-header{padding-top:17px}.hub-header h1{font-size:21px}.hub-view .composer-wrap{padding-bottom:8px}
+  .community-shell,.notifications-shell,.mod-shell,.admin-control-shell,.updates-shell{width:100%;padding:16px 10px 26px}.community-heading,.notifications-head,.mod-heading,.admin-control-head,.updates-heading{gap:10px;margin-bottom:16px}.community-heading h1,.notifications-head h1,.mod-heading h1,.admin-control-head h1,.updates-heading h1{font-size:23px}.community-heading .btn,.notifications-head .btn,.updates-heading .btn{width:100%}.feed-toolbar{align-items:stretch;gap:8px}.filter-tabs,.notification-filter,.mod-tabs,.admin-control-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.filter-tabs::-webkit-scrollbar,.notification-filter::-webkit-scrollbar,.mod-tabs::-webkit-scrollbar,.admin-control-tabs::-webkit-scrollbar{display:none}.creation-grid{grid-template-columns:1fr;gap:12px}.creation-body{padding:15px}.creation-body h2{font-size:17px}.creation-author{padding-top:13px}.comment-form{align-items:flex-end}.comment-form input{font-size:16px}.notification-row{padding:10px 8px}.updates-shell{padding-top:16px}.update-composer{padding:10px}.update-composer-row{grid-template-columns:1fr}.update-composer input,.update-composer textarea{font-size:16px}
+  dialog{width:100vw!important;max-width:none!important;height:100dvh!important;max-height:none!important;margin:0!important;border:0!important;border-radius:0!important}.dialog-header{position:sticky;top:0;z-index:5;padding:14px 15px;background:var(--surface)}.dialog-body{padding:15px 14px 22px}.dialog-footer{position:sticky;bottom:0;z-index:5;padding:12px 14px max(12px,env(safe-area-inset-bottom));background:var(--surface);box-shadow:0 -10px 28px #0001}.settings-tabs{position:sticky;top:0;z-index:4;overflow-x:auto;flex-wrap:nowrap}.settings-tabs button{min-width:max-content}.field input,.field textarea,.field select,.search-input,.dm-form textarea,.group-composer textarea{font-size:16px}.setting-row{align-items:flex-start;flex-direction:column;gap:10px;padding:15px 0}.setting-row>select,.setting-row>.btn{width:100%}.avatar-editor{align-items:flex-start}.avatar-editor>div:last-child{min-width:0}.banner-editor-head{align-items:flex-start;flex-direction:column}.banner-actions{width:100%;display:flex;flex-wrap:wrap}.banner-actions .btn{flex:1}
+  .dm-stage{position:relative;overflow:hidden!important}.dm-app{position:relative;grid-template-columns:1fr;height:100%}.dm-sidebar{display:flex!important;position:absolute!important;inset:0!important;z-index:6!important;transform:translateX(0)!important;transition:transform .2s ease!important;border-right:0!important;background:var(--surface)!important}.dm-stage.dm-mobile-thread .dm-sidebar{transform:translateX(-101%)!important;pointer-events:none}.dm-chat{display:flex!important;min-width:0;min-height:0;height:100%;background:var(--bg)}.dm-chat>.dm-thread{width:100%}.dm-details{display:none!important}.dm-mobile-back{display:inline-flex;flex:0 0 38px;font-size:22px;line-height:1}.dm-thread-head::before{display:none!important;content:none!important}.dm-thread-head{min-height:58px;flex-basis:58px;padding:0 8px;gap:5px}.dm-thread-user{flex:1;min-width:0;padding-left:0}.dm-thread-user>.avatar{width:34px;height:34px;border-radius:10px}.dm-thread-actions{gap:1px}.dm-thread-state{display:none}.dm-messages{padding:12px 8px 14px}.dm-message-row{grid-template-columns:34px minmax(0,1fr) auto;padding:4px 1px}.dm-message-row>.avatar{width:32px;height:32px;border-radius:9px}.dm-message-body{max-width:100%}.dm-composer{padding:0 8px 8px}.dm-form{padding:8px;border-radius:12px}.dm-form textarea{min-height:40px}.dm-sidebar-title{min-height:58px;padding-left:13px}.dm-sidebar-head{padding:8px}.dm-list{padding:3px 5px 8px}.dm-conversation{min-height:62px;padding:8px}.dm-sidebar-foot{padding-bottom:max(0px,env(safe-area-inset-bottom))}
+  .groups-app{position:relative;grid-template-columns:56px minmax(0,1fr);height:100%}.groups-rail{z-index:13;padding:6px 4px}.groups-rail-head{height:42px}.group-rail-item{width:44px;height:44px;border-radius:14px}.group-channels{display:flex!important;position:absolute!important;left:56px;top:0;bottom:0;width:min(300px,calc(100% - 56px));z-index:16;transform:translateX(-108%);transition:transform .2s ease;box-shadow:22px 0 60px #0005}.group-channels.mobile-open{transform:translateX(0)}.group-mobile-backdrop{position:absolute;inset:0;z-index:15;background:#0b0d12a6;border:0}.group-mobile-backdrop.show{display:block}.group-members-pane.show{z-index:17;width:min(300px,86vw)}.group-mobile-channels{display:inline-flex}.group-chat{min-width:0}.group-chat-head{height:auto;min-height:58px;flex:0 0 auto;padding:7px 8px;align-items:flex-start;gap:6px;flex-wrap:wrap}.group-chat-channel-copy{flex:1;min-width:150px}.group-chat-channel-copy>div{padding-top:3px}.group-chat-actions{width:100%;display:flex;gap:4px;overflow-x:auto;padding-left:38px;scrollbar-width:none}.group-chat-actions::-webkit-scrollbar{display:none}.group-chat-actions .btn{min-height:32px;flex:0 0 auto;padding:5px 8px;font-size:9px}.group-chat-actions #groupCopyInviteHeader{display:none}.group-messages{padding:10px 6px 12px}.group-message{grid-template-columns:32px minmax(0,1fr);gap:7px;padding:5px 2px}.group-message>.avatar{width:30px;height:30px;border-radius:9px}.group-message p{font-size:12px}.group-composer-wrap{padding:0 6px 7px}.group-composer{border-radius:11px}.group-composer textarea{min-height:40px;padding:9px 10px}.group-composer-bottom{padding:5px 7px}.group-composer-bottom>span{display:none}.group-settings-dialog{width:100vw!important;height:100dvh!important}.group-settings-tabs{position:sticky;top:0;z-index:5;background:var(--side)}
+  .mod-stats,.admin-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.mod-member-layout,.admin-overview-grid,.admin-system-grid{grid-template-columns:1fr}.mod-toolbar,.admin-toolbar{align-items:stretch;gap:7px}.mod-toolbar .search-input,.admin-toolbar .search-input{min-width:100%}.mod-detail{min-height:0;padding:13px}.mod-user-list{max-height:52vh}.mod-actions,.admin-head-actions{width:100%;justify-content:flex-start}.mod-actions .btn,.admin-head-actions .btn{flex:1}.mod-tabs,.admin-control-tabs{margin-top:12px;margin-bottom:14px}.admin-control-tabs{padding:4px}.admin-control-tabs button,.mod-tabs button{min-height:38px;white-space:nowrap}.admin-kpi,.mod-stat{padding:11px}.admin-kpi strong,.mod-stat strong{font-size:20px}
+}
+@media(max-width:390px){
+  .mobile-dock button{font-size:8px}.mobile-dock button .icon,.mobile-dock button .asset-icon{width:18px;height:18px}.top-title{max-width:42vw}.welcome{padding-top:20px}.welcome h1{font-size:28px}.suggestion{flex-basis:84vw}.mode-trigger,.model-trigger,.composer-box .icon-btn,.send{width:38px;min-width:38px;height:38px}.group-chat-actions{padding-left:0}.group-chat-actions .btn{font-size:8px}.mod-stats,.admin-kpi-grid{grid-template-columns:1fr 1fr}.profile-theme-grid,.pinned-profile-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+
+<style id="mobile-stability-v932">
+:root{--app-vh:100dvh;--app-top:0px;--dock-space:calc(64px + env(safe-area-inset-bottom))}
+@media(max-width:760px){
+  html,body{width:100%;height:100%;min-height:100%;overflow:hidden;overscroll-behavior:none}
+  body{position:relative}
+  #app{position:fixed;left:0;right:0;top:var(--app-top);width:100%;height:var(--app-vh);min-height:0;overflow:hidden}
+  .main{height:100%;min-height:0;padding-bottom:var(--dock-space);overflow:hidden;transition:padding-bottom .16s ease}
+  html.mobile-keyboard-open .main{padding-bottom:0}
+  .topbar{flex:0 0 calc(54px + env(safe-area-inset-top));height:calc(54px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top);position:relative;z-index:28}
+  #chatView,.hub-view,.shared-view{min-width:0;min-height:0;max-width:100%;overflow:hidden}
+  .shared-view{overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .chat-area,.recent,.hub-log,.dm-list,.dm-messages,.group-messages,.group-channel-list,.group-members-list,.group-settings-content{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .chat-area{min-height:0;scroll-padding-bottom:105px}
+  .composer-wrap{position:relative;z-index:9;flex:0 0 auto;width:100%;max-width:100%;padding:7px 8px 8px;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--bg) 94%,transparent) 18%)}
+  .composer-box{width:100%;max-width:100%;min-width:0}
+  .composer-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:5px}
+  .composer-left,.composer-right{min-width:0;max-width:100%}
+  .composer-left{overflow:hidden}
+  .composer-right{justify-content:flex-end}
+  .mode-trigger,.model-trigger,.composer-box .icon-btn,.send{flex:0 0 40px}
+  .mode-menu,.model-menu{position:fixed!important;left:10px!important;right:10px!important;bottom:calc(var(--dock-space) + 58px)!important;width:auto!important;max-width:none!important;max-height:min(56vh,470px)!important;overflow:auto!important;z-index:95!important;transform:none!important}
+  html.mobile-keyboard-open .mode-menu,html.mobile-keyboard-open .model-menu{bottom:10px!important;max-height:min(48vh,360px)!important}
+  .mobile-dock{height:var(--dock-space);min-height:var(--dock-space);padding-bottom:max(5px,env(safe-area-inset-bottom));transition:transform .18s ease,opacity .14s ease;will-change:transform}
+  html.mobile-keyboard-open .mobile-dock,html.mobile-overlay-open .mobile-dock{transform:translateY(110%);opacity:0;pointer-events:none}
+  .mobile-dock button{min-height:48px;touch-action:manipulation}
+  .mobile-dock button:active{transform:scale(.96)}
+  .sidebar{height:var(--app-vh);max-height:var(--app-vh);padding-bottom:max(12px,env(safe-area-inset-bottom));overflow:hidden}
+  .sidebar .recent{min-height:0}
+  .backdrop.show{height:var(--app-vh)}
+  .welcome{min-height:0}
+  .suggestions{scroll-padding-inline:1px;-webkit-overflow-scrolling:touch}
+  .suggestion{touch-action:manipulation}
+  .message,.response,.user-content,.code-card,.table-wrap{min-width:0;max-width:100%}
+  .user-content{overflow-wrap:anywhere;word-break:break-word}
+  .response img,.response video{max-width:100%;height:auto}
+  .code-card{overflow:hidden}
+  .code-card pre{width:100%;max-width:100%;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .table-wrap{overflow:auto;-webkit-overflow-scrolling:touch}
+  .jump-bottom{bottom:calc(var(--dock-space) + 88px)}
+  html.mobile-keyboard-open .jump-bottom{bottom:92px}
+  .attachments{max-width:100%;padding-bottom:2px}
+  .attachment{max-width:min(80vw,280px)}
+  input,textarea,select{font-size:16px!important}
+  dialog[open]{display:flex!important;flex-direction:column!important;inset:0!important;width:100vw!important;height:var(--app-vh)!important;max-width:none!important;max-height:var(--app-vh)!important;margin:0!important;padding:0!important;overflow:hidden!important;border:0!important;border-radius:0!important}
+  dialog .dialog-header{flex:0 0 auto;padding-top:max(14px,env(safe-area-inset-top));background:var(--surface)}
+  dialog .dialog-body{flex:1 1 auto;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch}
+  dialog .dialog-footer{flex:0 0 auto;padding-bottom:max(12px,env(safe-area-inset-bottom))}
+  #publicProfileDialog .dialog-body,#mediaDialog .dialog-body{padding-bottom:max(22px,env(safe-area-inset-bottom))}
+  .settings-tabs{flex:0 0 auto}
+  .field-row,.dialog-code,.gradient-editor{grid-template-columns:1fr!important}
+  .dialog-code .btn{width:100%}
+  .community-shell,.notifications-shell,.mod-shell,.admin-control-shell,.updates-shell{max-width:100%;overflow-x:hidden}
+  .community-heading,.notifications-head,.mod-heading,.admin-control-head,.updates-heading{align-items:stretch!important}
+  .feed-toolbar,.admin-toolbar,.mod-toolbar{min-width:0}
+  .filter-tabs,.notification-filter,.mod-tabs,.admin-control-tabs{max-width:100%;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .filter-tabs button,.notification-filter button,.mod-tabs button,.admin-control-tabs button{scroll-snap-align:start;min-height:40px}
+  .creation-card,.notification-row,.update-card,.mod-member-card,.mod-detail,.admin-panel,.admin-card{min-width:0;max-width:100%}
+  .creation-author{align-items:flex-start;flex-wrap:wrap}
+  .creation-author .person-link{max-width:calc(100% - 48px)}
+  .admin-kpi-grid,.mod-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .mod-member-layout,.admin-overview-grid,.admin-system-grid,.admin-layout{grid-template-columns:minmax(0,1fr)!important}
+  .mod-toolbar>*{min-width:0}.mod-toolbar select{width:100%}.mod-user{grid-template-columns:37px minmax(0,1fr)}.mod-tags{grid-column:2;justify-content:flex-start}
+  .admin-toolbar .search-input,.mod-toolbar .search-input{width:100%;min-width:0!important}
+  .dm-stage{height:100%;min-height:0;overflow:hidden!important}
+  .dm-app{height:100%!important;min-height:0!important;overflow:hidden}
+  .dm-sidebar,.dm-chat,.dm-thread{height:100%;min-height:0}
+  .dm-sidebar{padding-bottom:0}
+  .dm-sidebar-foot{padding-bottom:max(8px,env(safe-area-inset-bottom))}
+  .dm-conversation{min-height:64px;touch-action:manipulation}
+  .dm-thread-head{padding-right:5px}
+  .dm-thread-user strong,.dm-thread-user span{max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .dm-message-row{grid-template-columns:32px minmax(0,1fr)!important;gap:7px!important;padding:5px 2px!important}
+  .dm-message-row>.avatar{grid-column:1}.dm-message-body{grid-column:2;min-width:0}.dm-message-row>time,.dm-message-row>.dm-message-time{grid-column:2}
+  .dm-message-tools{grid-column:2;justify-content:flex-start}
+  .dm-composer{flex:0 0 auto;padding:0 7px 7px}
+  .dm-form{width:100%;min-width:0}
+  .groups-app{height:100%;min-height:0;overflow:hidden}
+  .groups-rail,.group-channels,.group-chat,.group-chat-body,.group-members-pane{min-height:0}
+  .groups-rail{padding-bottom:max(8px,env(safe-area-inset-bottom))}
+  .groups-list{overflow:auto;-webkit-overflow-scrolling:touch}
+  .group-chat{height:100%}.group-chat-body{height:100%}
+  .group-chat-head{position:relative;z-index:4}
+  .group-chat-channel-copy>div{min-width:0}.group-chat-channel-copy strong,.group-chat-channel-copy span{display:block;max-width:54vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .group-chat-actions{padding-left:0!important;padding-bottom:1px}
+  .group-chat-actions .btn{min-height:36px;padding-inline:10px}
+  .group-members-pane.show{display:flex!important;position:absolute!important;top:0!important;right:0!important;bottom:0!important;height:100%!important;max-height:100%!important;background:var(--surface)}
+  .group-mobile-backdrop.show{display:block!important}
+  .group-composer-wrap{flex:0 0 auto}
+  .group-settings-dialog[open]{height:var(--app-vh)!important;max-height:var(--app-vh)!important}
+  .group-settings-layout{height:100%;min-height:0}
+  .group-settings-content{min-height:0;overflow:auto}
+}
+@media(max-width:480px){
+  :root{--mobile-dock-h:58px}
+  .topbar{padding-left:6px;padding-right:6px}.top-title{max-width:40vw}
+  .topbar .icon-btn{width:36px;min-width:36px;height:36px}
+  .mobile-dock{padding-left:3px;padding-right:3px}.mobile-dock button{font-size:8px;gap:1px}.mobile-dock button .icon,.mobile-dock button .asset-icon{width:18px;height:18px}
+  .welcome{padding-inline:12px}.welcome h1{font-size:clamp(25px,8.5vw,31px)}.suggestion{flex-basis:88vw}
+  .chat-log{padding-inline:8px}.composer-wrap{padding-inline:5px}.composer-box{padding-inline:8px}
+  .mode-menu,.model-menu{left:6px!important;right:6px!important}
+  .admin-kpi-grid,.mod-stats{grid-template-columns:1fr 1fr!important}.admin-kpi strong,.mod-stat strong{font-size:18px}
+  .dm-thread-user strong,.dm-thread-user span{max-width:38vw}
+  .group-chat-channel-copy strong,.group-chat-channel-copy span{max-width:46vw}
+  .group-chat-actions .btn{padding-inline:8px}
+}
+@media(max-width:360px){
+  .mobile-dock button span{font-size:7.5px}.top-title{max-width:34vw}
+  .composer-box .icon-btn,.mode-trigger,.model-trigger,.send{width:38px;min-width:38px;height:38px}
+  .admin-kpi-grid,.mod-stats{grid-template-columns:1fr!important}
+}
+@media(max-width:900px) and (max-height:560px){
+  :root{--mobile-dock-h:52px}
+  .mobile-dock button span{display:none}.mobile-dock button{min-height:42px}.topbar{height:48px;flex-basis:48px}.welcome{padding-top:14px}.welcome-logo{display:none}.suggestions{margin-top:14px}.suggestion{min-height:92px}.composer-box textarea{max-height:84px}
+}
+</style>
 </head>
 <body>
 <svg hidden xmlns="http://www.w3.org/2000/svg"><defs>
@@ -2438,6 +2599,7 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 
       <div id="dmThread" class="dm-thread" hidden>
         <header class="dm-thread-head">
+          <button class="icon-btn dm-mobile-back" id="dmMobileBack" type="button" aria-label="Back to conversations">←</button>
           <button class="dm-thread-user" id="dmThreadUser" type="button" aria-label="Open developer profile"></button>
 
           <div class="dm-thread-actions">
@@ -2498,6 +2660,7 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 
 <section id="groupsView" class="shared-view group-stage" hidden aria-label="Groups">
   <div class="groups-app">
+    <button id="groupMobileBackdrop" class="group-mobile-backdrop" type="button" aria-label="Close Group panel"></button>
     <aside class="groups-rail"><div class="groups-rail-head"><strong>Groups</strong><button id="createGroupBtn" class="icon-btn" type="button" aria-label="Create Group"><svg class="icon"><use href="#i-plus"/></svg></button></div><div id="groupsList" class="groups-list"></div><button id="groupInvitesBtn" class="groups-invites-btn" type="button"><span>Invites</span><span id="groupsInviteCount">0</span></button></aside>
     <aside class="group-channels" id="groupChannelsPane"><div id="groupChannelsEmpty" class="group-empty-side">Choose a Group.</div><div id="groupChannelsBody" hidden><div class="group-profile-mini"><div id="groupMiniBanner" class="group-mini-banner"></div><div class="group-profile-mini-copy"><span id="groupMiniIcon" class="group-mini-icon"></span><div><strong id="groupMiniName"></strong><span id="groupMiniMembers"></span></div></div></div><div class="group-channel-title"><span>Channels</span><button id="groupAddChannel" class="icon-btn" type="button" aria-label="Create channel"><svg class="icon"><use href="#i-plus"/></svg></button></div><div id="groupChannelList" class="group-channel-list"></div><button id="groupSettingsBtn" class="group-settings-button" type="button"><svg class="icon"><use href="#i-settings"/></svg>Group settings</button></div></aside>
     <section class="group-chat"><div id="groupChatEmpty" class="group-chat-empty"><svg class="group-empty-icon icon" aria-hidden="true"><use href="#i-users"/></svg><h2>Your Groups</h2><p>Create a Group, invite developers, organize channels, and build your own private space.</p><button id="groupEmptyCreate" class="btn primary" type="button">Create a Group</button></div><div id="groupChatBody" class="group-chat-body" hidden><header class="group-chat-head"><div class="group-chat-channel-copy"><button id="groupChannelsMobileBtn" class="icon-btn group-mobile-channels" type="button" aria-label="Open channels"><svg class="icon"><use href="#i-menu"/></svg></button><div><strong id="groupChannelName"># channel</strong><span id="groupChannelTopic"></span></div></div><div class="group-chat-actions"><button id="groupChannelEditBtn" class="btn ghost" type="button">Channel</button><button id="groupCopyInviteHeader" class="btn ghost" type="button">Copy invite</button><button id="groupMembersBtn" class="btn ghost" type="button">Members</button><button id="groupInviteBtn" class="btn" type="button">Invite</button></div></header><div id="groupMessages" class="group-messages"></div><div class="group-composer-wrap"><form id="groupMessageForm" class="group-composer"><textarea id="groupMessageInput" maxlength="1500" rows="1" placeholder="Message this channel…" required></textarea><div class="group-composer-bottom"><span>Enter to send · Shift + Enter for a new line</span><button id="groupMessageSend" class="send" aria-label="Send Group message"><svg class="icon"><use href="#i-up"/></svg></button></div></form></div></div></section>
@@ -2877,6 +3040,13 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
     </section>
   </div>
 </section>
+<nav class="mobile-dock" id="mobileDock" aria-label="Mobile navigation">
+  <button id="mobileDockChat" type="button"><svg class="icon"><use href="#i-chat"/></svg><span>Chat</span></button>
+  <button id="mobileDockHub" type="button"><img class="asset-icon" src="/icons/post.png" alt=""><span>DevHub</span></button>
+  <button id="mobileDockCreations" type="button"><img class="asset-icon" src="/icons/creation.png" alt=""><span>Creations</span></button>
+  <button id="mobileDockMessages" type="button"><img class="asset-icon" src="/icons/message.png" alt=""><span>Messages</span></button>
+  <button id="mobileDockMore" type="button"><svg class="icon"><use href="#i-menu"/></svg><span>More</span></button>
+</nav>
 </main></div>
 <dialog id="settingsDialog" aria-labelledby="settingsTitle"><div class="dialog-header"><h2 id="settingsTitle">Settings</h2><button class="icon-btn" data-close="settingsDialog" aria-label="Close settings"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="settingsForm"><div class="dialog-body"><div class="settings-tabs" role="tablist" aria-label="Settings sections"><button type="button" role="tab" id="profileTab" aria-controls="profilePanel" aria-selected="true" data-tab="profile">Profile</button><button type="button" role="tab" id="preferencesTab" aria-controls="preferencesPanel" aria-selected="false" tabindex="-1" data-tab="preferences">Preferences</button><button type="button" role="tab" id="privacyTab" aria-controls="privacyPanel" aria-selected="false" tabindex="-1" data-tab="privacy">Privacy</button></div>
 <div id="profilePanel" role="tabpanel" aria-labelledby="profileTab"><div class="banner-editor"><div class="banner-editor-head"><div><strong>Profile banner</strong><p>Shown across the top of your public Axiom profile.</p></div><div class="banner-actions"><button class="btn" type="button" id="viewOwnProfile">View profile</button><button class="btn" type="button" id="uploadBanner"><svg class="icon"><use href="#i-upload"/></svg>Change banner</button><button class="btn ghost" type="button" id="removeBanner">Remove</button></div></div><div class="banner-preview" id="bannerPreview"></div></div><div class="profile-theme-setting"><strong>Profile theme</strong><p>Choose the look people see when they open your profile.</p><div class="profile-theme-grid" id="profileThemeGrid"><button type="button" data-profile-theme-choice="classic"><span class="theme-swatch classic"></span><span>Classic</span></button><button type="button" data-profile-theme-choice="ocean"><span class="theme-swatch ocean"></span><span>Ocean</span></button><button type="button" data-profile-theme-choice="sunset"><span class="theme-swatch sunset"></span><span>Sunset</span></button><button type="button" data-profile-theme-choice="midnight"><span class="theme-swatch midnight"></span><span>Midnight</span></button><button type="button" data-profile-theme-choice="forest"><span class="theme-swatch forest"></span><span>Forest</span></button><button type="button" data-profile-theme-choice="rose"><span class="theme-swatch rose"></span><span>Rose</span></button></div></div><div class="avatar-editor"><div class="avatar" id="avatarPreview"></div><div><button class="btn" type="button" id="uploadAvatar"><svg class="icon"><use href="#i-upload"/></svg>Change photo</button> <button class="btn ghost" type="button" id="removeAvatar">Remove</button><p>PNG, JPG, WebP, GIF, AVIF or BMP · up to 5 MB<br>Animated GIFs and WebP stay animated.</p></div></div><div class="field"><label for="displayName">Display name</label><input id="displayName" maxlength="40" required><p class="help">Shown in your workspace and on DevHub.</p></div><div class="field-row"><div class="field"><label for="usernameReadOnly">Username</label><input id="usernameReadOnly" readonly></div><div class="field"><label for="profileEmail">Connected email <span id="emailState" class="email-state"></span></label><input id="profileEmail" type="email" readonly placeholder="Not connected"></div></div><div class="account-security"><div class="setting-row"><div><strong>Email & recovery</strong><p id="emailHelp">Connect and verify an email to sign in by email and reset your password.</p></div><button id="manageEmail" class="btn" type="button">Connect email</button></div><div class="setting-row"><div><strong>Discord</strong><p id="discordHelp">Link Discord to your Axiom profile with the /connect command.</p></div><button id="manageDiscord" class="btn" type="button">Connect Discord</button></div><div class="setting-row"><div><strong>Password</strong><p>Change your password and sign out other sessions.</p></div><button id="changePassword" class="btn" type="button">Change password</button></div></div><div class="field"><label for="profileBio">Bio</label><textarea id="profileBio" maxlength="180" placeholder="A little about what you build…"></textarea></div><div class="field profile-links-editor"><label>Profile links</label><p class="help">Optional links shown on your public profile.</p><div class="profile-link-editor-grid"><input id="profileGithub" type="url" maxlength="220" placeholder="https://github.com/username" aria-label="GitHub profile link"><input id="profileRoblox" type="url" maxlength="220" placeholder="https://www.roblox.com/users/..." aria-label="Roblox profile link"><input id="profileWebsite" type="url" maxlength="220" placeholder="https://your-site.com" aria-label="Website link"><input id="profileDiscord" type="url" maxlength="220" placeholder="https://discord.com/users/..." aria-label="Discord profile link"></div></div><div class="field"><label>Avatar color</label><div class="colors" id="avatarColors" role="group" aria-label="Avatar color"></div></div><div class="status-setting"><strong>Status <span class="email-state verified" id="currentPresenceLabel"></span></strong><p>Auto shows Online while active and Idle after about 2 minutes. Invisible always appears Offline.</p><div class="status-options" id="statusOptions" role="group" aria-label="Profile status"><button type="button" class="status-option" data-status-mode="auto"><span class="auto-dot"></span><span>Auto</span></button><button type="button" class="status-option" data-status-mode="online"><span class="presence-dot online"></span><span>Online</span></button><button type="button" class="status-option" data-status-mode="idle"><span class="presence-dot idle"></span><span>Idle</span></button><button type="button" class="status-option" data-status-mode="dnd"><span class="presence-dot dnd"></span><span>DND</span></button><button type="button" class="status-option invisible" data-status-mode="invisible"><span class="presence-dot offline"></span><span>Invisible</span></button></div></div><div class="custom-status-field"><label for="statusQuote">Custom status <span id="statusQuoteCount">0/80</span></label><input id="statusQuote" maxlength="80" placeholder="What are you working on?"></div><div class="badge-settings"><strong>Your badges</strong><div id="myBadges" class="readonly-badges"></div><p>Badges are assigned by the Axiom team.</p></div><div class="info-box">Your email is private. Your name, photo, banner, bio, status, and awarded badges are shown on your public profile.</div></div>
@@ -7812,6 +7982,154 @@ else{
     openPublicProfile('@'+requestedProfile,false);
   }
 }
+</script>
+
+<script id="responsive-revamp-v931-js">
+(()=>{
+  const byId=id=>document.getElementById(id);
+  const dmBack=byId('dmMobileBack');
+  const dms=byId('dmsView');
+  if(dmBack&&dms)dmBack.addEventListener('click',()=>dms.classList.remove('dm-mobile-thread'));
+
+  const membersButton=byId('groupMembersBtn');
+  const membersPane=byId('groupMembersPane');
+  const channelsPane=byId('groupChannelsPane');
+  const groupBackdrop=byId('groupMobileBackdrop');
+  const syncGroupBackdrop=()=>{
+    if(!groupBackdrop)return;
+    const open=!!channelsPane?.classList.contains('mobile-open')||!!membersPane?.classList.contains('show');
+    groupBackdrop.classList.toggle('show',open&&matchMedia('(max-width:760px)').matches);
+  };
+  if(membersButton&&membersPane){
+    membersButton.addEventListener('click',()=>{
+      membersPane.classList.toggle('show');
+      channelsPane?.classList.remove('mobile-open');
+      syncGroupBackdrop();
+    });
+  }
+  if(channelsPane)new MutationObserver(syncGroupBackdrop).observe(channelsPane,{attributes:true,attributeFilter:['class']});
+  if(membersPane)new MutationObserver(syncGroupBackdrop).observe(membersPane,{attributes:true,attributeFilter:['class']});
+  if(groupBackdrop)groupBackdrop.addEventListener('click',()=>{
+    channelsPane?.classList.remove('mobile-open');
+    membersPane?.classList.remove('show');
+    syncGroupBackdrop();
+  });
+
+  const dock={
+    chat:byId('mobileDockChat'),hub:byId('mobileDockHub'),creations:byId('mobileDockCreations'),messages:byId('mobileDockMessages'),more:byId('mobileDockMore')
+  };
+  const click=id=>byId(id)?.click();
+  dock.chat?.addEventListener('click',()=>document.querySelector('#modeNav [data-mode="axiom"]')?.click());
+  dock.hub?.addEventListener('click',()=>click('devhubNav'));
+  dock.creations?.addEventListener('click',()=>click('creationsNav'));
+  dock.messages?.addEventListener('click',()=>click('dmsNav'));
+  dock.more?.addEventListener('click',()=>click('mobileToggle'));
+
+  const tracked=['chatView','hubView','creationsView','dmsView','notificationsView','groupsView','updatesView','moderationView','adminView'].map(byId).filter(Boolean);
+  const syncDock=()=>{
+    Object.values(dock).forEach(button=>button?.classList.remove('active'));
+    if(!byId('chatView')?.hidden)dock.chat?.classList.add('active');
+    else if(!byId('hubView')?.hidden)dock.hub?.classList.add('active');
+    else if(!byId('creationsView')?.hidden)dock.creations?.classList.add('active');
+    else if(!byId('dmsView')?.hidden)dock.messages?.classList.add('active');
+    else dock.more?.classList.add('active');
+  };
+  const dockObserver=new MutationObserver(syncDock);
+  tracked.forEach(node=>dockObserver.observe(node,{attributes:true,attributeFilter:['hidden','class']}));
+  syncDock();
+
+  addEventListener('keydown',event=>{
+    if(event.key!=='Escape')return;
+    channelsPane?.classList.remove('mobile-open');
+    membersPane?.classList.remove('show');
+    syncGroupBackdrop();
+    if(innerWidth<=760&&dms?.classList.contains('dm-mobile-thread'))dms.classList.remove('dm-mobile-thread');
+  });
+  addEventListener('resize',syncGroupBackdrop);
+})();
+</script>
+
+<script id="mobile-stability-v932-js">
+(()=>{
+  const root=document.documentElement;
+  const vv=window.visualViewport;
+  const sidebar=document.getElementById('sidebar');
+  const mobileToggle=document.getElementById('mobileToggle');
+  const dms=document.getElementById('dmsView');
+  const groupChannels=document.getElementById('groupChannelsPane');
+  const groupMembers=document.getElementById('groupMembersPane');
+  const mobile=()=>matchMedia('(max-width:760px)').matches;
+
+  function syncViewport(){
+    if(!mobile()){
+      root.style.removeProperty('--app-vh');
+      root.style.removeProperty('--app-top');
+      root.style.removeProperty('--dock-space');
+      root.classList.remove('mobile-keyboard-open');
+      return;
+    }
+    const height=Math.round(vv?.height||innerHeight);
+    const top=Math.max(0,Math.round(vv?.offsetTop||0));
+    const base=Math.max(document.documentElement.clientHeight||0,innerHeight||0);
+    const keyboard=Math.max(0,base-height-top)>140;
+    root.style.setProperty('--app-vh',height+'px');
+    root.style.setProperty('--app-top',top+'px');
+    root.style.setProperty('--dock-space',keyboard?'0px':'calc(var(--mobile-dock-h) + env(safe-area-inset-bottom))');
+    root.classList.toggle('mobile-keyboard-open',keyboard);
+  }
+
+  function syncOverlay(){
+    if(!mobile()){root.classList.remove('mobile-overlay-open');return}
+    root.classList.toggle('mobile-overlay-open',!!sidebar?.classList.contains('open'));
+  }
+
+  vv?.addEventListener('resize',syncViewport,{passive:true});
+  vv?.addEventListener('scroll',syncViewport,{passive:true});
+  addEventListener('resize',()=>{syncViewport();syncOverlay()},{passive:true});
+  addEventListener('orientationchange',()=>setTimeout(syncViewport,80),{passive:true});
+  syncViewport();
+  syncOverlay();
+
+  if(sidebar)new MutationObserver(syncOverlay).observe(sidebar,{attributes:true,attributeFilter:['class']});
+
+  document.addEventListener('focusin',event=>{
+    if(!mobile())return;
+    const el=event.target;
+    if(!el?.matches?.('input,textarea,select,[contenteditable="true"]'))return;
+    setTimeout(()=>{
+      syncViewport();
+      el.scrollIntoView?.({block:'nearest',inline:'nearest'});
+    },120);
+  });
+  document.addEventListener('focusout',()=>setTimeout(syncViewport,120));
+
+  document.getElementById('mobileDockMessages')?.addEventListener('click',()=>{
+    if(mobile())dms?.classList.remove('dm-mobile-thread');
+  },true);
+
+  document.querySelectorAll('#mobileDock button').forEach(button=>button.addEventListener('click',()=>{
+    if(button.id!=='mobileDockMore'&&sidebar?.classList.contains('open')){
+      sidebar.classList.remove('open');
+      document.getElementById('sidebarBackdrop')?.classList.remove('show');
+      mobileToggle?.setAttribute('aria-expanded','false');
+      sidebar.inert=true;
+    }
+    groupChannels?.classList.remove('mobile-open');
+    groupMembers?.classList.remove('show');
+  },true));
+
+  document.addEventListener('click',event=>{
+    if(!mobile())return;
+    if(event.target.closest?.('.dm-conversation'))setTimeout(()=>dms?.classList.add('dm-mobile-thread'),0);
+  });
+
+  document.querySelectorAll('dialog').forEach(dialog=>{
+    dialog.addEventListener('close',()=>{
+      if(document.activeElement?.matches?.('input,textarea,select'))document.activeElement.blur();
+      setTimeout(syncViewport,80);
+    });
+  });
+})();
 </script>
 </body>
 </html>
