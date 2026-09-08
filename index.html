@@ -2389,11 +2389,11 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
 </style>
 
 <style id="mobile-stability-v932">
-:root{--app-vh:100dvh;--app-top:0px;--dock-space:calc(64px + env(safe-area-inset-bottom))}
+:root{--app-vh:100dvh;--dock-space:calc(64px + env(safe-area-inset-bottom))}
 @media(max-width:760px){
-  html,body{width:100%;height:100%;min-height:100%;overflow:hidden;overscroll-behavior:none}
-  body{position:relative}
-  #app{position:fixed;left:0;right:0;top:var(--app-top);width:100%;height:var(--app-vh);min-height:0;overflow:hidden}
+  html,body{width:100%;height:100%;min-height:100%;overflow:hidden}
+  body{position:static;overscroll-behavior:none}
+  #app{position:relative;width:100%;height:var(--app-vh);min-height:0;overflow:hidden}
   .main{height:100%;min-height:0;padding-bottom:var(--dock-space);overflow:hidden;transition:padding-bottom .16s ease}
   html.mobile-keyboard-open .main{padding-bottom:0}
   .topbar{flex:0 0 calc(54px + env(safe-area-inset-top));height:calc(54px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top);position:relative;z-index:28}
@@ -2503,6 +2503,113 @@ html[data-theme=dark] .mod-role-pill{background:#183129;color:#64c9ad}
   .mobile-dock button span{display:none}.mobile-dock button{min-height:42px}.topbar{height:48px;flex-basis:48px}.welcome{padding-top:14px}.welcome-logo{display:none}.suggestions{margin-top:14px}.suggestion{min-height:92px}.composer-box textarea{max-height:84px}
 }
 </style>
+
+<style id="mobile-scroll-v933">
+@media(max-width:760px){
+  #chatView,.hub-view,.shared-view,.dm-stage,.groups-app{
+    min-height:0!important;
+    height:auto;
+  }
+
+  .chat-area,
+  .shared-view,
+  .recent,
+  .hub-log,
+  .dm-list,
+  .dm-messages,
+  .groups-list,
+  .group-channel-list,
+  .group-messages,
+  .group-members-list,
+  .group-settings-content,
+  .mod-user-list,
+  .admin-user-list,
+  .updates-list,
+  .notifications-list{
+    overflow-y:auto!important;
+    overflow-x:hidden;
+    -webkit-overflow-scrolling:touch!important;
+    touch-action:pan-y!important;
+    overscroll-behavior-y:contain;
+    min-height:0;
+  }
+
+  .chat-area{
+    flex:1 1 auto!important;
+    height:0;
+    overflow-y:auto!important;
+  }
+
+  .hub-view .chat-area{
+    flex:1 1 auto!important;
+    height:0;
+  }
+
+  .shared-view{
+    flex:1 1 auto!important;
+    overflow-y:auto!important;
+    touch-action:pan-y!important;
+  }
+
+  .sidebar{
+    touch-action:pan-y;
+  }
+
+  .sidebar .recent{
+    flex:1 1 auto!important;
+    overflow-y:auto!important;
+  }
+
+  .dm-sidebar,
+  .dm-chat,
+  .dm-thread,
+  .group-chat,
+  .group-chat-body{
+    min-height:0!important;
+  }
+
+  .dm-list,
+  .dm-messages,
+  .group-messages{
+    flex:1 1 auto!important;
+    height:0;
+  }
+
+  .group-channels,
+  .group-members-pane{
+    overflow:hidden;
+  }
+
+  .group-channel-list,
+  .group-members-list{
+    flex:1 1 auto!important;
+  }
+
+  .mode-picker,.model-picker,
+  #modePickerButton,#modelPickerButton,
+  #newChat,.recent-row>button:first-child,
+  #mobileToggle,.mobile-dock button{
+    pointer-events:auto!important;
+    touch-action:manipulation;
+  }
+
+  .mode-menu,.model-menu{
+    pointer-events:auto!important;
+    z-index:120!important;
+  }
+
+  .mode-menu button,.model-menu button{
+    pointer-events:auto!important;
+    min-height:48px;
+    touch-action:manipulation;
+  }
+
+  html.mobile-keyboard-open .chat-area{
+    scroll-padding-bottom:118px;
+  }
+}
+</style>
+
 </head>
 <body>
 <svg hidden xmlns="http://www.w3.org/2000/svg"><defs>
@@ -3519,7 +3626,6 @@ function closeModePicker(){
 }
 
 function openModePicker(){
-  if(activeRequest)return toast('Stop the current reply before switching assistants.');
   const open=$('modePickerMenu').hidden;
   if(!open)return closeModePicker();
   $('modePickerMenu').hidden=false;
@@ -3609,7 +3715,6 @@ function closeModelPicker(){
 }
 
 function openModelPicker(){
-  if(activeRequest)return toast('Stop the current reply before switching models.');
   closeModePicker();
   const open=$('modelPickerMenu').hidden;
   if(!open)return closeModelPicker();
@@ -3622,7 +3727,7 @@ function openModelPicker(){
 }
 
 function setModelProfile(next){
-  if(!AXIOM_MODELS[next]||activeRequest)return;
+  if(!AXIOM_MODELS[next])return;
   modelProfile=next;
   write('axiom_model_'+localKey,next);
   const t=currentThread();
@@ -3666,10 +3771,42 @@ function setMode(next,newConversation=true){
   for(const [i,title,sub,prompt] of MODES[mode].suggestions){const b=document.createElement('button');b.className='suggestion';b.innerHTML=icon(i)+`<strong>${title}</strong><span>${sub}</span>`;b.onclick=()=>{$('prompt').value=prompt;resizePrompt();$('prompt').focus();};$('suggestions').append(b);}
   closeSidebar();renderChat();renderRecent();syncModelPicker();updateControls();
 }
-document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{if(activeRequest)return toast('Stop the current reply before switching assistants.');setMode(b.dataset.mode);});
-$('modeSelect').onchange=e=>{if(activeRequest){e.target.value=mode;return;}if(currentThread()?.messages.length){setMode(e.target.value);}else{mode=e.target.value;setMode(mode,false);}};
-$('newChat').onclick=()=>{if(activeRequest)return toast('Stop the current reply before starting another chat.');setMode(mode);$('prompt').focus();};
-function openThread(id){if(activeRequest)return toast('Stop the current reply before opening another chat.');const t=threads.find(t=>t.id===id);if(!t)return;activeId=t.id;modelProfile=AXIOM_MODELS[t.modelProfile]?t.modelProfile:'core-1';pending=[];renderAttachments();$('prompt').value='';setMode(t.mode,false);syncModelPicker();$('searchDialog').close();}
+function stopReplyForNavigation(){
+  if(!activeRequest)return false;
+  activeRequest.controller.abort('navigation');
+  return true;
+}
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{
+  stopReplyForNavigation();
+  setMode(b.dataset.mode);
+});
+$('modeSelect').onchange=e=>{
+  stopReplyForNavigation();
+  if(currentThread()?.messages.length){
+    setMode(e.target.value);
+  }else{
+    mode=e.target.value;
+    setMode(mode,false);
+  }
+};
+$('newChat').onclick=()=>{
+  stopReplyForNavigation();
+  setMode(mode);
+  requestAnimationFrame(()=>$('prompt').focus());
+};
+function openThread(id){
+  const t=threads.find(t=>t.id===id);
+  if(!t)return;
+  stopReplyForNavigation();
+  activeId=t.id;
+  modelProfile=AXIOM_MODELS[t.modelProfile]?t.modelProfile:'core-1';
+  pending=[];
+  renderAttachments();
+  $('prompt').value='';
+  setMode(t.mode,false);
+  syncModelPicker();
+  $('searchDialog').close();
+}
 function renderRecent(target=$('recentChats'),query=''){
   target.replaceChildren();const list=[...threads].sort((a,b)=>b.updated-a.updated).filter(t=>!query||(t.title+' '+t.messages.map(m=>plainContent(m.content)).join(' ')).toLowerCase().includes(query.toLowerCase()));
   if(!list.length){const p=document.createElement('p');p.className='recent-empty';p.textContent=query?'No matching conversations.':'Your conversations will appear here.';target.append(p);return;}
@@ -3876,7 +4013,19 @@ function renderChat(scroll=true){
   });
   if(scroll)toBottom();showChatError();syncModelUsage();
 }
-function updateControls(){const busy=!!activeRequest;$('sendBtn').hidden=busy;$('stopBtn').hidden=!busy;$('sendBtn').disabled=attachmentLoading||(!($('prompt').value.trim()||pending.length));$('modeSelect').disabled=busy;$('modelPickerButton').disabled=busy;$('attachBtn').disabled=busy||attachmentLoading;$('prompt').disabled=busy;$('clearChat').disabled=busy||!currentThread();syncModelPicker();}
+function updateControls(){
+  const busy=!!activeRequest;
+  $('sendBtn').hidden=busy;
+  $('stopBtn').hidden=!busy;
+  $('sendBtn').disabled=attachmentLoading||(!($('prompt').value.trim()||pending.length));
+  $('modeSelect').disabled=false;
+  $('modelPickerButton').disabled=false;
+  $('modePickerButton').disabled=false;
+  $('attachBtn').disabled=busy||attachmentLoading;
+  $('prompt').disabled=busy;
+  $('clearChat').disabled=busy||!currentThread();
+  syncModelPicker();
+}
 $('chatArea').onscroll=()=>{$('jumpBottom').hidden=nearBottom()||!currentThread()?.messages.length;};$('jumpBottom').onclick=toBottom;
 function resizePrompt(){const p=$('prompt');p.style.height='auto';p.style.height=Math.min(200,Math.max(52,p.scrollHeight))+'px';updateControls();}
 $('prompt').oninput=resizePrompt;
@@ -8063,17 +8212,15 @@ else{
   function syncViewport(){
     if(!mobile()){
       root.style.removeProperty('--app-vh');
-      root.style.removeProperty('--app-top');
       root.style.removeProperty('--dock-space');
       root.classList.remove('mobile-keyboard-open');
       return;
     }
-    const height=Math.round(vv?.height||innerHeight);
+    const height=Math.max(320,Math.round(vv?.height||innerHeight));
     const top=Math.max(0,Math.round(vv?.offsetTop||0));
     const base=Math.max(document.documentElement.clientHeight||0,innerHeight||0);
     const keyboard=Math.max(0,base-height-top)>140;
     root.style.setProperty('--app-vh',height+'px');
-    root.style.setProperty('--app-top',top+'px');
     root.style.setProperty('--dock-space',keyboard?'0px':'calc(var(--mobile-dock-h) + env(safe-area-inset-bottom))');
     root.classList.toggle('mobile-keyboard-open',keyboard);
   }
@@ -8098,7 +8245,13 @@ else{
     if(!el?.matches?.('input,textarea,select,[contenteditable="true"]'))return;
     setTimeout(()=>{
       syncViewport();
-      el.scrollIntoView?.({block:'nearest',inline:'nearest'});
+      const scroller=el.closest?.('.chat-area,.shared-view,.dialog-body,.dm-messages,.group-messages,.group-settings-content,.recent');
+      if(scroller){
+        const box=el.getBoundingClientRect();
+        const bounds=scroller.getBoundingClientRect();
+        if(box.bottom>bounds.bottom-12)scroller.scrollTop+=box.bottom-bounds.bottom+24;
+        if(box.top<bounds.top+12)scroller.scrollTop-=bounds.top-box.top+24;
+      }
     },120);
   });
   document.addEventListener('focusout',()=>setTimeout(syncViewport,120));
