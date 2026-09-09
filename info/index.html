@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fbfaf7">
+  <meta name="theme-color" content="#f7faff">
   <meta
     name="description"
     content="Axiom project information, GitHub activity, contributors, Discord community, and credits."
@@ -847,6 +847,606 @@
       }
     }
   </style>
+
+<style id="axiom-info-v940">
+:root{
+  --bg:#f7faff;
+  --surface:#ffffff;
+  --surface-2:#f1f6ff;
+  --surface-3:#e7effb;
+  --ink:#10213a;
+  --muted:#66758c;
+  --muted-2:#8a97aa;
+  --line:#dce6f4;
+  --line-strong:#c7d7ef;
+  --blue:#2563eb;
+  --blue-hover:#1d4ed8;
+  --blue-soft:#eaf1ff;
+  --green:#239a63;
+  --green-soft:#e8f8ef;
+  --shadow:0 18px 58px rgba(33,74,135,.10);
+  --shadow-soft:0 10px 30px rgba(33,74,135,.07);
+  --radius:20px;
+}
+
+html[data-theme="dark"]{
+  --bg:#091321;
+  --surface:#101d30;
+  --surface-2:#14253c;
+  --surface-3:#1a304c;
+  --ink:#f7faff;
+  --muted:#a0b1c8;
+  --muted-2:#788aa4;
+  --line:#223957;
+  --line-strong:#31517b;
+  --blue:#6ea8fe;
+  --blue-hover:#8bb9ff;
+  --blue-soft:#132f55;
+  --green:#74d9a3;
+  --green-soft:#153526;
+  --shadow:0 22px 70px rgba(0,0,0,.32);
+  --shadow-soft:0 12px 32px rgba(0,0,0,.22);
+}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:88px;
+}
+
+body{
+  background:
+    radial-gradient(circle at 18% 0%,color-mix(in srgb,var(--blue) 12%,transparent),transparent 30rem),
+    radial-gradient(circle at 88% 18%,color-mix(in srgb,var(--blue) 7%,transparent),transparent 26rem),
+    var(--bg);
+  letter-spacing:-.008em;
+}
+
+*{
+  scrollbar-width:thin;
+  scrollbar-color:color-mix(in srgb,var(--blue) 26%,var(--line)) transparent;
+}
+
+*::-webkit-scrollbar{width:10px;height:10px}
+*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar-thumb{
+  background:color-mix(in srgb,var(--blue) 22%,var(--line));
+  border:3px solid transparent;
+  background-clip:padding-box;
+  border-radius:999px;
+}
+
+.shell{
+  width:min(1180px,calc(100% - 38px));
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:30;
+  height:66px;
+  border-bottom:1px solid color-mix(in srgb,var(--line) 76%,transparent);
+  background:color-mix(in srgb,var(--bg) 84%,transparent);
+  backdrop-filter:blur(18px) saturate(1.2);
+  -webkit-backdrop-filter:blur(18px) saturate(1.2);
+}
+
+.brand{
+  font-size:18px;
+  letter-spacing:-.45px;
+}
+
+.mark{
+  width:33px;
+  height:33px;
+  border-radius:11px;
+  color:#fff;
+  background:linear-gradient(145deg,#3979f6,var(--blue));
+  box-shadow:0 8px 20px rgba(37,99,235,.22);
+}
+
+.nav-link,
+.theme-btn{
+  border:1px solid transparent;
+  border-radius:11px;
+}
+
+.nav-link:hover,
+.theme-btn:hover{
+  color:var(--blue);
+  border-color:var(--line);
+  background:var(--blue-soft);
+}
+
+.hero{
+  position:relative;
+  max-width:930px;
+  padding:clamp(82px,11vw,142px) 0 72px;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  left:-78px;
+  top:52px;
+  width:190px;
+  height:190px;
+  border:1px solid color-mix(in srgb,var(--blue) 12%,transparent);
+  border-radius:48px;
+  transform:rotate(18deg);
+  pointer-events:none;
+}
+
+.eyebrow{
+  margin-bottom:14px;
+  color:var(--blue);
+  text-transform:none;
+  letter-spacing:0;
+  font-size:13px;
+  font-weight:700;
+}
+
+h1{
+  max-width:870px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:clamp(46px,7vw,78px);
+  line-height:.99;
+  letter-spacing:-4.2px;
+  font-weight:650;
+}
+
+.hero-copy{
+  max-width:690px;
+  margin-top:23px;
+  font-size:16px;
+  line-height:1.72;
+}
+
+.hero-actions{
+  margin-top:29px;
+}
+
+.button{
+  min-height:40px;
+  padding:0 13px;
+  border-radius:11px;
+  border-color:var(--line);
+  box-shadow:none;
+}
+
+.button:hover{
+  border-color:color-mix(in srgb,var(--blue) 34%,var(--line));
+  background:var(--blue-soft);
+  color:var(--blue);
+  box-shadow:var(--shadow-soft);
+}
+
+.button.primary{
+  border-color:var(--blue);
+  background:linear-gradient(180deg,#3979f6,var(--blue));
+  box-shadow:0 9px 24px rgba(37,99,235,.22);
+}
+
+.button.primary:hover{
+  color:#fff;
+  background:linear-gradient(180deg,#3372ef,var(--blue-hover));
+}
+
+.status-pill{
+  border-color:color-mix(in srgb,var(--green) 26%,var(--line));
+  border-radius:999px;
+}
+
+.section{
+  padding:42px 0 82px;
+}
+
+.section-head{
+  align-items:flex-end;
+  margin-bottom:23px;
+}
+
+.section-head>div{
+  min-width:0;
+}
+
+.section-head h2{
+  color:var(--ink);
+  font-size:17px;
+  font-weight:700;
+  text-transform:none;
+  letter-spacing:-.35px;
+}
+
+.section-head span{
+  color:var(--muted-2);
+}
+
+.section-copy{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.divider{
+  background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent);
+}
+
+.panel,
+.person,
+.note{
+  border-color:var(--line);
+  background:color-mix(in srgb,var(--surface) 96%,transparent);
+  box-shadow:0 8px 28px rgba(38,77,130,.055);
+}
+
+.panel{
+  border-radius:19px;
+}
+
+.panel:hover,
+.person:hover{
+  border-color:color-mix(in srgb,var(--blue) 28%,var(--line));
+}
+
+.repo-icon{
+  color:var(--blue);
+  background:var(--blue-soft);
+}
+
+.about-card{
+  background:
+    radial-gradient(circle at 88% 12%,color-mix(in srgb,var(--blue) 15%,transparent),transparent 44%),
+    var(--surface-2);
+}
+
+.beta-tag,
+.meta-chip{
+  border-color:var(--line);
+}
+
+.panel-head{
+  background:color-mix(in srgb,var(--surface-2) 54%,var(--surface));
+}
+
+.commit:hover{
+  background:var(--blue-soft);
+}
+
+.avatar{
+  border-color:var(--line);
+}
+
+.person{
+  min-height:250px;
+}
+
+.discord-info{
+  background:
+    radial-gradient(circle at 15% 8%,color-mix(in srgb,var(--blue) 13%,transparent),transparent 40%),
+    var(--surface-2);
+}
+
+.discord-stat{
+  border-color:var(--line);
+  box-shadow:0 5px 18px rgba(37,99,235,.04);
+}
+
+.note.small{
+  background:var(--surface-2);
+}
+
+/* Plans */
+.plans-section{
+  position:relative;
+}
+
+.plans-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.plan-card{
+  position:relative;
+  min-height:490px;
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+  padding:22px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:var(--surface);
+  box-shadow:0 10px 34px rgba(33,74,135,.07);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+
+.plan-card:hover{
+  transform:translateY(-4px);
+  border-color:color-mix(in srgb,var(--blue) 36%,var(--line));
+  box-shadow:0 20px 50px rgba(37,99,235,.10);
+}
+
+.plan-card.locked{
+  background:
+    linear-gradient(155deg,color-mix(in srgb,var(--blue-soft) 45%,var(--surface)),var(--surface) 44%);
+}
+
+.plan-developer{
+  border-color:color-mix(in srgb,var(--blue) 24%,var(--line));
+}
+
+.plan-glow{
+  position:absolute;
+  right:-80px;
+  top:-85px;
+  width:210px;
+  height:210px;
+  border-radius:50%;
+  background:color-mix(in srgb,var(--blue) 12%,transparent);
+  filter:blur(4px);
+  pointer-events:none;
+}
+
+.plan-glow-dev{
+  width:260px;
+  height:260px;
+  right:-110px;
+  top:-115px;
+  background:color-mix(in srgb,var(--blue) 18%,transparent);
+}
+
+.plan-top{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.plan-icon{
+  width:43px;
+  height:43px;
+  display:grid;
+  place-items:center;
+  border:1px solid color-mix(in srgb,var(--blue) 20%,var(--line));
+  border-radius:13px;
+  color:var(--blue);
+  background:var(--blue-soft);
+}
+
+.plan-icon .icon{
+  width:20px;
+  height:20px;
+}
+
+.developer-icon{
+  color:#fff;
+  background:linear-gradient(145deg,#3979f6,var(--blue));
+  border-color:transparent;
+  box-shadow:0 8px 20px rgba(37,99,235,.20);
+}
+
+.plan-state{
+  min-height:29px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:0 9px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-size:10px;
+  font-weight:750;
+}
+
+.plan-state .icon{
+  width:13px;
+  height:13px;
+}
+
+.plan-state.available{
+  color:var(--green);
+  border-color:color-mix(in srgb,var(--green) 25%,var(--line));
+  background:var(--green-soft);
+}
+
+.locked-state{
+  color:var(--muted);
+  background:var(--surface-2);
+}
+
+.plan-name-row{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+.plan-card h3{
+  margin:0;
+  font-size:25px;
+  line-height:1.2;
+  letter-spacing:-.75px;
+}
+
+.coming-soon{
+  display:inline-flex;
+  padding:4px 7px;
+  border-radius:7px;
+  color:var(--blue);
+  background:var(--blue-soft);
+  font-size:9px;
+  font-weight:750;
+}
+
+.plan-description{
+  min-height:48px;
+  margin:9px 0 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.plan-price{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  margin-top:21px;
+}
+
+.plan-price strong{
+  color:var(--ink);
+  font-size:37px;
+  line-height:1;
+  letter-spacing:-1.6px;
+}
+
+.plan-price span{
+  color:var(--muted-2);
+  font-size:10px;
+}
+
+.plan-features{
+  display:grid;
+  gap:10px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.plan-features li{
+  position:relative;
+  padding-left:22px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.plan-features li::before{
+  content:"";
+  position:absolute;
+  left:1px;
+  top:.35em;
+  width:11px;
+  height:6px;
+  border-left:2px solid var(--blue);
+  border-bottom:2px solid var(--blue);
+  transform:rotate(-45deg);
+}
+
+.plan-button{
+  width:100%;
+  min-height:42px;
+  margin-top:auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.current-plan{
+  color:var(--blue);
+  border-color:color-mix(in srgb,var(--blue) 24%,var(--line));
+  background:var(--blue-soft);
+}
+
+.locked-button{
+  color:var(--muted);
+  background:var(--surface-2);
+  cursor:not-allowed;
+}
+
+.locked-button .icon{
+  width:14px;
+  height:14px;
+}
+
+.plans-note{
+  margin:13px 2px 0;
+  color:var(--muted-2);
+  font-size:11px;
+}
+
+@media(max-width:900px){
+  .plans-grid{
+    grid-template-columns:1fr;
+  }
+
+  .plan-card{
+    min-height:0;
+  }
+
+  .plan-description{
+    min-height:0;
+  }
+}
+
+@media(max-width:520px){
+  .shell{
+    width:min(100% - 22px,1180px);
+  }
+
+  .topbar{
+    height:60px;
+  }
+
+  .hero{
+    padding-top:64px;
+    padding-bottom:56px;
+  }
+
+  .hero::before{
+    display:none;
+  }
+
+  h1{
+    font-size:46px;
+    line-height:1.02;
+    letter-spacing:-2.7px;
+  }
+
+  .hero-copy{
+    font-size:14px;
+  }
+
+  .hero-actions{
+    align-items:stretch;
+  }
+
+  .hero-actions .button{
+    flex:1;
+  }
+
+  .section{
+    padding:34px 0 64px;
+  }
+
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:7px;
+  }
+
+  .plan-card{
+    padding:18px;
+    border-radius:18px;
+  }
+
+  .plan-price strong{
+    font-size:34px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+</style>
+
 </head>
 
 <body>
@@ -877,7 +1477,7 @@
         <p class="eyebrow">Axiom Info</p>
         <h1>Everything behind Axiom.</h1>
         <p class="hero-copy">
-          Project information, live GitHub activity, community links, contributors,
+          Plans, project information, live GitHub activity, community links, contributors,
           and the people building Axiom for Roblox developers.
         </p>
 
@@ -893,6 +1493,14 @@
               <path d="M8 19c-3 .9-5-1.4-5-1.4"></path>
             </svg>
             GitHub Repository
+          </a>
+
+          <a class="button" href="#plans">
+            Plans
+          </a>
+
+          <a class="button" href="/status/">
+            Live Status
           </a>
 
           <div class="status-pill" title="Axiom is currently in beta">
@@ -962,6 +1570,151 @@
           </article>
         </div>
       </section>
+
+
+      <div class="divider"></div>
+
+      <section class="section plans-section" id="plans">
+        <div class="section-head">
+          <div>
+            <h2>Plans</h2>
+            <p class="section-copy">Start with Axiom normally. Plus and Developer Mode are being built now.</p>
+          </div>
+          <span>Paid plans are locked for now</span>
+        </div>
+
+        <div class="plans-grid">
+          <article class="plan-card plan-normal">
+            <div class="plan-top">
+              <span class="plan-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M12 3 4.5 7.2v9.6L12 21l7.5-4.2V7.2z"></path>
+                  <path d="m8.5 12 2.2 2.2 4.8-5"></path>
+                </svg>
+              </span>
+              <span class="plan-state available">Available</span>
+            </div>
+
+            <div>
+              <h3>Normal</h3>
+              <p class="plan-description">The standard Axiom experience for everyday Roblox development.</p>
+              <div class="plan-price">
+                <strong>Free</strong>
+                <span>current access</span>
+              </div>
+            </div>
+
+            <ul class="plan-features">
+              <li>Axiom Core workspace</li>
+              <li>Standard model profiles</li>
+              <li>Community features</li>
+              <li>Project-focused AI chats</li>
+            </ul>
+
+            <div class="plan-button current-plan">Current plan</div>
+          </article>
+
+          <article class="plan-card plan-plus locked">
+            <div class="plan-glow" aria-hidden="true"></div>
+
+            <div class="plan-top">
+              <span class="plan-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                </svg>
+              </span>
+              <span class="plan-state locked-state">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+                  <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                </svg>
+                Locked
+              </span>
+            </div>
+
+            <div>
+              <div class="plan-name-row">
+                <h3>Plus</h3>
+                <span class="coming-soon">Coming soon</span>
+              </div>
+              <p class="plan-description">More room for longer sessions and heavier Axiom workflows.</p>
+              <div class="plan-price">
+                <strong>$5</strong>
+                <span>starting price</span>
+              </div>
+            </div>
+
+            <ul class="plan-features">
+              <li>Everything in Normal</li>
+              <li>Expanded usage limits</li>
+              <li>More room for long project sessions</li>
+              <li>Priority access to upcoming Axiom features</li>
+            </ul>
+
+            <button class="plan-button locked-button" type="button" disabled>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+              </svg>
+              Locked for now
+            </button>
+          </article>
+
+          <article class="plan-card plan-developer locked">
+            <div class="plan-glow plan-glow-dev" aria-hidden="true"></div>
+
+            <div class="plan-top">
+              <span class="plan-icon developer-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="m8 9-4 3 4 3"></path>
+                  <path d="m16 9 4 3-4 3"></path>
+                  <path d="m14 5-4 14"></path>
+                </svg>
+              </span>
+              <span class="plan-state locked-state">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+                  <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                </svg>
+                Locked
+              </span>
+            </div>
+
+            <div>
+              <div class="plan-name-row">
+                <h3>Developer Mode</h3>
+                <span class="coming-soon">Coming soon</span>
+              </div>
+              <p class="plan-description">A future advanced mode for developers doing larger, more technical work.</p>
+              <div class="plan-price">
+                <strong>$10</strong>
+                <span>starting price</span>
+              </div>
+            </div>
+
+            <ul class="plan-features">
+              <li>Everything planned for Plus</li>
+              <li>Developer-focused advanced tools</li>
+              <li>Experimental workflows and integrations</li>
+              <li>Built for heavier project work</li>
+            </ul>
+
+            <button class="plan-button locked-button" type="button" disabled>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+              </svg>
+              Locked for now
+            </button>
+          </article>
+        </div>
+
+        <p class="plans-note">
+          Plus and Developer Mode are not purchasable yet. Prices shown are starting prices and can change before release.
+        </p>
+      </section>
+
 
       <div class="divider"></div>
 
@@ -1199,7 +1952,7 @@
 
       document
         .querySelector('meta[name="theme-color"]')
-        .setAttribute('content', theme === 'dark' ? '#171716' : '#fbfaf7');
+        .setAttribute('content', theme === 'dark' ? '#091321' : '#f7faff');
 
       discordWidget.src =
         `https://discord.com/widget?id=${DISCORD_GUILD_ID}&theme=${theme === 'dark' ? 'dark' : 'light'}`;
