@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#11110f">
+  <meta name="theme-color" content="#f7faff">
   <meta name="description" content="Live service status for Axiom AI.">
   <title>Axiom Status</title>
 
@@ -681,6 +681,551 @@
       }
     }
   </style>
+
+<style id="axiom-status-v940">
+:root{
+  color-scheme:light;
+  --bg:#f7faff;
+  --surface:#ffffff;
+  --surface-2:#f0f5ff;
+  --surface-3:#e4edf9;
+  --ink:#10213a;
+  --muted:#68788f;
+  --muted-2:#8c99ac;
+  --line:#dce6f4;
+  --line-strong:#c8d8ef;
+  --blue:#2563eb;
+  --blue-soft:#eaf1ff;
+  --green:#1f9c61;
+  --green-soft:#e8f8ef;
+  --yellow:#b98021;
+  --yellow-soft:#fff5dd;
+  --red:#d34d5c;
+  --red-soft:#fff0f2;
+  --shadow:0 22px 70px rgba(33,74,135,.10);
+  --shadow-soft:0 10px 32px rgba(33,74,135,.07);
+  --radius:20px;
+}
+
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#081321;
+  --surface:#101d30;
+  --surface-2:#14253c;
+  --surface-3:#1a304c;
+  --ink:#f7faff;
+  --muted:#a0b1c8;
+  --muted-2:#788ba6;
+  --line:#223957;
+  --line-strong:#31517b;
+  --blue:#6ea8fe;
+  --blue-soft:#132f55;
+  --green:#73d9a2;
+  --green-soft:#153526;
+  --yellow:#f0c66a;
+  --yellow-soft:#3a2e17;
+  --red:#ff98a5;
+  --red-soft:#3c1b24;
+  --shadow:0 24px 80px rgba(0,0,0,.35);
+  --shadow-soft:0 12px 34px rgba(0,0,0,.24);
+}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:82px;
+  background:var(--bg);
+}
+
+body{
+  background:
+    radial-gradient(circle at 18% -8%,color-mix(in srgb,var(--blue) 15%,transparent),transparent 34rem),
+    radial-gradient(circle at 90% 18%,color-mix(in srgb,var(--green) 7%,transparent),transparent 30rem),
+    var(--bg);
+  letter-spacing:-.008em;
+}
+
+*{
+  scrollbar-width:thin;
+  scrollbar-color:color-mix(in srgb,var(--blue) 25%,var(--line)) transparent;
+}
+
+*::-webkit-scrollbar{width:10px;height:10px}
+*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar-thumb{
+  background:color-mix(in srgb,var(--blue) 22%,var(--line));
+  border:3px solid transparent;
+  background-clip:padding-box;
+  border-radius:999px;
+}
+
+.shell{
+  width:min(1180px,calc(100% - 38px));
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:40;
+  min-height:66px;
+  border-bottom:1px solid color-mix(in srgb,var(--line) 76%,transparent);
+  background:color-mix(in srgb,var(--bg) 84%,transparent);
+  backdrop-filter:blur(18px) saturate(1.2);
+  -webkit-backdrop-filter:blur(18px) saturate(1.2);
+}
+
+.brand-logo{
+  width:34px;
+  height:34px;
+  filter:drop-shadow(0 7px 16px color-mix(in srgb,var(--blue) 20%,transparent));
+}
+
+.brand-copy strong{
+  font-size:17px;
+  letter-spacing:-.4px;
+}
+
+.brand-copy span{
+  color:var(--muted-2);
+}
+
+.nav{
+  gap:6px;
+}
+
+.nav-link,
+.refresh-btn,
+.theme-status-btn{
+  min-height:37px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 11px;
+  border:1px solid transparent;
+  border-radius:10px;
+  color:var(--muted);
+  background:transparent;
+  font:inherit;
+  font-size:11px;
+  font-weight:650;
+  transition:background .17s ease,color .17s ease,border-color .17s ease,transform .17s ease;
+}
+
+.nav-link:hover,
+.refresh-btn:hover,
+.theme-status-btn:hover{
+  color:var(--blue);
+  border-color:var(--line);
+  background:var(--blue-soft);
+}
+
+.top-live{
+  min-height:29px;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:0 9px;
+  border:1px solid color-mix(in srgb,var(--green) 25%,var(--line));
+  border-radius:999px;
+  color:var(--green);
+  background:var(--green-soft);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+
+.top-live-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:currentColor;
+  box-shadow:0 0 0 4px color-mix(in srgb,currentColor 11%,transparent);
+  animation:statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse{
+  0%,100%{opacity:1}
+  50%{opacity:.45}
+}
+
+.hero{
+  position:relative;
+  padding:clamp(78px,10vw,128px) 0 62px;
+  grid-template-columns:minmax(0,1fr) minmax(300px,365px);
+  gap:48px;
+  align-items:center;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  right:8%;
+  top:45px;
+  width:220px;
+  height:220px;
+  border:1px solid color-mix(in srgb,var(--blue) 12%,transparent);
+  border-radius:58px;
+  transform:rotate(19deg);
+  pointer-events:none;
+}
+
+.eyebrow{
+  color:var(--blue);
+  text-transform:none;
+  letter-spacing:0;
+  font-size:12px;
+  font-weight:750;
+}
+
+.hero h1{
+  max-width:780px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:clamp(48px,7vw,78px);
+  line-height:.99;
+  letter-spacing:-4px;
+  font-weight:650;
+}
+
+.hero-copy{
+  max-width:660px;
+  margin-top:20px;
+  font-size:15px;
+  line-height:1.68;
+}
+
+.hero-chips{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-top:21px;
+}
+
+.hero-chips span{
+  min-height:29px;
+  display:inline-flex;
+  align-items:center;
+  padding:0 9px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--muted);
+  background:color-mix(in srgb,var(--surface) 78%,transparent);
+  font-size:9px;
+  font-weight:650;
+}
+
+.overall{
+  position:relative;
+  z-index:2;
+  padding:22px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 100% 0%,color-mix(in srgb,var(--blue) 13%,transparent),transparent 46%),
+    color-mix(in srgb,var(--surface) 96%,transparent);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+
+.overall-top{
+  font-size:14px;
+}
+
+.status-dot{
+  box-shadow:0 0 0 4px color-mix(in srgb,currentColor 10%,transparent);
+}
+
+.status-dot.operational{
+  box-shadow:
+    0 0 0 4px color-mix(in srgb,var(--green) 11%,transparent),
+    0 0 18px color-mix(in srgb,var(--green) 24%,transparent);
+}
+
+.overall-time{
+  color:var(--muted-2);
+}
+
+.overall-meta div{
+  min-height:66px;
+  padding:12px;
+  border-color:var(--line);
+  border-radius:12px;
+  background:var(--surface-2);
+}
+
+.overall-meta span{
+  color:var(--muted-2);
+}
+
+.overall-meta strong{
+  margin-top:5px;
+  font-size:14px;
+}
+
+.section{
+  padding:34px 0 72px;
+}
+
+.section-head{
+  margin-bottom:18px;
+}
+
+.section-head h2{
+  color:var(--ink);
+  font-size:16px;
+  font-weight:700;
+  text-transform:none;
+  letter-spacing:-.3px;
+}
+
+.section-head span{
+  color:var(--muted-2);
+}
+
+.service-list,
+.panel,
+.model,
+.incident{
+  border-color:var(--line);
+  background:color-mix(in srgb,var(--surface) 96%,transparent);
+  box-shadow:0 9px 30px rgba(35,74,129,.055);
+}
+
+.service-list{
+  border-radius:20px;
+}
+
+.service{
+  min-height:83px;
+  padding:16px 18px;
+  border-bottom-color:var(--line);
+  transition:background .16s ease;
+}
+
+.service:hover{
+  background:var(--blue-soft);
+}
+
+.service-name strong{
+  font-size:12px;
+}
+
+.service-name small,
+.service-note{
+  color:var(--muted);
+}
+
+.service-bar{
+  height:6px;
+  border-color:transparent;
+  background:var(--surface-3);
+}
+
+.service-bar i{
+  box-shadow:0 0 12px color-mix(in srgb,currentColor 16%,transparent);
+}
+
+.service-state{
+  border-color:var(--line);
+  background:var(--surface-2);
+}
+
+.split{
+  gap:14px;
+}
+
+.panel{
+  border-radius:19px;
+}
+
+.panel-head{
+  min-height:58px;
+  padding:0 17px;
+  border-bottom-color:var(--line);
+  background:color-mix(in srgb,var(--surface-2) 52%,var(--surface));
+}
+
+.chart-meta strong{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:42px;
+  font-weight:670;
+  color:var(--ink);
+}
+
+.bars{
+  height:132px;
+}
+
+.latency-bar{
+  border-radius:5px 5px 1px 1px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--blue) 72%,white),var(--blue));
+  box-shadow:0 -5px 14px rgba(37,99,235,.08);
+}
+
+.snapshot-row{
+  min-height:42px;
+  border-radius:10px;
+}
+
+.snapshot-row:nth-child(odd){
+  background:var(--surface-2);
+}
+
+.models{
+  gap:12px;
+}
+
+.model{
+  min-height:158px;
+  padding:17px;
+  border-radius:17px;
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+
+.model:hover{
+  transform:translateY(-3px);
+  border-color:color-mix(in srgb,var(--blue) 32%,var(--line));
+  box-shadow:var(--shadow-soft);
+}
+
+.model strong{
+  color:var(--ink);
+  font-size:13px;
+}
+
+.model-state{
+  color:var(--green);
+}
+
+.incident{
+  min-height:124px;
+  border-radius:20px;
+  padding:20px 22px;
+}
+
+.incident-mark{
+  border:1px solid color-mix(in srgb,var(--green) 25%,var(--line));
+  border-radius:14px;
+}
+
+.error{
+  border-radius:14px;
+}
+
+footer{
+  border-top-color:var(--line);
+}
+
+@media(max-width:900px){
+  .hero{
+    grid-template-columns:1fr;
+    gap:27px;
+  }
+
+  .overall{
+    max-width:none;
+  }
+
+  .hero::before{
+    right:4%;
+    top:30px;
+  }
+}
+
+@media(max-width:700px){
+  .top-live{
+    display:none;
+  }
+
+  .service{
+    grid-template-columns:minmax(0,1fr) auto;
+  }
+}
+
+@media(max-width:520px){
+  .shell{
+    width:min(100% - 22px,1180px);
+  }
+
+  .topbar{
+    min-height:60px;
+  }
+
+  .brand-copy strong{
+    font-size:15px;
+  }
+
+  .theme-status-btn{
+    width:36px;
+    padding:0;
+    font-size:0;
+  }
+
+  .theme-status-btn::after{
+    content:"◐";
+    font-size:15px;
+  }
+
+  .hero{
+    padding-top:58px;
+    padding-bottom:48px;
+  }
+
+  .hero::before{
+    display:none;
+  }
+
+  .hero h1{
+    font-size:47px;
+    line-height:1.01;
+    letter-spacing:-2.8px;
+  }
+
+  .hero-copy{
+    font-size:13px;
+  }
+
+  .hero-chips{
+    gap:5px;
+  }
+
+  .hero-chips span{
+    font-size:8px;
+  }
+
+  .overall{
+    padding:17px;
+    border-radius:18px;
+  }
+
+  .section{
+    padding:28px 0 58px;
+  }
+
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .service{
+    padding:14px;
+  }
+
+  .models{
+    grid-template-columns:1fr;
+  }
+
+  .incident{
+    padding:17px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .top-live-dot{animation:none}
+}
+</style>
+
 </head>
 
 <body>
@@ -700,9 +1245,11 @@
       </a>
 
       <nav class="nav">
+        <span class="top-live"><span class="top-live-dot"></span>Live</span>
         <a class="nav-link" href="/">
           <span>Back to Axiom</span>
         </a>
+        <button class="theme-status-btn" id="statusThemeBtn" type="button" aria-label="Toggle theme">Theme</button>
         <button class="refresh-btn" id="refreshBtn" type="button">Refresh</button>
       </nav>
     </header>
@@ -716,6 +1263,12 @@
             A live view of Axiom Core, accounts, uploads, community services,
             Discord integration, and the systems behind the workspace.
           </p>
+
+          <div class="hero-chips">
+            <span>30s auto refresh</span>
+            <span>Live health endpoint</span>
+            <span>Browser latency history</span>
+          </div>
         </div>
 
         <aside class="overall">
@@ -1268,5 +1821,29 @@
     refreshStatus();
     setInterval(refreshStatus,30000);
   </script>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const button = document.getElementById('statusThemeBtn');
+      const meta = document.querySelector('meta[name="theme-color"]');
+
+      function setStatusTheme(theme) {
+        root.dataset.theme = theme;
+        localStorage.setItem('axiom-status-theme', theme);
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#081321' : '#f7faff');
+        if (button) button.title = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+      }
+
+      const saved = localStorage.getItem('axiom-status-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setStatusTheme(saved || (prefersDark ? 'dark' : 'light'));
+
+      button?.addEventListener('click', () => {
+        setStatusTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
+      });
+    })();
+  </script>
+
 </body>
 </html>
