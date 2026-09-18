@@ -3951,6 +3951,200 @@ html[data-theme=dark] #toast{
 }
 </style>
 
+
+<style id="workspace-clean-v950">
+/* Axiom 9.5 — roomy workspace pass inspired by professional AI workspaces. */
+:root{
+  --workspace-sidebar:244px;
+  --chat-measure:1120px;
+  --reply-measure:900px;
+  --composer-measure:1040px;
+}
+
+@media (min-width:1025px){
+  .sidebar{
+    width:var(--workspace-sidebar)!important;
+    flex-basis:var(--workspace-sidebar)!important;
+    padding:20px 12px 14px!important;
+  }
+  .sidebar .brand{padding:4px 12px 24px!important}
+  .new-chat{min-height:44px!important;margin-bottom:24px!important;border-radius:12px!important}
+  .nav{gap:5px!important}
+  .nav-item{min-height:41px!important;padding:9px 12px!important;border-radius:10px!important;font-size:13.5px!important;gap:11px!important}
+  .nav-label{font-size:10px!important;letter-spacing:.09em!important;margin-bottom:9px!important}
+  .nav-community-label{margin-top:1px!important}
+  .side-line{margin:18px 8px 17px!important}
+  .recent-heading{margin-top:27px!important}
+  .recent{margin-top:10px!important}
+  .recent-row>button:first-child{padding:9px 12px!important}
+  .side-bottom{padding-top:14px!important}
+
+  .topbar{
+    height:64px!important;
+    padding:0 28px!important;
+    background:color-mix(in srgb,var(--bg) 96%,transparent)!important;
+    border-bottom:1px solid color-mix(in srgb,var(--line) 62%,transparent)!important;
+    box-shadow:none!important;
+  }
+  .top-title{font-size:13.5px!important;font-weight:650!important}
+  .top-sub{font-size:12px!important}
+
+  #chatView .chat-log{
+    width:min(100%,var(--chat-measure))!important;
+    padding:50px 54px 76px!important;
+  }
+  #chatView .welcome{
+    width:min(100%,1020px)!important;
+    padding:clamp(72px,12vh,132px) 54px 42px!important;
+  }
+  #chatView .composer-wrap{
+    width:min(100%,var(--composer-measure))!important;
+    padding:14px 42px 24px!important;
+  }
+}
+
+/* Cleaner, consistent icon treatment. */
+.sidebar .asset-icon.icon{width:18px!important;height:18px!important;stroke-width:1.7!important;color:currentColor!important}
+.sidebar .nav-item .asset-icon{opacity:.88}
+.sidebar .nav-item:hover .asset-icon,.sidebar .nav-item.active .asset-icon{opacity:1}
+
+/* Give the actual conversation more air. */
+#chatView .message{margin-bottom:54px!important;min-width:0}
+#chatView .message.user{margin-left:0!important;display:flex;flex-direction:column;align-items:flex-end}
+#chatView .message.user .message-head{display:none!important}
+#chatView .message.user .user-content{
+  width:auto;
+  max-width:min(72%,720px)!important;
+  padding:15px 18px!important;
+  border-radius:18px 18px 5px 18px!important;
+  background:color-mix(in srgb,var(--soft) 88%,var(--surface))!important;
+  border:1px solid color-mix(in srgb,var(--line) 70%,transparent);
+  font-size:15px!important;
+  line-height:1.6;
+}
+#chatView .message.assistant{max-width:var(--reply-measure);margin-right:auto}
+#chatView .message.assistant .message-head{
+  margin-bottom:15px!important;
+  gap:9px!important;
+  font-size:13px!important;
+  color:var(--muted)
+}
+#chatView .message.assistant .message-head .axiom-avatar{width:23px!important;height:23px!important}
+#chatView .response{font-size:16px!important;line-height:1.78!important;letter-spacing:-.01em}
+#chatView .response p{margin-bottom:17px!important}
+#chatView .response h2,#chatView .response h3,#chatView .response h4{margin-top:30px!important;margin-bottom:12px!important}
+#chatView .response ul,#chatView .response ol{margin:13px 0 21px!important}
+#chatView .code-card{margin:24px 0 28px!important;border-radius:14px!important}
+#chatView .response-actions{margin-top:14px!important;gap:6px!important}
+#chatView .response-actions .icon-btn,#chatView .response-actions .btn{border-radius:9px!important}
+#chatView .response-usage{opacity:.72;margin-top:8px!important}
+#chatView .response-activity{max-width:var(--reply-measure);margin:12px 0 0!important;border-color:color-mix(in srgb,var(--line) 68%,transparent)!important;background:transparent!important}
+#chatView .response-activity summary{padding:8px 2px!important}
+
+/* Real elapsed "Thought for X" indicator. No reasoning text is exposed. */
+.thought-line{
+  max-width:var(--reply-measure);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:28px;
+  margin:-2px 0 18px;
+  padding:0 0 13px;
+  border-bottom:1px solid color-mix(in srgb,var(--line) 64%,transparent);
+  color:var(--muted);
+  font-size:13px;
+  font-weight:500;
+}
+.thought-line .icon{width:15px;height:15px;stroke-width:1.7}
+.thought-line.live .icon{animation:axiomThinkPulse 1.5s ease-in-out infinite}
+.thought-line.done{color:color-mix(in srgb,var(--muted) 86%,var(--ink))}
+@keyframes axiomThinkPulse{0%,100%{opacity:.35;transform:scale(.92)}50%{opacity:1;transform:scale(1)}}
+
+/* Composer: one calm surface instead of a pile of controls. */
+#chatView .composer-box{
+  border-radius:22px!important;
+  padding:17px 17px 13px!important;
+  border:1px solid color-mix(in srgb,var(--line) 82%,transparent)!important;
+  background:color-mix(in srgb,var(--surface) 97%,var(--bg))!important;
+  box-shadow:0 12px 42px rgba(20,26,38,.08),0 1px 2px rgba(20,26,38,.06)!important;
+}
+html[data-theme=dark] #chatView .composer-box{box-shadow:0 16px 48px rgba(0,0,0,.24),0 1px 2px rgba(0,0,0,.25)!important}
+#chatView .composer-box:focus-within{border-color:color-mix(in srgb,var(--blue) 52%,var(--line))!important;box-shadow:0 14px 48px rgba(20,26,38,.10),0 0 0 3px color-mix(in srgb,var(--blue) 10%,transparent)!important}
+#chatView .composer-box textarea{min-height:58px!important;max-height:240px!important;padding:1px 4px!important;font-size:15.5px!important;line-height:1.6!important}
+#chatView .composer-tools{margin-top:13px!important;gap:9px!important}
+#chatView .composer-left,#chatView .composer-right{gap:7px!important}
+#chatView .composer-box .icon-btn,#chatView .mode-trigger,#chatView .model-trigger,#chatView .send{height:40px!important;min-height:40px!important;border-radius:11px!important}
+#chatView .composer-box .icon-btn{width:40px!important;min-width:40px!important}
+#chatView .mode-trigger{min-width:170px!important}
+#chatView .model-trigger{min-width:184px!important}
+#chatView .send{width:40px!important;min-width:40px!important}
+#chatView .composer-hint{margin-top:10px!important;font-size:11px!important;opacity:.78}
+#chatView .jump-bottom{bottom:155px!important;width:38px;height:38px;box-shadow:0 8px 28px rgba(0,0,0,.12)!important}
+
+/* Mobile keeps the SAME visual language, only reflows it. The old bottom dock is removed. */
+.mobile-dock{display:none!important}
+@media(max-width:1024px){
+  .sidebar{width:min(292px,88vw)!important;padding:20px 12px 14px!important}
+  .sidebar .brand{padding:4px 12px 24px!important}
+  .new-chat{margin-bottom:22px!important}
+  .nav{gap:5px!important}
+  .nav-item{min-height:42px!important;padding:9px 12px!important}
+  .topbar{height:60px!important;padding:0 15px!important}
+  #chatView .chat-log{width:min(100%,920px)!important;padding:36px 28px 62px!important}
+  #chatView .composer-wrap{width:min(100%,900px)!important;padding:12px 24px 18px!important}
+  #chatView .welcome{width:min(100%,880px)!important;padding:54px 30px 28px!important}
+}
+
+@media(max-width:760px){
+  .main{padding-bottom:0!important}
+  .topbar{height:58px!important;padding:0 max(10px,env(safe-area-inset-right)) 0 max(10px,env(safe-area-inset-left))!important}
+  .top-title{max-width:52vw!important;font-size:12.5px!important}
+  .sidebar{width:min(300px,88vw)!important;border-radius:0 16px 16px 0!important}
+  #chatView .chat-area{scroll-padding-bottom:145px!important}
+  #chatView .chat-log{padding:28px 18px 46px!important}
+  #chatView .welcome{padding:38px 20px 24px!important}
+  #chatView .welcome h1{font-size:clamp(29px,8vw,36px)!important;line-height:1.12!important}
+  #chatView .suggestions{gap:10px!important;margin-top:26px!important}
+  #chatView .message{margin-bottom:42px!important}
+  #chatView .message.user .user-content{max-width:88%!important;padding:13px 15px!important;font-size:14.5px!important}
+  #chatView .message.assistant{width:100%!important;max-width:100%!important}
+  #chatView .response{font-size:15.5px!important;line-height:1.72!important}
+  #chatView .code-card{width:100%!important;margin-left:0!important;margin-right:0!important}
+  .thought-line{margin-bottom:16px!important;padding-bottom:11px!important;font-size:12.5px!important}
+
+  #chatView .composer-wrap{
+    width:100%!important;
+    padding:9px max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))!important;
+  }
+  #chatView .composer-box{border-radius:20px!important;padding:13px 13px 10px!important}
+  #chatView .composer-box textarea{min-height:50px!important;max-height:160px!important;font-size:16px!important}
+  #chatView .composer-tools{margin-top:10px!important;gap:6px!important}
+  #chatView .composer-left,#chatView .composer-right{gap:5px!important;min-width:0}
+  #chatView .composer-left{flex:1 1 auto!important}
+  #chatView .composer-right{flex:0 0 auto!important}
+  #chatView .composer-box .icon-btn,#chatView .send{width:38px!important;min-width:38px!important;height:38px!important}
+  #chatView .mode-trigger,#chatView .model-trigger{width:auto!important;height:38px!important;padding:5px 8px!important;justify-content:flex-start!important}
+  #chatView .mode-trigger{min-width:100px!important;max-width:112px!important}
+  #chatView .model-trigger{min-width:112px!important;max-width:126px!important}
+  #chatView .mode-trigger-copy,#chatView .model-trigger-copy{display:flex!important}
+  #chatView .mode-trigger-copy small,#chatView .model-trigger-copy small{display:none!important}
+  #chatView .mode-trigger-copy strong,#chatView .model-trigger-copy strong{font-size:11px!important}
+  #chatView .mode-trigger>.mode-chevron,#chatView .model-trigger>.model-chevron{display:none!important}
+  #chatView .mode-trigger-icon,#chatView .model-trigger-icon{width:24px!important;height:24px!important;flex-basis:24px!important}
+  #chatView .mode-trigger-icon .icon,#chatView .model-trigger-icon .asset-icon{width:16px!important;height:16px!important}
+  #chatView .mode-menu,#chatView .model-menu{width:min(340px,calc(100vw - 20px))!important}
+  #chatView .composer-hint{display:block!important;margin:7px 4px 0!important;font-size:10px!important}
+  #chatView .jump-bottom{bottom:142px!important}
+}
+
+@media(max-width:360px){
+  #chatView .mode-trigger,#chatView .model-trigger{width:38px!important;min-width:38px!important;padding:5px!important;justify-content:center!important}
+  #chatView .mode-trigger-copy,#chatView .model-trigger-copy{display:none!important}
+}
+
+@media(prefers-reduced-motion:reduce){.thought-line.live .icon{animation:none!important}}
+</style>
+
 </head>
 <body>
 <svg hidden xmlns="http://www.w3.org/2000/svg"><defs>
@@ -3982,7 +4176,10 @@ html[data-theme=dark] #toast{
 <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/></symbol>
 <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
 <symbol id="i-pin" viewBox="0 0 24 24"><path d="m14 4 6 6-3 1-3 3-1 6-3-7-7-3 6-1 3-3 1-3Z"/><path d="m10 14-6 6"/></symbol>
-<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4m0 0h10l-1.5 3L15 10H5"/></symbol></defs></svg>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4m0 0h10l-1.5 3L15 10H5"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.35 4.15L17.5 8.5l-4.15 1.35L12 14l-1.35-4.15L6.5 8.5l4.15-1.35L12 3Z"/><path d="m18.5 14 .75 2.25L21.5 17l-2.25.75L18.5 20l-.75-2.25L15.5 17l2.25-.75L18.5 14Z"/></symbol>
+</defs></svg>
 <section id="authWrap">
   <div class="auth-intro"><div class="brand"><img data-logo alt="">Axiom<em>.</em></div><div><h1>Your next game<br>starts with <span>an idea.</span></h1><p>A place to build interfaces, work through scripts, and bring your Roblox projects to life.</p><div class="auth-capabilities"><span><svg class="icon"><use href="#i-layout"/></svg>Interfaces</span><span><svg class="icon"><use href="#i-code"/></svg>Scripts</span><span><svg class="icon"><use href="#i-box"/></svg>Systems</span></div></div><span class="small muted">Made for Roblox developers.</span></div>
   <main class="auth-main"><form class="auth-card" id="authForm"><h2 id="authTitle">Welcome back.</h2><p id="authSub">Open your workspace and keep building.</p><div class="field"><label id="authUserLabel" for="authUser">Username or email</label><input id="authUser" autocomplete="username" maxlength="254" required placeholder="Username or verified email"></div><div class="field" id="authEmailField" hidden><label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com"><p class="help">Private. Used for verification and account recovery.</p></div><div class="field"><label for="authPass">Password</label><input id="authPass" type="password" autocomplete="current-password" maxlength="128" minlength="8" required placeholder="Your password"></div><div class="field" id="authConfirmField" hidden><label for="authConfirm">Confirm password</label><input id="authConfirm" type="password" autocomplete="new-password" maxlength="128" minlength="8" placeholder="Type it again"></div><details id="ownerSignup" class="owner-signup" hidden><summary>Registering a reserved owner account?</summary><label class="sr-only" for="ownerSignupCode">Owner registration code</label><input id="ownerSignupCode" type="password" autocomplete="off" maxlength="128" placeholder="Owner registration code"></details><p id="authError" class="form-error" role="alert"></p><button class="btn primary" id="authSubmit">Open workspace</button><div class="auth-secondary"><button type="button" class="auth-link" id="forgotPassword">Forgot password?</button><button type="button" class="auth-link" id="legacyClaimBtn">Claim an old local account</button></div><div class="auth-switch"><span id="authSwitchText">First time here?</span> <button type="button" id="authSwitch">Create an account</button></div><div class="auth-note">Usernames are unique across Axiom. Verified emails can be used to sign in and recover your account.</div></form></main>
@@ -3992,15 +4189,15 @@ html[data-theme=dark] #toast{
 <aside class="sidebar" id="sidebar" aria-label="Main navigation">
   <div class="brand"><img data-logo alt="">Axiom<em>.</em></div>
   <button class="btn new-chat" id="newChat"><svg class="icon"><use href="#i-plus"/></svg>New chat<kbd>Alt N</kbd></button>
-  <div class="nav-label">Workspace</div><nav class="nav" id="modeNav"><button class="nav-item active" data-mode="axiom"><img class="asset-icon" src="/icons/ai.png" alt="">Axiom<span class="nav-dot"></span></button><button class="nav-item" data-mode="ui"><img class="asset-icon" src="/icons/studio.png" alt="">Interface designer<span class="nav-dot"></span></button><button class="nav-item" data-mode="code"><img class="asset-icon" src="/icons/api.png" alt="">Script developer<span class="nav-dot"></span></button><button class="nav-item" data-mode="atlas"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Atlas<span class="nav-dot"></span></button><button class="nav-item" data-mode="void"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-search"/></svg>Void<span class="nav-dot"></span></button></nav>
-  <hr class="side-line"><button class="nav-item" id="devhubNav"><img class="asset-icon" src="/icons/post.png" alt="">DevHub</button>
-  <button class="nav-item" id="creationsNav"><img class="asset-icon" src="/icons/creation.png" alt="">Creations</button><button class="nav-item" id="dmsNav"><img class="asset-icon" src="/icons/message.png" alt="">Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><button class="nav-item" id="notificationsNav"><img class="asset-icon" src="/icons/activity.png" alt="">Notifications<span class="nav-unread" id="notificationUnreadBadge" hidden>0</span></button><button class="nav-item" id="groupsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-users"/></svg>Groups<span class="nav-unread" id="groupInviteBadge" hidden>0</span></button><button class="nav-item" id="updatesNav"><img class="asset-icon" src="/icons/activity.png" alt="">Updates</button><div class="recent-heading"><div class="nav-label">Recent chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
+  <div class="nav-label">Workspace</div><nav class="nav" id="modeNav"><button class="nav-item active" data-mode="axiom"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-spark"/></svg>Axiom<span class="nav-dot"></span></button><button class="nav-item" data-mode="ui"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-layout"/></svg>Interface designer<span class="nav-dot"></span></button><button class="nav-item" data-mode="code"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-code"/></svg>Script developer<span class="nav-dot"></span></button><button class="nav-item" data-mode="atlas"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Atlas<span class="nav-dot"></span></button><button class="nav-item" data-mode="void"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-search"/></svg>Void<span class="nav-dot"></span></button></nav>
+  <hr class="side-line"><div class="nav-label nav-community-label">Community</div><button class="nav-item" id="devhubNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-grid"/></svg>DevHub</button>
+  <button class="nav-item" id="creationsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Creations</button><button class="nav-item" id="dmsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-chat"/></svg>Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><button class="nav-item" id="notificationsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-bell"/></svg>Notifications<span class="nav-unread" id="notificationUnreadBadge" hidden>0</span></button><button class="nav-item" id="groupsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-users"/></svg>Groups<span class="nav-unread" id="groupInviteBadge" hidden>0</span></button><button class="nav-item" id="updatesNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-repeat"/></svg>Updates</button><div class="recent-heading"><div class="nav-label">Recent chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
   <div class="staff-nav" id="staffNav" hidden>
     <div class="nav-label">Staff</div>
-    <button class="nav-item" id="moderationNav" hidden><img class="asset-icon" src="/icons/support.png" alt="">Moderation</button>
-    <button class="nav-item" id="adminNav" hidden><img class="asset-icon" src="/icons/support.png" alt="">Admin dashboard</button>
+    <button class="nav-item" id="moderationNav" hidden><svg class="asset-icon icon" aria-hidden="true"><use href="#i-shield"/></svg>Moderation</button>
+    <button class="nav-item" id="adminNav" hidden><svg class="asset-icon icon" aria-hidden="true"><use href="#i-crown"/></svg>Admin dashboard</button>
   </div>
-  <div class="side-bottom"><button class="nav-item" id="settingsBtn"><img class="asset-icon" src="/icons/settings.png" alt="">Settings</button><button class="user-chip" id="userChip"><span class="sidebar-avatar-wrap"><span class="avatar" id="sidebarAvatar"></span><span class="presence-dot offline" id="sidebarPresence" aria-hidden="true"></span></span><span class="user-info"><strong id="userName"></strong><span>Personal workspace</span><span class="sidebar-status-quote" id="sidebarStatusQuote" hidden></span></span><svg class="icon muted"><use href="#i-settings"/></svg></button></div>
+  <div class="side-bottom"><button class="nav-item" id="settingsBtn"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-settings"/></svg>Settings</button><button class="user-chip" id="userChip"><span class="sidebar-avatar-wrap"><span class="avatar" id="sidebarAvatar"></span><span class="presence-dot offline" id="sidebarPresence" aria-hidden="true"></span></span><span class="user-info"><strong id="userName"></strong><span>Personal workspace</span><span class="sidebar-status-quote" id="sidebarStatusQuote" hidden></span></span><svg class="icon muted"><use href="#i-settings"/></svg></button></div>
 </aside>
 <main class="main"><header class="topbar"><div class="top-left"><button class="icon-btn mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button><span class="top-title" id="topTitle">Axiom</span><span class="divider"></span><span class="top-sub" id="topSub">Roblox workspace</span></div><div class="top-right"><span class="tag">Beta</span><button class="icon-btn" id="themeToggle" aria-label="Toggle light and dark appearance"><svg class="icon"><use href="#i-moon"/></svg></button><button class="icon-btn" id="clearChat" aria-label="Delete current chat"><svg class="icon"><use href="#i-trash"/></svg></button></div></header>
 <section id="chatView" aria-label="AI conversation"><div class="chat-area" id="chatArea"><div class="welcome" id="welcome"><img class="welcome-logo" data-logo alt=""><p class="eyebrow" id="greeting">Your workspace, ready.</p><h1 id="welcomeTitle">What are we <span>building today?</span></h1><p id="welcomeSub">A new interface, a better script, or your next big idea.</p><div class="suggestions" id="suggestions"></div><div class="mode-note"><svg class="icon"><use href="#i-code"/></svg><span>Built around Roblox Studio & Luau</span></div></div><div class="chat-log" id="chatLog" hidden></div></div>
@@ -5322,6 +5519,43 @@ function renderResponse(el,text,streaming=false){
 function plainContent(content){return Array.isArray(content)?content.filter(c=>c.type==='text').map(c=>c.text).join('\n'):String(content||'');}
 function nearBottom(){const a=$('chatArea');return a.scrollHeight-a.scrollTop-a.clientHeight<160;}
 function toBottom(){const a=$('chatArea');a.scrollTop=a.scrollHeight;}
+function formatThoughtDuration(ms){
+  const seconds=Math.max(0,Math.round(Number(ms||0)/1000));
+  if(seconds<1)return 'under a second';
+  if(seconds<60)return seconds+' second'+(seconds===1?'':'s');
+  const minutes=Math.floor(seconds/60),rest=seconds%60;
+  return minutes+' minute'+(minutes===1?'':'s')+(rest?' '+rest+' second'+(rest===1?'':'s'):'');
+}
+function renderThoughtLine(message,row){
+  if(message.role!=='assistant')return;
+  const active=activeRequest?.messageId===message.id;
+  const thoughtMs=Number(message.activity?.thoughtMs)||0;
+  if(!active&&!thoughtMs)return;
+  const line=document.createElement('div');
+  line.className='thought-line '+(thoughtMs?'done':'live');
+  line.innerHTML=icon('spark')+'<span class="thought-elapsed"></span>';
+  row.append(line);
+  const label=line.querySelector('.thought-elapsed');
+  if(thoughtMs)label.textContent='Thought for '+formatThoughtDuration(thoughtMs);
+  else{
+    const start=Number(activeRequest?.startedPerf)||performance.now();
+    label.textContent='Thinking… '+formatThoughtDuration(performance.now()-start);
+  }
+}
+function updateThoughtClock(message){
+  const node=$('chatLog')?.querySelector(`[data-message="${message.id}"] .thought-elapsed`);
+  if(!node)return;
+  const line=node.closest('.thought-line');
+  const thoughtMs=Number(message.activity?.thoughtMs)||0;
+  if(thoughtMs){
+    node.textContent='Thought for '+formatThoughtDuration(thoughtMs);
+    line?.classList.remove('live');line?.classList.add('done');
+    return;
+  }
+  if(activeRequest?.messageId===message.id){
+    node.textContent='Thinking… '+formatThoughtDuration(performance.now()-(Number(activeRequest.startedPerf)||performance.now()));
+  }
+}
 function renderChat(scroll=true){
   const t=currentThread(),has=!!t?.messages.length;$('welcome').hidden=has;$('chatLog').hidden=!has;$('chatLog').replaceChildren();
   if(has)t.messages.forEach((m,index)=>{
@@ -5329,6 +5563,7 @@ function renderChat(scroll=true){
     const head=document.createElement('div');head.className='message-head';
     if(m.role==='user'){const a=document.createElement('span');a.className='avatar';avatar(a);const n=document.createElement('span');n.textContent=profile.displayName||username;const b=document.createElement('span');b.innerHTML=badgesHTML(profile.badges);head.append(n,b,a);}else{const img=document.createElement('img');img.className='axiom-avatar';img.src=LOGO;img.alt='';const name=document.createElement('span');name.textContent='Axiom';head.append(img,name);}
     row.append(head);
+    if(m.role==='assistant')renderThoughtLine(m,row);
     const content=document.createElement('div');content.className=m.role==='user'?'user-content':'response';
     if(m.role==='user'){
       const images=Array.isArray(m.content)?m.content.filter(c=>c.type==='image_url'):[];
@@ -5477,7 +5712,9 @@ function renderResponseActivity(message,row){
   const files=Number(message.activity?.files)||0;
   const summary=document.createElement('summary');
 
+  const totalMs=Number(message.activity?.totalMs)||0;
   summary.textContent=
+    (totalMs?'Completed in '+formatThoughtDuration(totalMs)+' · ':'')+
     (files?`Worked with ${files} file${files===1?'':'s'} · `:'')+
     (message.usage.label||'Axiom Core')+
     ' · ~'+shortTokenCount(message.usage.input)+' context tokens';
@@ -5595,9 +5832,11 @@ async function generate(action='retry'){
   const source=old?t.messages.slice(0,-1):t.messages;
   let messages;try{messages=contextMessages(source);}catch(err){chatFailure={threadId:t.id,message:err.message};showChatError();return;}
   const attachedFileCount=(source.at(-1)?.files||[]).length;
-  const controller=new AbortController(),reply={id:uid(),role:'assistant',content:'',ts:Date.now(),activity:{files:attachedFileCount}};
-  if(old)t.messages.pop();t.messages.push(reply);activeRequest={controller,threadId:t.id,messageId:reply.id};chatFailure=null;updateControls();renderChat();
-  let timer,lastDraw=0,gotAny=false;
+  const startedPerf=performance.now();
+  const controller=new AbortController(),reply={id:uid(),role:'assistant',content:'',ts:Date.now(),activity:{files:attachedFileCount,thoughtMs:0,totalMs:0}};
+  if(old)t.messages.pop();t.messages.push(reply);activeRequest={controller,threadId:t.id,messageId:reply.id,startedPerf};chatFailure=null;updateControls();renderChat();
+  let timer,lastDraw=0,gotAny=false,thoughtTicker=setInterval(()=>updateThoughtClock(reply),500);
+  const markFirstToken=()=>{if(!reply.activity.thoughtMs){reply.activity.thoughtMs=Math.max(1,performance.now()-startedPerf);updateThoughtClock(reply);}};
   const paint=()=>{if(activeId!==t.id)return;const follow=nearBottom();const node=$('chatLog').querySelector(`[data-message="${reply.id}"] .response`);if(node)renderResponse(node,reply.content,true);if(follow)toBottom();};
   const arm=()=>{clearTimeout(timer);timer=setTimeout(()=>{controller.abort('timeout');},360000);};arm();
   try{
@@ -5614,9 +5853,9 @@ async function generate(action='retry'){
     };
     if(!res.ok){let data={};try{data=await res.json();}catch{}const retry=res.headers.get('retry-after');throw new Error(data.error?.message||(res.status===429?`AI rate limit reached. ${retry?'Try again in '+retry+' seconds.':'Wait a moment and retry.'}`:`Could not generate a reply (${res.status}).`));}
     if((res.headers.get('content-type')||'').includes('text/event-stream')){
-      await consumeSSE(res,token=>{arm();gotAny=true;reply.content+=token;if(Date.now()-lastDraw>100){lastDraw=Date.now();paint();}},reason=>{if(reason==='length')reply.status='length';});
+      await consumeSSE(res,token=>{if(!gotAny)markFirstToken();arm();gotAny=true;reply.content+=token;if(Date.now()-lastDraw>100){lastDraw=Date.now();paint();}},reason=>{if(reason==='length')reply.status='length';});
     }else{
-      const data=await res.json();if(data.error)throw new Error(data.error.message);const choice=data.choices?.[0];reply.content=choice?.message?.content||'';gotAny=!!reply.content;if(choice?.finish_reason==='length')reply.status='length';
+      const data=await res.json();if(data.error)throw new Error(data.error.message);const choice=data.choices?.[0];reply.content=choice?.message?.content||'';gotAny=!!reply.content;if(gotAny)markFirstToken();if(choice?.finish_reason==='length')reply.status='length';
     }
     if(!reply.content.trim())throw new Error('The model returned an empty reply. Try again or choose a longer response limit in Settings.');
   }catch(err){
@@ -5625,7 +5864,7 @@ async function generate(action='retry'){
     else{t.messages.pop();if(old)t.messages.push(old);}
     if(!stopped)chatFailure={threadId:t.id,message:controller.signal.reason==='timeout'?'Axiom took too long to finish this reply. Your prompt is still saved — retry it.':err.message||'Unable to reach Axiom. Check your connection and retry.'};
     if(stopped&&!gotAny)toast('Generation stopped. Your prompt is saved.');
-  }finally{clearTimeout(timer);activeRequest=null;t.updated=Date.now();await saveThreads().catch(()=>{});renderRecent();renderChat(false);updateControls();}
+  }finally{clearTimeout(timer);clearInterval(thoughtTicker);reply.activity.totalMs=Math.max(1,performance.now()-startedPerf);if(gotAny&&!reply.activity.thoughtMs)reply.activity.thoughtMs=reply.activity.totalMs;activeRequest=null;t.updated=Date.now();await saveThreads().catch(()=>{});renderRecent();renderChat(false);updateControls();}
 }
 let avatarChanged=false,profileRequest=0,profileSaving=false;
 function previewAvatar(){if(draftURL)URL.revokeObjectURL(draftURL);draftURL=draftBlob?URL.createObjectURL(draftBlob):null;const src=draftBlob?draftURL:avatarChanged?null:mediaURL(profileDraft.avatarId);avatar($('avatarPreview'),{...profileDraft,displayName:$('displayName').value||username},src);$('removeAvatar').disabled=!src;}
