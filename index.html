@@ -3753,6 +3753,204 @@ html[data-theme=dark] #toast{
 }
 </style>
 
+
+<style id="iphone-stability-v941">
+/* Final mobile pass: intentionally overrides older responsive layers without rewriting desktop. */
+@media(max-width:760px){
+  :root{
+    --mobile-page-pad:10px;
+    --mobile-card-radius:17px;
+  }
+
+  html,body,#app{max-width:100%;overflow:hidden}
+  body{-webkit-text-size-adjust:100%;touch-action:manipulation}
+
+  .main{
+    width:100%;
+    min-width:0;
+    background:var(--bg);
+  }
+
+  .topbar{
+    min-height:calc(54px + env(safe-area-inset-top));
+    padding-left:max(8px,env(safe-area-inset-left));
+    padding-right:max(8px,env(safe-area-inset-right));
+    border-bottom-color:color-mix(in srgb,var(--line) 72%,transparent);
+  }
+
+  .top-left{flex:1;overflow:hidden}
+  .top-title{max-width:52vw;font-size:13px;font-weight:650}
+  .top-right{flex:0 0 auto}
+  #clearChat{display:none}
+
+  #chatView{
+    flex:1 1 auto;
+    height:0;
+    min-height:0;
+    overflow:hidden;
+  }
+
+  .chat-area{
+    height:0!important;
+    flex:1 1 auto!important;
+    padding:0;
+    scroll-padding-top:12px;
+    scroll-padding-bottom:132px;
+    overscroll-behavior-y:contain;
+  }
+
+  .welcome{
+    padding:22px var(--mobile-page-pad) 14px;
+  }
+  .welcome-logo{width:36px;height:36px;margin-bottom:14px}
+  .welcome h1{font-size:clamp(27px,8.3vw,34px);letter-spacing:-1.2px}
+  .welcome>p:last-of-type{max-width:34rem;font-size:13.5px}
+  .suggestions{margin-top:19px;gap:8px;padding-bottom:3px}
+  .suggestion{
+    flex-basis:min(82vw,300px);
+    min-height:108px;
+    padding:14px;
+    border-radius:14px;
+    box-shadow:none;
+  }
+
+  .chat-log{
+    width:100%;
+    padding:14px var(--mobile-page-pad) 24px;
+  }
+  .message{margin-bottom:27px}
+  .message-head{margin-bottom:8px}
+  .message.user .message-head,.user-content{max-width:94%}
+  .user-content{
+    padding:10px 12px;
+    font-size:14px;
+    line-height:1.55;
+    border-radius:16px 16px 5px 16px;
+  }
+  .response{
+    font-size:15px;
+    line-height:1.7;
+    overflow-wrap:anywhere;
+  }
+  .response p{margin-bottom:15px}
+  .response h2,.response h3,.response h4{margin-top:23px}
+  .response h2{font-size:19px}.response h3{font-size:17px}.response h4{font-size:16px}
+  .response ul,.response ol{padding-left:20px;margin-block:10px 16px}
+  .response li{margin:6px 0}
+
+  .code-card{
+    width:100%;
+    max-width:100%;
+    margin:16px 0 20px;
+    border-radius:13px;
+  }
+  .code-header{min-height:42px;padding:0 8px 0 10px}
+  .code-label{max-width:46vw}
+  .code-subtle{display:none}
+  .code-card pre{
+    max-height:58vh;
+    padding:15px 12px 17px;
+    font-size:12px;
+    line-height:1.62;
+  }
+
+  .composer-wrap{
+    flex:0 0 auto;
+    width:100%;
+    padding:6px max(7px,env(safe-area-inset-right)) max(7px,env(safe-area-inset-bottom)) max(7px,env(safe-area-inset-left));
+    background:linear-gradient(180deg,transparent 0,color-mix(in srgb,var(--bg) 96%,transparent) 22%);
+  }
+  html:not(.mobile-keyboard-open) .composer-wrap{
+    padding-bottom:8px;
+  }
+  .composer-box{
+    width:100%;
+    border-radius:var(--mobile-card-radius);
+    padding:10px 9px 8px;
+    box-shadow:0 7px 26px #00000016;
+  }
+  .composer-box textarea{
+    width:100%;
+    min-height:40px;
+    max-height:min(128px,24vh);
+    padding:1px 3px;
+    font-size:16px!important;
+    line-height:1.48;
+  }
+  .composer-tools{
+    display:flex!important;
+    align-items:center;
+    justify-content:space-between;
+    gap:6px;
+    margin-top:7px;
+  }
+  .composer-left,.composer-right{display:flex;align-items:center;gap:4px;min-width:0}
+  .composer-left{flex:1 1 auto;overflow:visible}
+  .composer-right{flex:0 0 auto}
+  .composer-box .icon-btn,.mode-trigger,.model-trigger,.send{
+    width:39px;
+    min-width:39px;
+    height:39px;
+    min-height:39px;
+    border-radius:11px;
+  }
+  .mode-trigger,.model-trigger{padding:5px}
+  .mode-trigger-icon,.model-trigger-icon{width:27px;height:27px;flex-basis:27px}
+  .send{box-shadow:none}
+
+  .mode-menu,.model-menu{
+    left:8px!important;
+    right:8px!important;
+    width:auto!important;
+    border-radius:16px!important;
+    padding:7px!important;
+    max-height:min(54vh,430px)!important;
+  }
+  .mode-option,.model-option{min-height:52px!important;padding:9px!important}
+  .mode-option strong,.model-option strong{font-size:13px}
+  .mode-option small,.model-option small{font-size:11px}
+
+  .mobile-dock{
+    padding-left:max(4px,env(safe-area-inset-left));
+    padding-right:max(4px,env(safe-area-inset-right));
+    background:color-mix(in srgb,var(--surface) 96%,transparent);
+    box-shadow:0 -4px 20px #00000012;
+  }
+  .mobile-dock button{border-radius:11px;font-size:9px}
+  .mobile-dock button.active{background:transparent;font-weight:700}
+
+  .error-strip{
+    margin:0 1px 6px;
+    border-radius:12px;
+  }
+
+  .jump-bottom{right:14px;left:auto;transform:none}
+
+  dialog[open]{padding-top:env(safe-area-inset-top)!important}
+  dialog .dialog-header{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+  dialog .dialog-body{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+}
+
+@media(max-width:390px){
+  .top-title{max-width:44vw}
+  .welcome{padding-top:17px}
+  .welcome h1{font-size:27px}
+  .suggestion{flex-basis:86vw}
+  .chat-log{padding-left:8px;padding-right:8px}
+  .composer-wrap{padding-left:5px;padding-right:5px}
+  .composer-box{padding-left:8px;padding-right:8px}
+  .composer-box .icon-btn,.mode-trigger,.model-trigger,.send{width:38px;min-width:38px;height:38px;min-height:38px}
+}
+
+@supports (-webkit-touch-callout:none){
+  @media(max-width:760px){
+    textarea,input,select{font-size:16px!important}
+    .chat-area,.shared-view,.dialog-body{-webkit-overflow-scrolling:touch}
+    .composer-box textarea{transform:translateZ(0)}
+  }
+}
+</style>
+
 </head>
 <body>
 <svg hidden xmlns="http://www.w3.org/2000/svg"><defs>
@@ -5139,7 +5337,7 @@ function renderChat(scroll=true){
       if(m.files?.length)renderUserFiles(m,content);
     }else{
       renderResponse(content,m.content,activeRequest?.messageId===m.id);
-      if(!m.content&&activeRequest?.messageId===m.id)content.innerHTML='<div class="thinking"><i></i><i></i><i></i><span>Working on your request…</span></div>';
+      if(!m.content&&activeRequest?.messageId===m.id)content.innerHTML='<div class="thinking"><i></i><i></i><i></i><span>Axiom is working…</span></div>';
     }
     row.append(content);
     if(m.role==='assistant'&&m.usage&&m.content)renderResponseActivity(m,row);
@@ -5401,7 +5599,7 @@ async function generate(action='retry'){
   if(old)t.messages.pop();t.messages.push(reply);activeRequest={controller,threadId:t.id,messageId:reply.id};chatFailure=null;updateControls();renderChat();
   let timer,lastDraw=0,gotAny=false;
   const paint=()=>{if(activeId!==t.id)return;const follow=nearBottom();const node=$('chatLog').querySelector(`[data-message="${reply.id}"] .response`);if(node)renderResponse(node,reply.content,true);if(follow)toBottom();};
-  const arm=()=>{clearTimeout(timer);timer=setTimeout(()=>{controller.abort('timeout');},240000);};arm();
+  const arm=()=>{clearTimeout(timer);timer=setTimeout(()=>{controller.abort('timeout');},360000);};arm();
   try{
     const hasImages=messages.some(m=>Array.isArray(m.content)&&m.content.some(c=>c.type==='image_url'));
     const res=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+sessionToken},signal:controller.signal,body:JSON.stringify({mode:t.mode,model_profile:t.modelProfile||modelProfile||'core-1',stream:true,max_completion_tokens:Number(prefs.tokenLimit)||16384,messages})});
@@ -5425,7 +5623,7 @@ async function generate(action='retry'){
     const stopped=controller.signal.aborted&&controller.signal.reason!=='timeout';
     if(gotAny)reply.status=stopped?'stopped':'error';
     else{t.messages.pop();if(old)t.messages.push(old);}
-    if(!stopped)chatFailure={threadId:t.id,message:controller.signal.reason==='timeout'?'The reply timed out. Your prompt is saved; try again.':err.message||'Unable to reach Axiom. Check your connection and retry.'};
+    if(!stopped)chatFailure={threadId:t.id,message:controller.signal.reason==='timeout'?'Axiom took too long to finish this reply. Your prompt is still saved — retry it.':err.message||'Unable to reach Axiom. Check your connection and retry.'};
     if(stopped&&!gotAny)toast('Generation stopped. Your prompt is saved.');
   }finally{clearTimeout(timer);activeRequest=null;t.updated=Date.now();await saveThreads().catch(()=>{});renderRecent();renderChat(false);updateControls();}
 }
