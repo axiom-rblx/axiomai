@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "axiom-proxy",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-05",
+  "keep_vars": true,
+  "ai": { "binding": "AI" },
+  "d1_databases": [{ "binding": "DB", "database_name": "axiom-db", "database_id": "cff5035c-299a-4e99-a875-9ecf43aba364" }],
+  "kv_namespaces": [{ "binding": "DEVHUB_KV", "id": "39d4287ce08e4b11b12e91ea8d6aefdd" }],
+  "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "axiom-media" }],
+  "observability": { "enabled": true }
+}

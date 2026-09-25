@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars*
+test-results/
+.preview/
+training/data/
+training/runs/
+*.safetensors

@@ -1,0 +1,20 @@
+{
+  "name": "axiom-workspace",
+  "private": true,
+  "version": "13.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "deploy:web": "wrangler deploy",
+    "deploy:api": "wrangler deploy --config wrangler.backend.jsonc --keep-vars"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "latest",
+    "@fontsource-variable/dm-sans": "latest",
+    "@fontsource-variable/jetbrains-mono": "latest",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@playwright/test": "^1.63.0",
+    "wrangler": "4.139.0"
+  }
+}

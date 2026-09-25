@@ -1,0 +1,214 @@
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:100 1000;font-display:swap;src:url('/assets/fonts/dm-sans-latin-wght-normal.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 800;font-display:swap;src:url('/assets/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2')}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url('/assets/fonts/manrope-latin-wght-normal.woff2') format('woff2')}
+:root{--ui-font:'DM Sans',sans-serif;--editor-font:'JetBrains Mono',monospace;--prose-serif:var(--ui-font)}
+html[data-theme=light]{--bg:#faf9f6;--side:#efeee9;--surface:#fffefa;--soft:#f1f0ea;--hover:#e7e6df;--ink:#252923;--muted:#666c62;--line:#ddded4;--blue:#356955;--blue-hover:#254e3f;--blue-soft:#e2ece3;--danger:#b43838;--ring:#609078;--code:#f0f1eb;--shadow:0 4px 20px #282e2308}
+html[data-theme=dark]{--bg:#1b1d1b;--side:#141614;--surface:#252825;--soft:#2c302b;--hover:#32382f;--ink:#eceee6;--muted:#a6afa1;--line:#3b4137;--blue:#aed0b7;--blue-hover:#c3dfc9;--blue-soft:#2c3d30;--danger:#ffa49c;--ring:#89b994;--code:#141713;--shadow:0 4px 20px #0002}
+html body{font-family:var(--ui-font)!important;font-size:15px;-webkit-font-smoothing:antialiased;letter-spacing:0;background:var(--bg)!important}
+html body button,html body input,html body select,html body textarea{font-family:var(--ui-font)}
+html body #app{height:100dvh!important;background:var(--bg)!important}
+html body #app .main{min-height:0;overflow:hidden;background:var(--bg)!important}
+html body #app .sidebar{width:248px!important;flex:0 0 248px!important;padding:23px 14px 12px!important;background:var(--side)!important;border-right:1px solid var(--line)!important;overflow:hidden!important;gap:0}
+html body #app .sidebar .brand{padding:0 10px 27px!important;letter-spacing:-.6px;font-size:23px;font-weight:650;flex-shrink:0}
+html body #app .sidebar .brand img{width:29px;height:29px}
+html body #app .brand em{display:none}
+html body #app .new-chat{height:44px;min-height:44px;padding:10px 12px;margin:0 0 28px!important;border-radius:8px;background:transparent!important;border:1px solid var(--line)!important;box-shadow:none;color:var(--ink);font-size:13px}
+html body #app .new-chat:hover{background:var(--hover)!important}
+html body #app .new-chat kbd{font-size:10px;font-family:var(--editor-font);opacity:.75}
+html body #app .sidebar-scroll{display:flex;flex-direction:column;flex:1;min-height:0;overflow-y:auto!important;overflow-x:hidden!important;padding:0 1px 14px 0;scrollbar-width:thin}
+html body #app .sidebar-scroll>*{flex-shrink:0}
+html body #app .nav-label{font-size:10px;line-height:16px;font-weight:600;letter-spacing:.09em;color:var(--muted);padding:0 11px;margin:0 0 9px}
+html body #app .nav{gap:3px}
+html body #app .nav-item{height:40px;min-height:40px;border:0!important;border-radius:7px!important;padding:8px 11px!important;font-size:13px!important;font-weight:500!important;gap:11px;color:var(--muted);box-shadow:none!important;background:transparent!important}
+html body #app .nav-item:hover{background:var(--hover)!important;color:var(--ink)}
+html body #app .nav-item.active{color:var(--ink)!important;background:var(--blue-soft)!important;font-weight:600!important;box-shadow:none!important}
+html body #app .nav-item .nav-dot{display:none}
+html body #app .nav-item .icon{width:17px!important;height:17px!important;opacity:.85}
+html body #app .side-line{margin:22px 10px 17px!important;border:0;border-top:1px solid var(--line);width:auto}
+html body #app .community-drawer{margin:0 0 18px}
+html body #app .community-drawer summary{padding:9px 11px!important;display:flex;justify-content:space-between;cursor:pointer;list-style:none;letter-spacing:0;font-size:13px;font-weight:500;text-transform:none;border-radius:7px;margin:0}
+html body #app .community-drawer summary::-webkit-details-marker{display:none}
+html body #app .community-drawer summary:hover{background:var(--hover)}
+html body #app .community-drawer summary span{font-size:15px}
+html body #app .community-drawer[open] summary span{transform:rotate(180deg)}
+html body #app .recent-heading{margin:8px 0 5px!important;padding:0 3px 0 0;height:28px}
+html body #app .recent-heading .nav-label{margin:0}
+html body #app .recent-heading .icon-btn{height:28px;width:28px;min-width:28px}
+html body #app .recent{overflow:visible!important;flex:0 0 auto!important;min-height:40px!important;margin:0 0 14px}
+html body #app .recent-row{border:0!important;border-radius:6px!important;background:transparent;box-shadow:none!important;margin:2px 0!important;min-height:34px}
+html body #app .recent-row.selected{background:var(--hover)!important;box-shadow:none!important}
+html body #app .recent-row>button:first-child{font-size:12px!important;padding:8px 11px!important;color:var(--muted)}
+html body #app .recent-row.selected>button:first-child{color:var(--ink)}
+html body #app .recent-empty{font-size:12px;padding:10px 11px}
+html body #app .side-bottom{position:static!important;flex-shrink:0;margin:0!important;padding:10px 0 0!important;background:var(--side)!important;border-top:1px solid var(--line);box-shadow:none!important}
+html body #app .side-bottom>.nav-item{height:35px;min-height:35px}
+html body #app .user-chip{min-height:58px;padding:8px 10px!important;border:0!important;border-radius:7px;gap:10px}
+html body #app .user-chip .avatar{width:31px;height:31px;border-radius:50%}
+html body #app .user-info strong{font-size:13px;font-weight:600}
+html body #app .user-info>span{font-size:11px;line-height:1.4}
+html body #app .sidebar-status-quote{display:none!important}
+html body #app .user-chip>.icon{width:16px;height:16px}
+html body #app .topbar{height:66px!important;min-height:66px;padding:0 30px!important;border-bottom:1px solid var(--line);background:var(--bg)!important}
+html body #app .top-title{font-weight:600;font-size:14px!important;letter-spacing:-.15px;max-width:300px;overflow:hidden;text-overflow:ellipsis}
+html body #app .top-sub{font-size:12px!important;letter-spacing:0;color:var(--muted)}
+html body #app .top-right{gap:8px}
+html body #app .top-right .icon-btn{border:0!important;background:transparent!important;width:34px;min-width:34px;height:34px}
+html body #app .provider-tag{border:1px solid var(--line)!important;background:transparent!important;color:var(--muted)!important;font-size:10px;line-height:18px;font-weight:500;letter-spacing:.03em;padding:0 6px;margin-right:8px}
+html body #app .provider-tag>span{display:none}
+html body #app #chatView{min-height:0;flex:1;overflow:hidden;background:var(--bg)!important}
+html body #chatView .chat-area{min-height:0;flex:1;overflow-y:auto;overflow-x:hidden}
+html body #chatView .welcome{width:min(100%,1000px)!important;padding:clamp(36px,12vh,120px) 42px 30px!important;margin:0 auto}
+html body #chatView .welcome-logo{width:38px;height:38px;margin-bottom:24px;opacity:.9}
+html body #chatView .eyebrow{font-family:var(--ui-font);font-size:13px!important;text-transform:none!important;letter-spacing:0!important;font-weight:400!important;color:var(--muted)!important;margin:0 0 10px}
+html body #chatView .welcome h1{font-family:'Manrope',var(--ui-font),sans-serif!important;font-size:clamp(34px,4vw,52px)!important;font-weight:650!important;letter-spacing:-1.5px!important;line-height:1.13;max-width:690px;margin:0 0 18px!important;color:var(--ink)}
+html body #chatView .welcome h1 span{color:inherit!important}
+html body #chatView .welcome>p:last-of-type{font-size:15px;line-height:1.7;max-width:610px;color:var(--muted)}
+html body #chatView .suggestions{display:flex!important;flex-wrap:wrap;gap:8px!important;margin:28px 0 0!important;border:0!important;background:none;overflow:visible!important}
+html body #chatView .suggestion{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto!important;min-height:40px!important;height:auto;padding:10px 13px!important;border:1px solid var(--line)!important;border-radius:7px!important;background:transparent!important;box-shadow:none!important;transform:none!important}
+html body #chatView .suggestion:hover{background:var(--soft)!important;border-color:var(--muted)!important}
+html body #chatView .suggestion strong{font-size:12px;font-weight:500!important;line-height:1.3}
+html body #chatView .suggestion .icon{width:16px;height:16px;margin:0!important;color:var(--muted)}
+html body #chatView .suggestion span,html body #chatView .mode-note{display:none!important}
+html body #chatView .chat-log{width:min(100%,1080px)!important;padding:32px 42px 38px!important;margin:0 auto;min-width:0}
+html body #chatView .message{font-family:var(--ui-font)!important;font-size:15px!important;line-height:1.75!important;margin-bottom:30px;max-width:100%;min-width:0}
+html body #chatView .message.user{border:0!important;background:var(--soft)!important;color:var(--ink);padding:13px 18px!important;max-width:min(86%,800px);margin-left:auto!important;margin-bottom:32px!important;border-radius:12px 12px 3px 12px!important;font-size:14px!important}
+html body #chatView .message.assistant{padding:0!important;background:none!important;border:0!important;width:100%;margin-left:0}
+html body #chatView .response{font-family:var(--ui-font)!important;font-size:15px!important;line-height:1.8!important;overflow-wrap:anywhere}
+html body #chatView .response h1,html body #chatView .response h2,html body #chatView .response h3{font-family:var(--ui-font)!important;font-size:18px;font-weight:600;letter-spacing:-.3px}
+html body #chatView .response p{margin:12px 0;max-width:78ch}
+html body .code-card{border:1px solid var(--line)!important;border-radius:9px!important;background:var(--code)!important;box-shadow:none!important;margin:20px 0!important;max-width:100%;overflow:hidden}
+html body .code-card pre{font-family:var(--editor-font)!important;font-size:12px!important;line-height:1.75!important;padding:18px 20px!important;background:var(--code)!important;max-height:560px;overflow:auto;tab-size:4}
+html body pre code,html body .response code{font-family:var(--editor-font)!important}
+html[data-theme=light] body .code-card pre{color:#29382c!important}
+html body .code-head{font-family:var(--ui-font);background:var(--soft)!important;border-bottom:1px solid var(--line);padding:7px 12px!important;min-height:38px;color:var(--muted)}
+html body #chatView .composer-wrap{width:min(100%,1080px)!important;flex-shrink:0;padding:12px 42px 18px!important;margin:0 auto!important;background:var(--bg)!important;position:relative!important;bottom:auto!important;left:auto!important;right:auto!important;transform:none!important}
+html body #chatView .composer-box{padding:0!important;border:1px solid var(--line)!important;border-radius:12px!important;background:var(--surface)!important;box-shadow:var(--shadow)!important;overflow:visible;max-height:none!important}
+html body #chatView .composer-box:focus-within{border-color:var(--muted)!important;box-shadow:0 0 0 1px color-mix(in srgb,var(--muted) 20%,transparent)!important}
+html body #chatView .project-context-row{display:flex!important;flex-wrap:wrap;gap:7px;width:auto!important;max-width:none!important;margin:0 14px!important;padding:10px 0 8px!important;min-height:42px;border-bottom:1px solid var(--line)!important}
+html body #chatView .project-context-label{font-size:11px!important;font-weight:500!important;gap:5px}
+html body #chatView .project-context-label .icon{width:14px;height:14px;color:var(--muted)}
+html body #chatView #projectSelect{border:0!important;background:transparent!important;font-size:11px!important;padding:4px 19px 4px 5px!important;border-radius:4px;max-width:210px;height:27px;min-height:0}
+html body #chatView .project-create-btn{font-size:10px!important;border:0!important;background:transparent!important;padding:4px 7px!important;border-radius:4px;height:27px;min-height:0;font-weight:500!important;color:var(--muted)}
+html body #chatView .project-create-btn:hover{background:var(--hover)!important;color:var(--ink)}
+html body #chatView #expandPrompt{margin-left:auto;white-space:nowrap}
+html body #chatView .composer-box textarea{font-family:var(--ui-font)!important;font-size:15px!important;padding:14px 17px 4px!important;min-height:90px!important;max-height:35dvh!important;line-height:1.6!important;resize:none;background:none!important}
+html body #chatView .composer-box textarea::placeholder{color:var(--muted);opacity:1}
+html body #chatView .composer-box.is-expanded textarea{font-family:var(--editor-font)!important;font-size:12px!important;height:44dvh!important;min-height:160px!important;max-height:44dvh!important;line-height:1.65!important}
+html body #chatView .composer-tools{padding:8px 12px 10px!important;margin:0!important;gap:8px;align-items:center}
+html body #chatView .composer-left,html body #chatView .composer-right{min-width:0;gap:8px}
+html body #chatView .composer-tools .icon-btn{width:34px;height:34px;min-width:34px;border:0;background:none!important;color:var(--muted)}
+html body #chatView .prompt-count{font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+html body #chatView .model-trigger{display:flex;gap:7px;border:0!important;background:transparent!important;border-radius:6px!important;padding:5px 8px!important;width:auto!important;min-width:0!important;height:34px!important;color:var(--ink)}
+html body #chatView .model-trigger:hover{background:var(--soft)!important}
+html body #chatView .model-trigger-icon{display:none!important}
+html body #chatView .model-trigger-copy strong{font-size:12px!important;font-weight:500!important;line-height:1.3}
+html body #chatView .model-trigger-copy small{display:none!important}
+html body #chatView .model-chevron{width:13px;height:13px}
+html body #chatView .send{width:35px!important;min-width:35px!important;height:35px!important;border-radius:8px!important;background:var(--blue)!important;color:var(--bg)!important;border:0!important}
+html body #chatView .send:disabled{opacity:.4}
+html body #chatView .send .icon{width:19px;height:19px}
+html body #chatView .composer-hint{font-size:10px;color:var(--muted);margin:9px 0 0!important;line-height:1.3;letter-spacing:0}
+html body #chatView .attachments{padding:12px 14px 0;margin:0}
+html body #chatView .error-strip{background:var(--surface)!important;color:var(--ink);border:1px solid var(--line)!important;border-left:3px solid var(--danger)!important;border-radius:8px!important;font-size:12px!important;line-height:1.5;padding:12px 14px!important;gap:10px;box-shadow:none;margin-bottom:10px}
+html body #chatView .error-strip .btn{font-size:11px;padding:7px 10px;white-space:nowrap;min-width:64px}
+html body #chatView .model-menu{width:min(330px,calc(100vw - 32px))!important;max-height:60dvh;overflow:auto;border:1px solid var(--line);border-radius:10px!important;background:var(--surface)!important;box-shadow:0 12px 35px #0002;padding:8px;bottom:45px!important;right:0!important}
+html body #chatView .model-option{border-radius:6px!important;min-height:60px}
+html body #chatView .model-option strong{font-size:13px}
+html body #chatView .model-option small{font-size:11px;line-height:1.4}
+html body #chatView .model-usage-card{font-size:11px;background:var(--soft)!important;border-radius:6px;padding:12px;margin:8px 0 0}
+html body #chatView .thought-line{font-family:var(--ui-font)!important;font-size:12px!important;color:var(--muted);margin:5px 0 14px}
+html body #chatView .jump-bottom{bottom:240px;z-index:3}
+html body #app .mobile-dock{display:none!important}
+html body .auth-intro{background:var(--side)!important}
+html body .auth-intro h1{font-family:'Manrope',var(--ui-font),sans-serif;font-weight:650;letter-spacing:-1.5px}
+html body dialog{font-family:var(--ui-font);background:var(--surface)!important;color:var(--ink);border:1px solid var(--line)!important;border-radius:12px!important}
+html body button:focus-visible,html body summary:focus-visible{outline:2px solid var(--ring)!important;outline-offset:3px}
+@media(min-width:761px) and (max-width:1100px){
+  html body #app .sidebar{width:218px!important;flex-basis:218px!important}
+  html body #chatView .composer-wrap,html body #chatView .chat-log,html body #chatView .welcome{padding-left:28px!important;padding-right:28px!important}
+  html body #app .top-sub{display:none}
+}
+@media(max-width:760px){
+  html body #app{padding:0!important;height:100dvh!important}
+  html body #app .main{padding-bottom:0!important}
+  html body #app .sidebar{width:min(300px,86vw)!important;flex-basis:auto!important;inset:0 auto 0 0!important;padding:20px 12px max(12px,env(safe-area-inset-bottom))!important;height:100dvh;box-shadow:none}
+  html body #app .sidebar.open{box-shadow:10px 0 60px #0005}
+  html body #app .topbar{height:56px!important;min-height:56px;padding:0 12px!important}
+  html body #app .top-left{gap:8px}
+  html body #app .top-sub,html body #app .topbar .divider,html body #app #topProfile,html body #app #clearChat{display:none!important}
+  html body #app .top-title{max-width:45vw;font-size:13px!important}
+  html body #app .top-right{gap:2px}
+  html body #app .top-right .icon-btn,html body #app .mobile-toggle{width:40px;min-width:40px;height:40px}
+  html body #app .top-right .provider-tag{display:none!important}
+  html body #chatView .welcome{padding:42px 22px 24px!important}
+  html body #chatView .welcome-logo{width:30px;height:30px;margin-bottom:24px}
+  html body #chatView .welcome h1{font-size:38px!important;letter-spacing:-1.2px!important}
+  html body #chatView .welcome>p:last-of-type{font-size:14px;line-height:1.6}
+  html body #chatView .suggestions{gap:8px!important;margin-top:23px!important}
+  html body #chatView .suggestion{min-height:40px!important;padding:9px 11px!important}
+  html body #chatView .chat-log{padding:24px 20px 24px!important}
+  html body #chatView .message.user{max-width:94%;font-size:14px!important;padding:11px 14px!important;margin-bottom:26px!important}
+  html body #chatView .response{font-size:14px!important;line-height:1.75!important}
+  html body #chatView .composer-wrap{padding:6px 12px max(10px,env(safe-area-inset-bottom))!important}
+  html body #chatView .composer-box textarea{min-height:65px!important;max-height:26dvh!important;font-size:16px!important;padding:11px 13px 3px!important}
+  html body #chatView .composer-box.is-expanded textarea{height:38dvh!important;max-height:38dvh!important;min-height:140px!important;font-size:13px!important}
+  html body #chatView .project-context-row{margin:0 10px!important;padding:7px 0 5px!important;gap:3px;min-height:35px}
+  html body #chatView .project-context-label span{display:none}
+  html body #chatView #projectSelect{max-width:145px;font-size:10px!important}
+  html body #chatView #expandPrompt{font-size:10px!important}
+  html body #chatView .composer-tools{padding:4px 8px 8px!important;gap:3px}
+  html body #chatView .composer-tools .icon-btn,html body #chatView .send{width:40px!important;min-width:40px!important;height:40px!important}
+  html body #chatView .model-trigger{height:40px!important;padding:5px!important}
+  html body #chatView .model-trigger-copy strong{font-size:11px!important}
+  html body #chatView .prompt-count{font-size:9px}
+  html body #chatView .composer-left,html body #chatView .composer-right{gap:3px}
+  html body #chatView .composer-hint{font-size:9px;margin-top:7px!important}
+  html body #chatView .error-strip{font-size:11px!important;padding:9px!important;gap:5px;flex-wrap:wrap}
+  html body #chatView .error-strip>span{flex:1 1 190px}
+  html body #chatView .error-strip .icon-btn{width:30px;height:30px;min-width:30px}
+  html body .code-card pre{font-size:11px!important;padding:14px!important}
+}
+@media(prefers-reduced-motion:reduce){html body *,html body *::before,html body *::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+/* v13.1: softer geometry and clearer laptop layout */
+html[data-theme=light]{--bg:#f9fafb;--side:#f2f4f7;--surface:#ffffff;--soft:#f1f4f9;--hover:#e7edf7;--ink:#192536;--muted:#596a7c;--line:#dee5ef;--blue:#326cf1;--blue-hover:#2558ce;--blue-soft:#e2ebff;--ring:#7aa7ff;--code:#f4f7fb;--shadow:0 14px 46px #1a3c770b}
+html[data-theme=dark]{--bg:#171c25;--side:#111722;--surface:#202734;--soft:#273241;--hover:#303d50;--ink:#edf3fb;--muted:#aab7c9;--line:#354154;--blue:#92b7ff;--blue-hover:#afcaff;--blue-soft:#283c5c;--ring:#8cb5ff;--code:#151e2b;--shadow:0 14px 46px #050b1745}
+html body #app .sidebar{border-radius:0!important}
+html body #app .new-chat{border-radius:14px!important;box-shadow:0 2px 8px #15346108!important;background:var(--surface)!important;height:46px;min-height:46px}
+html body #app .nav-item{border-radius:11px!important}
+html body #app .community-drawer summary{border-radius:11px!important}
+html body #app .recent-row{border-radius:10px!important}
+html body #app .user-chip{border-radius:12px!important}
+html body #app .top-right .icon-btn{border-radius:11px!important}
+html body #app .top-right .icon-btn:hover{background:var(--hover)!important}
+html body #app .provider-tag{border-radius:999px!important;padding:2px 9px}
+html body #chatView .welcome h1{font-family:'Manrope',var(--ui-font),sans-serif!important;font-weight:650!important;font-size:clamp(34px,3.7vw,48px)!important;letter-spacing:-.055em!important;line-height:1.16!important;max-width:720px}
+html body #chatView .eyebrow{font-weight:500!important;color:var(--muted)!important}
+html body #chatView .suggestion{border-radius:999px!important;box-shadow:0 1px 2px #133e7808!important;padding:10px 15px!important;overflow:visible!important;transition:background .16s,border-color .16s,transform .16s!important}
+html body #chatView .suggestion::after{display:none!important;content:none!important}
+html body #chatView .suggestion:hover{transform:translateY(-1px)!important;box-shadow:0 3px 12px #133e7814!important}
+html body #chatView .composer-box{border-radius:20px!important;box-shadow:var(--shadow)!important}
+html body #chatView .composer-box:focus-within{border-color:var(--blue)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 13%,transparent),var(--shadow)!important}
+html body #chatView .project-create-btn{border-radius:8px!important}
+html body #chatView #projectSelect{border-radius:8px!important}
+html body #chatView .model-trigger{border-radius:10px!important}
+html body #chatView .send{border-radius:12px!important;background:var(--blue)!important;color:#fff!important}
+html body #chatView .send:hover{background:var(--blue-hover)!important}
+html body #chatView .message.user{border-radius:17px 17px 5px 17px!important}
+html body #chatView .error-strip{border-radius:13px!important}
+html body #chatView .model-menu{border-radius:16px!important;box-shadow:0 22px 65px #08132224!important}
+html body #chatView .model-option{border-radius:11px!important}
+html body #chatView .model-usage-card{border-radius:10px!important}
+html body .code-card{border-radius:13px!important}
+html body dialog{border-radius:20px!important}
+html body .auth-intro h1{font-family:'Manrope',var(--ui-font),sans-serif!important;font-weight:650!important;letter-spacing:-.05em}
+@media(min-width:761px) and (max-width:1100px){
+  html body #app .sidebar{display:flex!important;position:relative!important;inset:auto!important;z-index:auto!important;transform:none!important;box-shadow:none!important}
+  html body #app .mobile-toggle{display:none!important}
+  html body #app .main{width:auto!important;flex:1;min-width:0}
+  html body #chatView .composer-wrap,html body #chatView .chat-log,html body #chatView .welcome{padding-left:22px!important;padding-right:22px!important}
+}
+@media(max-width:760px){
+  html body #chatView .composer-box{border-radius:18px!important}
+  html body #chatView .welcome h1{font-size:36px!important}
+  html body #chatView .suggestion{padding:9px 13px!important}
+}
