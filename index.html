@@ -4328,7 +4328,7 @@ html[data-theme=dark] #chatView .composer-box{box-shadow:0 16px 44px rgba(0,0,0,
 }
 </style>
 <link rel="preload" href="/assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/workspace.css?v=13.1.0">
+<link rel="stylesheet" href="/assets/workspace.css?v=14.0.0">
 </head>
 <body>
 <svg hidden xmlns="http://www.w3.org/2000/svg"><defs>
@@ -4344,7 +4344,7 @@ html[data-theme=dark] #chatView .composer-box{box-shadow:0 16px 44px rgba(0,0,0,
 <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
 <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
 <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
-<symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></symbol>
+<symbol id="i-expand" viewBox="0 0 24 24"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></symbol><symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></symbol>
 <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5M5.6 7a7 7 0 0 1 11.6-2L20 8M4 16l2.8 3A7 7 0 0 0 18.4 17"/></symbol>
 <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
 <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 13a9 9 0 0 1-10-10 9 9 0 1 0 10 10Z"/></symbol>
@@ -4386,9 +4386,9 @@ html[data-theme=dark] #chatView .composer-box{box-shadow:0 16px 44px rgba(0,0,0,
   <div class="side-bottom"><button class="nav-item" id="settingsBtn"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-settings"/></svg>Settings</button><button class="user-chip" id="userChip"><span class="sidebar-avatar-wrap"><span class="avatar" id="sidebarAvatar"></span><span class="presence-dot offline" id="sidebarPresence" aria-hidden="true"></span></span><span class="user-info"><strong id="userName"></strong><span>Personal workspace</span><span class="sidebar-status-quote" id="sidebarStatusQuote" hidden></span></span><svg class="icon muted"><use href="#i-settings"/></svg></button></div>
 </aside>
 <main class="main"><header class="topbar"><div class="top-left"><button class="icon-btn mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button><span class="top-title" id="topTitle">Axiom AI</span><span class="divider"></span><span class="top-sub" id="topSub">Roblox workspace</span></div><div class="top-right"><span class="tag provider-tag" id="providerTag" aria-label="Axiom Beta"><span aria-hidden="true"></span>Beta</span><button class="icon-btn" id="themeToggle" aria-label="Toggle light and dark appearance"><svg class="icon"><use href="#i-moon"/></svg></button><button class="icon-btn" id="topSettings" aria-label="Open settings" title="Settings"><svg class="icon"><use href="#i-settings"/></svg></button><button class="icon-btn" id="topProfile" aria-label="Open your profile" title="Your profile"><svg class="icon"><use href="#i-users"/></svg></button><button class="icon-btn" id="clearChat" aria-label="Delete current chat"><svg class="icon"><use href="#i-trash"/></svg></button></div></header>
-<section id="chatView" aria-label="AI conversation"><div class="chat-area" id="chatArea"><div class="welcome" id="welcome"><img class="welcome-logo" data-logo alt=""><p class="eyebrow" id="greeting">Your workspace, ready.</p><h1 id="welcomeTitle">What are we <span>building today?</span></h1><p id="welcomeSub">A new interface, a better script, or your next big idea.</p><div class="suggestions" id="suggestions"></div><div class="mode-note"><svg class="icon"><use href="#i-code"/></svg><span>Built around Roblox Studio & Luau</span></div></div><div class="chat-log" id="chatLog" hidden></div></div>
+<section id="chatView" aria-label="AI conversation"><div class="chat-area" id="chatArea"><div class="welcome" id="welcome"><img class="welcome-logo" data-logo alt=""><p class="eyebrow" id="greeting">Your workspace is ready.</p><h1 id="welcomeTitle">What are we <span>building today?</span></h1><p id="welcomeSub">A new interface, a better script, or your next big idea.</p><div class="suggestions" id="suggestions"></div><div class="mode-note"><svg class="icon"><use href="#i-code"/></svg><span>Built around Roblox Studio & Luau</span></div></div><div class="chat-log" id="chatLog" hidden></div></div>
 <button class="icon-btn jump-bottom" id="jumpBottom" aria-label="Scroll to latest message" hidden><svg class="icon"><use href="#i-down"/></svg></button>
-<div class="composer-wrap"><div id="chatError" class="error-strip" role="alert" hidden><span></span><button class="btn ghost" id="retryRequest">Retry</button><button class="icon-btn" id="dismissError" aria-label="Dismiss error"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="chatForm" class="composer-box"><div class="attachments" id="attachments" hidden></div><div class="project-context-row" id="projectContextRow"><span class="project-context-label"><svg class="icon"><use href="#i-box"/></svg><span>Project memory</span></span><select id="projectSelect" aria-label="Project memory"><option value="">No project</option></select><button class="project-create-btn" id="newProjectBtn" type="button" aria-label="Create project memory">New</button><button class="project-create-btn" id="expandPrompt" type="button" aria-pressed="false" aria-label="Expand message editor">Expand editor</button></div><label class="sr-only" for="prompt">Message Axiom</label><textarea id="prompt" rows="2" maxlength="100000" placeholder="Describe your task, paste Luau, or paste an Output error…"></textarea><div class="composer-tools"><div class="composer-left"><button class="icon-btn" id="attachBtn" type="button" aria-label="Attach images or code files" title="Attach images or code files"><svg class="icon"><use href="#i-clip"/></svg></button><span class="prompt-count" id="promptCount">0 characters</span><label class="sr-only" for="modeSelect">Assistant mode</label><select class="sr-only" id="modeSelect" tabindex="-1" aria-hidden="true"><option value="axiom">Axiom AI</option></select><div class="mode-picker" id="modePicker" hidden><button id="modePickerButton" type="button"><span id="modePickerIcon"></span><span id="modePickerLabel">Axiom AI</span><span id="modePickerSub">Roblox workspace</span></button><div id="modePickerMenu" hidden><button type="button" data-mode-choice="axiom">Axiom AI</button></div></div></div><div class="composer-right"><div class="model-picker" id="modelPicker"><button class="model-trigger" id="modelPickerButton" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="model-trigger-icon" id="modelPickerIcon"><svg class="icon"><use href="#i-spark"/></svg></span><span class="model-trigger-copy"><strong id="modelPickerLabel">Axiom AI</strong><small id="modelUsageSummary">~0 context tokens</small></span><svg class="icon model-chevron"><use href="#i-down"/></svg></button><div class="model-menu" id="modelPickerMenu" role="listbox" aria-label="Choose Axiom model" hidden><div id="modelOptions" class="model-options"></div><div class="model-usage-card"><span>Current chat</span><strong id="modelUsageDetail">~0 tokens</strong><small>Estimated conversation size. Very large chats may condense earlier messages.</small></div></div></div><button class="send" id="sendBtn" type="submit" aria-label="Send message"><svg class="icon"><use href="#i-up"/></svg></button><button class="send" id="stopBtn" type="button" aria-label="Stop generating" hidden><svg class="icon"><use href="#i-stop"/></svg></button></div></div></form><p class="composer-hint">Axiom can make mistakes. Test generated code in Roblox Studio.</p></div>
+<div class="composer-wrap"><div id="chatError" class="error-strip" role="alert" hidden><span></span><button class="btn ghost" id="retryRequest">Retry</button><button class="icon-btn" id="dismissError" aria-label="Dismiss error"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="chatForm" class="composer-box"><div class="attachments" id="attachments" hidden></div><label class="sr-only" for="prompt">Message Axiom</label><textarea id="prompt" rows="2" maxlength="100000" placeholder="Describe your task, paste Luau, or paste an Output error…"></textarea><div class="composer-tools"><div class="composer-left"><button class="icon-btn" id="attachBtn" type="button" aria-label="Attach images or code files" title="Attach images or code files"><svg class="icon"><use href="#i-clip"/></svg></button><div class="project-context-row" id="projectContextRow" title="Project memory: Axiom remembers files, structure and decisions for the selected project"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg><select id="projectSelect" aria-label="Project memory"><option value="">No project</option></select><button class="project-create-btn" id="newProjectBtn" type="button" aria-label="Create project memory">New</button></div><button class="icon-btn" id="expandPrompt" type="button" aria-pressed="false" aria-label="Expand message editor" title="Expand editor"><svg class="icon"><use href="#i-expand"/></svg></button><span class="prompt-count" id="promptCount">0 characters</span><label class="sr-only" for="modeSelect">Assistant mode</label><select class="sr-only" id="modeSelect" tabindex="-1" aria-hidden="true"><option value="axiom">Axiom AI</option></select><div class="mode-picker" id="modePicker" hidden><button id="modePickerButton" type="button"><span id="modePickerIcon"></span><span id="modePickerLabel">Axiom AI</span><span id="modePickerSub">Roblox workspace</span></button><div id="modePickerMenu" hidden><button type="button" data-mode-choice="axiom">Axiom AI</button></div></div></div><div class="composer-right"><div class="model-picker" id="modelPicker"><button class="model-trigger" id="modelPickerButton" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="model-trigger-icon" id="modelPickerIcon"><svg class="icon"><use href="#i-spark"/></svg></span><span class="model-trigger-copy"><strong id="modelPickerLabel">Axiom AI</strong><small id="modelUsageSummary">~0 context tokens</small></span><svg class="icon model-chevron"><use href="#i-down"/></svg></button><div class="model-menu" id="modelPickerMenu" role="listbox" aria-label="Choose Axiom model" hidden><div id="modelOptions" class="model-options"></div><div class="model-usage-card"><span>Current chat</span><strong id="modelUsageDetail">~0 tokens</strong><small>Estimated conversation size. Very large chats may condense earlier messages.</small></div></div></div><button class="send" id="sendBtn" type="submit" aria-label="Send message"><svg class="icon"><use href="#i-up"/></svg></button><button class="send" id="stopBtn" type="button" aria-label="Stop generating" hidden><svg class="icon"><use href="#i-stop"/></svg></button></div></div></form><p class="composer-hint">Axiom can make mistakes. Test generated code in Roblox Studio.</p></div>
 </section>
 <section class="hub-view" id="hubView" hidden aria-label="DevHub community"><div class="hub-header"><h1>DevHub</h1><p>A shared space for developers. <strong id="onlineCount">0 developers online</strong></p><div class="online-members" id="onlineMembers" aria-label="Online developers"></div><button class="btn ghost" id="legacyBoardBtn">View earlier board</button><p id="hubStatus" role="status"></p></div><div class="chat-area" id="hubArea"><div class="hub-log" id="hubLog"></div></div><div class="composer-wrap"><form id="hubForm" class="composer-box"><label class="sr-only" for="hubInput">Public message</label><textarea id="hubInput" rows="2" maxlength="500" placeholder="Share what you’re working on…" required></textarea><div class="composer-tools"><span class="small muted">Visible to everyone on DevHub</span><button class="send" id="hubSend" aria-label="Post message"><svg class="icon"><use href="#i-up"/></svg></button></div></form></div></section>
 <section id="creationsView" class="shared-view" hidden aria-label="Community creations"><div class="community-shell"><div class="community-heading"><div><h1>Creations</h1><p>A little inspiration. A lot of work worth sharing.</p></div><button id="newCreation" class="btn primary"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Share a creation</button></div><div class="feed-toolbar"><div class="filter-tabs" id="creationFilters" role="group" aria-label="Filter creations"><button data-category="All" aria-pressed="true">All work</button><button data-category="Interface" aria-pressed="false">Interfaces</button><button data-category="Script" aria-pressed="false">Scripts</button><button data-category="Game" aria-pressed="false">Games</button><button data-category="Other" aria-pressed="false">Other</button></div><button class="btn ghost" id="clearAuthorFilter" hidden>Show everyone</button></div><p id="creationStatus" class="inline-error" role="status"></p><div id="creationGrid" class="creation-grid"></div><button id="moreCreations" class="btn feed-more" hidden>Load more</button></div></section>
@@ -5003,7 +5003,7 @@ function syncChatURL(id=activeId,replace=false){
 }
 const COLORS = ['#2468e8','#7754cc','#cb4974','#b56a25','#278164','#258894','#69788e'];
 const MODES = {
-  axiom: {name:'Axiom AI', sub:'Roblox workspace', title:'A little help. <span>A lot to build.</span>', description:'Bring your idea, your Luau, or that error you can’t quite figure out. Let’s make it work in Roblox Studio.', suggestions:[['layout','Design a UI','Responsive inventory with real states','Design a Roblox inventory UI for desktop and mobile. Include selected, equipped, and empty states; explain the Explorer hierarchy and give complete Luau files.'],['code','Build a system','Server-authoritative sprint and stamina','Build a Roblox sprint and stamina system. The server must validate stamina; support keyboard, touch, and gamepad; include exact Explorer placement and test steps.'],['box','Debug a script','Find the cause, then fix it','Help debug a Roblox Luau script. First explain what information you need from Output and Explorer, then identify the cause and provide a corrected complete file.']]}
+  axiom: {name:'Axiom AI', sub:'Roblox workspace', title:'What are we building today?', description:'Describe a system, paste your Luau, or drop in an Output error. Axiom’s agents plan it, write it, and check it before you paste it into Studio.', suggestions:[['layout','Design a UI','Responsive inventory with real states','Design a Roblox inventory UI for desktop and mobile. Include selected, equipped, and empty states; explain the Explorer hierarchy and give complete Luau files.'],['code','Build a system','Server-authoritative sprint and stamina','Build a Roblox sprint and stamina system. The server must validate stamina; support keyboard, touch, and gamepad; include exact Explorer placement and test steps.'],['box','Debug a script','Find the cause, then fix it','Help debug a Roblox Luau script. First explain what information you need from Output and Explorer, then identify the cause and provide a corrected complete file.']]}
 };
 const AXIOM_MODELS={
   'axiom-ai':{label:'Axiom AI',sub:'Balanced Roblox help for every project.',icon:'spark',badge:'Base'},
@@ -5909,42 +5909,79 @@ function responseLooksIncompleteClient(text){
 }
 function nearBottom(){const a=$('chatArea');return a.scrollHeight-a.scrollTop-a.clientHeight<160;}
 function toBottom(){const a=$('chatArea');a.scrollTop=a.scrollHeight;}
-function formatThoughtDuration(ms){
-  const seconds=Math.max(0,Math.round(Number(ms||0)/1000));
-  if(seconds<1)return 'under a second';
-  if(seconds<60)return seconds+' second'+(seconds===1?'':'s');
-  const minutes=Math.floor(seconds/60),rest=seconds%60;
-  return minutes+' minute'+(minutes===1?'':'s')+(rest?' '+rest+' second'+(rest===1?'':'s'):'');
+function formatAgentTime(ms){ms=Number(ms)||0;if(!ms)return '';if(ms<950)return (Math.max(1,Math.round(ms/100))/10)+'s';return ms<60000?(ms/1000).toFixed(ms<10000?1:0)+'s':Math.floor(ms/60000)+'m '+Math.round((ms%60000)/1000)+'s';}
+function agentStepNode(step){
+  const li=document.createElement('li');li.className='agent-step is-'+(step.status||'running');
+  const state=document.createElement('span');state.className='agent-state';state.setAttribute('aria-hidden','true');
+  const label=document.createElement('span');label.className='sr-only';label.textContent={running:'Working: ',done:'Done: ',skipped:'Skipped: ',failed:'Unavailable: '}[step.status]||'';
+  const name=document.createElement('span');name.className='agent-name';name.textContent=step.name;
+  const detail=document.createElement('span');detail.className='agent-detail';detail.textContent=step.detail||step.role||'';
+  const time=document.createElement('span');time.className='agent-time';time.textContent=step.status==='running'?'':formatAgentTime(step.ms);
+  li.append(state,label,name,detail,time);return li;
 }
-function renderThoughtLine(message,row){
-  if(message.role!=='assistant')return;
-  const active=activeRequest?.messageId===message.id;
-  const thoughtMs=Number(message.activity?.thoughtMs)||0;
-  if(!active&&!thoughtMs)return;
-  const line=document.createElement('div');
-  line.className='thought-line '+(thoughtMs?'done':'live');
-  line.innerHTML=icon('spark')+'<span class="thought-elapsed"></span>';
-  row.append(line);
-  const label=line.querySelector('.thought-elapsed');
-  if(thoughtMs)label.textContent='Response started after '+formatThoughtDuration(thoughtMs);
-  else{
-    const start=Number(activeRequest?.startedPerf)||performance.now();
-    label.textContent='Preparing reply… '+formatThoughtDuration(performance.now()-start);
+function agentPanelBody(message,live){
+  const body=document.createElement('div');body.className='agent-run-body';
+  const steps=document.createElement('ol');steps.className='agent-steps';
+  (message.agents||[]).forEach(step=>steps.append(agentStepNode(step)));
+  body.append(steps);
+  if(message.plan?.steps?.length){
+    const plan=document.createElement('div');plan.className='agent-plan';
+    const title=document.createElement('p');title.className='agent-plan-title';title.textContent=message.plan.summary||'Plan';
+    const list=document.createElement('ol');
+    message.plan.steps.forEach(text=>{const li=document.createElement('li');li.textContent=text;list.append(li);});
+    plan.append(title,list);
+    if(message.plan.files?.length){const files=document.createElement('p');files.className='agent-plan-files';files.textContent=message.plan.files.map(f=>f.path+(f.kind&&f.kind!=='Other'?' ('+f.kind+')':'')).join(' · ');plan.append(files);}
+    body.append(plan);
   }
+  if(message.sources?.length){
+    const sources=document.createElement('p');sources.className='agent-sources';sources.append('References: ');
+    message.sources.forEach((src,i)=>{if(i)sources.append(', ');if(/^https:\/\//.test(src.url||'')){const a=document.createElement('a');a.href=src.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=src.title;sources.append(a);}else sources.append(src.title);});
+    body.append(sources);
+  }
+  if(!live&&message.usage){
+    const meta=document.createElement('p');meta.className='agent-meta';
+    const parts=[message.usage.label||'Axiom AI','~'+shortTokenCount(message.usage.input)+' context','~'+shortTokenCount(message.usage.output)+' output tokens'];
+    if(message.usage.projectMemory)parts.push('project memory on');
+    const files=Number(message.activity?.files)||0;if(files)parts.push(files+' attached file'+(files===1?'':'s'));
+    meta.textContent=parts.join(' · ');body.append(meta);
+  }
+  return body;
+}
+function renderAgentPanel(message,row){
+  if(message.role!=='assistant')return;
+  const live=activeRequest?.messageId===message.id;
+  const agents=message.agents||[];
+  if(!live&&!agents.length&&!message.usage)return;
+  if(live){
+    const panel=document.createElement('section');panel.className='agent-run is-live';panel.setAttribute('aria-label','Axiom agents working');
+    const head=document.createElement('div');head.className='agent-run-head';
+    const current=[...agents].reverse().find(a=>a.status==='running');
+    const title=document.createElement('strong');title.setAttribute('aria-live','polite');
+    title.textContent=current?current.name+' · '+(current.detail||current.role||'Working'):(agents.length?'Finishing up':'Starting the team');
+    const elapsed=document.createElement('span');elapsed.className='agent-run-elapsed';
+    elapsed.textContent=formatAgentTime(performance.now()-(Number(activeRequest?.startedPerf)||performance.now()));
+    head.append(document.createElement('i'),title,elapsed);panel.append(head);
+    if(agents.length||message.plan)panel.append(agentPanelBody(message,true));
+    row.append(panel);return;
+  }
+  const details=document.createElement('details');details.className='agent-run';
+  const summary=document.createElement('summary');
+  const worked=Number(message.activity?.totalMs)||0;
+  const names=[...new Set(agents.filter(a=>a.status!=='skipped').map(a=>a.name))];
+  const lead=document.createElement('span');lead.className='agent-run-lead';lead.textContent=worked?'Worked for '+formatAgentTime(worked):'Details';
+  const team=document.createElement('span');team.className='agent-run-team';team.textContent=names.length?names.join(' → '):(message.usage?.label||'Axiom AI');
+  summary.append(lead,team);details.append(summary,agentPanelBody(message,false));row.append(details);
+}
+function paintAgentPanel(message){
+  const row=$('chatLog')?.querySelector(`[data-message="${message.id}"]`);if(!row)return;
+  const old=row.querySelector('.agent-run');const holder=document.createElement('div');renderAgentPanel(message,holder);
+  const next=holder.firstElementChild;if(!next){old?.remove();return;}
+  if(old)old.replaceWith(next);else row.querySelector('.message-head')?.after(next);
+  const thinking=row.querySelector('.thinking');if(thinking&&message.agents?.length)thinking.remove();
 }
 function updateThoughtClock(message){
-  const node=$('chatLog')?.querySelector(`[data-message="${message.id}"] .thought-elapsed`);
-  if(!node)return;
-  const line=node.closest('.thought-line');
-  const thoughtMs=Number(message.activity?.thoughtMs)||0;
-  if(thoughtMs){
-    node.textContent='Response started after '+formatThoughtDuration(thoughtMs);
-    line?.classList.remove('live');line?.classList.add('done');
-    return;
-  }
-  if(activeRequest?.messageId===message.id){
-    node.textContent='Preparing reply… '+formatThoughtDuration(performance.now()-(Number(activeRequest.startedPerf)||performance.now()));
-  }
+  const node=$('chatLog')?.querySelector(`[data-message="${message.id}"] .agent-run-elapsed`);
+  if(node&&activeRequest?.messageId===message.id)node.textContent=formatAgentTime(performance.now()-(Number(activeRequest.startedPerf)||performance.now()));
 }
 function renderChat(scroll=true){
   const t=currentThread(),has=!!t?.messages.length;$('welcome').hidden=has;$('chatLog').hidden=!has;$('chatLog').replaceChildren();
@@ -5953,7 +5990,7 @@ function renderChat(scroll=true){
     const head=document.createElement('div');head.className='message-head';
     if(m.role==='user'){const a=document.createElement('span');a.className='avatar';avatar(a);const n=document.createElement('span');n.textContent=profile.displayName||username;const b=document.createElement('span');b.innerHTML=badgesHTML(profile.badges);head.append(n,b,a);}else{const img=document.createElement('img');img.className='axiom-avatar';img.src=LOGO;img.alt='';const name=document.createElement('span');name.textContent='Axiom';head.append(img,name);}
     row.append(head);
-    if(m.role==='assistant')renderThoughtLine(m,row);
+    if(m.role==='assistant')renderAgentPanel(m,row);
     const content=document.createElement('div');content.className=m.role==='user'?'user-content':'response';
     if(m.role==='user'){
       const images=Array.isArray(m.content)?m.content.filter(c=>c.type==='image_url'):[];
@@ -5962,17 +5999,9 @@ function renderChat(scroll=true){
       if(m.files?.length)renderUserFiles(m,content);
     }else{
       renderResponse(content,m.content,activeRequest?.messageId===m.id);
-      if(!m.content&&activeRequest?.messageId===m.id)content.innerHTML='<div class="thinking"><i></i><i></i><i></i><span>Axiom is working…</span></div>';
+      if(!m.content&&activeRequest?.messageId===m.id&&!m.agents?.length)content.innerHTML='<div class="thinking"><i></i><i></i><i></i><span>Axiom is working…</span></div>';
     }
     row.append(content);
-    if(m.role==='assistant'&&m.usage&&m.content)renderResponseActivity(m,row);
-    if(m.role==='assistant'&&m.usage&&m.content){
-      const usage=document.createElement('div');
-      usage.className='response-usage';
-      const meta=AXIOM_MODELS[normalizeClientModel(m.usage.model)]||AXIOM_MODELS['axiom-ai'];
-      usage.innerHTML=`${icon(meta.icon)}<span>${escapeHTML(m.usage.label||meta.label)}</span><span class="usage-sep">•</span><span>~${shortTokenCount(m.usage.input)} in</span><span class="usage-sep">•</span><span>~${shortTokenCount(m.usage.output)} out</span>`;
-      row.append(usage);
-    }
     if(m.role==='assistant'&&!activeRequest){
       if(m.status){const note=document.createElement('p');note.className='status-note';note.textContent=m.status==='length'?'Response limit reached. Continue to finish the remaining code.':m.status==='stopped'?'Generation stopped. This reply may be incomplete.':m.status==='error'?'Connection interrupted. This reply may be incomplete.':'';row.append(note);}
       const actions=document.createElement('div');actions.className='response-actions';const b=document.createElement('button');b.className='icon-btn';b.ariaLabel='Copy response';b.innerHTML=icon('copy');b.onclick=()=>copyText(m.content);actions.append(b);
@@ -6013,7 +6042,7 @@ $('expandPrompt').onclick=()=>{
   const expanded=box.classList.toggle('is-expanded');
   $('expandPrompt').setAttribute('aria-pressed',String(expanded));
   $('expandPrompt').setAttribute('aria-label',expanded?'Collapse message editor':'Expand message editor');
-  $('expandPrompt').textContent=expanded?'Collapse editor':'Expand editor';
+  $('expandPrompt').title=expanded?'Collapse editor':'Expand editor';
   resizePrompt();
   $('prompt').focus();
 };
@@ -6113,51 +6142,6 @@ function renderUserFiles(message,container){
   }
 }
 
-function renderResponseActivity(message,row){
-  if(!message.usage)return;
-
-  const details=document.createElement('details');
-  details.className='response-activity';
-
-  const files=Number(message.activity?.files)||0;
-  const summary=document.createElement('summary');
-
-  const totalMs=Number(message.activity?.totalMs)||0;
-  summary.textContent=
-    (totalMs?'Completed in '+formatThoughtDuration(totalMs)+' · ':'')+
-    (files?`Worked with ${files} file${files===1?'':'s'} · `:'')+
-    (message.usage.label||'Axiom AI')+
-    ' · ~'+shortTokenCount(message.usage.input)+' context tokens';
-
-  const body=document.createElement('div');
-  body.className='response-activity-body';
-
-  const pipeline=document.createElement('span');
-  pipeline.textContent='Pipeline: '+(message.usage.pipeline||'Axiom');
-
-  const output=document.createElement('span');
-  output.textContent=
-    'Generated ~'+shortTokenCount(message.usage.output)+' output tokens';
-
-  body.append(pipeline,output);
-
-  if(message.usage.agents){const agents=document.createElement('span');agents.textContent='Agents: '+message.usage.agents;body.append(agents);}
-  if(message.usage.projectMemory){const memory=document.createElement('span');memory.textContent='Project Memory: active';body.append(memory);}
-  if(message.usage.intent){const intent=document.createElement('span');intent.textContent='Intent: '+message.usage.intent;body.append(intent);}
-  if(message.usage.grounding&&message.usage.grounding!=='disabled'){const grounding=document.createElement('span');grounding.textContent='Grounding: '+message.usage.grounding+(message.usage.groundingHits?' · '+message.usage.groundingHits+' hit'+(message.usage.groundingHits===1?'':'s'):'');body.append(grounding);}
-
-  if(files){
-    const fileLine=document.createElement('span');
-    fileLine.textContent=
-      'Referenced '+files+' attached source/image file'+(files===1?'':'s');
-    body.append(fileLine);
-  }
-
-  details.append(summary,body);
-  row.append(details);
-}
-
-
 $('prompt').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing&&prefs.enterSend){e.preventDefault();if(!activeRequest)$('chatForm').requestSubmit();}};
 function dataURL(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('Could not read that file.'));r.readAsDataURL(file);});}
 async function validImage(file,limit=5*1024*1024){
@@ -6251,10 +6235,10 @@ function contextMessages(messages){
 
   return selected;
 }
-async function consumeSSE(response,onToken,onFinish){
+async function consumeSSE(response,onToken,onFinish,onAgent){
   if(!response.body)throw new Error('The AI returned no response stream.');
   const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='',doneSignal=false,finished=false;
-  const event=raw=>{const data=raw.split('\n').filter(l=>l.startsWith('data:')).map(l=>l.slice(5).trimStart()).join('\n');if(!data)return;if(data==='[DONE]'){doneSignal=true;return;}const chunk=JSON.parse(data);if(chunk.error){const e=new Error(chunk.error.message||'Generation failed.');e.retryAt=Date.now()+Math.max(0,Number(chunk.error.retry)||0)*1000;throw e;}const choice=chunk.choices?.[0];if(choice?.delta?.content)onToken(choice.delta.content);if(choice?.finish_reason){finished=true;onFinish(choice.finish_reason);}};
+  const event=raw=>{const data=raw.split('\n').filter(l=>l.startsWith('data:')).map(l=>l.slice(5).trimStart()).join('\n');if(!data)return;if(data==='[DONE]'){doneSignal=true;return;}const chunk=JSON.parse(data);if(chunk.error){const e=new Error(chunk.error.message||'Generation failed.');e.retryAt=Date.now()+Math.max(0,Number(chunk.error.retry)||0)*1000;throw e;}if(chunk.axiom&&onAgent)onAgent(chunk.axiom);const choice=chunk.choices?.[0];if(choice?.delta?.content)onToken(choice.delta.content);if(choice?.finish_reason){finished=true;onFinish(choice.finish_reason);}};
   try{while(true){const {value,done}=await reader.read();buffer+=decoder.decode(value,{stream:!done});buffer=buffer.replace(/\r\n/g,'\n');let pos;while((pos=buffer.indexOf('\n\n'))!==-1){event(buffer.slice(0,pos));buffer=buffer.slice(pos+2);}if(done){if(buffer.trim())event(buffer);break;}}if(!doneSignal&&!finished)throw new Error('The connection ended before the reply was complete.');}finally{await reader.cancel().catch(()=>{});reader.releaseLock();}
 }
 async function generate(action='retry'){
@@ -6269,15 +6253,25 @@ async function generate(action='retry'){
   let messages;try{messages=contextMessages(source);}catch(err){chatFailure={threadId:t.id,message:err.message};showChatError();return;}
   const attachedFileCount=(source.at(-1)?.files||[]).length;
   const startedPerf=performance.now();
-  const controller=new AbortController(),reply={id:uid(),role:'assistant',content:'',ts:Date.now(),activity:{files:attachedFileCount,thoughtMs:0,totalMs:0}};
+  const controller=new AbortController(),reply={id:uid(),role:'assistant',content:'',ts:Date.now(),agents:[],plan:null,sources:[],activity:{files:attachedFileCount,thoughtMs:0,totalMs:0}};
   if(old)t.messages.pop();t.messages.push(reply);activeRequest={controller,threadId:t.id,messageId:reply.id,startedPerf};chatFailure=null;updateControls();renderChat();
   let timer,lastDraw=0,gotAny=false,thoughtTicker=setInterval(()=>updateThoughtClock(reply),500);
   const markFirstToken=()=>{if(!reply.activity.thoughtMs){reply.activity.thoughtMs=Math.max(1,performance.now()-startedPerf);updateThoughtClock(reply);}};
   const paint=()=>{if(activeId!==t.id)return;const follow=nearBottom();const node=$('chatLog').querySelector(`[data-message="${reply.id}"] .response`);if(node)renderResponse(node,reply.content,true);if(follow)toBottom();};
   const arm=()=>{clearTimeout(timer);timer=setTimeout(()=>{controller.abort('timeout');},360000);};arm();
+  const paintAgents=()=>{if(activeId===t.id)paintAgentPanel(reply);};
+  const onAgent=ev=>{
+    arm();
+    if(ev.type==='agent'){const i=reply.agents.findIndex(a=>a.id===ev.id);const step={id:ev.id,name:ev.name,role:ev.role,status:ev.status,detail:ev.detail,ms:ev.ms};if(i>=0)reply.agents[i]=step;else reply.agents.push(step);paintAgents();}
+    else if(ev.type==='plan'){reply.plan={summary:ev.summary||'',steps:ev.steps||[],files:ev.files||[]};paintAgents();}
+    else if(ev.type==='sources'){reply.sources=(ev.items||[]).slice(0,6);paintAgents();}
+    else if(ev.type==='reset'){reply.content='';paint();}
+    else if(ev.type==='replace'){reply.content=String(ev.content||'');gotAny=!!reply.content;paint();}
+    else if(ev.type==='run'&&reply.usage){reply.usage.output=Number(ev.outputTokens)||reply.usage.output;reply.usage.input=Number(ev.inputTokens)||reply.usage.input;reply.usage.pipeline=ev.pipeline||reply.usage.pipeline;}
+  };
   try{
     const hasImages=messages.some(m=>Array.isArray(m.content)&&m.content.some(c=>c.type==='image_url'));
-    const selectedProject=t.projectId||activeProjectId||'';const projectMeta=projects.find(project=>project.id===selectedProject);const res=await fetch(PROXY_URL+'/chat',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+sessionToken},signal:controller.signal,body:JSON.stringify({mode:t.mode,workspace:normalizeWorkspace(t.workspace||workspace),model_profile:normalizeClientModel(t.modelProfile||modelProfile),request_id:reply.id,project_id:selectedProject||undefined,project_name:projectMeta?.name,project_source:selectedProject?'web':undefined,stream:true,max_completion_tokens:Number(prefs.tokenLimit)||16384,messages})});
+    const selectedProject=t.projectId||activeProjectId||'';const projectMeta=projects.find(project=>project.id===selectedProject);const res=await fetch(PROXY_URL+'/chat',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+sessionToken},signal:controller.signal,body:JSON.stringify({mode:t.mode,workspace:normalizeWorkspace(t.workspace||workspace),model_profile:normalizeClientModel(t.modelProfile||modelProfile),request_id:reply.id,project_id:selectedProject||undefined,project_name:projectMeta?.name,project_source:selectedProject?'web':undefined,stream:true,agent_events:true,max_completion_tokens:Number(prefs.tokenLimit)||16384,messages})});
     reply.usage={
       model:normalizeClientModel(res.headers.get('x-axiom-model-profile')||t.modelProfile||modelProfile),
       label:res.headers.get('x-axiom-model-label')||AXIOM_MODELS[normalizeClientModel(t.modelProfile||modelProfile)]?.label||'Axiom AI',
@@ -6302,7 +6296,7 @@ async function generate(action='retry'){
       throw error;
     }
     if((res.headers.get('content-type')||'').includes('text/event-stream')){
-      await consumeSSE(res,token=>{if(!gotAny)markFirstToken();arm();gotAny=true;reply.content+=token;if(Date.now()-lastDraw>100){lastDraw=Date.now();paint();}},reason=>{if(reason==='length')reply.status='length';});
+      await consumeSSE(res,token=>{if(!gotAny)markFirstToken();arm();gotAny=true;reply.content+=token;if(Date.now()-lastDraw>100){lastDraw=Date.now();paint();}},reason=>{if(reason==='length')reply.status='length';},onAgent);
     }else{
       const data=await res.json();if(data.error)throw new Error(data.error.message);const choice=data.choices?.[0];reply.content=choice?.message?.content||'';gotAny=!!reply.content;if(gotAny)markFirstToken();if(choice?.finish_reason==='length')reply.status='length';
     }
@@ -6314,7 +6308,7 @@ async function generate(action='retry'){
     else{t.messages.pop();if(old)t.messages.push(old);}
     if(!stopped)chatFailure={threadId:t.id,retryAt:err.retryAt||0,message:controller.signal.reason==='timeout'?'Axiom took too long to finish this reply. Your prompt is still saved — retry it.':err.message||'Unable to reach Axiom. Check your connection and retry.'};
     if(stopped&&!gotAny)toast('Generation stopped. Your prompt is saved.');
-  }finally{clearTimeout(timer);clearInterval(thoughtTicker);reply.activity.totalMs=Math.max(1,performance.now()-startedPerf);if(gotAny&&!reply.activity.thoughtMs)reply.activity.thoughtMs=reply.activity.totalMs;activeRequest=null;t.updated=Date.now();await saveThreads().catch(()=>{});renderRecent();renderChat(false);updateControls();}
+  }finally{clearTimeout(timer);clearInterval(thoughtTicker);(reply.agents||[]).forEach(a=>{if(a.status==='running')a.status='failed';});reply.activity.totalMs=Math.max(1,performance.now()-startedPerf);if(gotAny&&!reply.activity.thoughtMs)reply.activity.thoughtMs=reply.activity.totalMs;activeRequest=null;t.updated=Date.now();await saveThreads().catch(()=>{});renderRecent();renderChat(false);updateControls();}
 }
 let avatarChanged=false,profileRequest=0,profileSaving=false;
 function previewAvatar(){if(draftURL)URL.revokeObjectURL(draftURL);draftURL=draftBlob?URL.createObjectURL(draftBlob):null;const src=draftBlob?draftURL:avatarChanged?null:mediaURL(profileDraft.avatarId);avatar($('avatarPreview'),{...profileDraft,displayName:$('displayName').value||username},src);$('removeAvatar').disabled=!src;}
