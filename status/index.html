@@ -3,1847 +3,566 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f7faff">
-  <meta name="description" content="Live service status for Axiom AI.">
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="description" content="Live service status for Axiom AI: API, agents, accounts, uploads and community services.">
   <title>Axiom Status</title>
-
+  <script>
+    // Apply the saved theme before first paint so the page never flashes.
+    (() => {
+      let theme = null;
+      try { theme = localStorage.getItem('axiom-status-theme'); } catch {}
+      if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
   <style>
+    @font-face{font-family:'DM Sans';font-style:normal;font-weight:100 1000;font-display:swap;src:url('/assets/fonts/dm-sans-latin-wght-normal.woff2') format('woff2')}
+    @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 800;font-display:swap;src:url('/assets/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2')}
+
+    /* Same tokens as the Axiom workspace (assets/workspace.css). */
     :root{
+      --font:'DM Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+      --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Consolas,monospace;
+      --r-sm:8px;--r-md:12px;--r-lg:16px;
+    }
+    html[data-theme=light]{
+      color-scheme:light;
+      --bg:#f7f8fa;--surface:#ffffff;--soft:#f1f3f6;--hover:#e8ebf0;
+      --ink:#151b26;--muted:#5b6574;--faint:#8a93a1;--line:#e1e5eb;
+      --blue:#2f6bed;--blue-soft:#e8effd;--ring:#7aa5ff;
+      --ok:#1f8a5b;--ok-soft:#e6f4ec;--warn:#a86a00;--warn-soft:#fdf3dd;--bad:#c03a3a;--bad-soft:#fbeaea;
+      --shadow:0 1px 2px #0f172a0a,0 8px 28px #0f172a0b;
+    }
+    html[data-theme=dark]{
       color-scheme:dark;
-      --bg:#11110f;
-      --surface:#181714;
-      --surface-2:#1f1e1a;
-      --surface-3:#26241f;
-      --ink:#f3f0e8;
-      --muted:#a59f94;
-      --line:#35322b;
-      --blue:#8ba9ff;
-      --green:#73d49a;
-      --green-soft:#1b2c22;
-      --yellow:#e4b65b;
-      --yellow-soft:#302719;
-      --red:#ef808c;
-      --red-soft:#311c20;
-      --shadow:0 24px 80px rgba(0,0,0,.22);
-      --radius:18px;
+      --bg:#14171d;--surface:#1b1f27;--soft:#222731;--hover:#2a303b;
+      --ink:#e9edf3;--muted:#9aa4b2;--faint:#6f7886;--line:#2c323d;
+      --blue:#8fb2ff;--blue-soft:#22314d;--ring:#8fb2ff;
+      --ok:#6fd3a0;--ok-soft:#173226;--warn:#f0c66a;--warn-soft:#3a2e17;--bad:#ff9b93;--bad-soft:#3c1d20;
+      --shadow:0 1px 2px #0005,0 10px 30px #0004;
     }
 
     *{box-sizing:border-box}
-
-    html{
-      scroll-behavior:smooth;
-      background:var(--bg);
-    }
-
-    body{
-      margin:0;
-      min-height:100vh;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:
-        radial-gradient(
-          circle at 50% -12%,
-          color-mix(in srgb,var(--blue) 8%,transparent),
-          transparent 36rem
-        ),
-        var(--bg);
-      color:var(--ink);
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-
-    button,a{font:inherit}
-    button{border:0;cursor:pointer}
-    a{color:inherit;text-decoration:none}
+    html{background:var(--bg)}
+    body{margin:0;min-height:100vh;font-family:var(--font);font-size:15px;line-height:1.5;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+    button,a{font:inherit;color:inherit}
+    a{text-decoration:none}
+    button{border:0;background:none;cursor:pointer}
     [hidden]{display:none!important}
-
-    .shell{
-      width:min(1120px,calc(100% - 36px));
-      margin:0 auto;
-    }
-
-    .topbar{
-      min-height:72px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-      border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent);
-    }
-
-    .brand{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    .brand-logo{
-      width:31px;
-      height:31px;
-      object-fit:contain;
-      flex:0 0 auto;
-    }
-
-    .brand-copy{
-      min-width:0;
-    }
-
-    .brand-copy strong{
-      display:block;
-      font-size:19px;
-      letter-spacing:-.7px;
-      line-height:1.15;
-    }
-
-    .brand-copy span{
-      display:block;
-      margin-top:2px;
-      color:var(--muted);
-      font-size:11px;
-      white-space:nowrap;
-    }
-
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .nav-link,
-    .refresh-btn{
-      min-height:38px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:7px;
-      padding:0 12px;
-      border-radius:10px;
-      color:var(--muted);
-      background:transparent;
-      transition:background .16s ease,color .16s ease,transform .16s ease;
-    }
-
-    .nav-link:hover,
-    .refresh-btn:hover{
-      background:var(--surface-2);
-      color:var(--ink);
-    }
-
-    .nav-link:active,
-    .refresh-btn:active{
-      transform:scale(.98);
-    }
-
-    .refresh-btn:disabled{
-      opacity:.55;
-      cursor:not-allowed;
-    }
-
-    .hero{
-      padding:clamp(70px,10vw,120px) 0 52px;
-      display:grid;
-      grid-template-columns:minmax(0,1fr) minmax(260px,340px);
-      gap:42px;
-      align-items:end;
-    }
-
-    .eyebrow{
-      margin:0 0 14px;
-      color:var(--green);
-      font-size:12px;
-      font-weight:750;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-
-    .hero h1{
-      margin:0;
-      max-width:780px;
-      font-family:ui-serif,Georgia,Cambria,"Times New Roman",serif;
-      font-size:clamp(48px,7.2vw,82px);
-      line-height:.98;
-      letter-spacing:-3.6px;
-      font-weight:500;
-    }
-
-    .hero-copy{
-      max-width:650px;
-      margin:24px 0 0;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.72;
-    }
-
-    .overall{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:color-mix(in srgb,var(--surface) 94%,transparent);
-      padding:20px;
-      box-shadow:var(--shadow);
-    }
-
-    .overall-top{
-      display:flex;
-      align-items:center;
-      gap:9px;
-      font-size:13px;
-      font-weight:700;
-    }
-
-    .status-dot{
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:var(--muted);
-      box-shadow:0 0 0 4px color-mix(in srgb,currentColor 10%,transparent);
-      flex:0 0 auto;
-    }
-
-    .status-dot.operational{background:var(--green)}
-    .status-dot.degraded{background:var(--yellow)}
-    .status-dot.down{background:var(--red)}
-    .status-dot.checking{background:var(--blue)}
-
-    .overall-time{
-      margin-top:7px;
-      color:var(--muted);
-      font-size:11px;
-    }
-
-    .overall-meta{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
-      margin-top:18px;
-    }
-
-    .overall-meta div{
-      padding:10px;
-      border:1px solid var(--line);
-      border-radius:10px;
-      background:var(--surface-2);
-    }
-
-    .overall-meta span{
-      display:block;
-      color:var(--muted);
-      font-size:9px;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-    }
-
-    .overall-meta strong{
-      display:block;
-      margin-top:3px;
-      font-size:12px;
-      font-weight:700;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-
-    .section{
-      padding:28px 0 68px;
-    }
-
-    .section-head{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:22px;
-      margin-bottom:18px;
-    }
-
-    .section-head h2{
-      margin:0;
-      color:var(--muted);
-      font-size:12px;
-      letter-spacing:.09em;
-      text-transform:uppercase;
-    }
-
-    .section-head span{
-      color:var(--muted);
-      font-size:11px;
-    }
-
-    .service-list{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      overflow:hidden;
-      background:color-mix(in srgb,var(--surface) 95%,transparent);
-    }
-
-    .service{
-      display:grid;
-      grid-template-columns:minmax(180px,.7fr) minmax(220px,1fr) minmax(150px,.65fr);
-      gap:20px;
-      align-items:center;
-      padding:17px 20px;
-      border-bottom:1px solid var(--line);
-    }
-
-    .service:last-child{border-bottom:0}
-
-    .service-name{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    .service-name strong{
-      display:block;
-      font-size:13px;
-      font-weight:700;
-    }
-
-    .service-name small{
-      display:block;
-      color:var(--muted);
-      font-size:10px;
-      margin-top:2px;
-    }
-
-    .service-bar-wrap{
-      min-width:0;
-    }
-
-    .service-bar{
-      height:7px;
-      border-radius:999px;
-      overflow:hidden;
-      background:var(--surface-3);
-      border:1px solid color-mix(in srgb,var(--line) 85%,transparent);
-    }
-
-    .service-bar i{
-      display:block;
-      width:0%;
-      height:100%;
-      border-radius:inherit;
-      background:var(--blue);
-      transition:width .35s ease,background .2s ease;
-    }
-
-    .service-bar i.operational{
-      width:100%;
-      background:var(--green);
-    }
-
-    .service-bar i.degraded{
-      width:64%;
-      background:var(--yellow);
-    }
-
-    .service-bar i.down{
-      width:18%;
-      background:var(--red);
-    }
-
-    .service-note{
-      margin-top:6px;
-      color:var(--muted);
-      font-size:10px;
-    }
-
-    .service-state{
-      justify-self:end;
-      min-height:30px;
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
-      padding:0 9px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:var(--surface-2);
-      color:var(--muted);
-      font-size:10px;
-      font-weight:700;
-      white-space:nowrap;
-    }
-
-    .service-state.operational{
-      color:var(--green);
-      border-color:color-mix(in srgb,var(--green) 32%,var(--line));
-      background:var(--green-soft);
-    }
-
-    .service-state.degraded{
-      color:var(--yellow);
-      border-color:color-mix(in srgb,var(--yellow) 32%,var(--line));
-      background:var(--yellow-soft);
-    }
-
-    .service-state.down{
-      color:var(--red);
-      border-color:color-mix(in srgb,var(--red) 32%,var(--line));
-      background:var(--red-soft);
-    }
-
-    .split{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:14px;
-    }
-
-    .panel{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:color-mix(in srgb,var(--surface) 94%,transparent);
-      overflow:hidden;
-    }
-
-    .panel-head{
-      min-height:62px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding:0 18px;
-      border-bottom:1px solid var(--line);
-    }
-
-    .panel-head strong{
-      font-size:13px;
-    }
-
-    .panel-head span{
-      color:var(--muted);
-      font-size:10px;
-    }
-
-    .latency-wrap{
-      padding:18px;
-    }
-
-    .chart-meta{
-      display:flex;
-      align-items:baseline;
-      gap:9px;
-      margin-bottom:16px;
-    }
-
-    .chart-meta strong{
-      font-family:ui-serif,Georgia,Cambria,"Times New Roman",serif;
-      font-size:38px;
-      font-weight:500;
-      letter-spacing:-1.4px;
-      line-height:1;
-    }
-
-    .chart-meta span{
-      color:var(--muted);
-      font-size:11px;
-    }
-
-    .bars{
-      height:120px;
-      display:flex;
-      align-items:end;
-      gap:4px;
-      padding-top:10px;
-      border-bottom:1px solid var(--line);
-      position:relative;
-    }
-
-    .bars::before,
-    .bars::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      height:1px;
-      background:color-mix(in srgb,var(--line) 60%,transparent);
-      pointer-events:none;
-    }
-
-    .bars::before{top:35%}
-    .bars::after{top:67%}
-
-    .latency-bar{
-      flex:1;
-      min-width:3px;
-      max-width:18px;
-      height:8%;
-      border-radius:3px 3px 0 0;
-      background:color-mix(in srgb,var(--blue) 72%,var(--surface-3));
-      position:relative;
-      z-index:1;
-      transition:height .2s ease;
-    }
-
-    .latency-empty{
-      flex:1;
-      border-radius:3px 3px 0 0;
-      background:var(--surface-2);
-      height:6%;
-      position:relative;
-      z-index:1;
-    }
-
-    .chart-footer{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-top:9px;
-      color:var(--muted);
-      font-size:9px;
-    }
-
-    .snapshot{
-      padding:8px;
-    }
-
-    .snapshot-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:11px 10px;
-      border-radius:9px;
-    }
-
-    .snapshot-row:nth-child(odd){
-      background:color-mix(in srgb,var(--surface-2) 65%,transparent);
-    }
-
-    .snapshot-row span{
-      color:var(--muted);
-      font-size:11px;
-    }
-
-    .snapshot-row strong{
-      font-size:11px;
-      font-weight:700;
-      text-align:right;
-      overflow-wrap:anywhere;
-    }
-
-    .models{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:10px;
-    }
-
-    .model{
-      min-height:148px;
-      border:1px solid var(--line);
-      border-radius:15px;
-      background:var(--surface);
-      padding:16px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:18px;
-    }
-
-    .model strong{
-      display:block;
-      font-size:13px;
-      letter-spacing:-.2px;
-    }
-
-    .model p{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:11px;
-      line-height:1.55;
-    }
-
-    .model-state{
-      display:flex;
-      align-items:center;
-      gap:7px;
-      color:var(--green);
-      font-size:9px;
-      font-weight:800;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-    }
-
-    .incident{
-      min-height:130px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:24px;
-      padding:22px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:var(--surface);
-    }
-
-    .incident-copy h3{
-      margin:0;
-      font-size:17px;
-      letter-spacing:-.4px;
-    }
-
-    .incident-copy p{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    .incident-mark{
-      width:43px;
-      height:43px;
-      flex:0 0 auto;
-      display:grid;
-      place-items:center;
-      border-radius:14px;
-      background:var(--green-soft);
-      color:var(--green);
-      font-size:18px;
-      font-weight:800;
-    }
-
-    .incident.degraded .incident-mark{
-      background:var(--yellow-soft);
-      color:var(--yellow);
-    }
-
-    .incident.down .incident-mark{
-      background:var(--red-soft);
-      color:var(--red);
-    }
-
-    .error{
-      margin-bottom:20px;
-      padding:12px 14px;
-      border:1px solid color-mix(in srgb,var(--red) 30%,var(--line));
-      border-radius:12px;
-      background:var(--red-soft);
-      color:var(--red);
-      font-size:11px;
-    }
-
-    footer{
-      padding:28px 0 38px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      font-size:11px;
-    }
-
-    .footer-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-
-    @media(max-width:900px){
-      .hero{grid-template-columns:1fr}
-      .overall{max-width:420px}
+    :focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:6px}
+    .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+    .shell{width:min(960px,calc(100% - 32px));margin:0 auto}
+
+    /* Top bar */
+    .topbar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .topbar .shell{height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:inline-flex;align-items:center;gap:10px;font-weight:650;font-size:16px;letter-spacing:-.2px}
+    .brand img{width:26px;height:26px;object-fit:contain}
+    .brand span{color:var(--faint);font-weight:500}
+    .actions{display:flex;align-items:center;gap:4px}
+    .btn{height:36px;display:inline-flex;align-items:center;gap:8px;padding:0 12px;border-radius:var(--r-sm);color:var(--muted);font-size:14px;font-weight:500;transition:background .15s,color .15s}
+    .btn:hover{background:var(--hover);color:var(--ink)}
+    .btn:disabled{opacity:.5;cursor:default}
+    .btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .btn.icon{width:36px;padding:0;justify-content:center}
+    .btn.refreshing svg{animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* Overall status */
+    .summary{padding:48px 0 32px}
+    .summary-state{display:flex;align-items:center;gap:12px}
+    .summary h1{margin:0;font-size:clamp(26px,4vw,34px);line-height:1.15;letter-spacing:-.03em;font-weight:650}
+    .summary p{margin:10px 0 0;color:var(--muted);max-width:620px}
+    .summary-meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:18px;font-size:13px;color:var(--muted)}
+    .summary-meta strong{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+    .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto;background:var(--faint)}
+    .dot.lg{width:14px;height:14px;box-shadow:0 0 0 5px color-mix(in srgb,currentColor 14%,transparent)}
+    .dot.operational{background:var(--ok);color:var(--ok)}
+    .dot.degraded{background:var(--warn);color:var(--warn)}
+    .dot.down{background:var(--bad);color:var(--bad)}
+    .dot.checking{background:var(--blue);color:var(--blue);animation:pulse 1.2s ease-in-out infinite}
+    .dot.idle{background:var(--faint);color:var(--faint)}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+    .error{margin:0 0 24px;padding:12px 14px;border:1px solid color-mix(in srgb,var(--bad) 35%,var(--line));border-left:3px solid var(--bad);border-radius:var(--r-md);background:var(--surface);font-size:14px}
+
+    /* Sections */
+    section{padding:0 0 40px}
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 12px}
+    .section-head h2{margin:0;font-size:17px;font-weight:650;letter-spacing:-.2px}
+    .section-head span{color:var(--faint);font-size:13px}
+
+    .list{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);overflow:hidden}
+    .row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px;padding:14px 18px;border-top:1px solid var(--line)}
+    .row:first-child{border-top:0}
+    .row-main{display:flex;align-items:flex-start;gap:12px;min-width:0}
+    .row-main .dot{margin-top:6px}
+    .row-title{font-weight:600;font-size:15px}
+    .row-sub{color:var(--muted);font-size:13px;margin-top:1px}
+    .row-note{color:var(--faint);font-size:12px;margin-top:4px;overflow-wrap:anywhere}
+
+    .pill{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap;background:var(--soft);color:var(--muted)}
+    .pill.operational{background:var(--ok-soft);color:var(--ok)}
+    .pill.degraded,.pill.not-connected,.pill.disabled{background:var(--warn-soft);color:var(--warn)}
+    .pill.down,.pill.unavailable{background:var(--bad-soft);color:var(--bad)}
+    .pill.checking{background:var(--blue-soft);color:var(--blue)}
+
+    /* Agent pipeline */
+    .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 12px;font-size:13px;color:var(--faint)}
+    .flow b{font-weight:600;color:var(--muted)}
+    .agent-kind{font-family:var(--mono);font-size:11px;color:var(--faint);margin-left:6px;font-weight:400}
+
+    /* Telemetry */
+    .split{display:grid;grid-template-columns:1.1fr .9fr;gap:12px}
+    .panel{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:18px}
+    .panel h3{margin:0 0 2px;font-size:14px;font-weight:600}
+    .panel .hint{margin:0;color:var(--faint);font-size:12px}
+    .latency-now{display:flex;align-items:baseline;gap:6px;margin:16px 0 14px}
+    .latency-now strong{font-size:32px;font-weight:650;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+    .latency-now span{color:var(--muted);font-size:13px}
+    .bars{height:96px;display:flex;align-items:flex-end;gap:3px;border-bottom:1px solid var(--line)}
+    .bars i{flex:1;min-width:2px;border-radius:3px 3px 0 0;background:var(--blue);opacity:.8}
+    .bars i.empty{background:var(--soft);opacity:1;height:6%}
+    .bars i.slow{background:var(--warn)}
+    .bars i.failed{background:var(--bad);height:100%;opacity:.5}
+    .chart-foot{display:flex;justify-content:space-between;gap:12px;margin-top:8px;font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums}
+
+    .facts{margin:12px 0 0;display:grid;grid-template-columns:auto 1fr;gap:0;font-size:13px}
+    .facts dt,.facts dd{margin:0;padding:8px 0;border-top:1px solid var(--line)}
+    .facts dt{color:var(--muted);padding-right:16px}
+    .facts dd{text-align:right;font-weight:600;overflow-wrap:anywhere}
+    .facts dt:first-of-type,.facts dt:first-of-type+dd{border-top:0}
+
+    /* Models */
+    .models{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+    .model{border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);padding:14px}
+    .model strong{display:block;font-size:14px;font-weight:600}
+    .model p{margin:4px 0 12px;color:var(--muted);font-size:13px;line-height:1.45}
+    .model-state{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+    .model-state .dot{width:8px;height:8px}
+
+    /* Recent changes */
+    .changes{margin:0;padding:14px 18px 14px 36px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);color:var(--muted);font-size:14px}
+    .changes li+li{margin-top:6px}
+
+    footer{border-top:1px solid var(--line);padding:20px 0 32px;color:var(--faint);font-size:13px}
+    footer .shell{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+    @media(max-width:760px){
       .split{grid-template-columns:1fr}
-      .models{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .summary{padding:32px 0 24px}
+      .row{padding:12px 14px;gap:10px}
+      .brand span,.btn .label{display:none}
+      .btn.back{width:36px;padding:0;justify-content:center}
+      .agent-kind{display:none}
     }
-
-    @media(max-width:700px){
-      .service{
-        grid-template-columns:1fr auto;
-        gap:12px;
-      }
-
-      .service-bar-wrap{
-        grid-column:1/-1;
-        grid-row:2;
-      }
-
-      .service-state{
-        grid-column:2;
-        grid-row:1;
-      }
-    }
-
-    @media(max-width:520px){
-      .shell{width:min(100% - 24px,1120px)}
-      .topbar{min-height:64px}
-      .brand-copy span{display:none}
-      .nav-link span{display:none}
-      .hero{padding-top:62px}
-      .hero h1{font-size:50px;letter-spacing:-2.6px}
-      .hero-copy{font-size:14px}
-      .models{grid-template-columns:1fr}
-      .incident{align-items:flex-start}
-    }
-
     @media(prefers-reduced-motion:reduce){
-      *,*::before,*::after{
-        scroll-behavior:auto!important;
-        animation:none!important;
-        transition:none!important;
-      }
+      *,*::before,*::after{animation:none!important;transition:none!important}
     }
   </style>
-
-<style id="axiom-status-v940">
-:root{
-  color-scheme:light;
-  --bg:#f7faff;
-  --surface:#ffffff;
-  --surface-2:#f0f5ff;
-  --surface-3:#e4edf9;
-  --ink:#10213a;
-  --muted:#68788f;
-  --muted-2:#8c99ac;
-  --line:#dce6f4;
-  --line-strong:#c8d8ef;
-  --blue:#2563eb;
-  --blue-soft:#eaf1ff;
-  --green:#1f9c61;
-  --green-soft:#e8f8ef;
-  --yellow:#b98021;
-  --yellow-soft:#fff5dd;
-  --red:#d34d5c;
-  --red-soft:#fff0f2;
-  --shadow:0 22px 70px rgba(33,74,135,.10);
-  --shadow-soft:0 10px 32px rgba(33,74,135,.07);
-  --radius:20px;
-}
-
-html[data-theme="dark"]{
-  color-scheme:dark;
-  --bg:#081321;
-  --surface:#101d30;
-  --surface-2:#14253c;
-  --surface-3:#1a304c;
-  --ink:#f7faff;
-  --muted:#a0b1c8;
-  --muted-2:#788ba6;
-  --line:#223957;
-  --line-strong:#31517b;
-  --blue:#6ea8fe;
-  --blue-soft:#132f55;
-  --green:#73d9a2;
-  --green-soft:#153526;
-  --yellow:#f0c66a;
-  --yellow-soft:#3a2e17;
-  --red:#ff98a5;
-  --red-soft:#3c1b24;
-  --shadow:0 24px 80px rgba(0,0,0,.35);
-  --shadow-soft:0 12px 34px rgba(0,0,0,.24);
-}
-
-html{
-  scroll-behavior:smooth;
-  scroll-padding-top:82px;
-  background:var(--bg);
-}
-
-body{
-  background:
-    radial-gradient(circle at 18% -8%,color-mix(in srgb,var(--blue) 15%,transparent),transparent 34rem),
-    radial-gradient(circle at 90% 18%,color-mix(in srgb,var(--green) 7%,transparent),transparent 30rem),
-    var(--bg);
-  letter-spacing:-.008em;
-}
-
-*{
-  scrollbar-width:thin;
-  scrollbar-color:color-mix(in srgb,var(--blue) 25%,var(--line)) transparent;
-}
-
-*::-webkit-scrollbar{width:10px;height:10px}
-*::-webkit-scrollbar-track{background:transparent}
-*::-webkit-scrollbar-thumb{
-  background:color-mix(in srgb,var(--blue) 22%,var(--line));
-  border:3px solid transparent;
-  background-clip:padding-box;
-  border-radius:999px;
-}
-
-.shell{
-  width:min(1180px,calc(100% - 38px));
-}
-
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:40;
-  min-height:66px;
-  border-bottom:1px solid color-mix(in srgb,var(--line) 76%,transparent);
-  background:color-mix(in srgb,var(--bg) 84%,transparent);
-  backdrop-filter:blur(18px) saturate(1.2);
-  -webkit-backdrop-filter:blur(18px) saturate(1.2);
-}
-
-.brand-logo{
-  width:34px;
-  height:34px;
-  filter:drop-shadow(0 7px 16px color-mix(in srgb,var(--blue) 20%,transparent));
-}
-
-.brand-copy strong{
-  font-size:17px;
-  letter-spacing:-.4px;
-}
-
-.brand-copy span{
-  color:var(--muted-2);
-}
-
-.nav{
-  gap:6px;
-}
-
-.nav-link,
-.refresh-btn,
-.theme-status-btn{
-  min-height:37px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:0 11px;
-  border:1px solid transparent;
-  border-radius:10px;
-  color:var(--muted);
-  background:transparent;
-  font:inherit;
-  font-size:11px;
-  font-weight:650;
-  transition:background .17s ease,color .17s ease,border-color .17s ease,transform .17s ease;
-}
-
-.nav-link:hover,
-.refresh-btn:hover,
-.theme-status-btn:hover{
-  color:var(--blue);
-  border-color:var(--line);
-  background:var(--blue-soft);
-}
-
-.top-live{
-  min-height:29px;
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:0 9px;
-  border:1px solid color-mix(in srgb,var(--green) 25%,var(--line));
-  border-radius:999px;
-  color:var(--green);
-  background:var(--green-soft);
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:.04em;
-}
-
-.top-live-dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:currentColor;
-  box-shadow:0 0 0 4px color-mix(in srgb,currentColor 11%,transparent);
-  animation:statusPulse 2s ease-in-out infinite;
-}
-
-@keyframes statusPulse{
-  0%,100%{opacity:1}
-  50%{opacity:.45}
-}
-
-.hero{
-  position:relative;
-  padding:clamp(78px,10vw,128px) 0 62px;
-  grid-template-columns:minmax(0,1fr) minmax(300px,365px);
-  gap:48px;
-  align-items:center;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  right:8%;
-  top:45px;
-  width:220px;
-  height:220px;
-  border:1px solid color-mix(in srgb,var(--blue) 12%,transparent);
-  border-radius:58px;
-  transform:rotate(19deg);
-  pointer-events:none;
-}
-
-.eyebrow{
-  color:var(--blue);
-  text-transform:none;
-  letter-spacing:0;
-  font-size:12px;
-  font-weight:750;
-}
-
-.hero h1{
-  max-width:780px;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:clamp(48px,7vw,78px);
-  line-height:.99;
-  letter-spacing:-4px;
-  font-weight:650;
-}
-
-.hero-copy{
-  max-width:660px;
-  margin-top:20px;
-  font-size:15px;
-  line-height:1.68;
-}
-
-.hero-chips{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-  margin-top:21px;
-}
-
-.hero-chips span{
-  min-height:29px;
-  display:inline-flex;
-  align-items:center;
-  padding:0 9px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  color:var(--muted);
-  background:color-mix(in srgb,var(--surface) 78%,transparent);
-  font-size:9px;
-  font-weight:650;
-}
-
-.overall{
-  position:relative;
-  z-index:2;
-  padding:22px;
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:
-    radial-gradient(circle at 100% 0%,color-mix(in srgb,var(--blue) 13%,transparent),transparent 46%),
-    color-mix(in srgb,var(--surface) 96%,transparent);
-  box-shadow:var(--shadow);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-}
-
-.overall-top{
-  font-size:14px;
-}
-
-.status-dot{
-  box-shadow:0 0 0 4px color-mix(in srgb,currentColor 10%,transparent);
-}
-
-.status-dot.operational{
-  box-shadow:
-    0 0 0 4px color-mix(in srgb,var(--green) 11%,transparent),
-    0 0 18px color-mix(in srgb,var(--green) 24%,transparent);
-}
-
-.overall-time{
-  color:var(--muted-2);
-}
-
-.overall-meta div{
-  min-height:66px;
-  padding:12px;
-  border-color:var(--line);
-  border-radius:12px;
-  background:var(--surface-2);
-}
-
-.overall-meta span{
-  color:var(--muted-2);
-}
-
-.overall-meta strong{
-  margin-top:5px;
-  font-size:14px;
-}
-
-.section{
-  padding:34px 0 72px;
-}
-
-.section-head{
-  margin-bottom:18px;
-}
-
-.section-head h2{
-  color:var(--ink);
-  font-size:16px;
-  font-weight:700;
-  text-transform:none;
-  letter-spacing:-.3px;
-}
-
-.section-head span{
-  color:var(--muted-2);
-}
-
-.service-list,
-.panel,
-.model,
-.incident{
-  border-color:var(--line);
-  background:color-mix(in srgb,var(--surface) 96%,transparent);
-  box-shadow:0 9px 30px rgba(35,74,129,.055);
-}
-
-.service-list{
-  border-radius:20px;
-}
-
-.service{
-  min-height:83px;
-  padding:16px 18px;
-  border-bottom-color:var(--line);
-  transition:background .16s ease;
-}
-
-.service:hover{
-  background:var(--blue-soft);
-}
-
-.service-name strong{
-  font-size:12px;
-}
-
-.service-name small,
-.service-note{
-  color:var(--muted);
-}
-
-.service-bar{
-  height:6px;
-  border-color:transparent;
-  background:var(--surface-3);
-}
-
-.service-bar i{
-  box-shadow:0 0 12px color-mix(in srgb,currentColor 16%,transparent);
-}
-
-.service-state{
-  border-color:var(--line);
-  background:var(--surface-2);
-}
-
-.split{
-  gap:14px;
-}
-
-.panel{
-  border-radius:19px;
-}
-
-.panel-head{
-  min-height:58px;
-  padding:0 17px;
-  border-bottom-color:var(--line);
-  background:color-mix(in srgb,var(--surface-2) 52%,var(--surface));
-}
-
-.chart-meta strong{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:42px;
-  font-weight:670;
-  color:var(--ink);
-}
-
-.bars{
-  height:132px;
-}
-
-.latency-bar{
-  border-radius:5px 5px 1px 1px;
-  background:linear-gradient(180deg,color-mix(in srgb,var(--blue) 72%,white),var(--blue));
-  box-shadow:0 -5px 14px rgba(37,99,235,.08);
-}
-
-.snapshot-row{
-  min-height:42px;
-  border-radius:10px;
-}
-
-.snapshot-row:nth-child(odd){
-  background:var(--surface-2);
-}
-
-.models{
-  gap:12px;
-}
-
-.model{
-  min-height:158px;
-  padding:17px;
-  border-radius:17px;
-  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
-}
-
-.model:hover{
-  transform:translateY(-3px);
-  border-color:color-mix(in srgb,var(--blue) 32%,var(--line));
-  box-shadow:var(--shadow-soft);
-}
-
-.model strong{
-  color:var(--ink);
-  font-size:13px;
-}
-
-.model-state{
-  color:var(--green);
-}
-
-.incident{
-  min-height:124px;
-  border-radius:20px;
-  padding:20px 22px;
-}
-
-.incident-mark{
-  border:1px solid color-mix(in srgb,var(--green) 25%,var(--line));
-  border-radius:14px;
-}
-
-.error{
-  border-radius:14px;
-}
-
-footer{
-  border-top-color:var(--line);
-}
-
-@media(max-width:900px){
-  .hero{
-    grid-template-columns:1fr;
-    gap:27px;
-  }
-
-  .overall{
-    max-width:none;
-  }
-
-  .hero::before{
-    right:4%;
-    top:30px;
-  }
-}
-
-@media(max-width:700px){
-  .top-live{
-    display:none;
-  }
-
-  .service{
-    grid-template-columns:minmax(0,1fr) auto;
-  }
-}
-
-@media(max-width:520px){
-  .shell{
-    width:min(100% - 22px,1180px);
-  }
-
-  .topbar{
-    min-height:60px;
-  }
-
-  .brand-copy strong{
-    font-size:15px;
-  }
-
-  .theme-status-btn{
-    width:36px;
-    padding:0;
-    font-size:0;
-  }
-
-  .theme-status-btn::after{
-    content:"◐";
-    font-size:15px;
-  }
-
-  .hero{
-    padding-top:58px;
-    padding-bottom:48px;
-  }
-
-  .hero::before{
-    display:none;
-  }
-
-  .hero h1{
-    font-size:47px;
-    line-height:1.01;
-    letter-spacing:-2.8px;
-  }
-
-  .hero-copy{
-    font-size:13px;
-  }
-
-  .hero-chips{
-    gap:5px;
-  }
-
-  .hero-chips span{
-    font-size:8px;
-  }
-
-  .overall{
-    padding:17px;
-    border-radius:18px;
-  }
-
-  .section{
-    padding:28px 0 58px;
-  }
-
-  .section-head{
-    align-items:flex-start;
-    flex-direction:column;
-    gap:5px;
-  }
-
-  .service{
-    padding:14px;
-  }
-
-  .models{
-    grid-template-columns:1fr;
-  }
-
-  .incident{
-    padding:17px;
-  }
-}
-
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .top-live-dot{animation:none}
-}
-</style>
-
 </head>
 
 <body>
-  <div class="shell">
-    <header class="topbar">
+  <header class="topbar">
+    <div class="shell">
       <a class="brand" href="/" aria-label="Axiom home">
-        <img
-          class="brand-logo"
-          src="/content.png"
-          alt="Axiom"
-          onerror="this.src='../content.png'"
-        >
-        <span class="brand-copy">
-          <strong>Axiom Status</strong>
-          <span>Live infrastructure & product health</span>
-        </span>
+        <img src="/content.png" alt="" onerror="this.src='../content.png'">
+        Axiom <span>Status</span>
       </a>
-
-      <nav class="nav">
-        <span class="top-live"><span class="top-live-dot"></span>Live</span>
-        <a class="nav-link" href="/">
-          <span>Back to Axiom</span>
+      <div class="actions">
+        <a class="btn back" href="/" aria-label="Back to Axiom">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="label">Back to Axiom</span>
         </a>
-        <button class="theme-status-btn" id="statusThemeBtn" type="button" aria-label="Toggle theme">Theme</button>
-        <button class="refresh-btn" id="refreshBtn" type="button">Refresh</button>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div>
-          <p class="eyebrow" id="eyebrow">Live system status</p>
-          <h1 id="headline">Checking Axiom.</h1>
-          <p class="hero-copy" id="subline">
-            A live view of Axiom Core, accounts, uploads, community services,
-            Discord integration, and the systems behind the workspace.
-          </p>
-
-          <div class="hero-chips">
-            <span>30s auto refresh</span>
-            <span>Live health endpoint</span>
-            <span>Browser latency history</span>
-          </div>
-        </div>
-
-        <aside class="overall">
-          <div class="overall-top">
-            <span class="status-dot checking" id="overallDot"></span>
-            <span id="overallText">Checking systems</span>
-          </div>
-          <div class="overall-time" id="lastChecked">Waiting for first status check.</div>
-
-          <div class="overall-meta">
-            <div>
-              <span>API</span>
-              <strong id="heroLatency">—</strong>
-            </div>
-            <div>
-              <span>Version</span>
-              <strong id="heroVersion">—</strong>
-            </div>
-          </div>
-        </aside>
-      </section>
-
-      <div class="error" id="errorBox" hidden></div>
-
-      <section class="section">
-        <div class="section-head">
-          <h2>Services</h2>
-          <span>Current health · not historical uptime</span>
-        </div>
-
-        <div class="service-list">
-          <div class="service" data-service="api">
-            <div class="service-name">
-              <span class="status-dot checking" data-dot="api"></span>
-              <div>
-                <strong>Axiom API</strong>
-                <small>Routes, auth, profiles, projects</small>
-              </div>
-            </div>
-            <div class="service-bar-wrap">
-              <div class="service-bar"><i data-bar="api"></i></div>
-              <div class="service-note" data-note="api">Checking health endpoint…</div>
-            </div>
-            <div class="service-state" data-state="api">Checking</div>
-          </div>
-
-          <div class="service" data-service="ai">
-            <div class="service-name">
-              <span class="status-dot checking" data-dot="ai"></span>
-              <div>
-                <strong>Axiom Core</strong>
-                <small>Routing, coding, reasoning, vision</small>
-              </div>
-            </div>
-            <div class="service-bar-wrap">
-              <div class="service-bar"><i data-bar="ai"></i></div>
-              <div class="service-note" data-note="ai">Waiting for model status…</div>
-            </div>
-            <div class="service-state" data-state="ai">Checking</div>
-          </div>
-
-          <div class="service" data-service="accounts">
-            <div class="service-name">
-              <span class="status-dot checking" data-dot="accounts"></span>
-              <div>
-                <strong>Accounts & D1</strong>
-                <small>Sign-in, profiles, sessions, project data</small>
-              </div>
-            </div>
-            <div class="service-bar-wrap">
-              <div class="service-bar"><i data-bar="accounts"></i></div>
-              <div class="service-note" data-note="accounts">Checking shared database…</div>
-            </div>
-            <div class="service-state" data-state="accounts">Checking</div>
-          </div>
-
-          <div class="service" data-service="uploads">
-            <div class="service-name">
-              <span class="status-dot checking" data-dot="uploads"></span>
-              <div>
-                <strong>Media & Uploads</strong>
-                <small>R2, images, banners, attachments</small>
-              </div>
-            </div>
-            <div class="service-bar-wrap">
-              <div class="service-bar"><i data-bar="uploads"></i></div>
-              <div class="service-note" data-note="uploads">Checking media storage…</div>
-            </div>
-            <div class="service-state" data-state="uploads">Checking</div>
-          </div>
-
-          <div class="service" data-service="community">
-            <div class="service-name">
-              <span class="status-dot checking" data-dot="community"></span>
-              <div>
-                <strong>Community</strong>
-                <small>DevHub, creations, likes, comments, DMs</small>
-              </div>
-            </div>
-            <div class="service-bar-wrap">
-              <div class="service-bar"><i data-bar="community"></i></div>
-              <div class="service-note" data-note="community">Checking community features…</div>
-            </div>
-            <div class="service-state" data-state="community">Checking</div>
-          </div>
-
-          <div class="service" data-service="discord">
-            <div class="service-name">
-              <span class="status-dot checking" data-dot="discord"></span>
-              <div>
-                <strong>Discord Integration</strong>
-                <small>Linking, role sync, API events</small>
-              </div>
-            </div>
-            <div class="service-bar-wrap">
-              <div class="service-bar"><i data-bar="discord"></i></div>
-              <div class="service-note" data-note="discord">Checking Discord bridge…</div>
-            </div>
-            <div class="service-state" data-state="discord">Checking</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <h2>Live telemetry</h2>
-          <span>Browser-sampled response history</span>
-        </div>
-
-        <div class="split">
-          <article class="panel">
-            <div class="panel-head">
-              <strong>API response time</strong>
-              <span>Saved locally · last 24 checks</span>
-            </div>
-
-            <div class="latency-wrap">
-              <div class="chart-meta">
-                <strong id="latencyValue">—</strong>
-                <span>ms current response</span>
-              </div>
-
-              <div class="bars" id="latencyBars" aria-label="Recent API response-time bars"></div>
-
-              <div class="chart-footer">
-                <span>Older</span>
-                <span id="latencyRange">No history yet</span>
-                <span>Latest</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="panel">
-            <div class="panel-head">
-              <strong>System snapshot</strong>
-              <span>Live API metadata</span>
-            </div>
-
-            <div class="snapshot">
-              <div class="snapshot-row"><span>Axiom version</span><strong id="versionValue">—</strong></div>
-              <div class="snapshot-row"><span>Axiom Core</span><strong id="coreValue">—</strong></div>
-              <div class="snapshot-row"><span>AI primary</span><strong id="primaryValue">—</strong></div>
-              <div class="snapshot-row"><span>Project Memory</span><strong id="memoryValue">—</strong></div>
-              <div class="snapshot-row"><span>Studio</span><strong id="studioValue">—</strong></div>
-              <div class="snapshot-row"><span>Email</span><strong id="emailValue">—</strong></div>
-              <div class="snapshot-row"><span>Event transport</span><strong id="eventValue">—</strong></div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <h2>Models</h2>
-          <span>Public Axiom model profiles</span>
-        </div>
-
-        <div class="models" id="models">
-          <article class="model">
-            <div><strong>Axiom Core 1</strong><p>Best for everything.</p></div>
-            <div class="model-state"><span class="status-dot operational"></span> Available</div>
-          </article>
-
-          <article class="model">
-            <div><strong>Axiom Fast</strong><p>Fast coding + quick questions.</p></div>
-            <div class="model-state"><span class="status-dot operational"></span> Available</div>
-          </article>
-
-          <article class="model">
-            <div><strong>Axiom Deep Dive</strong><p>Complex debugging + architecture.</p></div>
-            <div class="model-state"><span class="status-dot operational"></span> Available</div>
-          </article>
-
-          <article class="model">
-            <div><strong>Axiom Vision</strong><p>UI screenshots + image analysis.</p></div>
-            <div class="model-state"><span class="status-dot operational"></span> Available</div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <h2>Incidents</h2>
-          <span>Based on the current live check</span>
-        </div>
-
-        <div class="incident" id="incidentBox">
-          <div class="incident-copy">
-            <h3 id="incidentTitle">Checking for active issues.</h3>
-            <p id="incidentText">Axiom is testing each service now.</p>
-          </div>
-          <div class="incident-mark" id="incidentMark">✓</div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-row">
-        <span>© <span id="year"></span> Axiom</span>
-        <span id="footerStatus">Status powered by Axiom Core.</span>
+        <button class="btn icon" id="themeBtn" type="button" aria-label="Switch theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="btn" id="refreshBtn" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg><span class="label">Refresh</span>
+        </button>
       </div>
-    </footer>
-  </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <div class="summary" aria-live="polite">
+      <div class="summary-state">
+        <span class="dot lg checking" id="overallDot"></span>
+        <h1 id="headline">Checking Axiom…</h1>
+      </div>
+      <p id="subline">Running a live check against every Axiom service.</p>
+      <div class="summary-meta">
+        <span>Checked <strong id="checkedAgo">—</strong></span>
+        <span>API <strong id="heroLatency">—</strong></span>
+        <span>Version <strong id="heroVersion">—</strong></span>
+        <span>Auto-refresh every 30s</span>
+      </div>
+    </div>
+
+    <div class="error" id="errorBox" role="alert" hidden></div>
+
+    <section aria-labelledby="servicesTitle">
+      <div class="section-head">
+        <h2 id="servicesTitle">Services</h2>
+        <span>Current health, not historical uptime</span>
+      </div>
+      <div class="list" id="services"></div>
+    </section>
+
+    <section aria-labelledby="agentsTitle">
+      <div class="section-head">
+        <h2 id="agentsTitle">Agent team</h2>
+        <span id="agentsNote">Every reply runs through these agents</span>
+      </div>
+      <p class="flow" aria-label="Order the agents run in">
+        <b>Router</b>→<b>Scout</b>→<b>Atlas</b>→<b>Builder</b>→<b>Validator</b>→<b>Critic / Void</b>→<b>Fixer</b>
+      </p>
+      <div class="list" id="agents"></div>
+    </section>
+
+    <section aria-labelledby="telemetryTitle">
+      <div class="section-head">
+        <h2 id="telemetryTitle">Telemetry</h2>
+        <span>Measured from this browser</span>
+      </div>
+      <div class="split">
+        <article class="panel">
+          <h3>API response time</h3>
+          <p class="hint">Last 30 checks, saved on this device</p>
+          <div class="latency-now"><strong id="latencyValue">—</strong><span>ms latest</span></div>
+          <div class="bars" id="latencyBars" role="img" aria-label="Recent API response times"></div>
+          <div class="chart-foot"><span>Older</span><span id="latencyRange">No history yet</span><span>Latest</span></div>
+        </article>
+        <article class="panel">
+          <h3>System</h3>
+          <p class="hint">Reported by the health endpoint</p>
+          <dl class="facts">
+            <dt>Axiom version</dt><dd id="versionValue">—</dd>
+            <dt>Axiom Core</dt><dd id="coreValue">—</dd>
+            <dt>Inference</dt><dd id="runtimeValue">—</dd>
+            <dt>Base model</dt><dd id="modelValue">—</dd>
+            <dt>Training</dt><dd id="trainingValue">—</dd>
+            <dt>Roblox knowledge base</dt><dd id="kbValue">—</dd>
+            <dt>Project memory</dt><dd id="memoryValue">—</dd>
+            <dt>Roblox Studio</dt><dd id="studioValue">—</dd>
+            <dt>Email</dt><dd id="emailValue">—</dd>
+            <dt>Discord events</dt><dd id="eventValue">—</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="modelsTitle">
+      <div class="section-head">
+        <h2 id="modelsTitle">Models</h2>
+        <span>Axiom model profiles</span>
+      </div>
+      <div class="models" id="models"></div>
+    </section>
+
+    <section aria-labelledby="changesTitle" id="changesSection" hidden>
+      <div class="section-head">
+        <h2 id="changesTitle">What’s new</h2>
+        <span id="changesVersion"></span>
+      </div>
+      <ul class="changes" id="changes"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <span>© <span id="year"></span> Axiom</span>
+      <span id="footerStatus">Status from the live Axiom health endpoint.</span>
+    </div>
+  </footer>
 
   <script>
-    const HEALTH_URL='https://axiom-proxy.itsizzydudee.workers.dev/health';
-    const HISTORY_KEY='axiom-status-latency-v1';
-    const $=id=>document.getElementById(id);
+    const HEALTH_URL = 'https://axiom-proxy.itsizzydudee.workers.dev/health';
+    const HISTORY_KEY = 'axiom-status-latency-v2';
+    const REFRESH_MS = 30000;
+    const SLOW_MS = 1500;
+    const $ = id => document.getElementById(id);
 
-    function setService(name,state,note){
-      const dot=document.querySelector(`[data-dot="${name}"]`);
-      const bar=document.querySelector(`[data-bar="${name}"]`);
-      const badge=document.querySelector(`[data-state="${name}"]`);
-      const noteEl=document.querySelector(`[data-note="${name}"]`);
+    const SERVICES = [
+      { id: 'api', name: 'Axiom API', sub: 'Routes, sign-in, profiles and projects' },
+      { id: 'ai', name: 'Axiom AI', sub: 'Chat, agents and code generation' },
+      { id: 'accounts', name: 'Accounts & database', sub: 'Sessions, profiles, project memory' },
+      { id: 'uploads', name: 'Media & uploads', sub: 'Images, banners and attachments' },
+      { id: 'community', name: 'Community', sub: 'DevHub, creations, comments, messages, groups' },
+      { id: 'discord', name: 'Discord integration', sub: 'Account linking and event notifications' }
+    ];
 
-      const normalized=['operational','degraded','down'].includes(state)
-        ? state
-        : 'checking';
+    const FALLBACK_AGENTS = [
+      ['router', 'Router', 'Classifies each request and assembles the team'],
+      ['memory', 'Memory', 'Loads and updates project memory'],
+      ['scout', 'Scout', 'Searches Roblox reference material'],
+      ['planner', 'Atlas', 'Writes the build plan'],
+      ['builder', 'Builder', 'Writes the answer (Sol, Terra, Code, Work or Axiom)'],
+      ['validator', 'Validator', 'Checks Luau syntax and Roblox APIs'],
+      ['reviewer', 'Critic / Void', 'Reviews drafts for correctness and security'],
+      ['fixer', 'Fixer', 'Repairs answers the reviewer or validator rejects']
+    ].map(([id, name, role]) => ({ id, name, role, status: 'checking' }));
 
-      if(dot)dot.className='status-dot '+normalized;
-      if(bar)bar.className=normalized;
-      if(badge){
-        badge.className='service-state '+normalized;
-        badge.textContent={
-          operational:'Operational',
-          degraded:'Degraded',
-          down:'Unavailable',
-          checking:'Checking'
-        }[normalized];
-      }
-      if(noteEl&&note)noteEl.textContent=note;
+    const FALLBACK_MODELS = [
+      ['Axiom AI', 'Balanced help for Roblox development.'],
+      ['Axiom Sol', 'Fast Roblox engineering and Luau.'],
+      ['Axiom Terra', 'Roblox UI and product design.'],
+      ['Axiom Work', 'Higher-quality project work.'],
+      ['Axiom Code', 'Maximum-quality Roblox engineering.']
+    ].map(([name, description]) => ({ name, description }));
+
+    const STATE_LABEL = {
+      operational: 'Operational', degraded: 'Degraded', down: 'Unavailable', unavailable: 'Unavailable',
+      checking: 'Checking', 'not-connected': 'Not connected', disabled: 'Disabled', unknown: 'Unknown'
+    };
+
+    let lastChecked = 0;
+    let timer = null;
+    let inFlight = false;
+
+    function el(tag, className, text) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text !== undefined) node.textContent = text;
+      return node;
     }
 
-    function overall(state){
-      const dot=$('overallDot');
-      dot.className='status-dot '+state;
+    function row({ name, sub, note, state, extra }) {
+      const item = el('div', 'row');
+      const main = el('div', 'row-main');
+      const dotState = ['operational', 'degraded', 'down', 'checking'].includes(state)
+        ? state : state === 'unavailable' ? 'down' : state === 'checking' ? 'checking' : 'degraded';
+      main.append(el('span', 'dot ' + (state === 'unknown' ? 'idle' : dotState)));
+      const copy = el('div');
+      const title = el('div', 'row-title', name);
+      if (extra) title.append(el('span', 'agent-kind', extra));
+      copy.append(title, el('div', 'row-sub', sub));
+      if (note) copy.append(el('div', 'row-note', note));
+      main.append(copy);
+      item.append(main, el('span', 'pill ' + state, STATE_LABEL[state] || state));
+      return item;
+    }
 
-      const copy={
-        operational:{
-          title:'All systems operational.',
-          text:'Axiom services are responding normally.',
-          eyebrow:'Live system status'
-        },
-        degraded:{
-          title:'Axiom is partially degraded.',
-          text:'Most services are online, but one or more systems need attention.',
-          eyebrow:'Service degradation'
-        },
-        down:{
-          title:'Axiom status unavailable.',
-          text:'The live health endpoint could not confirm normal operation.',
-          eyebrow:'Status unavailable'
-        }
+    function renderServices(results) {
+      $('services').replaceChildren(...SERVICES.map(service => {
+        const result = results?.[service.id] || { state: 'checking', note: '' };
+        return row({ name: service.name, sub: service.sub, note: result.note, state: result.state });
+      }));
+    }
+
+    function renderAgents(agents, reachable) {
+      const list = Array.isArray(agents) && agents.length ? agents : FALLBACK_AGENTS.map(agent => ({
+        ...agent, status: reachable === false ? 'unknown' : 'checking'
+      }));
+      $('agents').replaceChildren(...list.map(agent => row({
+        name: agent.name,
+        sub: agent.role,
+        state: agent.status,
+        extra: agent.kind === 'deterministic' ? 'rule-based' : agent.kind === 'model' ? 'model' : agent.kind === 'storage' ? 'storage' : ''
+      })));
+      const off = list.filter(agent => agent.status === 'not-connected' || agent.status === 'disabled');
+      $('agentsNote').textContent = off.length
+        ? `${off.map(a => a.name).join(', ')} skipped until configured`
+        : 'Every reply runs through these agents';
+    }
+
+    function renderModels(models) {
+      const list = Array.isArray(models) && models.length ? models : FALLBACK_MODELS;
+      $('models').replaceChildren(...list.map(model => {
+        const card = el('article', 'model');
+        card.append(el('strong', '', model.name || model.id || 'Axiom model'), el('p', '', model.description || ''));
+        const state = el('div', 'model-state');
+        const available = model.available !== false && lastHealth?.chat !== false;
+        state.append(el('span', 'dot ' + (lastHealth ? (available ? 'operational' : 'down') : 'idle')),
+          document.createTextNode(lastHealth ? (available ? 'Available' : 'Unavailable') : 'Unknown'));
+        card.append(state);
+        return card;
+      }));
+    }
+
+    function renderChanges(health) {
+      const changes = Array.isArray(health?.changes) ? health.changes.filter(x => typeof x === 'string') : [];
+      $('changesSection').hidden = !changes.length;
+      if (!changes.length) return;
+      $('changesVersion').textContent = 'v' + (health.version || '');
+      $('changes').replaceChildren(...changes.slice(0, 8).map(text => el('li', '', text)));
+    }
+
+    // ── Latency history (this browser only) ──
+    function loadHistory() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+        return Array.isArray(parsed) ? parsed.filter(x => Number.isFinite(x?.ts)).slice(-30) : [];
+      } catch { return []; }
+    }
+    function saveHistory(entry) {
+      const history = [...loadHistory(), entry].slice(-30);
+      try { localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); } catch {}
+      renderHistory(history);
+    }
+    function renderHistory(history = loadHistory()) {
+      const bars = $('latencyBars');
+      const ok = history.filter(x => Number.isFinite(x.ms));
+      const max = Math.max(200, ...ok.map(x => x.ms));
+      const nodes = [];
+      for (let i = history.length; i < 30; i++) nodes.push(el('i', 'empty'));
+      for (const point of history) {
+        const bar = el('i', Number.isFinite(point.ms) ? (point.ms > SLOW_MS ? 'slow' : '') : 'failed');
+        if (Number.isFinite(point.ms)) bar.style.height = Math.max(6, Math.round(point.ms / max * 100)) + '%';
+        bar.title = (Number.isFinite(point.ms) ? point.ms + ' ms' : 'Failed') + ' · ' + new Date(point.ts).toLocaleTimeString();
+        nodes.push(bar);
+      }
+      bars.replaceChildren(...nodes);
+      if (!ok.length) { $('latencyRange').textContent = 'No history yet'; return; }
+      const values = ok.map(x => x.ms);
+      const avg = Math.round(values.reduce((a, b) => a + b, 0) / values.length);
+      $('latencyRange').textContent = `${Math.min(...values)}–${Math.max(...values)} ms · avg ${avg} ms`;
+    }
+
+    // ── Status check ──
+    let lastHealth = null;
+
+    function summarize(state, failed) {
+      const copy = {
+        operational: ['All systems operational', 'Every Axiom service passed the latest live check.'],
+        degraded: ['Some services are degraded', `Affected right now: ${failed.join(', ')}. Everything else is working.`],
+        down: ['Axiom is unreachable', 'The health endpoint did not respond. Chats you already started are saved on your device.']
       }[state];
-
-      $('headline').textContent=copy.title;
-      $('subline').textContent=copy.text;
-      $('eyebrow').textContent=copy.eyebrow;
-      $('overallText').textContent=
-        state==='operational'?'Operational':
-        state==='degraded'?'Degraded':'Unavailable';
+      $('overallDot').className = 'dot lg ' + state;
+      $('headline').textContent = copy[0];
+      $('subline').textContent = copy[1];
     }
 
-    function loadLatencyHistory(){
-      try{
-        const parsed=JSON.parse(localStorage.getItem(HISTORY_KEY)||'[]');
-        return Array.isArray(parsed)
-          ? parsed.filter(x=>Number.isFinite(x?.ms)&&Number.isFinite(x?.ts)).slice(-24)
-          : [];
-      }catch{
-        return [];
-      }
+    function relativeTime(ts) {
+      if (!ts) return '—';
+      const s = Math.round((Date.now() - ts) / 1000);
+      if (s < 5) return 'just now';
+      if (s < 60) return s + 's ago';
+      return Math.floor(s / 60) + 'm ago';
     }
 
-    function saveLatency(ms){
-      const history=loadLatencyHistory();
-      history.push({ms,ts:Date.now()});
-      localStorage.setItem(HISTORY_KEY,JSON.stringify(history.slice(-24)));
-      renderLatency();
-    }
+    async function refreshStatus() {
+      if (inFlight) return;
+      inFlight = true;
+      $('refreshBtn').disabled = true;
+      $('refreshBtn').classList.add('refreshing');
+      $('errorBox').hidden = true;
+      const started = performance.now();
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 12000);
 
-    function renderLatency(){
-      const holder=$('latencyBars');
-      const history=loadLatencyHistory();
-      holder.replaceChildren();
+      try {
+        const response = await fetch(HEALTH_URL, { cache: 'no-store', signal: controller.signal });
+        const latency = Math.max(1, Math.round(performance.now() - started));
+        if (!response.ok) throw new Error(`The health endpoint returned HTTP ${response.status}.`);
+        const health = await response.json();
+        lastHealth = health;
 
-      if(!history.length){
-        for(let i=0;i<24;i++){
-          const empty=document.createElement('i');
-          empty.className='latency-empty';
-          holder.append(empty);
-        }
-        $('latencyRange').textContent='No history yet';
-        return;
-      }
-
-      const max=Math.max(...history.map(x=>x.ms),100);
-      const min=Math.min(...history.map(x=>x.ms));
-      const avg=Math.round(history.reduce((sum,x)=>sum+x.ms,0)/history.length);
-
-      const pad=Math.max(0,24-history.length);
-      for(let i=0;i<pad;i++){
-        const empty=document.createElement('i');
-        empty.className='latency-empty';
-        holder.append(empty);
-      }
-
-      for(const point of history){
-        const bar=document.createElement('i');
-        bar.className='latency-bar';
-        bar.style.height=Math.max(8,Math.min(100,(point.ms/max)*100))+'%';
-        bar.title=`${point.ms} ms · ${new Date(point.ts).toLocaleTimeString()}`;
-        holder.append(bar);
-      }
-
-      $('latencyRange').textContent=`${min}–${max} ms · avg ${avg} ms`;
-    }
-
-    function operationalText(value){
-      return value?'Operational':'Unavailable';
-    }
-
-    function renderModels(health){
-      if(!Array.isArray(health.aiModels)||!health.aiModels.length)return;
-
-      const holder=$('models');
-      holder.replaceChildren();
-
-      for(const model of health.aiModels){
-        const card=document.createElement('article');
-        card.className='model';
-
-        const copy=document.createElement('div');
-        const name=document.createElement('strong');
-        const description=document.createElement('p');
-
-        name.textContent=model.name||model.id||'Axiom model';
-        description.textContent=model.description||'Axiom model profile.';
-        copy.append(name,description);
-
-        const state=document.createElement('div');
-        state.className='model-state';
-        const dot=document.createElement('span');
-        dot.className='status-dot operational';
-        state.append(dot,document.createTextNode(' Available'));
-
-        card.append(copy,state);
-        holder.append(card);
-      }
-    }
-
-    function setIncident(state,failed=[]){
-      const box=$('incidentBox');
-      box.className='incident'+(state==='operational'?'':' '+state);
-
-      if(state==='operational'){
-        $('incidentTitle').textContent='No active issues detected.';
-        $('incidentText').textContent='Every monitored Axiom service passed the current live check.';
-        $('incidentMark').textContent='✓';
-        return;
-      }
-
-      if(state==='degraded'){
-        $('incidentTitle').textContent='One or more services are degraded.';
-        $('incidentText').textContent=
-          failed.length
-            ? `Affected right now: ${failed.join(', ')}.`
-            : 'A live service check reported a degraded state.';
-        $('incidentMark').textContent='!';
-        return;
-      }
-
-      $('incidentTitle').textContent='Status check failed.';
-      $('incidentText').textContent='Axiom could not confirm service health from the status endpoint.';
-      $('incidentMark').textContent='!';
-    }
-
-    async function refreshStatus(){
-      $('refreshBtn').disabled=true;
-      $('errorBox').hidden=true;
-
-      const names=['api','ai','accounts','uploads','community','discord'];
-      for(const name of names)setService(name,'checking');
-
-      const started=performance.now();
-
-      try{
-        const response=await fetch(HEALTH_URL,{cache:'no-store'});
-        const latency=Math.max(1,Math.round(performance.now()-started));
-
-        if(!response.ok){
-          throw new Error(`Status API returned HTTP ${response.status}`);
-        }
-
-        const health=await response.json();
-
-        const checks={
-          api:health.ok===true,
-          ai:health.chat===true,
-          accounts:health.accounts===true,
-          uploads:health.uploads===true,
-          community:Boolean(
-            health.creationLikes&&
-            health.creationComments&&
-            health.directMessages
-          ),
-          discord:Boolean(
-            health.discord===true&&
-            (!health.apiEventBridge||health.apiEventBridge.configured!==false)
-          )
+        const bridge = health.apiEventBridge;
+        const results = {
+          api: { state: health.ok === true ? 'operational' : 'down', note: `Responded in ${latency} ms` },
+          ai: {
+            state: health.chat === true ? 'operational' : 'down',
+            note: health.chat === true
+              ? `${health.inference?.runtime === 'axiom-private' ? 'Private Axiom inference' : 'Workers AI'}${health.streaming ? ' · streaming' : ''}`
+              : 'Inference is not configured'
+          },
+          accounts: { state: health.accounts === true ? 'operational' : 'down', note: health.accounts ? 'D1 database available' : 'Database unavailable' },
+          uploads: { state: health.uploads === true ? 'operational' : 'down', note: health.uploads ? 'R2 storage available' : 'Media storage unavailable' },
+          community: {
+            state: health.creationLikes && health.creationComments && health.directMessages ? 'operational' : 'degraded',
+            note: health.groups ? 'DevHub, creations, messages and groups enabled' : 'Some community features are off'
+          },
+          discord: {
+            state: health.discord === true ? 'operational' : 'degraded',
+            note: bridge?.configured ? `Linking + events via ${bridge.transport || 'bridge'}` : 'Linking available · event bridge not configured'
+          }
         };
 
-        setService(
-          'api',
-          checks.api?'operational':'down',
-          checks.api?`Responded in ${latency} ms`:'Health endpoint reported an issue'
-        );
+        const failed = SERVICES.filter(s => results[s.id].state !== 'operational').map(s => s.name);
+        const hardDown = SERVICES.filter(s => results[s.id].state === 'down').length === SERVICES.length;
+        summarize(failed.length === 0 ? 'operational' : hardDown ? 'down' : 'degraded', failed);
 
-        setService(
-          'ai',
-          checks.ai?'operational':'down',
-          checks.ai
-            ? `${health.aiPrimary||'Axiom routing'} · ${health.aiPipeline||'Core router'}`
-            : 'AI routing unavailable'
-        );
+        renderServices(results);
+        renderAgents(health.agents, true);
+        renderModels(health.aiModels);
+        renderChanges(health);
 
-        setService(
-          'accounts',
-          checks.accounts?'operational':'down',
-          checks.accounts?'D1 account services available':'Account database unavailable'
-        );
+        const info = health.inference || {};
+        $('heroLatency').textContent = latency + ' ms';
+        $('heroVersion').textContent = 'v' + (health.version || '?');
+        $('latencyValue').textContent = String(latency);
+        $('versionValue').textContent = 'v' + (health.version || 'unknown');
+        $('coreValue').textContent = health.aiCore || 'Unknown';
+        $('runtimeValue').textContent = info.runtime === 'axiom-private' ? 'Private endpoint' : info.runtime === 'workers-ai' ? 'Workers AI' : 'Unknown';
+        $('modelValue').textContent = String(info.baseModel || 'Unknown').replace(/^@cf\//, '');
+        $('trainingValue').textContent = { 'base-model': 'Base model', 'adapter-configured': 'LoRA adapter', 'external-checkpoint': 'Axiom checkpoint' }[info.trainingStatus] || 'Unknown';
+        $('kbValue').textContent = health.knowledgeBase ? 'Connected' : 'Not connected';
+        $('memoryValue').textContent = health.projectMemory ? 'On' : 'Off';
+        $('studioValue').textContent = health.studioMode ? 'Plugin supported' : 'Off';
+        $('emailValue').textContent = health.email ? 'On' : 'Not configured';
+        $('eventValue').textContent = bridge?.configured ? (bridge.transport || 'Configured') : 'Not configured';
+        $('footerStatus').textContent = `Axiom v${health.version || '?'} · ${latency} ms`;
 
-        setService(
-          'uploads',
-          checks.uploads?'operational':'down',
-          checks.uploads?'R2 media storage available':'Media storage unavailable'
-        );
-
-        setService(
-          'community',
-          checks.community?'operational':'degraded',
-          checks.community
-            ? 'DevHub, creations, comments, likes, and DMs enabled'
-            : 'One or more community capabilities are unavailable'
-        );
-
-        const bridge=health.apiEventBridge;
-        setService(
-          'discord',
-          checks.discord?'operational':'degraded',
-          checks.discord
-            ? (
-                bridge?.configured
-                  ? `Discord + API events · ${bridge.transport||'configured'}`
-                  : 'Discord account integration available'
-              )
-            : 'Discord bridge is partially unavailable'
-        );
-
-        const failed=Object.entries(checks)
-          .filter(([,ok])=>!ok)
-          .map(([name])=>({
-            api:'Axiom API',
-            ai:'Axiom Core',
-            accounts:'Accounts',
-            uploads:'Media',
-            community:'Community',
-            discord:'Discord'
-          }[name]));
-
-        const state=failed.length===0
-          ? 'operational'
-          : failed.length<names.length
-            ? 'degraded'
-            : 'down';
-
-        overall(state);
-        setIncident(state,failed);
-
-        $('heroLatency').textContent=latency+' ms';
-        $('heroVersion').textContent='v'+(health.version||'unknown');
-        $('latencyValue').textContent=String(latency);
-
-        $('versionValue').textContent='v'+(health.version||'unknown');
-        $('coreValue').textContent=health.aiCore||'Unknown';
-        $('primaryValue').textContent=health.aiPrimary||'Unknown';
-        $('memoryValue').textContent=operationalText(health.projectMemory);
-        $('studioValue').textContent=operationalText(health.studioMode);
-        $('emailValue').textContent=operationalText(health.email);
-        $('eventValue').textContent=
-          bridge?.configured
-            ? (bridge.transport||'Configured')
-            : 'Not configured';
-
-        renderModels(health);
-        saveLatency(latency);
-
-        const now=new Date();
-        $('lastChecked').textContent=
-          'Checked '+now.toLocaleTimeString([],{
-            hour:'numeric',
-            minute:'2-digit',
-            second:'2-digit'
-          });
-
-        $('footerStatus').textContent=
-          `Axiom v${health.version||'unknown'} · live response ${latency} ms`;
-      }catch(error){
-        overall('down');
-        setIncident('down');
-
-        for(const name of names){
-          setService(name,'down','Could not confirm service health');
-        }
-
-        $('errorBox').textContent=
-          error?.message||'Could not load Axiom status.';
-        $('errorBox').hidden=false;
-        $('lastChecked').textContent='Status check failed';
-        $('footerStatus').textContent='Unable to reach the Axiom status API.';
-      }finally{
-        $('refreshBtn').disabled=false;
+        saveHistory({ ms: latency, ts: Date.now() });
+      } catch (error) {
+        lastHealth = null;
+        summarize('down', []);
+        const unknown = Object.fromEntries(SERVICES.map(s => [s.id, { state: 'unknown', note: 'Could not reach the health endpoint' }]));
+        renderServices(unknown);
+        renderAgents(null, false);
+        renderModels(null);
+        $('errorBox').textContent = error?.name === 'AbortError'
+          ? 'The health check timed out after 12 seconds.'
+          : (error?.message || 'Could not load Axiom status.');
+        $('errorBox').hidden = false;
+        $('heroLatency').textContent = '—';
+        $('footerStatus').textContent = 'Unable to reach the Axiom health endpoint.';
+        saveHistory({ ms: null, ts: Date.now() });
+      } finally {
+        clearTimeout(timeout);
+        lastChecked = Date.now();
+        $('checkedAgo').textContent = relativeTime(lastChecked);
+        $('refreshBtn').disabled = false;
+        $('refreshBtn').classList.remove('refreshing');
+        inFlight = false;
       }
     }
 
-    $('year').textContent=new Date().getFullYear();
-    $('refreshBtn').onclick=refreshStatus;
+    // Poll only while the tab is visible; check immediately when it comes back.
+    function schedule() {
+      clearInterval(timer);
+      timer = document.hidden ? null : setInterval(refreshStatus, REFRESH_MS);
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && Date.now() - lastChecked > REFRESH_MS) refreshStatus();
+      schedule();
+    });
+    setInterval(() => { $('checkedAgo').textContent = relativeTime(lastChecked); }, 5000);
 
-    renderLatency();
+    // Theme
+    $('themeBtn').onclick = () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      try { localStorage.setItem('axiom-status-theme', next); } catch {}
+      syncThemeMeta();
+    };
+    function syncThemeMeta() {
+      const dark = document.documentElement.dataset.theme === 'dark';
+      document.querySelector('meta[name="theme-color"]').content = dark ? '#14171d' : '#f7f8fa';
+      $('themeBtn').setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    }
+
+    $('year').textContent = new Date().getFullYear();
+    $('refreshBtn').onclick = refreshStatus;
+    syncThemeMeta();
+    renderServices(null);
+    renderAgents(null);
+    renderModels(null);
+    renderHistory();
     refreshStatus();
-    setInterval(refreshStatus,30000);
+    schedule();
   </script>
-
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const button = document.getElementById('statusThemeBtn');
-      const meta = document.querySelector('meta[name="theme-color"]');
-
-      function setStatusTheme(theme) {
-        root.dataset.theme = theme;
-        localStorage.setItem('axiom-status-theme', theme);
-        if (meta) meta.setAttribute('content', theme === 'dark' ? '#081321' : '#f7faff');
-        if (button) button.title = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
-      }
-
-      const saved = localStorage.getItem('axiom-status-theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setStatusTheme(saved || (prefersDark ? 'dark' : 'light'));
-
-      button?.addEventListener('click', () => {
-        setStatusTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
-      });
-    })();
-  </script>
-
 </body>
 </html>
