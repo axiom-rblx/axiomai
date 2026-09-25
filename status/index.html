@@ -210,13 +210,21 @@
       <div class="list" id="services"></div>
     </section>
 
+    <section aria-labelledby="engineTitle">
+      <div class="section-head">
+        <h2 id="engineTitle">AI engine</h2>
+        <span id="budgetNote">Providers and today’s budget</span>
+      </div>
+      <div class="list" id="engine"></div>
+    </section>
+
     <section aria-labelledby="agentsTitle">
       <div class="section-head">
         <h2 id="agentsTitle">Agent team</h2>
         <span id="agentsNote">Every reply runs through these agents</span>
       </div>
       <p class="flow" aria-label="Order the agents run in">
-        <b>Router</b>→<b>Debugger</b>→<b>Scout</b>→<b>Atlas</b>→<b>Builder</b>→<b>Validator</b>→<b>Critic / Flint</b>→<b>Fixer</b>
+        <b>Router</b>→<b>Debugger</b>→<b>Scout</b>→<b>Atlas</b>→<b>Builder</b>→<b>Validator</b>→<b>Sentinel</b>→<b>Pulse</b>→<b>Critic / Flint</b>→<b>Fixer</b>→<b>Keeper</b>
       </p>
       <div class="list" id="agents"></div>
     </section>
@@ -302,7 +310,12 @@
       ['builder', 'Builder', 'Writes the answer (Axiom, Brook, Canopy, Ridge or Summit)'],
       ['validator', 'Validator', 'Checks Luau syntax and Roblox APIs'],
       ['reviewer', 'Critic / Flint', 'Reviews drafts for correctness and security'],
-      ['fixer', 'Fixer', 'Repairs answers the reviewer or validator rejects']
+      ['fixer', 'Fixer', 'Repairs answers the reviewer or validator rejects'],
+      ['sentinel', 'Sentinel', 'Audits remotes, client trust and saves for security risks'],
+      ['pulse', 'Pulse', 'Finds frozen loops and heavy per-frame work'],
+      ['keeper', 'Keeper', 'Summarizes project memory after each reply'],
+      ['dispatcher', 'Dispatcher', 'Picks the provider and model for every agent and fails over to backups'],
+      ['offline', 'Axiom Offline', 'Answers with built-in checks when every provider is at capacity']
     ].map(([id, name, role]) => ({ id, name, role, status: 'checking' }));
 
     const FALLBACK_MODELS = [
@@ -366,6 +379,63 @@
       $('agentsNote').textContent = off.length
         ? `${off.map(a => a.name).join(', ')} skipped until configured`
         : 'Every reply runs through these agents';
+    }
+
+    const PROVIDER_NAMES = { 'workers-ai': 'Cloudflare Workers AI', 'axiom-private': 'Axiom private model' };
+    const MODE_TEXT = {
+      normal: 'Normal',
+      balanced: 'Balanced — planning and review use efficient models',
+      economy: 'Economy — the builder uses an efficient model too',
+      'backup-first': 'Backup first — today’s Workers AI budget is used up'
+    };
+
+    function untilText(seconds) {
+      if (!seconds) return '';
+      const h = Math.floor(seconds / 3600);
+      const m = Math.ceil((seconds % 3600) / 60);
+      return h ? `${h}h ${m}m` : `${m}m`;
+    }
+
+    function renderEngine(engine, reachable) {
+      const holder = $('engine');
+      if (!engine) {
+        holder.replaceChildren(row({
+          name: 'AI providers',
+          sub: reachable === false ? 'Could not reach the health endpoint' : 'Checking providers…',
+          state: reachable === false ? 'unknown' : 'checking'
+        }));
+        $('budgetNote').textContent = 'Providers and today’s budget';
+        return;
+      }
+      const rows = engine.providers.map(provider => {
+        const state = provider.status === 'ok' ? 'operational' : provider.status === 'exhausted' ? 'down' : 'degraded';
+        const label = { operational: 'Operational', down: 'Out of quota', degraded: 'Cooling down' }[state];
+        const item = row({
+          name: PROVIDER_NAMES[provider.id] || provider.id,
+          sub: provider.role === 'backup' ? 'Backup provider' : provider.role === 'primary' ? 'Primary' : 'Primary cloud',
+          note: provider.retryInSeconds ? `Back in ${untilText(provider.retryInSeconds)}` : '',
+          state
+        });
+        item.querySelector('.pill').textContent = label;
+        return item;
+      });
+      if (!engine.backups) {
+        rows.push(row({ name: 'Backup providers', sub: 'None configured — if the primary runs out, only built-in checks can answer', state: 'not-connected' }));
+      }
+      if (engine.budget) {
+        const budget = engine.budget;
+        const state = budget.percent >= 100 ? 'down' : budget.percent >= 85 ? 'degraded' : 'operational';
+        const item = row({
+          name: 'Today’s Workers AI budget',
+          sub: `${budget.percent}% used · ${budget.usedNeurons.toLocaleString()} of ${budget.budgetNeurons.toLocaleString()} Neurons`,
+          note: (MODE_TEXT[budget.mode] || budget.mode) + ' · resets 00:00 UTC',
+          state
+        });
+        item.querySelector('.pill').textContent = budget.percent + '%';
+        rows.push(item);
+        $('budgetNote').textContent = 'Resets in ' + untilText(Math.max(60, Math.ceil((budget.resetsAt - Date.now()) / 1000)));
+      }
+      holder.replaceChildren(...rows);
     }
 
     function renderModels(models) {
@@ -463,7 +533,17 @@
         const bridge = health.apiEventBridge;
         const results = {
           api: { state: health.ok === true ? 'operational' : 'down', note: `Responded in ${latency} ms` },
-          ai: {
+          ai: (() => {
+            const providers = health.engine?.providers || [];
+            const working = providers.filter(p => p.status === 'ok');
+            if (health.chat === true && providers.length && !working.length) {
+              return { state: 'down', note: 'Every AI provider is at capacity — built-in checks still answer code questions' };
+            }
+            if (health.chat === true && working.length < providers.length) {
+              return { state: 'degraded', note: `Running on ${working.map(p => PROVIDER_NAMES[p.id] || p.id).join(', ')}` };
+            }
+            return null;
+          })() || {
             state: health.chat === true ? 'operational' : 'down',
             note: health.chat === true
               ? `${health.inference?.runtime === 'axiom-private' ? 'Private Axiom inference' : 'Workers AI'}${health.streaming ? ' · streaming' : ''}`
@@ -487,6 +567,7 @@
 
         renderServices(results);
         renderAgents(health.agents, true);
+        renderEngine(health.engine, true);
         renderModels(health.aiModels);
         renderChanges(health);
 
@@ -513,6 +594,7 @@
         const unknown = Object.fromEntries(SERVICES.map(s => [s.id, { state: 'unknown', note: 'Could not reach the health endpoint' }]));
         renderServices(unknown);
         renderAgents(null, false);
+        renderEngine(null, false);
         renderModels(null);
         $('errorBox').textContent = error?.name === 'AbortError'
           ? 'The health check timed out after 12 seconds.'
@@ -560,6 +642,7 @@
     syncThemeMeta();
     renderServices(null);
     renderAgents(null);
+    renderEngine(null);
     renderModels(null);
     renderHistory();
     refreshStatus();
