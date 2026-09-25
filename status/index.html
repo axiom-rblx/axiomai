@@ -216,7 +216,7 @@
         <span id="agentsNote">Every reply runs through these agents</span>
       </div>
       <p class="flow" aria-label="Order the agents run in">
-        <b>Router</b>→<b>Scout</b>→<b>Atlas</b>→<b>Builder</b>→<b>Validator</b>→<b>Critic / Void</b>→<b>Fixer</b>
+        <b>Router</b>→<b>Debugger</b>→<b>Scout</b>→<b>Atlas</b>→<b>Builder</b>→<b>Validator</b>→<b>Critic / Flint</b>→<b>Fixer</b>
       </p>
       <div class="list" id="agents"></div>
     </section>
@@ -296,20 +296,21 @@
     const FALLBACK_AGENTS = [
       ['router', 'Router', 'Classifies each request and assembles the team'],
       ['memory', 'Memory', 'Loads and updates project memory'],
+      ['debugger', 'Debugger', 'Pins pasted Studio errors to the exact failing line'],
       ['scout', 'Scout', 'Searches Roblox reference material'],
       ['planner', 'Atlas', 'Writes the build plan'],
-      ['builder', 'Builder', 'Writes the answer (Sol, Terra, Code, Work or Axiom)'],
+      ['builder', 'Builder', 'Writes the answer (Axiom, Brook, Canopy, Ridge or Summit)'],
       ['validator', 'Validator', 'Checks Luau syntax and Roblox APIs'],
-      ['reviewer', 'Critic / Void', 'Reviews drafts for correctness and security'],
+      ['reviewer', 'Critic / Flint', 'Reviews drafts for correctness and security'],
       ['fixer', 'Fixer', 'Repairs answers the reviewer or validator rejects']
     ].map(([id, name, role]) => ({ id, name, role, status: 'checking' }));
 
     const FALLBACK_MODELS = [
-      ['Axiom AI', 'Balanced help for Roblox development.'],
-      ['Axiom Sol', 'Fast Roblox engineering and Luau.'],
-      ['Axiom Terra', 'Roblox UI and product design.'],
-      ['Axiom Work', 'Higher-quality project work.'],
-      ['Axiom Code', 'Maximum-quality Roblox engineering.']
+      ['Axiom', 'Balanced help for Roblox development.'],
+      ['Axiom Brook', 'Quick, light Luau help and fast fixes.'],
+      ['Axiom Canopy', 'Roblox UI: the layer players see.'],
+      ['Axiom Ridge', 'Deeper, reviewed project work.'],
+      ['Axiom Summit', 'Maximum-quality Roblox engineering.']
     ].map(([name, description]) => ({ name, description }));
 
     const STATE_LABEL = {
