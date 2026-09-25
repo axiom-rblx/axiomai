@@ -57,7 +57,7 @@ test('maps provider errors into actionable messages', () => {
   assert.equal(parseRetryAfter('Fri, 25 Sep 2026 00:00:30 GMT', Date.parse('Fri, 25 Sep 2026 00:00:00 GMT')), 30);
 });
 
-test('rejects missing runtime and oversized private responses', async () => {
+test('rejects missing runtime and supports an authenticated private endpoint', async () => {
   await assert.rejects(generateCompletion({}, payload), e => e.code === 'INFERENCE_CONFIGURATION');
   const formerFetch = globalThis.fetch;
   globalThis.fetch = async () => new Response(JSON.stringify({ choices: [{ message: { content: 'ok' } }] }), { status: 200 });
