@@ -1,1154 +1,309 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#07101c">
-  <meta name="description" content="Learn what Axiom is, how it helps Roblox developers, and what is planned for Axiom Pro and Max.">
-  <title>About Axiom — Roblox AI, without the busywork</title>
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="description" content="Axiom is an AI workspace for Roblox developers: Luau, UI, debugging and whole game systems, built and checked by a team of AI agents.">
+  <title>About Axiom</title>
+  <script>
+    // Apply the saved theme before first paint so the page never flashes.
+    (() => {
+      let theme = null;
+      try { theme = localStorage.getItem('axiom-info-theme'); } catch {}
+      if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
   <style>
-    :root {
-      color-scheme: dark;
-      --bg: #07101c;
-      --bg-elevated: #0b1727;
-      --surface: #101f32;
-      --surface-2: #152943;
-      --ink: #f5f8ff;
-      --muted: #9aabc2;
-      --quiet: #6f829d;
-      --line: #213854;
-      --line-strong: #315276;
-      --blue: #68a4ff;
-      --blue-strong: #3482f6;
-      --blue-soft: #142f54;
-      --green: #58d79a;
-      --amber: #ffca68;
-      --shadow: 0 28px 90px rgba(0, 0, 0, .32);
-      --radius: 18px;
-      --header-height: 72px;
+    @font-face{font-family:'DM Sans';font-style:normal;font-weight:100 1000;font-display:swap;src:url('/assets/fonts/dm-sans-latin-wght-normal.woff2') format('woff2')}
+
+    /* Same tokens as the Axiom workspace and status page. */
+    :root{--font:'DM Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;--r-sm:8px;--r-md:12px;--r-lg:16px}
+    html[data-theme=light]{
+      color-scheme:light;
+      --bg:#f7f8fa;--surface:#ffffff;--soft:#f1f3f6;--hover:#e8ebf0;
+      --ink:#151b26;--muted:#5b6574;--faint:#8a93a1;--line:#e1e5eb;
+      --blue:#2f6bed;--blue-soft:#e8effd;--ring:#7aa5ff;--ok:#1f8a5b;--ok-soft:#e6f4ec;
+    }
+    html[data-theme=dark]{
+      color-scheme:dark;
+      --bg:#14171d;--surface:#1b1f27;--soft:#222731;--hover:#2a303b;
+      --ink:#e9edf3;--muted:#9aa4b2;--faint:#6f7886;--line:#2c323d;
+      --blue:#8fb2ff;--blue-soft:#22314d;--ring:#8fb2ff;--ok:#6fd3a0;--ok-soft:#173226;
     }
 
-    html[data-theme="light"] {
-      color-scheme: light;
-      --bg: #f6f9fd;
-      --bg-elevated: #edf3fa;
-      --surface: #ffffff;
-      --surface-2: #f0f5fb;
-      --ink: #0d1c2f;
-      --muted: #586b83;
-      --quiet: #7c8ca0;
-      --line: #d8e3ef;
-      --line-strong: #bdd0e4;
-      --blue: #1767db;
-      --blue-strong: #0959c8;
-      --blue-soft: #e6f0ff;
-      --green: #168456;
-      --amber: #9d6600;
-      --shadow: 0 28px 80px rgba(31, 66, 105, .13);
+    *{box-sizing:border-box}
+    html{background:var(--bg);scroll-padding-top:72px}
+    body{margin:0;font-family:var(--font);font-size:16px;line-height:1.6;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+    :focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:6px}
+    img{display:block}
+    .shell{width:min(960px,calc(100% - 32px));margin:0 auto}
+
+    /* Top bar */
+    .topbar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .topbar .shell{height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:inline-flex;align-items:center;gap:10px;font-weight:650;font-size:17px;letter-spacing:-.2px}
+    .brand img{width:26px;height:26px;object-fit:contain}
+    .nav{display:flex;align-items:center;gap:2px}
+    .nav a,.icon-btn{height:36px;display:inline-flex;align-items:center;padding:0 11px;border-radius:var(--r-sm);color:var(--muted);font-size:14px;font-weight:500}
+    .nav a:hover,.icon-btn:hover{background:var(--hover);color:var(--ink)}
+    .icon-btn{width:36px;padding:0;justify-content:center}
+    .icon-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+    .button{height:42px;display:inline-flex;align-items:center;gap:8px;padding:0 18px;border-radius:999px;font-size:15px;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:border-color .15s,background .15s}
+    .button:hover{border-color:color-mix(in srgb,var(--muted) 45%,var(--line))}
+    .button.primary{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+    .button.primary:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+    .button svg{width:17px;height:17px;fill:currentColor}
+
+    /* Hero */
+    .hero{padding:72px 0 56px}
+    .hero img{width:44px;height:44px;margin-bottom:22px}
+    .hero h1{margin:0;font-size:clamp(34px,5vw,48px);line-height:1.1;letter-spacing:-.035em;font-weight:650;max-width:720px}
+    .hero p{margin:18px 0 0;font-size:18px;color:var(--muted);max-width:640px}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+
+    /* Sections */
+    section{padding:48px 0;border-top:1px solid var(--line)}
+    h2{margin:0;font-size:26px;line-height:1.2;letter-spacing:-.025em;font-weight:650}
+    .lede{margin:10px 0 28px;color:var(--muted);max-width:640px}
+    h3{margin:0;font-size:16px;font-weight:600}
+    .grid{display:grid;gap:12px}
+    .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .item p{margin:4px 0 0;color:var(--muted);font-size:15px}
+    .features .item{padding:18px 0;border-top:1px solid var(--line)}
+    .features .item:nth-child(-n+2){border-top:0;padding-top:0}
+
+    /* Agent pipeline */
+    .agents{list-style:none;margin:0;padding:0;counter-reset:step;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);overflow:hidden}
+    .agents li{display:grid;grid-template-columns:28px 120px minmax(0,1fr);align-items:baseline;gap:12px;padding:13px 18px;border-top:1px solid var(--line);counter-increment:step}
+    .agents li:first-child{border-top:0}
+    .agents li::before{content:counter(step);font-size:13px;color:var(--faint);font-variant-numeric:tabular-nums}
+    .agents strong{font-weight:600}
+    .agents span{color:var(--muted);font-size:15px}
+
+    /* Models */
+    .models{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+    .model{padding:16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
+    .model small{display:block;margin-top:10px;font-size:12px;font-weight:600;color:var(--faint)}
+
+    /* Plans */
+    .plans{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .plan{display:flex;flex-direction:column;padding:20px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface)}
+    .plan-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .tag{height:24px;display:inline-flex;align-items:center;padding:0 9px;border-radius:999px;font-size:12px;font-weight:600;background:var(--soft);color:var(--muted);white-space:nowrap}
+    .tag.live{background:var(--ok-soft);color:var(--ok)}
+    .price{margin:14px 0 2px;font-size:28px;font-weight:650;letter-spacing:-.02em}
+    .price span{font-size:14px;font-weight:500;color:var(--muted);letter-spacing:0}
+    .plan ul{margin:12px 0 0;padding-left:18px;color:var(--muted);font-size:15px}
+    .plan li+li{margin-top:4px}
+    .note{margin:14px 0 0;font-size:14px;color:var(--faint)}
+
+    /* Credits */
+    .team-group+.team-group{margin-top:28px}
+    .team-label{margin:0 0 12px;font-size:13px;font-weight:600;color:var(--faint)}
+    .people{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+    .person{display:flex;align-items:center;gap:14px;padding:14px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface)}
+    .person img{width:52px;height:52px;border-radius:50%;object-fit:cover;background:var(--soft);flex:0 0 auto}
+    .person strong{display:block;font-size:16px;font-weight:600}
+    .person span{display:block;font-size:14px;color:var(--muted)}
+
+    /* Community */
+    .links{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+    .link{display:flex;align-items:center;gap:12px;padding:16px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);transition:border-color .15s}
+    .link:hover{border-color:color-mix(in srgb,var(--blue) 45%,var(--line))}
+    .link svg{width:22px;height:22px;flex:0 0 auto;fill:currentColor}
+    .link strong{display:block;font-weight:600}
+    .link span{display:block;font-size:14px;color:var(--muted)}
+
+    footer{border-top:1px solid var(--line);padding:22px 0 34px;color:var(--faint);font-size:14px}
+    footer .shell{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    footer a:hover{color:var(--ink)}
+
+    @media(max-width:760px){
+      .nav a{display:none}
+      .hero{padding:48px 0 40px}
+      .hero p{font-size:16px}
+      section{padding:40px 0}
+      .grid.two,.plans{grid-template-columns:1fr}
+      .features .item:nth-child(2){border-top:1px solid var(--line);padding-top:18px}
+      .agents li{grid-template-columns:22px minmax(0,1fr);row-gap:0}
+      .agents li span{grid-column:2}
     }
-
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: calc(var(--header-height) + 20px);
-    }
-
-    body {
-      margin: 0;
-      min-width: 320px;
-      min-height: 100vh;
-      overflow-x: hidden;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
-      background-image:
-        linear-gradient(color-mix(in srgb, var(--line) 38%, transparent) 1px, transparent 1px),
-        linear-gradient(90deg, color-mix(in srgb, var(--line) 38%, transparent) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: linear-gradient(to bottom, black, transparent 72%);
-      opacity: .26;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 78% 4%, color-mix(in srgb, var(--blue-strong) 19%, transparent), transparent 30rem),
-        radial-gradient(circle at 14% 28%, color-mix(in srgb, var(--blue) 8%, transparent), transparent 24rem);
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-    svg { display: block; }
-
-    :focus-visible {
-      outline: 3px solid color-mix(in srgb, var(--blue) 72%, white);
-      outline-offset: 3px;
-    }
-
-    ::selection { background: color-mix(in srgb, var(--blue) 32%, transparent); }
-
-    .shell {
-      width: min(1180px, calc(100% - 40px));
-      margin-inline: auto;
-    }
-
-    .topbar-wrap {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
-      backdrop-filter: blur(18px) saturate(1.2);
-      -webkit-backdrop-filter: blur(18px) saturate(1.2);
-    }
-
-    .topbar {
-      min-height: var(--header-height);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand,
-    .nav,
-    .nav-actions,
-    .button,
-    .sound-button,
-    .theme-button,
-    .plan-state,
-    .signal-label,
-    .meta-row,
-    .repo-stat {
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .brand { gap: 11px; font-weight: 750; letter-spacing: -.025em; }
-
-    .brand-mark {
-      width: 36px;
-      height: 36px;
-      display: grid;
-      place-items: center;
-      border: 1px solid color-mix(in srgb, var(--blue) 55%, var(--line));
-      border-radius: 11px;
-      background: var(--blue-strong);
-      color: white;
-      box-shadow: 0 10px 26px color-mix(in srgb, var(--blue-strong) 25%, transparent);
-      font-size: 17px;
-    }
-
-    .nav { gap: 4px; }
-    .nav-actions { gap: 8px; }
-
-    .nav-link {
-      min-height: 42px;
-      padding: 0 13px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 650;
-      transition: color .18s ease, background .18s ease;
-    }
-
-    .nav-link:hover { color: var(--ink); background: var(--surface-2); }
-
-    .sound-button,
-    .theme-button {
-      min-height: 42px;
-      justify-content: center;
-      border: 1px solid var(--line);
-      border-radius: 11px;
-      background: var(--surface);
-      color: var(--ink);
-      cursor: pointer;
-      transition: border-color .18s ease, background .18s ease, transform .18s ease;
-    }
-
-    .sound-button:hover,
-    .theme-button:hover { border-color: var(--line-strong); background: var(--surface-2); }
-    .sound-button:active,
-    .theme-button:active { transform: translateY(1px); }
-
-    .theme-button { width: 42px; }
-    .sound-button { gap: 9px; padding: 0 13px; font-size: 13px; font-weight: 700; }
-
-    .sound-bars {
-      height: 16px;
-      display: flex;
-      align-items: flex-end;
-      gap: 2px;
-    }
-
-    .sound-bars i {
-      width: 2px;
-      height: 5px;
-      border-radius: 2px;
-      background: currentColor;
-      transform-origin: bottom;
-    }
-
-    .sound-button[data-sound="on"] { color: var(--blue); border-color: color-mix(in srgb, var(--blue) 48%, var(--line)); }
-    .sound-button[data-sound="on"] .sound-bars i { animation: meter .65s ease-in-out infinite alternate; }
-    .sound-button[data-sound="on"] .sound-bars i:nth-child(2) { animation-delay: -.3s; }
-    .sound-button[data-sound="on"] .sound-bars i:nth-child(3) { animation-delay: -.5s; }
-    .sound-button[data-sound="on"] .sound-bars i:nth-child(4) { animation-delay: -.15s; }
-
-    @keyframes meter {
-      from { transform: scaleY(.45); }
-      to { transform: scaleY(1.65); }
-    }
-
-    .hero {
-      min-height: min(760px, calc(100svh - var(--header-height)));
-      padding: clamp(70px, 10vw, 132px) 0 76px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(390px, .92fr);
-      align-items: center;
-      gap: clamp(48px, 8vw, 112px);
-    }
-
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--blue);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    h1,
-    h2,
-    h3,
-    p { margin-top: 0; }
-
-    h1 {
-      max-width: 720px;
-      margin-bottom: 24px;
-      font-size: clamp(52px, 7vw, 90px);
-      line-height: .94;
-      letter-spacing: -.065em;
-      text-wrap: balance;
-    }
-
-    .hero-copy {
-      max-width: 650px;
-      margin-bottom: 30px;
-      color: var(--muted);
-      font-size: clamp(18px, 2vw, 22px);
-      line-height: 1.62;
-      letter-spacing: -.015em;
-    }
-
-    .hero-copy strong { color: var(--ink); font-weight: 720; }
-
-    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-
-    .button {
-      min-height: 48px;
-      justify-content: center;
-      gap: 9px;
-      padding: 0 18px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--surface);
-      font-weight: 720;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-    }
-
-    .button:hover { transform: translateY(-2px); border-color: var(--line-strong); background: var(--surface-2); }
-    .button.primary { border-color: var(--blue-strong); background: var(--blue-strong); color: white; }
-    .button.primary:hover { background: color-mix(in srgb, var(--blue-strong) 86%, white); }
-
-    .micro-note {
-      margin: 17px 0 0;
-      color: var(--quiet);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .signal-stage {
-      position: relative;
-      min-height: 470px;
-      overflow: hidden;
-      border: 1px solid var(--line-strong);
-      border-radius: 26px;
-      background: #06101d;
-      box-shadow: var(--shadow);
-      color: #f4f8ff;
-      isolation: isolate;
-    }
-
-    .signal-stage::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(rgba(104,164,255,.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(104,164,255,.1) 1px, transparent 1px);
-      background-size: 32px 32px;
-      mask-image: linear-gradient(to bottom, black, transparent 88%);
-    }
-
-    .signal-head {
-      position: relative;
-      z-index: 2;
-      min-height: 58px;
-      padding: 0 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #1b3554;
-      color: #9fb5ce;
-      font: 700 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
-      letter-spacing: .11em;
-      text-transform: uppercase;
-    }
-
-    .signal-label { gap: 8px; }
-    .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #58d79a; box-shadow: 0 0 0 5px rgba(88,215,154,.1); }
-
-    .orbital {
-      position: absolute;
-      left: 50%;
-      top: 52%;
-      width: 310px;
-      aspect-ratio: 1;
-      transform: translate(-50%, -50%);
-      border: 1px solid rgba(104,164,255,.28);
-      border-radius: 50%;
-      animation: rotate 18s linear infinite;
-    }
-
-    .orbital::before,
-    .orbital::after {
-      content: "";
-      position: absolute;
-      border: 1px solid rgba(104,164,255,.2);
-      border-radius: 50%;
-    }
-
-    .orbital::before { inset: 38px; }
-    .orbital::after { inset: 82px; }
-
-    .orbit-node {
-      position: absolute;
-      left: 50%;
-      top: -5px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #68a4ff;
-      box-shadow: 0 0 24px #68a4ff;
-    }
-
-    @keyframes rotate { to { transform: translate(-50%, -50%) rotate(360deg); } }
-
-    .axiom-core {
-      position: absolute;
-      z-index: 2;
-      left: 50%;
-      top: 52%;
-      width: 142px;
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      transform: translate(-50%, -50%) rotate(45deg);
-      border: 1px solid rgba(104,164,255,.68);
-      border-radius: 28px;
-      background: #0d2c50;
-      box-shadow: 0 0 70px rgba(52,130,246,.35), inset 0 0 34px rgba(104,164,255,.1);
-      animation: core 3.2s ease-in-out infinite;
-    }
-
-    .axiom-core span {
-      transform: rotate(-45deg);
-      font-size: 44px;
-      font-weight: 800;
-      letter-spacing: -.06em;
-    }
-
-    @keyframes core {
-      50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.045); box-shadow: 0 0 90px rgba(52,130,246,.48), inset 0 0 34px rgba(104,164,255,.18); }
-    }
-
-    .waveform {
-      position: absolute;
-      z-index: 3;
-      left: 22px;
-      right: 22px;
-      bottom: 22px;
-      height: 70px;
-      padding: 15px 16px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      border: 1px solid #1d3a5e;
-      border-radius: 14px;
-      background: rgba(6, 16, 29, .82);
-    }
-
-    .waveform span {
-      flex: 1;
-      height: calc(7px + var(--h) * 1px);
-      border-radius: 3px;
-      background: #68a4ff;
-      opacity: .58;
-      transform: scaleY(.35);
-      transition: transform .2s ease, opacity .2s ease;
-    }
-
-    body.sound-on .waveform span {
-      opacity: .9;
-      animation: waveform .7s ease-in-out infinite alternate;
-      animation-delay: calc(var(--i) * -70ms);
-    }
-
-    @keyframes waveform { to { transform: scaleY(1); } }
-
-    .section { padding: clamp(76px, 10vw, 132px) 0; border-top: 1px solid var(--line); }
-
-    .section-head {
-      margin-bottom: clamp(36px, 5vw, 64px);
-      display: grid;
-      grid-template-columns: minmax(0, .75fr) minmax(300px, 1fr);
-      align-items: end;
-      gap: 48px;
-    }
-
-    .section-index {
-      margin-bottom: 14px;
-      color: var(--blue);
-      font: 800 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
-      letter-spacing: .14em;
-    }
-
-    h2 {
-      margin-bottom: 0;
-      font-size: clamp(36px, 5vw, 64px);
-      line-height: 1;
-      letter-spacing: -.05em;
-      text-wrap: balance;
-    }
-
-    .section-intro {
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(17px, 1.7vw, 20px);
-      line-height: 1.7;
-    }
-
-    .capabilities {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      border-top: 1px solid var(--line);
-    }
-
-    .capability {
-      min-height: 230px;
-      padding: 34px 30px 38px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .capability:nth-child(odd) { padding-right: 48px; border-right: 1px solid var(--line); }
-    .capability:nth-child(even) { padding-left: 48px; }
-
-    .capability-num {
-      margin-bottom: 44px;
-      color: var(--quiet);
-      font: 700 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
-    }
-
-    .capability h3 { margin-bottom: 11px; font-size: 23px; letter-spacing: -.025em; }
-    .capability p { max-width: 470px; margin-bottom: 0; color: var(--muted); line-height: 1.65; }
-
-    .flow {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .flow-step { position: relative; min-height: 250px; padding: 30px; border-right: 1px solid var(--line); }
-    .flow-step:last-child { border-right: 0; }
-
-    .flow-step::after {
-      content: "→";
-      position: absolute;
-      z-index: 2;
-      right: -18px;
-      top: 50%;
-      width: 36px;
-      height: 36px;
-      display: grid;
-      place-items: center;
-      transform: translateY(-50%);
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: var(--surface);
-      color: var(--blue);
-    }
-
-    .flow-step:last-child::after { display: none; }
-    .flow-kicker { margin-bottom: 58px; color: var(--blue); font: 750 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace; text-transform: uppercase; letter-spacing: .1em; }
-    .flow-step h3 { margin-bottom: 12px; font-size: 23px; }
-    .flow-step p { margin-bottom: 0; color: var(--muted); line-height: 1.6; }
-
-    .plans-headline { max-width: 760px; }
-
-    .plans-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .plan-card {
-      position: relative;
-      min-height: 520px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      overflow: hidden;
-    }
-
-    .plan-card.featured { border-color: color-mix(in srgb, var(--blue) 60%, var(--line)); background: color-mix(in srgb, var(--blue-soft) 34%, var(--surface)); }
-    .plan-card.locked::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: repeating-linear-gradient(-45deg, transparent 0 12px, color-mix(in srgb, var(--line) 15%, transparent) 12px 13px);
-      opacity: .45;
-    }
-
-    .plan-main { position: relative; z-index: 1; }
-    .plan-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 40px; }
-    .plan-state { min-height: 28px; gap: 6px; padding: 0 9px; border: 1px solid var(--line); border-radius: 7px; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
-    .plan-state.available { border-color: color-mix(in srgb, var(--green) 45%, var(--line)); color: var(--green); }
-    .lock-icon { width: 14px; height: 14px; }
-    .plan-card h3 { margin-bottom: 8px; font-size: 26px; letter-spacing: -.035em; }
-    .plan-description { min-height: 48px; margin-bottom: 24px; color: var(--muted); line-height: 1.5; }
-    .plan-price { margin-bottom: 30px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
-    .plan-price strong { font-size: 46px; line-height: 1; letter-spacing: -.055em; }
-    .plan-price span { margin-left: 7px; color: var(--quiet); font-size: 13px; }
-    .plan-features { margin: 0; padding: 0; display: grid; gap: 13px; list-style: none; }
-    .plan-features li { position: relative; padding-left: 20px; color: var(--muted); font-size: 14px; line-height: 1.5; }
-    .plan-features li::before { content: ""; position: absolute; left: 0; top: .58em; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
-    .plan-action { position: relative; z-index: 1; width: 100%; min-height: 46px; margin-top: auto; border: 1px solid var(--line); border-radius: 11px; background: var(--surface-2); color: var(--muted); font-weight: 750; }
-    .plan-action:disabled { cursor: not-allowed; opacity: .76; }
-    .plan-action.current { display: grid; place-items: center; color: var(--green); }
-    .plans-note { max-width: 720px; margin: 24px 0 0; color: var(--quiet); font-size: 13px; line-height: 1.6; }
-
-    .project-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(330px, .85fr); gap: 18px; }
-    .panel { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
-    .panel-head { min-height: 60px; padding: 0 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); }
-    .panel-head span { color: var(--quiet); font-size: 12px; }
-    .repo-content { min-height: 270px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; }
-    .repo-content h3 { margin-bottom: 8px; font-size: 28px; }
-    .repo-content p { max-width: 560px; color: var(--muted); line-height: 1.65; }
-    .repo-stats { display: flex; flex-wrap: wrap; gap: 10px; }
-    .repo-stat { min-height: 34px; gap: 7px; padding: 0 11px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); font-size: 12px; }
-    .repo-stat strong { color: var(--ink); }
-    .commit-list { margin: 0; padding: 0; list-style: none; }
-    .commit-item { padding: 16px 20px; border-bottom: 1px solid var(--line); }
-    .commit-item:last-child { border-bottom: 0; }
-    .commit-item a { display: block; }
-    .commit-title { margin-bottom: 6px; color: var(--ink); font-size: 14px; font-weight: 690; line-height: 1.4; }
-    .meta-row { gap: 8px; color: var(--quiet); font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .loading { padding: 28px 22px; color: var(--quiet); line-height: 1.6; }
-
-    .community {
-      min-height: 280px;
-      padding: clamp(30px, 5vw, 56px);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 40px;
-      border: 1px solid var(--line-strong);
-      border-radius: var(--radius);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .community h2 { max-width: 780px; margin-bottom: 20px; }
-    .community p { max-width: 680px; margin-bottom: 0; color: var(--muted); font-size: 18px; line-height: 1.65; }
-
-    footer { padding: 30px 0 46px; border-top: 1px solid var(--line); color: var(--quiet); font-size: 13px; }
-    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
-
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .62s ease, transform .62s cubic-bezier(.2,.75,.2,1); }
-    .reveal.is-visible { opacity: 1; transform: none; }
-
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-
-    @media (max-width: 980px) {
-      .nav { display: none; }
-      .hero { grid-template-columns: 1fr; min-height: 0; }
-      .hero-copy { max-width: 720px; }
-      .signal-stage { width: min(620px, 100%); min-height: 430px; }
-      .plans-grid { grid-template-columns: 1fr 1fr; }
-      .plan-card:first-child { grid-column: 1 / -1; min-height: 420px; }
-      .project-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 760px) {
-      :root { --header-height: 64px; }
-      .shell { width: min(100% - 28px, 1180px); }
-      .brand-name { display: none; }
-      .sound-label { display: none; }
-      .sound-button { width: 42px; padding: 0; }
-      .hero { padding-top: 58px; gap: 44px; }
-      h1 { font-size: clamp(46px, 14vw, 68px); }
-      .hero-copy { font-size: 18px; }
-      .signal-stage { min-height: 380px; border-radius: 20px; }
-      .orbital { width: 260px; }
-      .axiom-core { width: 122px; border-radius: 24px; }
-      .section-head { grid-template-columns: 1fr; gap: 22px; }
-      .capabilities { grid-template-columns: 1fr; }
-      .capability,
-      .capability:nth-child(odd),
-      .capability:nth-child(even) { min-height: 0; padding: 28px 0; border-right: 0; }
-      .capability-num { margin-bottom: 28px; }
-      .flow { grid-template-columns: 1fr; }
-      .flow-step { min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
-      .flow-step:last-child { border-bottom: 0; }
-      .flow-step::after { content: "↓"; right: auto; left: 30px; top: auto; bottom: -18px; transform: none; }
-      .flow-kicker { margin-bottom: 34px; }
-      .plans-grid { grid-template-columns: 1fr; }
-      .plan-card:first-child { grid-column: auto; }
-      .plan-card { min-height: 480px; }
-      .community { grid-template-columns: 1fr; align-items: start; }
-      .community .button { justify-self: start; }
-      .footer-row { align-items: flex-start; flex-direction: column; gap: 8px; }
-    }
-
-    @media (max-width: 460px) {
-      .topbar { gap: 12px; }
-      .nav-actions { gap: 6px; }
-      .hero-actions { align-items: stretch; flex-direction: column; }
-      .hero-actions .button { width: 100%; }
-      .signal-stage { min-height: 330px; }
-      .signal-head { padding: 0 14px; }
-      .orbital { width: 220px; }
-      .axiom-core { width: 105px; border-radius: 21px; }
-      .axiom-core span { font-size: 36px; }
-      .waveform { left: 14px; right: 14px; bottom: 14px; }
-      .section { padding: 68px 0; }
-      .plan-card { padding: 23px; }
-      .plan-price strong { font-size: 40px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
   </style>
 </head>
+
 <body>
-  <div class="topbar-wrap">
-    <header class="topbar shell">
-      <a class="brand" href="/" aria-label="Axiom home">
-        <span class="brand-mark" aria-hidden="true">A</span>
-        <span class="brand-name">Axiom</span>
-      </a>
-
-      <nav class="nav" aria-label="Information page">
-        <a class="nav-link" href="#what">What it is</a>
-        <a class="nav-link" href="#workflow">How it works</a>
-        <a class="nav-link" href="#plans">Plans</a>
-        <a class="nav-link" href="#project">Project</a>
+  <header class="topbar">
+    <div class="shell">
+      <a class="brand" href="/"><img src="/content.png" alt="">Axiom</a>
+      <nav class="nav" aria-label="About Axiom">
+        <a href="#how">How it works</a>
+        <a href="#models">Models</a>
+        <a href="#plans">Plans</a>
+        <a href="#credits">Credits</a>
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
       </nav>
-
-      <div class="nav-actions">
-        <button class="sound-button" id="soundButton" type="button" data-sound="off" aria-pressed="false" aria-label="Turn sound on">
-          <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          <span class="sound-label">Sound off</span>
-        </button>
-        <button class="theme-button" id="themeButton" type="button" aria-label="Switch to light theme">
-          <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
-        </button>
-      </div>
-    </header>
-  </div>
+    </div>
+  </header>
 
   <main class="shell">
-    <section class="hero">
-      <div>
-        <p class="eyebrow">Axiom / Roblox AI workspace</p>
-        <h1>Build the idea.<br>Skip the busywork.</h1>
-        <p class="hero-copy">
-          Axiom is an AI workspace made for <strong>Roblox development</strong>. It helps you reason through systems, write and improve Luau, shape interfaces, and keep a project moving from rough idea to working experience.
-        </p>
-        <div class="hero-actions">
-          <a class="button primary" href="/">Open Axiom</a>
-          <a class="button" href="#what">See how it helps</a>
-        </div>
-        <p class="micro-note">Sound is always off until you enable it. Headphones recommended.</p>
+    <div class="hero">
+      <img src="/content.png" alt="">
+      <h1>An AI workspace built for Roblox developers.</h1>
+      <p>Axiom writes and fixes Luau, designs interfaces, and plans whole game systems. Every reply is planned, written and checked by a team of AI agents before you paste it into Studio.</p>
+      <div class="actions">
+        <a class="button primary" href="/">Open Axiom</a>
+        <a class="button" href="https://discord.gg/YsfUev33kk" target="_blank" rel="noopener noreferrer">Join the Discord</a>
       </div>
+    </div>
 
-      <div class="signal-stage" aria-label="Animated Axiom signal visual">
-        <div class="signal-head">
-          <span class="signal-label"><span class="live-dot"></span>Axiom core</span>
-          <span>Roblox context / active</span>
+    <section aria-labelledby="whatTitle">
+      <h2 id="whatTitle">What Axiom does</h2>
+      <p class="lede">Axiom is focused on the work Roblox creators actually do, not general chat.</p>
+      <div class="grid two features">
+        <div class="item"><h3>Luau that fits your game</h3><p>Scripts that respect services, client/server boundaries, RemoteEvents and modules, with the Explorer location for every file.</p></div>
+        <div class="item"><h3>Interfaces that look finished</h3><p>Real layouts, states and copy instead of gray prototype frames, working on desktop, phone and console.</p></div>
+        <div class="item"><h3>Debugging from your error</h3><p>Paste a Studio Output error and Axiom finds the exact failing line in your script before fixing it.</p></div>
+        <div class="item"><h3>Whole systems, remembered</h3><p>Shops, inventories, data saving and round loops, with project memory so later chats know what you already built.</p></div>
+      </div>
+    </section>
+
+    <section id="how" aria-labelledby="howTitle">
+      <h2 id="howTitle">How a reply is made</h2>
+      <p class="lede">Each message goes to a small team of agents. You can watch them work live under every reply; simple questions only use the ones they need.</p>
+      <ol class="agents">
+        <li><strong>Router</strong><span>Reads your request and picks the team.</span></li>
+        <li><strong>Debugger</strong><span>Pins a pasted Studio error to the exact line.</span></li>
+        <li><strong>Scout</strong><span>Looks up Roblox reference material.</span></li>
+        <li><strong>Atlas</strong><span>Writes a step-by-step build plan for bigger requests.</span></li>
+        <li><strong>Builder</strong><span>Writes the answer, streamed as it’s written.</span></li>
+        <li><strong>Validator</strong><span>Checks every Luau block for syntax and known Roblox API mistakes.</span></li>
+        <li><strong>Critic / Flint</strong><span>Reviews the draft for correctness; Flint hunts for exploits and data bugs.</span></li>
+        <li><strong>Fixer</strong><span>Repairs anything the reviewer or Validator rejects.</span></li>
+      </ol>
+    </section>
+
+    <section id="models" aria-labelledby="modelsTitle">
+      <h2 id="modelsTitle">Models</h2>
+      <p class="lede">Pick the model that fits the task. They share the same agent team and change how deep it goes.</p>
+      <div class="grid models">
+        <div class="model item"><h3>Axiom</h3><p>Balanced help for any Roblox project.</p><small>Default</small></div>
+        <div class="model item"><h3>Axiom Brook</h3><p>Quick, light Luau help and fast fixes.</p><small>Fast</small></div>
+        <div class="model item"><h3>Axiom Canopy</h3><p>Interfaces: the layer players see.</p><small>UI</small></div>
+        <div class="model item"><h3>Axiom Ridge</h3><p>Deeper, reviewed answers for bigger tasks.</p><small>Deep</small></div>
+        <div class="model item"><h3>Axiom Summit</h3><p>Maximum quality for complete Luau systems.</p><small>Max</small></div>
+      </div>
+    </section>
+
+    <section id="plans" aria-labelledby="plansTitle">
+      <h2 id="plansTitle">Plans</h2>
+      <p class="lede">Axiom is free during beta. Pro and Max are in development and can’t be bought yet.</p>
+      <div class="grid plans">
+        <article class="plan">
+          <div class="plan-head"><h3>Free</h3><span class="tag live">Available</span></div>
+          <div class="price">$0 <span>/ month</span></div>
+          <ul>
+            <li>Full Axiom workspace</li>
+            <li>All five models and the agent team</li>
+            <li>Project memory and Studio plugin</li>
+            <li>Community access</li>
+          </ul>
+        </article>
+        <article class="plan">
+          <div class="plan-head"><h3>Pro</h3><span class="tag">In development</span></div>
+          <div class="price">$5 <span>/ month, planned</span></div>
+          <ul>
+            <li>Everything in Free</li>
+            <li>More usage</li>
+            <li>Stronger models</li>
+            <li>Early access to new models</li>
+          </ul>
+        </article>
+        <article class="plan">
+          <div class="plan-head"><h3>Max</h3><span class="tag">In development</span></div>
+          <div class="price">$10 <span>/ month, planned</span></div>
+          <ul>
+            <li>Everything in Pro</li>
+            <li>Up to 20× Pro usage</li>
+            <li>Longer outputs for complex tasks</li>
+          </ul>
+        </article>
+      </div>
+      <p class="note">Planned features, limits and prices may change before release.</p>
+    </section>
+
+    <section id="credits" aria-labelledby="creditsTitle">
+      <h2 id="creditsTitle">Credits</h2>
+      <p class="lede">The people building Axiom.</p>
+      <div class="team-group">
+        <p class="team-label">Founders</p>
+        <div class="grid people">
+          <div class="person"><img src="https://axiom-proxy.itsizzydudee.workers.dev/media/0ffffbbd-fc92-43f2-8659-1093a38518cf" alt="" width="52" height="52" loading="lazy" decoding="async"><div><strong>Marigold</strong><span>Founder</span></div></div>
+          <div class="person"><img src="https://axiom-proxy.itsizzydudee.workers.dev/media/9ff7c311-a22e-40e0-adc9-eb62aa0d6c13" alt="" width="52" height="52" loading="lazy" decoding="async"><div><strong>Izzy</strong><span>Founder</span></div></div>
+          <div class="person"><img src="https://axiom-proxy.itsizzydudee.workers.dev/media/ab843b70-5e27-4850-a2c9-f52b56ae9b91" alt="" width="52" height="52" loading="lazy" decoding="async"><div><strong>Cxno</strong><span>Founder</span></div></div>
         </div>
-        <div class="orbital" aria-hidden="true"><span class="orbit-node"></span></div>
-        <div class="axiom-core" aria-hidden="true"><span>A</span></div>
-        <div class="waveform" aria-hidden="true">
-          <span style="--h:12;--i:1"></span><span style="--h:32;--i:2"></span><span style="--h:20;--i:3"></span><span style="--h:38;--i:4"></span><span style="--h:16;--i:5"></span><span style="--h:28;--i:6"></span><span style="--h:42;--i:7"></span><span style="--h:18;--i:8"></span><span style="--h:34;--i:9"></span><span style="--h:14;--i:10"></span><span style="--h:40;--i:11"></span><span style="--h:24;--i:12"></span><span style="--h:36;--i:13"></span><span style="--h:18;--i:14"></span><span style="--h:30;--i:15"></span><span style="--h:12;--i:16"></span>
+      </div>
+      <div class="team-group">
+        <p class="team-label">Community</p>
+        <div class="grid people">
+          <div class="person"><img src="https://axiom-proxy.itsizzydudee.workers.dev/media/281bfe3a-5427-4c5b-802c-20eb4f9af866" alt="" width="52" height="52" loading="lazy" decoding="async"><div><strong>F4TAL</strong><span>Community Manager</span></div></div>
         </div>
       </div>
     </section>
 
-    <section class="section reveal" id="what" data-sound-cue="impact">
-      <div class="section-head">
-        <div>
-          <div class="section-index">01 / WHAT AXIOM IS</div>
-          <h2>A Roblox copilot that understands the work.</h2>
-        </div>
-        <p class="section-intro">Axiom is focused on the decisions Roblox creators actually make: architecture, Luau behavior, UI structure, debugging, and the next practical step. It is designed to respond like a project partner, not a generic chatbot.</p>
-      </div>
-
-      <div class="capabilities">
-        <article class="capability">
-          <div class="capability-num">01</div>
-          <h3>Luau that fits the project</h3>
-          <p>Write, explain, refactor, and debug Roblox scripts with attention to services, client/server boundaries, remotes, modules, and maintainable patterns.</p>
-        </article>
-        <article class="capability">
-          <div class="capability-num">02</div>
-          <h3>Interface thinking</h3>
-          <p>Turn a rough screen idea into a usable hierarchy, responsive layout, interaction model, and implementation direction for Roblox UI.</p>
-        </article>
-        <article class="capability">
-          <div class="capability-num">03</div>
-          <h3>Systems, not snippets</h3>
-          <p>Plan inventories, shops, round loops, data systems, admin tools, and other connected features without losing sight of how the pieces interact.</p>
-        </article>
-        <article class="capability">
-          <div class="capability-num">04</div>
-          <h3>Project-aware help</h3>
-          <p>Keep the conversation grounded in what you are building, the constraints you have, and the outcome you are trying to ship.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section reveal" id="workflow" data-sound-cue="impact">
-      <div class="section-head">
-        <div>
-          <div class="section-index">02 / THE LOOP</div>
-          <h2>From intent to something you can use.</h2>
-        </div>
-        <p class="section-intro">Axiom turns an unclear request into a concrete build path, then helps produce and refine the result. The goal is less back-and-forth and more useful work.</p>
-      </div>
-
-      <div class="flow">
-        <article class="flow-step">
-          <div class="flow-kicker">Input</div>
-          <h3>Describe the outcome</h3>
-          <p>Share the feature, bug, interface, or system you want to make.</p>
-        </article>
-        <article class="flow-step">
-          <div class="flow-kicker">Reason</div>
-          <h3>Axiom maps the work</h3>
-          <p>It breaks down dependencies, Roblox-specific constraints, and the safest implementation path.</p>
-        </article>
-        <article class="flow-step">
-          <div class="flow-kicker">Output</div>
-          <h3>Build, test, improve</h3>
-          <p>Get practical code and guidance, then iterate with the context still intact.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section reveal" id="plans" data-sound-cue="impact">
-      <div class="section-head">
-        <div class="plans-headline">
-          <div class="section-index">03 / PLANS</div>
-          <h2>More room when your projects get bigger.</h2>
-        </div>
-        <p class="section-intro">Axiom Pro and Max are still in development. Their plan cards are locked, and there is no checkout or purchase flow yet.</p>
-      </div>
-
-      <div class="plans-grid">
-        <article class="plan-card">
-          <div class="plan-main">
-            <div class="plan-top">
-              <h3>Free</h3>
-              <span class="plan-state available">Available</span>
-            </div>
-            <p class="plan-description">The core Axiom experience for everyday Roblox work.</p>
-            <div class="plan-price"><strong>$0</strong><span>/ month</span></div>
-            <ul class="plan-features">
-              <li>Axiom chat workspace</li>
-              <li>Roblox-focused assistance</li>
-              <li>Standard models and usage</li>
-              <li>Community access</li>
-            </ul>
-          </div>
-          <div class="plan-action current">Current plan</div>
-        </article>
-
-        <article class="plan-card featured locked">
-          <div class="plan-main">
-            <div class="plan-top">
-              <h3>Pro</h3>
-              <span class="plan-state">
-                <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-                In development
-              </span>
-            </div>
-            <p class="plan-description">Better outputs and more headroom for active builders.</p>
-            <div class="plan-price"><strong>$5</strong><span>/ month planned</span></div>
-            <ul class="plan-features">
-              <li>Everything in Free</li>
-              <li>Better output quality</li>
-              <li>More usage</li>
-              <li>Access to more powerful AI models</li>
-              <li>Early access to the newest models</li>
-            </ul>
-          </div>
-          <button class="plan-action" type="button" disabled aria-disabled="true">Locked — not available yet</button>
-        </article>
-
-        <article class="plan-card locked">
-          <div class="plan-main">
-            <div class="plan-top">
-              <h3>Max</h3>
-              <span class="plan-state">
-                <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-                In development
-              </span>
-            </div>
-            <p class="plan-description">The most space and strongest outputs for complex work.</p>
-            <div class="plan-price"><strong>$10</strong><span>/ month planned</span></div>
-            <ul class="plan-features">
-              <li>Everything in Pro</li>
-              <li>Up to 20× Pro usage</li>
-              <li>Better outputs</li>
-              <li>Extra output limits for complex tasks</li>
-              <li>Best fit for heavy Axiom workflows</li>
-            </ul>
-          </div>
-          <button class="plan-action" type="button" disabled aria-disabled="true">Locked — not available yet</button>
-        </article>
-      </div>
-
-      <p class="plans-note">Pro and Max cannot be purchased yet. Features, limits, and pricing are planned details and may change before release.</p>
-    </section>
-
-    <section class="section reveal" id="project" data-sound-cue="impact">
-      <div class="section-head">
-        <div>
-          <div class="section-index">04 / OPEN PROJECT</div>
-          <h2>Follow what Axiom is becoming.</h2>
-        </div>
-        <p class="section-intro">The public repository shows the work as it moves. Live details load from GitHub when the API is available.</p>
-      </div>
-
-      <div class="project-grid">
-        <article class="panel">
-          <div class="panel-head"><strong>axiom-rblx/axiomai</strong><span>Public repository</span></div>
-          <div class="repo-content">
-            <div>
-              <h3>Axiom AI</h3>
-              <p>The project home for Axiom's Roblox-focused AI experience, product interface, and ongoing development.</p>
-            </div>
-            <div class="repo-stats" id="repoStats" aria-live="polite">
-              <span class="repo-stat"><strong>main</strong> branch</span>
-              <span class="repo-stat">Loading GitHub…</span>
-            </div>
-            <a class="button primary" href="https://github.com/axiom-rblx/axiomai" target="_blank" rel="noreferrer">Open GitHub repository</a>
-          </div>
-        </article>
-
-        <article class="panel">
-          <div class="panel-head"><strong>Latest commits</strong><span>Live</span></div>
-          <div id="commitList" class="loading" aria-live="polite">Loading recent project activity…</div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section reveal" id="community" data-sound-cue="impact">
-      <div class="community">
-        <div>
-          <div class="section-index">05 / COMMUNITY</div>
-          <h2>Build with people who care about Roblox.</h2>
-          <p>Join Axiom's Discord for updates, support, testing, feedback, and conversations with the people shaping the project.</p>
-        </div>
-        <a class="button primary" id="discordInvite" href="https://discord.com" target="_blank" rel="noreferrer">Open Discord</a>
+    <section id="community" aria-labelledby="communityTitle">
+      <h2 id="communityTitle">Community</h2>
+      <p class="lede">Updates, support, testing and feedback.</p>
+      <div class="grid links">
+        <a class="link" href="https://discord.gg/YsfUev33kk" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.4 18.4 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.4A20.3 20.3 0 0 0 .1 18a19.9 19.9 0 0 0 6 3l1.3-2a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4a12.9 12.9 0 0 1-2 1l1.3 2a19.8 19.8 0 0 0 6-3 20.2 20.2 0 0 0-3.6-13.6ZM8.1 15.3c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.1 2.4c0 1.3-.9 2.4-2.1 2.4Zm7.8 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.1 2.4c0 1.3-.9 2.4-2.1 2.4Z"/></svg>
+          <div><strong>Discord</strong><span>Join the community</span></div>
+        </a>
+        <a class="link" href="https://x.com/ai_axiom" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 2.5h3.3l-7.2 8.2 8.5 10.8h-6.6l-5.2-6.6-5.9 6.6H1.4l7.7-8.8L1 2.5h6.8l4.7 6.1 5.3-6.1Zm-1.2 17h1.8L7.4 4.4H5.5l11.1 15.1Z"/></svg>
+          <div><strong>X</strong><span>@ai_axiom</span></div>
+        </a>
+        <a class="link" href="https://github.com/axiom-rblx/axiomai" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.2-1.5-1.2-1.5-1-.7 0-.7 0-.7 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.3.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.5.2 2.5.1 2.8.7.7 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5Z"/></svg>
+          <div><strong>GitHub</strong><span>axiom-rblx/axiomai</span></div>
+        </a>
+        <a class="link" href="/status">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm-1.3 13.2-4-4 1.4-1.4 2.6 2.6 5.2-5.2 1.4 1.4-6.6 6.6Z"/></svg>
+          <div><strong>Status</strong><span>Live service health</span></div>
+        </a>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="footer-row shell">
-      <span>© <span id="year"></span> Axiom</span>
-      <span>Built for Roblox developers.</span>
+    <div class="shell">
+      <span>© <span id="year"></span> Axiom · Built for Roblox developers</span>
+      <a href="/">Back to Axiom</a>
     </div>
   </footer>
 
-  <div class="sr-only" id="soundStatus" role="status" aria-live="polite"></div>
-
   <script>
-    (() => {
-      'use strict';
-
-      const root = document.documentElement;
-      const body = document.body;
-      const themeButton = document.getElementById('themeButton');
-      const themeIcon = document.getElementById('themeIcon');
-      const soundButton = document.getElementById('soundButton');
-      const soundLabel = soundButton.querySelector('.sound-label');
-      const soundStatus = document.getElementById('soundStatus');
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      const icons = {
-        sun: '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>',
-        moon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>'
-      };
-
-      function setTheme(theme) {
-        root.dataset.theme = theme;
-        localStorage.setItem('axiom-theme', theme);
-        const dark = theme === 'dark';
-        themeIcon.innerHTML = dark ? icons.sun : icons.moon;
-        themeButton.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#07101c' : '#f6f9fd');
-      }
-
-      const savedTheme = localStorage.getItem('axiom-theme');
-      setTheme(savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
-      themeButton.addEventListener('click', () => {
-        uiTick(720, .035);
-        setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
-      });
-
-      let audioContext = null;
-      let masterGain = null;
-      let beatTimer = null;
-      let beatStep = 0;
-      let soundOn = false;
-
-      function ensureAudio() {
-        if (!audioContext) {
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          if (!AudioContext) return false;
-          audioContext = new AudioContext();
-          masterGain = audioContext.createGain();
-          masterGain.gain.value = .085;
-          masterGain.connect(audioContext.destination);
-        }
-        if (audioContext.state === 'suspended') audioContext.resume();
-        return true;
-      }
-
-      function oscillatorTone(frequency, duration, gainValue, type = 'sine', slideTo = null) {
-        if (!soundOn || !ensureAudio()) return;
-        const now = audioContext.currentTime;
-        const oscillator = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-        oscillator.type = type;
-        oscillator.frequency.setValueAtTime(frequency, now);
-        if (slideTo) oscillator.frequency.exponentialRampToValueAtTime(slideTo, now + duration);
-        gain.gain.setValueAtTime(gainValue, now);
-        gain.gain.exponentialRampToValueAtTime(.0001, now + duration);
-        oscillator.connect(gain).connect(masterGain);
-        oscillator.start(now);
-        oscillator.stop(now + duration + .02);
-      }
-
-      function noiseBurst(duration = .045, gainValue = .05, highpass = 5000) {
-        if (!soundOn || !ensureAudio()) return;
-        const now = audioContext.currentTime;
-        const length = Math.max(1, Math.floor(audioContext.sampleRate * duration));
-        const buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let i = 0; i < length; i += 1) data[i] = Math.random() * 2 - 1;
-        const source = audioContext.createBufferSource();
-        const filter = audioContext.createBiquadFilter();
-        const gain = audioContext.createGain();
-        filter.type = 'highpass';
-        filter.frequency.value = highpass;
-        gain.gain.setValueAtTime(gainValue, now);
-        gain.gain.exponentialRampToValueAtTime(.0001, now + duration);
-        source.buffer = buffer;
-        source.connect(filter).connect(gain).connect(masterGain);
-        source.start(now);
-      }
-
-      function kick() { oscillatorTone(120, .17, .52, 'sine', 46); }
-      function hat() { noiseBurst(.035, .075, 6500); }
-      function snare() { noiseBurst(.095, .12, 1200); oscillatorTone(190, .07, .08, 'triangle', 120); }
-      function uiTick(frequency = 620, volume = .025) { oscillatorTone(frequency, .045, volume, 'sine', frequency * .8); }
-      function impact() { oscillatorTone(96, .24, .22, 'sine', 43); window.setTimeout(() => noiseBurst(.06, .04, 1800), 28); }
-
-      function beat() {
-        if (!soundOn || document.hidden) return;
-        if (beatStep === 0 || beatStep === 6) kick();
-        if (beatStep === 4) snare();
-        if (beatStep % 2 === 0) hat();
-        beatStep = (beatStep + 1) % 8;
-      }
-
-      function startBeat() {
-        stopBeat();
-        beatStep = 0;
-        beat();
-        beatTimer = window.setInterval(beat, 278);
-      }
-
-      function stopBeat() {
-        if (beatTimer) window.clearInterval(beatTimer);
-        beatTimer = null;
-      }
-
-      function setSound(enabled) {
-        soundOn = enabled;
-        soundButton.dataset.sound = enabled ? 'on' : 'off';
-        soundButton.setAttribute('aria-pressed', String(enabled));
-        soundButton.setAttribute('aria-label', enabled ? 'Turn sound off' : 'Turn sound on');
-        soundLabel.textContent = enabled ? 'Sound on' : 'Sound off';
-        soundStatus.textContent = enabled ? 'Axiom sound and quiet drum loop enabled.' : 'Axiom sound disabled.';
-        body.classList.toggle('sound-on', enabled);
-        if (enabled) {
-          ensureAudio();
-          startBeat();
-          window.setTimeout(impact, 90);
-        } else {
-          stopBeat();
-        }
-      }
-
-      soundButton.addEventListener('click', () => setSound(!soundOn));
-      document.addEventListener('visibilitychange', () => {
-        if (!soundOn) return;
-        if (document.hidden) stopBeat(); else startBeat();
-      });
-
-      document.querySelectorAll('a, button:not(#soundButton)').forEach((control) => {
-        control.addEventListener('pointerdown', () => uiTick());
-      });
-
-      const reveals = document.querySelectorAll('.reveal');
-      if (reduceMotion || !('IntersectionObserver' in window)) {
-        reveals.forEach((item) => item.classList.add('is-visible'));
-      } else {
-        const revealObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target);
-          });
-        }, { threshold: .13 });
-        reveals.forEach((item) => revealObserver.observe(item));
-      }
-
-      const cueSections = document.querySelectorAll('[data-sound-cue]');
-      const soundedSections = new WeakSet();
-      if ('IntersectionObserver' in window) {
-        const cueObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && soundOn && !soundedSections.has(entry.target)) {
-              soundedSections.add(entry.target);
-              impact();
-            }
-          });
-        }, { threshold: .45 });
-        cueSections.forEach((section) => cueObserver.observe(section));
-      }
-
-      document.getElementById('year').textContent = new Date().getFullYear();
-
-      const GITHUB_REPO = 'axiom-rblx/axiomai';
-      const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}`;
-      const DISCORD_GUILD_ID = '1545617335900180550';
-
-      function escapeHTML(value = '') {
-        return String(value).replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#039;', '"': '&quot;' }[character]));
-      }
-
-      function relativeTime(value) {
-        const date = new Date(value);
-        if (Number.isNaN(date.getTime())) return '';
-        const seconds = Math.round((date.getTime() - Date.now()) / 1000);
-        const units = [['year', 31536000], ['month', 2592000], ['week', 604800], ['day', 86400], ['hour', 3600], ['minute', 60]];
-        const formatter = new Intl.RelativeTimeFormat(undefined, { numeric: 'auto' });
-        for (const [unit, size] of units) if (Math.abs(seconds) >= size) return formatter.format(Math.round(seconds / size), unit);
-        return 'just now';
-      }
-
-      async function githubJSON(path) {
-        const response = await fetch(`${GITHUB_API}${path}`, { headers: { Accept: 'application/vnd.github+json' } });
-        if (!response.ok) throw new Error(`GitHub request failed (${response.status})`);
-        return response.json();
-      }
-
-      async function loadGitHub() {
-        const repoStats = document.getElementById('repoStats');
-        const commitList = document.getElementById('commitList');
-        try {
-          const [repo, commits] = await Promise.all([githubJSON(''), githubJSON('/commits?per_page=4')]);
-          repoStats.innerHTML = `
-            <span class="repo-stat"><strong>${escapeHTML(repo.default_branch || 'main')}</strong> branch</span>
-            <span class="repo-stat"><strong>${Number(repo.stargazers_count || 0).toLocaleString()}</strong> stars</span>
-            <span class="repo-stat"><strong>${Number(repo.forks_count || 0).toLocaleString()}</strong> forks</span>`;
-          commitList.className = '';
-          commitList.innerHTML = `<ul class="commit-list">${commits.map((item) => {
-            const message = (item.commit?.message || 'Project update').split('\n')[0];
-            const date = item.commit?.author?.date || '';
-            return `<li class="commit-item"><a href="${escapeHTML(item.html_url || `https://github.com/${GITHUB_REPO}`)}" target="_blank" rel="noreferrer"><div class="commit-title">${escapeHTML(message)}</div><div class="meta-row"><span>${escapeHTML((item.sha || '').slice(0, 7))}</span><span>·</span><span>${escapeHTML(relativeTime(date))}</span></div></a></li>`;
-          }).join('')}</ul>`;
-        } catch (error) {
-          console.warn(error);
-          repoStats.innerHTML = '<span class="repo-stat"><strong>main</strong> branch</span><span class="repo-stat">GitHub currently unavailable</span>';
-          commitList.innerHTML = 'Live activity could not be loaded. <a href="https://github.com/axiom-rblx/axiomai/commits/main" target="_blank" rel="noreferrer" style="color:var(--blue)">View commits on GitHub.</a>';
-        }
-      }
-
-      async function loadDiscord() {
-        const invite = document.getElementById('discordInvite');
-        try {
-          const response = await fetch(`https://discord.com/api/guilds/${DISCORD_GUILD_ID}/widget.json`);
-          if (!response.ok) return;
-          const data = await response.json();
-          if (data.instant_invite) {
-            invite.href = data.instant_invite;
-            invite.textContent = data.presence_count ? `Join ${Number(data.presence_count).toLocaleString()} online` : 'Join Axiom Discord';
-          }
-        } catch (error) {
-          console.warn(error);
-        }
-      }
-
-      Promise.allSettled([loadGitHub(), loadDiscord()]);
-    })();
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const themeBtn = document.getElementById('themeBtn');
+    function syncTheme() {
+      const dark = document.documentElement.dataset.theme === 'dark';
+      document.querySelector('meta[name="theme-color"]').content = dark ? '#14171d' : '#f7f8fa';
+      themeBtn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    }
+    themeBtn.onclick = () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      try { localStorage.setItem('axiom-info-theme', next); } catch {}
+      syncTheme();
+    };
+    syncTheme();
   </script>
 </body>
 </html>
