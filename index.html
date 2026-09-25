@@ -4327,110 +4327,8 @@ html[data-theme=dark] #chatView .composer-box{box-shadow:0 16px 44px rgba(0,0,0,
   .project-create-btn{padding-inline:8px}
 }
 </style>
-<style id="axiom-v12-workspace-ui">
-#modePicker{display:none!important}
-.nav-model-label{margin-top:18px!important}
-.sidebar{min-height:0;overflow-y:auto;scrollbar-width:thin}
-.sidebar .recent{flex:1 1 72px;min-height:52px}
-.sidebar .side-bottom{position:sticky;bottom:-1px;z-index:4;flex:0 0 auto;margin-top:auto;padding:12px 0 max(10px,env(safe-area-inset-bottom));background:var(--side);box-shadow:0 -12px 22px color-mix(in srgb,var(--side) 90%,transparent)}
-.sidebar .staff-nav{flex:0 0 auto}
-.provider-tag{font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue)!important;border-color:color-mix(in srgb,var(--blue) 28%,var(--line))!important;background:var(--blue-soft)!important}
-.top-right #topProfile,.top-right #topSettings{border:1px solid var(--line);border-radius:10px;min-width:34px;width:34px;height:34px;background:var(--surface)}
-.top-right #topProfile:hover,.top-right #topSettings:hover{background:var(--hover)}
-.model-menu{max-height:min(560px,75dvh);overflow-y:auto}
-.model-group-label{padding:10px 10px 4px;color:var(--muted);font-size:10px;font-weight:750;letter-spacing:.09em;text-transform:uppercase}
-.response-usage .icon{width:14px;height:14px;color:var(--blue)}
-/* Axiom studio: the conversation is the product, everything else supports it. */
-:root{--bg:#f8f9fb;--side:#f0f3f7;--surface:#fff;--soft:#f3f6fa;--hover:#e8edf4;--ink:#15202e;--muted:#536274;--line:#dce3ec;--blue:#145fca;--blue-hover:#0d4daa;--blue-soft:#e5efff;--radius:12px}
-html[data-theme=dark]{--bg:#151a21;--side:#111821;--surface:#1b222c;--soft:#202936;--hover:#253142;--ink:#edf2f8;--muted:#a8b7c8;--line:#334153;--blue:#91baff;--blue-hover:#b0ccff;--blue-soft:#223653}
-body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-#app .sidebar{width:244px;flex-basis:244px;padding:18px 12px 10px}
-#app .sidebar .brand{padding:3px 10px 22px;font-size:21px}
-#app .new-chat{min-height:42px;margin-bottom:24px;border-radius:9px;box-shadow:none;font-weight:650}
-#app .nav-label{font-size:10px;letter-spacing:.12em;font-weight:750;margin-bottom:6px}
-#app .nav{gap:2px}
-#app .nav-item{min-height:37px;padding:8px 10px;gap:10px;border-radius:8px;font-size:13px}
-#app .nav-item.active{background:var(--blue-soft);color:var(--blue);font-weight:700}
-#app .nav-item.active .nav-dot{width:4px;height:4px}
-#app .side-line{margin:15px 9px}
-#app .recent-heading{margin-top:19px}
-#app .side-bottom{padding-top:8px}
-#app .user-chip{padding:8px;border:1px solid transparent}
-#app .user-chip:hover{border-color:var(--line)}
-#app .topbar{height:60px;padding:0 24px;background:var(--bg)}
-#app .top-title{font-size:14px;font-weight:700}
-#app .top-sub{font-size:12px}
-#app .top-right{gap:6px}
-#app .provider-tag{font-size:10px;padding:3px 7px}
-#chatView .chat-log{width:min(100%,900px);padding:28px 35px 0}
-#chatView .welcome{width:min(100%,900px);padding:clamp(52px,12vh,130px) 35px 28px}
-#chatView .welcome-logo{width:36px;height:36px;margin-bottom:18px}
-#chatView .eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
-#chatView .welcome h1{font-size:clamp(30px,3.3vw,43px);font-weight:650;letter-spacing:-.045em;max-width:650px;margin-bottom:10px}
-#chatView .welcome h1 span{color:inherit}
-#chatView .welcome>p:last-of-type{font-size:15px;max-width:560px;color:var(--muted)}
-#chatView .suggestions{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:38px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-#chatView .suggestion{min-height:112px;padding:17px 18px;text-align:left;background:transparent;border:0;border-radius:0;box-shadow:none;transition:background .15s}
-#chatView .suggestion:not(:last-child){border-right:1px solid var(--line)}
-#chatView .suggestion:hover{background:var(--soft);transform:none}
-#chatView .suggestion .icon{width:18px;height:18px;color:var(--blue)}
-#chatView .suggestion strong{font-size:13px;font-weight:700}
-#chatView .suggestion span{font-size:12px;line-height:1.4;color:var(--muted)}
-#chatView .mode-note{margin-top:19px;font-size:12px;color:var(--muted)}
-#chatView .composer-wrap{width:min(100%,900px);padding:12px 35px 20px;background:var(--bg)}
-#chatView .composer-box{border-radius:13px;border:1px solid var(--line);padding:13px 14px 10px;box-shadow:0 5px 20px #1019270b}
-#chatView .composer-box:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 12%,transparent)}
-#chatView .composer-box textarea{font-size:15px;min-height:56px}
-#chatView .project-context-row{border-bottom:1px solid var(--line)}
-#chatView .model-trigger{border-radius:8px}
-#chatView .send{border-radius:9px}
-/* The sidebar has one scroll region; account controls never disappear below it. */
-#app .sidebar{overflow:hidden!important}
-#app .sidebar-scroll{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;padding-right:2px}
-#app .sidebar-scroll .recent{flex:0 0 auto;min-height:44px;overflow:visible}
-#app .sidebar .side-bottom{position:relative;bottom:auto;flex:0 0 auto;margin-top:0;padding:10px 2px max(8px,env(safe-area-inset-bottom));box-shadow:none;border-top:1px solid var(--line)}
-#app .sidebar .user-chip{min-height:56px}
-#app .sidebar .user-info .sidebar-status-quote{max-width:145px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#app .community-drawer{margin:0 2px 6px}
-#app .community-drawer summary{display:flex;align-items:center;justify-content:space-between;cursor:pointer;list-style:none;padding:8px 10px;border-radius:7px;margin:0}
-#app .community-drawer summary::-webkit-details-marker{display:none}
-#app .community-drawer summary:hover{background:var(--hover);color:var(--ink)}
-#app .community-drawer summary span{font-size:16px;line-height:1;transition:transform .15s}
-#app .community-drawer[open] summary span{transform:rotate(180deg)}
-#app .community-drawer:not([open]):has(.nav-unread:not([hidden])) summary::after{content:'New';font-size:10px;letter-spacing:0;text-transform:none;color:var(--blue)}
-#app .community-drawer .nav-item{margin:2px 0}
-/* Longer Luau and Output logs need a real editor, not a one-line chat field. */
-#chatView .chat-log,#chatView .welcome{width:min(100%,1120px)}
-#chatView .composer-wrap{width:min(100%,1120px);padding-inline:30px}
-#chatView .composer-box textarea{min-height:148px;max-height:42dvh;resize:vertical;line-height:1.55;font-family:inherit}
-#chatView .composer-box.is-expanded textarea{height:min(52dvh,620px)!important;min-height:260px;max-height:58dvh;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;line-height:1.5}
-#chatView .composer-box.is-expanded{border-color:var(--blue)}
-#chatView #expandPrompt{margin-left:auto;font-size:11px;font-weight:700;white-space:nowrap}
-#chatView .prompt-count{font-size:11px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
-#chatView .project-context-row{width:100%;max-width:none}
-#chatView .error-strip{align-items:center}
-@media(max-width:1024px){#app .sidebar{width:224px;flex-basis:224px}#chatView .welcome,#chatView .chat-log{padding-left:28px;padding-right:28px}#chatView .composer-wrap{padding-left:28px;padding-right:28px}}
-@media(max-width:760px){
-  #app .sidebar{width:min(330px,92vw);padding:16px 12px 12px}
-  #app .topbar{height:54px;padding:0 9px}
-  #chatView .welcome{padding:34px 18px 15px}
-  #chatView .welcome h1{font-size:clamp(29px,7.7vw,36px)}
-  #chatView .suggestions{display:flex;gap:0;overflow-x:auto;margin-top:28px;scroll-snap-type:x mandatory}
-  #chatView .suggestion{flex:0 0 min(72vw,260px);min-height:104px;scroll-snap-align:start;padding:14px}
-  #chatView .chat-log{padding:18px 14px 20px}
-  #chatView .composer-wrap{padding:8px 10px 10px}
-  #chatView .composer-box{padding:10px 10px 8px}
-  #chatView .composer-box textarea{min-height:74px;max-height:34dvh}
-  #chatView .composer-box.is-expanded textarea{height:43dvh!important;min-height:180px;max-height:48dvh}
-  #chatView #expandPrompt{margin-left:0}
-  #chatView .prompt-count{font-size:10px}
-  .topbar .provider-tag{display:inline-flex!important;font-size:10px}
-  .top-right #topProfile,.top-right #topSettings{min-width:32px;width:32px;height:32px}
-  .top-right #clearChat{display:none}
-  .sidebar .side-bottom{bottom:0}
-}
-@media(max-width:430px){#app .topbar #themeToggle{display:none}#app .top-title{max-width:31vw}#chatView .suggestion{flex-basis:78vw}}
-</style>
+<link rel="preload" href="/assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/workspace.css?v=13.0.0">
 </head>
 <body>
 <svg hidden xmlns="http://www.w3.org/2000/svg"><defs>
@@ -4476,9 +4374,9 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
   <div class="brand"><img data-logo alt="">Axiom<em>.</em></div>
   <button class="btn new-chat" id="newChat"><svg class="icon"><use href="#i-plus"/></svg>New chat<kbd>Alt N</kbd></button>
   <div class="sidebar-scroll" aria-label="Workspace and conversation navigation">
-  <div class="nav-label">Workspace</div><nav class="nav" id="modeNav" aria-label="Axiom workspaces"><button class="nav-item active" data-workspace-model="axiom-ai"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-spark"/></svg>Axiom AI<span class="nav-dot"></span></button><button class="nav-item" data-workspace-model="work"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Axiom Work<span class="nav-dot"></span></button><button class="nav-item" data-workspace-model="code"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-code"/></svg>Axiom Code<span class="nav-dot"></span></button></nav><div class="nav-label nav-model-label">Models</div><nav class="nav" id="specialistNav" aria-label="Axiom specialist models"><button class="nav-item" data-workspace-model="sol"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-spark"/></svg>Axiom Sol<span class="nav-dot"></span></button><button class="nav-item" data-workspace-model="terra"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-layout"/></svg>Axiom Terra<span class="nav-dot"></span></button></nav>
+  <div class="nav-label">Workspace</div><nav class="nav" id="modeNav" aria-label="Axiom workspaces"><button class="nav-item active" data-workspace-model="axiom-ai"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-spark"/></svg>Axiom AI<span class="nav-dot"></span></button><button class="nav-item" data-workspace-model="work"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Axiom Work<span class="nav-dot"></span></button><button class="nav-item" data-workspace-model="code"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-code"/></svg>Axiom Code<span class="nav-dot"></span></button></nav>
   <hr class="side-line"><details class="community-drawer" id="communityDrawer"><summary class="nav-label nav-community-label">Community <span aria-hidden="true">⌄</span></summary><button class="nav-item" id="devhubNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-grid"/></svg>DevHub</button>
-  <button class="nav-item" id="creationsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Creations</button><button class="nav-item" id="dmsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-chat"/></svg>Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><button class="nav-item" id="notificationsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-bell"/></svg>Notifications<span class="nav-unread" id="notificationUnreadBadge" hidden>0</span></button><button class="nav-item" id="groupsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-users"/></svg>Groups<span class="nav-unread" id="groupInviteBadge" hidden>0</span></button><button class="nav-item" id="updatesNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-repeat"/></svg>Updates</button></details><div class="recent-heading"><div class="nav-label">Recent chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
+  <button class="nav-item" id="creationsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Creations</button><button class="nav-item" id="dmsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-chat"/></svg>Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><button class="nav-item" id="notificationsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-bell"/></svg>Notifications<span class="nav-unread" id="notificationUnreadBadge" hidden>0</span></button><button class="nav-item" id="groupsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-users"/></svg>Groups<span class="nav-unread" id="groupInviteBadge" hidden>0</span></button><button class="nav-item" id="updatesNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-repeat"/></svg>Updates</button></details><div class="recent-heading"><div class="nav-label">Your chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
   <div class="staff-nav" id="staffNav" hidden>
     <div class="nav-label">Staff</div>
     <button class="nav-item" id="moderationNav" hidden><svg class="asset-icon icon" aria-hidden="true"><use href="#i-shield"/></svg>Moderation</button>
@@ -4490,7 +4388,7 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 <main class="main"><header class="topbar"><div class="top-left"><button class="icon-btn mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button><span class="top-title" id="topTitle">Axiom AI</span><span class="divider"></span><span class="top-sub" id="topSub">Roblox workspace</span></div><div class="top-right"><span class="tag provider-tag" id="providerTag" aria-label="Axiom Beta"><span aria-hidden="true"></span>Beta</span><button class="icon-btn" id="themeToggle" aria-label="Toggle light and dark appearance"><svg class="icon"><use href="#i-moon"/></svg></button><button class="icon-btn" id="topSettings" aria-label="Open settings" title="Settings"><svg class="icon"><use href="#i-settings"/></svg></button><button class="icon-btn" id="topProfile" aria-label="Open your profile" title="Your profile"><svg class="icon"><use href="#i-users"/></svg></button><button class="icon-btn" id="clearChat" aria-label="Delete current chat"><svg class="icon"><use href="#i-trash"/></svg></button></div></header>
 <section id="chatView" aria-label="AI conversation"><div class="chat-area" id="chatArea"><div class="welcome" id="welcome"><img class="welcome-logo" data-logo alt=""><p class="eyebrow" id="greeting">Your workspace, ready.</p><h1 id="welcomeTitle">What are we <span>building today?</span></h1><p id="welcomeSub">A new interface, a better script, or your next big idea.</p><div class="suggestions" id="suggestions"></div><div class="mode-note"><svg class="icon"><use href="#i-code"/></svg><span>Built around Roblox Studio & Luau</span></div></div><div class="chat-log" id="chatLog" hidden></div></div>
 <button class="icon-btn jump-bottom" id="jumpBottom" aria-label="Scroll to latest message" hidden><svg class="icon"><use href="#i-down"/></svg></button>
-<div class="composer-wrap"><div id="chatError" class="error-strip" role="alert" hidden><span></span><button class="btn ghost" id="retryRequest">Retry</button><button class="icon-btn" id="dismissError" aria-label="Dismiss error"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="chatForm" class="composer-box"><div class="attachments" id="attachments" hidden></div><div class="project-context-row" id="projectContextRow"><span class="project-context-label"><svg class="icon"><use href="#i-box"/></svg><span>Project memory</span></span><select id="projectSelect" aria-label="Project memory"><option value="">No project</option></select><button class="project-create-btn" id="newProjectBtn" type="button" aria-label="Create project memory">New</button><button class="project-create-btn" id="expandPrompt" type="button" aria-pressed="false" aria-label="Expand message editor">Expand editor</button></div><label class="sr-only" for="prompt">Message Axiom</label><textarea id="prompt" rows="2" maxlength="100000" placeholder="Describe your task, paste Luau, or paste an Output error…"></textarea><div class="composer-tools"><div class="composer-left"><button class="icon-btn" id="attachBtn" type="button" aria-label="Attach images or code files" title="Attach images or code files"><svg class="icon"><use href="#i-clip"/></svg></button><span class="prompt-count" id="promptCount">0 characters</span><label class="sr-only" for="modeSelect">Assistant mode</label><select class="sr-only" id="modeSelect" tabindex="-1" aria-hidden="true"><option value="axiom">Axiom AI</option></select><div class="mode-picker" id="modePicker" hidden><button id="modePickerButton" type="button"><span id="modePickerIcon"></span><span id="modePickerLabel">Axiom AI</span><span id="modePickerSub">Roblox workspace</span></button><div id="modePickerMenu" hidden><button type="button" data-mode-choice="axiom">Axiom AI</button></div></div></div><div class="composer-right"><div class="model-picker" id="modelPicker"><button class="model-trigger" id="modelPickerButton" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="model-trigger-icon" id="modelPickerIcon"><svg class="icon"><use href="#i-spark"/></svg></span><span class="model-trigger-copy"><strong id="modelPickerLabel">Axiom AI</strong><small id="modelUsageSummary">~0 context tokens</small></span><svg class="icon model-chevron"><use href="#i-down"/></svg></button><div class="model-menu" id="modelPickerMenu" role="listbox" aria-label="Choose Axiom model" hidden><div id="modelOptions" class="model-options"></div><div class="model-usage-card"><span>Current chat</span><strong id="modelUsageDetail">~0 tokens</strong><small>Estimated context size. AI provider rate limits may temporarily affect requests.</small></div></div></div><button class="send" id="sendBtn" type="submit" aria-label="Send message"><svg class="icon"><use href="#i-up"/></svg></button><button class="send" id="stopBtn" type="button" aria-label="Stop generating" hidden><svg class="icon"><use href="#i-stop"/></svg></button></div></div></form><p class="composer-hint">Axiom can make mistakes. Test generated code in Roblox Studio.</p></div>
+<div class="composer-wrap"><div id="chatError" class="error-strip" role="alert" hidden><span></span><button class="btn ghost" id="retryRequest">Retry</button><button class="icon-btn" id="dismissError" aria-label="Dismiss error"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="chatForm" class="composer-box"><div class="attachments" id="attachments" hidden></div><div class="project-context-row" id="projectContextRow"><span class="project-context-label"><svg class="icon"><use href="#i-box"/></svg><span>Project memory</span></span><select id="projectSelect" aria-label="Project memory"><option value="">No project</option></select><button class="project-create-btn" id="newProjectBtn" type="button" aria-label="Create project memory">New</button><button class="project-create-btn" id="expandPrompt" type="button" aria-pressed="false" aria-label="Expand message editor">Expand editor</button></div><label class="sr-only" for="prompt">Message Axiom</label><textarea id="prompt" rows="2" maxlength="100000" placeholder="Describe your task, paste Luau, or paste an Output error…"></textarea><div class="composer-tools"><div class="composer-left"><button class="icon-btn" id="attachBtn" type="button" aria-label="Attach images or code files" title="Attach images or code files"><svg class="icon"><use href="#i-clip"/></svg></button><span class="prompt-count" id="promptCount">0 characters</span><label class="sr-only" for="modeSelect">Assistant mode</label><select class="sr-only" id="modeSelect" tabindex="-1" aria-hidden="true"><option value="axiom">Axiom AI</option></select><div class="mode-picker" id="modePicker" hidden><button id="modePickerButton" type="button"><span id="modePickerIcon"></span><span id="modePickerLabel">Axiom AI</span><span id="modePickerSub">Roblox workspace</span></button><div id="modePickerMenu" hidden><button type="button" data-mode-choice="axiom">Axiom AI</button></div></div></div><div class="composer-right"><div class="model-picker" id="modelPicker"><button class="model-trigger" id="modelPickerButton" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="model-trigger-icon" id="modelPickerIcon"><svg class="icon"><use href="#i-spark"/></svg></span><span class="model-trigger-copy"><strong id="modelPickerLabel">Axiom AI</strong><small id="modelUsageSummary">~0 context tokens</small></span><svg class="icon model-chevron"><use href="#i-down"/></svg></button><div class="model-menu" id="modelPickerMenu" role="listbox" aria-label="Choose Axiom model" hidden><div id="modelOptions" class="model-options"></div><div class="model-usage-card"><span>Current chat</span><strong id="modelUsageDetail">~0 tokens</strong><small>Estimated conversation size. Very large chats may condense earlier messages.</small></div></div></div><button class="send" id="sendBtn" type="submit" aria-label="Send message"><svg class="icon"><use href="#i-up"/></svg></button><button class="send" id="stopBtn" type="button" aria-label="Stop generating" hidden><svg class="icon"><use href="#i-stop"/></svg></button></div></div></form><p class="composer-hint">Axiom can make mistakes. Test generated code in Roblox Studio.</p></div>
 </section>
 <section class="hub-view" id="hubView" hidden aria-label="DevHub community"><div class="hub-header"><h1>DevHub</h1><p>A shared space for developers. <strong id="onlineCount">0 developers online</strong></p><div class="online-members" id="onlineMembers" aria-label="Online developers"></div><button class="btn ghost" id="legacyBoardBtn">View earlier board</button><p id="hubStatus" role="status"></p></div><div class="chat-area" id="hubArea"><div class="hub-log" id="hubLog"></div></div><div class="composer-wrap"><form id="hubForm" class="composer-box"><label class="sr-only" for="hubInput">Public message</label><textarea id="hubInput" rows="2" maxlength="500" placeholder="Share what you’re working on…" required></textarea><div class="composer-tools"><span class="small muted">Visible to everyone on DevHub</span><button class="send" id="hubSend" aria-label="Post message"><svg class="icon"><use href="#i-up"/></svg></button></div></form></div></section>
 <section id="creationsView" class="shared-view" hidden aria-label="Community creations"><div class="community-shell"><div class="community-heading"><div><h1>Creations</h1><p>A little inspiration. A lot of work worth sharing.</p></div><button id="newCreation" class="btn primary"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Share a creation</button></div><div class="feed-toolbar"><div class="filter-tabs" id="creationFilters" role="group" aria-label="Filter creations"><button data-category="All" aria-pressed="true">All work</button><button data-category="Interface" aria-pressed="false">Interfaces</button><button data-category="Script" aria-pressed="false">Scripts</button><button data-category="Game" aria-pressed="false">Games</button><button data-category="Other" aria-pressed="false">Other</button></div><button class="btn ghost" id="clearAuthorFilter" hidden>Show everyone</button></div><p id="creationStatus" class="inline-error" role="status"></p><div id="creationGrid" class="creation-grid"></div><button id="moreCreations" class="btn feed-more" hidden>Load more</button></div></section>
@@ -5105,20 +5003,22 @@ function syncChatURL(id=activeId,replace=false){
 }
 const COLORS = ['#2468e8','#7754cc','#cb4974','#b56a25','#278164','#258894','#69788e'];
 const MODES = {
-  axiom: {name:'Axiom AI', sub:'Roblox workspace', title:'What are you building <span>in Studio?</span>', description:'Describe the behavior, where it belongs, and what already exists. Axiom will help plan, write, and debug the Luau.', suggestions:[['layout','Design a UI','Responsive inventory with real states','Design a Roblox inventory UI for desktop and mobile. Include selected, equipped, and empty states; explain the Explorer hierarchy and give complete Luau files.'],['code','Build a system','Server-authoritative sprint and stamina','Build a Roblox sprint and stamina system. The server must validate stamina; support keyboard, touch, and gamepad; include exact Explorer placement and test steps.'],['box','Debug a script','Find the cause, then fix it','Help debug a Roblox Luau script. First explain what information you need from Output and Explorer, then identify the cause and provide a corrected complete file.']]}
+  axiom: {name:'Axiom AI', sub:'Roblox workspace', title:'A little help. <span>A lot to build.</span>', description:'Bring your idea, your Luau, or that error you can’t quite figure out. Let’s make it work in Roblox Studio.', suggestions:[['layout','Design a UI','Responsive inventory with real states','Design a Roblox inventory UI for desktop and mobile. Include selected, equipped, and empty states; explain the Explorer hierarchy and give complete Luau files.'],['code','Build a system','Server-authoritative sprint and stamina','Build a Roblox sprint and stamina system. The server must validate stamina; support keyboard, touch, and gamepad; include exact Explorer placement and test steps.'],['box','Debug a script','Find the cause, then fix it','Help debug a Roblox Luau script. First explain what information you need from Output and Explorer, then identify the cause and provide a corrected complete file.']]}
 };
 const AXIOM_MODELS={
   'axiom-ai':{label:'Axiom AI',sub:'Balanced Roblox help for every project.',icon:'spark',badge:'Base'},
   work:{label:'Axiom Work',sub:'Deeper answers for bigger tasks.',icon:'box',badge:'Work'},
   code:{label:'Axiom Code',sub:'Build and debug complete Luau systems.',icon:'code',badge:'Code'},
-  sol:{label:'Axiom Sol',sub:'Fast Roblox help and scripting.',icon:'spark',badge:'Fast'},
+  sol:{label:'Axiom Sol',sub:'Luau, debugging, and game systems.',icon:'spark',badge:'Fast'},
   terra:{label:'Axiom Terra',sub:'Interfaces and UI design.',icon:'layout',badge:'UI'}
 };
 const LEGACY_CLIENT_MODELS={'core-1':'axiom-ai',fast:'axiom-ai','deep-dive':'work',vision:'terra','terra-1':'terra','atlas-1':'sol'};
 function normalizeClientModel(value){
   const id=LEGACY_CLIENT_MODELS[value]||value||'axiom-ai';
-  return AXIOM_MODELS[id]?id:'axiom-ai';
+  return id==='terra'?'terra':'sol';
 }
+function normalizeWorkspace(value){return ['work','code'].includes(value)?value:'axiom-ai';}
+let workspace='axiom-ai';
 function modelBadgeForPolicy(policy=''){
   if(policy==='reviewed-ui')return 'UI';
   if(policy==='reviewed-code')return 'Script';
@@ -5130,11 +5030,11 @@ function renderModelChoices(){
   const wrap=$('modelOptions');
   if(!wrap)return;
   wrap.replaceChildren();
-  for(const [id,meta] of Object.entries(AXIOM_MODELS)){
+  for(const [id,meta] of Object.entries(AXIOM_MODELS).filter(([id])=>id==='sol'||id==='terra')){
     if(id==='axiom-ai'||id==='sol'){
       const heading=document.createElement('div');
       heading.className='model-group-label';
-      heading.textContent=id==='axiom-ai'?'Workspace':'Specialist models';
+      heading.textContent='Choose your assistant';
       wrap.append(heading);
     }
     const button=document.createElement('button');
@@ -5556,7 +5456,7 @@ function profileLinkHostLabel(key,url){
 
 async function boot(user){
   account=user;username=user.username;localKey='account:'+user.id;
-  const saved=await dbRead('conversations',localKey);threads=(Array.isArray(saved)?saved:[]).map(thread=>({...thread,mode:'axiom',modelProfile:normalizeClientModel(thread.modelProfile),projectId:thread.projectId||''}));
+  const saved=await dbRead('conversations',localKey);threads=(Array.isArray(saved)?saved:[]).map(thread=>({...thread,mode:'axiom',workspace:normalizeWorkspace(thread.workspace||thread.modelProfile),modelProfile:normalizeClientModel(thread.modelProfile),projectId:thread.projectId||''}));
   profile={displayName:username,color:COLORS[0],email:'',emailVerified:false,discordConnected:false,bio:'',badges:[],bannerId:null,status:'offline',presenceMode:'auto',statusQuote:'',links:{},profileTheme:'classic',...user};
   prefs={theme:read('axiom_theme','light'),enterSend:true,reduceMotion:false,tokenLimit:16384,gradientEnabled:false,gradientA:'#eaf2ff',gradientB:'#f5eaff',...read('axiom_preferences_'+localKey,{})};
   if(avatarURL?.startsWith('blob:'))URL.revokeObjectURL(avatarURL);avatarBlob=null;avatarURL=mediaURL(user.avatarId);
@@ -5565,6 +5465,7 @@ async function boot(user){
   const requestedChatId=requestedProfile||requestedView?null:chatIdFromPath();
   const requestedThread=threads.find(thread=>thread.id===requestedChatId);
   const initialThread=requestedThread||threads[0]||null;
+  workspace=normalizeWorkspace(initialThread?.workspace||read('axiom_workspace_'+localKey,'axiom-ai'));
   $('authWrap').hidden=true;$('app').hidden=false;$('moderationNav').hidden=!user.canModerate;$('adminNav').hidden=!user.canAdmin;$('staffNav').hidden=!(user.canModerate||user.canAdmin);applyAppearance(prefs.theme);updateProfile();startPresence();loadMyPins();activeId=initialThread?.id||null;mode='axiom';modelProfile=normalizeClientModel(initialThread?.modelProfile||read('axiom_model_'+localKey,'axiom-ai'));activeProjectId=initialThread?.projectId||read('axiom_project_'+localKey,'');setMode(mode,false);syncModelPicker();syncProjectPicker();renderRecent();loadProjects().catch(()=>{});
   refreshDMUnread();
   refreshNotificationUnread();
@@ -5693,10 +5594,10 @@ function syncModelPicker(){
     button.setAttribute('aria-selected',String(button.dataset.modelChoice===selected));
   });
   document.querySelectorAll('[data-workspace-model]').forEach(button=>{
-    button.classList.toggle('active',button.dataset.workspaceModel===selected&&view==='chat');
-    button.setAttribute('aria-current',button.dataset.workspaceModel===selected&&view==='chat'?'page':'false');
+    button.classList.toggle('active',button.dataset.workspaceModel===normalizeWorkspace(currentThread()?.workspace||workspace)&&view==='chat');
+    button.setAttribute('aria-current',button.dataset.workspaceModel===normalizeWorkspace(currentThread()?.workspace||workspace)&&view==='chat'?'page':'false');
   });
-  if(view==='chat')$('topTitle').textContent=meta.label;
+  if(view==='chat')$('topTitle').textContent=AXIOM_MODELS[normalizeWorkspace(currentThread()?.workspace||workspace)].label;
   syncModelUsage();
 }
 
@@ -5738,7 +5639,9 @@ document.querySelectorAll('[data-workspace-model]').forEach(button=>{
     if(activeRequest)return;
     if(currentThread()?.messages.length)setMode('axiom');
     else setMode('axiom',false);
-    setModelProfile(button.dataset.workspaceModel);
+    workspace=normalizeWorkspace(button.dataset.workspaceModel);
+    write('axiom_workspace_'+localKey,workspace);
+    syncModelPicker();
     closeSidebar();
     requestAnimationFrame(()=>$('prompt').focus());
   };
@@ -6097,9 +6000,9 @@ function updateControls(){
 $('chatArea').onscroll=()=>{$('jumpBottom').hidden=nearBottom()||!currentThread()?.messages.length;};$('jumpBottom').onclick=toBottom;
 function resizePrompt(){
   const p=$('prompt');
-  const minimum=matchMedia('(max-width:760px)').matches?74:148;
+  const minimum=matchMedia('(max-width:760px)').matches?65:90;
   p.style.height='auto';
-  p.style.height=Math.min(Math.floor(window.innerHeight*.42),Math.max(minimum,p.scrollHeight))+'px';
+  p.style.height=Math.min(Math.floor(window.innerHeight*.35),Math.max(minimum,p.scrollHeight))+'px';
   $('promptCount').textContent=p.value.length.toLocaleString()+' characters';
   updateControls();
 }
@@ -6149,7 +6052,7 @@ $('prompt').addEventListener('paste',event=>{
 
   renderAttachments();
   updateControls();
-  toast(text.length>24000?'Paste attached. For a complete code review, split files above 24K characters.':'Large paste added as a file.');
+  toast(text.length>60000?'Paste attached. For a complete code review, split files above 24K characters.':'Large paste added as a file.');
 });
 
 function sourceFileText(message,name){
@@ -6282,11 +6185,26 @@ $('attachFile').onchange=async e=>{
 function renderAttachments(){const wrap=$('attachments');wrap.replaceChildren();wrap.hidden=!pending.length;pending.forEach(a=>{const c=document.createElement('div');c.className='attachment';if(a.kind==='image'){const im=document.createElement('img');im.src=a.data;im.alt='';c.append(im);}else c.innerHTML=icon('file');const name=document.createElement('span');name.textContent=a.name;const x=document.createElement('button');x.type='button';x.className='icon-btn';x.ariaLabel='Remove '+a.name;x.innerHTML=icon('x');x.onclick=()=>{pending=pending.filter(p=>p.id!==a.id);renderAttachments();updateControls();};c.append(name,x);wrap.append(c);});updateControls();}
 function makeUserMessage(text,files){let complete=text;for(const f of files.filter(f=>f.kind==='text'))complete+='\n\nAttached source file: '+f.name+'\n<source_file name="'+f.name.replaceAll('"','')+'">\n'+f.data+'\n</source_file>';const images=files.filter(f=>f.kind==='image');const content=images.length?[{type:'text',text:complete||'Use these reference images for my Roblox project.'},...images.map(f=>({type:'image_url',image_url:{url:f.data}}))]:complete;return {id:uid(),role:'user',content,displayText:text||'Attached references',files:files.map(f=>({name:f.name,kind:f.kind,pasted:!!f.pasted,chars:f.kind==='text'?f.data.length:0})),ts:Date.now()};}
 async function submitText(text){if(activeRequest||attachmentLoading||!(text.trim()||pending.length))return;
-  let t=currentThread();if(!t){t={id:uid(),mode,modelProfile:normalizeClientModel(modelProfile),projectId:currentProjectId(),title:text.trim().slice(0,55)||pending[0]?.name||'New conversation',updated:Date.now(),messages:[]};threads.unshift(t);activeId=t.id;syncChatURL(t.id,true);}
+  const existing=currentThread();
+  if(!pending.length&&chatFailure?.threadId===existing?.id&&existing?.messages.at(-1)?.role==='user'&&plainContent(existing.messages.at(-1).content).trim()===text.trim()){
+    $('prompt').value='';resizePrompt();await generate();return;
+  }
+  let t=currentThread();if(!t){t={id:uid(),mode,workspace,modelProfile:normalizeClientModel(modelProfile),projectId:currentProjectId(),title:text.trim().slice(0,55)||pending[0]?.name||'New conversation',updated:Date.now(),messages:[]};threads.unshift(t);activeId=t.id;syncChatURL(t.id,true);}
   t.messages.push(makeUserMessage(text.trim(),pending));pending=[];$('prompt').value='';renderAttachments();resizePrompt();t.updated=Date.now();saveThreads().catch(()=>{});renderRecent();renderChat();await generate();
 }
 $('chatForm').onsubmit=e=>{e.preventDefault();submitText($('prompt').value);};
-function showChatError(){const visible=chatFailure&&chatFailure.threadId===activeId;$('chatError').hidden=!visible;if(visible)$('chatError').querySelector('span').textContent=chatFailure.message;}
+let retryCountdownTimer;
+function showChatError(){
+  clearTimeout(retryCountdownTimer);
+  const visible=!!chatFailure&&chatFailure.threadId===activeId;
+  $('chatError').hidden=!visible;
+  if(!visible)return;
+  const remaining=Math.max(0,Math.ceil(((chatFailure.retryAt||0)-Date.now())/1000));
+  $('chatError').querySelector('span').textContent=chatFailure.message;
+  $('retryRequest').disabled=remaining>0||!!activeRequest;
+  $('retryRequest').textContent=remaining?'Retry in '+remaining+'s':'Retry';
+  if(remaining)retryCountdownTimer=setTimeout(showChatError,1000);
+}
 $('dismissError').onclick=()=>{chatFailure=null;showChatError();};$('retryRequest').onclick=()=>generate();$('stopBtn').onclick=()=>activeRequest?.controller.abort();
 function contextMessages(messages){
   const source=messages.filter(
@@ -6303,7 +6221,7 @@ function contextMessages(messages){
       ?m.content.filter(c=>c.type==='image_url').length
       :0;
 
-    if(chars+text.length>240000||images+n>3){
+    if(chars+text.length>600000||images+n>3){
       if(!selected.length){
         throw new Error(
           'That message is too large. Send fewer or smaller files.'
@@ -6336,13 +6254,14 @@ function contextMessages(messages){
 async function consumeSSE(response,onToken,onFinish){
   if(!response.body)throw new Error('The AI returned no response stream.');
   const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='',doneSignal=false,finished=false;
-  const event=raw=>{const data=raw.split('\n').filter(l=>l.startsWith('data:')).map(l=>l.slice(5).trimStart()).join('\n');if(!data)return;if(data==='[DONE]'){doneSignal=true;return;}const chunk=JSON.parse(data);if(chunk.error)throw new Error(chunk.error.message||'Generation failed.');const choice=chunk.choices?.[0];if(choice?.delta?.content)onToken(choice.delta.content);if(choice?.finish_reason){finished=true;onFinish(choice.finish_reason);}};
+  const event=raw=>{const data=raw.split('\n').filter(l=>l.startsWith('data:')).map(l=>l.slice(5).trimStart()).join('\n');if(!data)return;if(data==='[DONE]'){doneSignal=true;return;}const chunk=JSON.parse(data);if(chunk.error){const e=new Error(chunk.error.message||'Generation failed.');e.retryAt=Date.now()+Math.max(0,Number(chunk.error.retry)||0)*1000;throw e;}const choice=chunk.choices?.[0];if(choice?.delta?.content)onToken(choice.delta.content);if(choice?.finish_reason){finished=true;onFinish(choice.finish_reason);}};
   try{while(true){const {value,done}=await reader.read();buffer+=decoder.decode(value,{stream:!done});buffer=buffer.replace(/\r\n/g,'\n');let pos;while((pos=buffer.indexOf('\n\n'))!==-1){event(buffer.slice(0,pos));buffer=buffer.slice(pos+2);}if(done){if(buffer.trim())event(buffer);break;}}if(!doneSignal&&!finished)throw new Error('The connection ended before the reply was complete.');}finally{await reader.cancel().catch(()=>{});reader.releaseLock();}
 }
 async function generate(action='retry'){
   if(activeRequest)return;const t=currentThread();if(!t?.messages.length)return;
+  if(chatFailure?.threadId===t.id&&chatFailure.retryAt>Date.now()){showChatError();return;}
   if(document.documentElement.dataset.workerCompatible==='false'){
-    chatFailure={threadId:t.id,message:'This website needs the matching Axiom Core v12 Worker. Deploy axiom-worker.js, then reload and retry your saved prompt.'};
+    chatFailure={threadId:t.id,message:'The app and server versions are out of sync. Reload once, then retry your saved prompt.'};
     showChatError();return;
   }
   const last=t.messages.at(-1),old=last?.role==='assistant'?last:null;
@@ -6358,7 +6277,7 @@ async function generate(action='retry'){
   const arm=()=>{clearTimeout(timer);timer=setTimeout(()=>{controller.abort('timeout');},360000);};arm();
   try{
     const hasImages=messages.some(m=>Array.isArray(m.content)&&m.content.some(c=>c.type==='image_url'));
-    const selectedProject=t.projectId||activeProjectId||'';const projectMeta=projects.find(project=>project.id===selectedProject);const res=await fetch(PROXY_URL+'/chat',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+sessionToken},signal:controller.signal,body:JSON.stringify({mode:t.mode,model_profile:normalizeClientModel(t.modelProfile||modelProfile),request_id:reply.id,project_id:selectedProject||undefined,project_name:projectMeta?.name,project_source:selectedProject?'web':undefined,stream:true,max_completion_tokens:Number(prefs.tokenLimit)||16384,messages})});
+    const selectedProject=t.projectId||activeProjectId||'';const projectMeta=projects.find(project=>project.id===selectedProject);const res=await fetch(PROXY_URL+'/chat',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+sessionToken},signal:controller.signal,body:JSON.stringify({mode:t.mode,workspace:normalizeWorkspace(t.workspace||workspace),model_profile:normalizeClientModel(t.modelProfile||modelProfile),request_id:reply.id,project_id:selectedProject||undefined,project_name:projectMeta?.name,project_source:selectedProject?'web':undefined,stream:true,max_completion_tokens:Number(prefs.tokenLimit)||16384,messages})});
     reply.usage={
       model:normalizeClientModel(res.headers.get('x-axiom-model-profile')||t.modelProfile||modelProfile),
       label:res.headers.get('x-axiom-model-label')||AXIOM_MODELS[normalizeClientModel(t.modelProfile||modelProfile)]?.label||'Axiom AI',
@@ -6374,7 +6293,14 @@ async function generate(action='retry'){
       groundingHits:Number(res.headers.get('x-axiom-grounding-hits'))||0,
       noCap:res.headers.get('x-axiom-usage-cap')==='none'
     };
-    if(!res.ok){let data={};try{data=await res.json();}catch{}const retry=Number(res.headers.get('retry-after'))||0;const wait=retry?` Try again in ${retry} seconds.`:'';throw new Error((data.error?.message||`Could not generate a reply (${res.status}).`)+wait);}
+    if(!res.ok){
+      let data={};try{data=await res.json();}catch{}
+      const error=new Error(data.error?.message||`Could not generate a reply (${res.status}).`);
+      const raw=res.headers.get('retry-after');
+      const delay=raw?(Number.isFinite(Number(raw))?Number(raw):Math.max(0,(Date.parse(raw)-Date.now())/1000)):0;
+      error.retryAt=Date.now()+Math.min(3600,Math.max(0,delay||0))*1000;
+      throw error;
+    }
     if((res.headers.get('content-type')||'').includes('text/event-stream')){
       await consumeSSE(res,token=>{if(!gotAny)markFirstToken();arm();gotAny=true;reply.content+=token;if(Date.now()-lastDraw>100){lastDraw=Date.now();paint();}},reason=>{if(reason==='length')reply.status='length';});
     }else{
@@ -6386,7 +6312,7 @@ async function generate(action='retry'){
     const stopped=controller.signal.aborted&&controller.signal.reason!=='timeout';
     if(gotAny)reply.status=stopped?'stopped':'error';
     else{t.messages.pop();if(old)t.messages.push(old);}
-    if(!stopped)chatFailure={threadId:t.id,message:controller.signal.reason==='timeout'?'Axiom took too long to finish this reply. Your prompt is still saved — retry it.':err.message||'Unable to reach Axiom. Check your connection and retry.'};
+    if(!stopped)chatFailure={threadId:t.id,retryAt:err.retryAt||0,message:controller.signal.reason==='timeout'?'Axiom took too long to finish this reply. Your prompt is still saved — retry it.':err.message||'Unable to reach Axiom. Check your connection and retry.'};
     if(stopped&&!gotAny)toast('Generation stopped. Your prompt is saved.');
   }finally{clearTimeout(timer);clearInterval(thoughtTicker);reply.activity.totalMs=Math.max(1,performance.now()-startedPerf);if(gotAny&&!reply.activity.thoughtMs)reply.activity.thoughtMs=reply.activity.totalMs;activeRequest=null;t.updated=Date.now();await saveThreads().catch(()=>{});renderRecent();renderChat(false);updateControls();}
 }
