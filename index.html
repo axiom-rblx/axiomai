@@ -4388,7 +4388,7 @@ html[data-theme=dark] #chatView .composer-box{box-shadow:0 16px 44px rgba(0,0,0,
 <main class="main"><header class="topbar"><div class="top-left"><button class="icon-btn mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button><span class="top-title" id="topTitle">Axiom AI</span><span class="divider"></span><span class="top-sub" id="topSub">Roblox workspace</span></div><div class="top-right"><span class="tag provider-tag" id="providerTag" aria-label="Axiom Beta"><span aria-hidden="true"></span>Beta</span><button class="icon-btn" id="themeToggle" aria-label="Toggle light and dark appearance"><svg class="icon"><use href="#i-moon"/></svg></button><button class="icon-btn" id="topSettings" aria-label="Open settings" title="Settings"><svg class="icon"><use href="#i-settings"/></svg></button><button class="icon-btn" id="topProfile" aria-label="Open your profile" title="Your profile"><svg class="icon"><use href="#i-users"/></svg></button><button class="icon-btn" id="clearChat" aria-label="Delete current chat"><svg class="icon"><use href="#i-trash"/></svg></button></div></header>
 <section id="chatView" aria-label="AI conversation"><div class="chat-area" id="chatArea"><div class="welcome" id="welcome"><img class="welcome-logo" data-logo alt=""><p class="eyebrow" id="greeting">Your workspace is ready.</p><h1 id="welcomeTitle">What are we <span>building today?</span></h1><p id="welcomeSub">A new interface, a better script, or your next big idea.</p><div class="suggestions" id="suggestions"></div><div class="mode-note"><svg class="icon"><use href="#i-code"/></svg><span>Built around Roblox Studio & Luau</span></div></div><div class="chat-log" id="chatLog" hidden></div></div>
 <button class="icon-btn jump-bottom" id="jumpBottom" aria-label="Scroll to latest message" hidden><svg class="icon"><use href="#i-down"/></svg></button>
-<div class="composer-wrap"><div id="chatError" class="error-strip" role="alert" hidden><span></span><button class="btn ghost" id="retryRequest">Retry</button><button class="icon-btn" id="dismissError" aria-label="Dismiss error"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="chatForm" class="composer-box"><div class="attachments" id="attachments" hidden></div><label class="sr-only" for="prompt">Message Axiom</label><textarea id="prompt" rows="2" maxlength="100000" placeholder="Describe your task, paste Luau, or paste an Output error…"></textarea><div class="composer-tools"><div class="composer-left"><button class="icon-btn" id="attachBtn" type="button" aria-label="Attach images or code files" title="Attach images or code files"><svg class="icon"><use href="#i-clip"/></svg></button><div class="project-context-row" id="projectContextRow" title="Project memory: Axiom remembers files, structure and decisions for the selected project"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg><select id="projectSelect" aria-label="Project memory"><option value="">No project</option></select><button class="project-create-btn" id="newProjectBtn" type="button" aria-label="Create project memory">New</button></div><button class="icon-btn" id="expandPrompt" type="button" aria-pressed="false" aria-label="Expand message editor" title="Expand editor"><svg class="icon"><use href="#i-expand"/></svg></button><span class="prompt-count" id="promptCount">0 characters</span><label class="sr-only" for="modeSelect">Assistant mode</label><select class="sr-only" id="modeSelect" tabindex="-1" aria-hidden="true"><option value="axiom">Axiom AI</option></select><div class="mode-picker" id="modePicker" hidden><button id="modePickerButton" type="button"><span id="modePickerIcon"></span><span id="modePickerLabel">Axiom AI</span><span id="modePickerSub">Roblox workspace</span></button><div id="modePickerMenu" hidden><button type="button" data-mode-choice="axiom">Axiom AI</button></div></div></div><div class="composer-right"><div class="model-picker" id="modelPicker"><button class="model-trigger" id="modelPickerButton" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="model-trigger-icon" id="modelPickerIcon"><svg class="icon"><use href="#i-spark"/></svg></span><span class="model-trigger-copy"><strong id="modelPickerLabel">Axiom AI</strong><small id="modelUsageSummary">~0 context tokens</small></span><svg class="icon model-chevron"><use href="#i-down"/></svg></button><div class="model-menu" id="modelPickerMenu" role="listbox" aria-label="Choose Axiom model" hidden><div id="modelOptions" class="model-options"></div><div class="model-usage-card"><span>Current chat</span><strong id="modelUsageDetail">~0 tokens</strong><small>Estimated conversation size. Very large chats may condense earlier messages.</small></div></div></div><button class="send" id="sendBtn" type="submit" aria-label="Send message"><svg class="icon"><use href="#i-up"/></svg></button><button class="send" id="stopBtn" type="button" aria-label="Stop generating" hidden><svg class="icon"><use href="#i-stop"/></svg></button></div></div></form><p class="composer-hint">Axiom can make mistakes. Test generated code in Roblox Studio.</p></div>
+<div class="composer-wrap"><div id="chatError" class="error-strip" role="alert" hidden><span></span><button class="btn ghost" id="retryRequest">Retry</button><button class="icon-btn" id="dismissError" aria-label="Dismiss error"><svg class="icon"><use href="#i-x"/></svg></button></div><div id="studioErrorStrip" class="studio-error-strip" role="status" hidden><span class="studio-error-text"></span><button class="btn ghost" id="studioErrorFix" type="button">Ask Axiom to fix</button><button class="icon-btn" id="studioErrorDismiss" type="button" aria-label="Dismiss Studio error"><svg class="icon"><use href="#i-x"/></svg></button></div><form id="chatForm" class="composer-box"><div class="attachments" id="attachments" hidden></div><label class="sr-only" for="prompt">Message Axiom</label><textarea id="prompt" rows="2" maxlength="100000" placeholder="Describe your task, paste Luau, or paste an Output error…"></textarea><div class="composer-tools"><div class="composer-left"><button class="icon-btn" id="attachBtn" type="button" aria-label="Attach images or code files" title="Attach images or code files"><svg class="icon"><use href="#i-clip"/></svg></button><div class="project-context-row" id="projectContextRow" title="Project memory: Axiom remembers files, structure and decisions for the selected project"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg><select id="projectSelect" aria-label="Project memory"><option value="">No project</option></select><button class="project-create-btn" id="newProjectBtn" type="button" aria-label="Create project memory">New</button></div><button class="studio-chip" id="studioChip" type="button" aria-haspopup="dialog"><span class="studio-dot" aria-hidden="true"></span><span id="studioChipLabel">Connect Studio</span></button><button class="icon-btn" id="expandPrompt" type="button" aria-pressed="false" aria-label="Expand message editor" title="Expand editor"><svg class="icon"><use href="#i-expand"/></svg></button><span class="prompt-count" id="promptCount">0 characters</span><label class="sr-only" for="modeSelect">Assistant mode</label><select class="sr-only" id="modeSelect" tabindex="-1" aria-hidden="true"><option value="axiom">Axiom AI</option></select><div class="mode-picker" id="modePicker" hidden><button id="modePickerButton" type="button"><span id="modePickerIcon"></span><span id="modePickerLabel">Axiom AI</span><span id="modePickerSub">Roblox workspace</span></button><div id="modePickerMenu" hidden><button type="button" data-mode-choice="axiom">Axiom AI</button></div></div></div><div class="composer-right"><div class="model-picker" id="modelPicker"><button class="model-trigger" id="modelPickerButton" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="model-trigger-icon" id="modelPickerIcon"><svg class="icon"><use href="#i-spark"/></svg></span><span class="model-trigger-copy"><strong id="modelPickerLabel">Axiom AI</strong><small id="modelUsageSummary">~0 context tokens</small></span><svg class="icon model-chevron"><use href="#i-down"/></svg></button><div class="model-menu" id="modelPickerMenu" role="listbox" aria-label="Choose Axiom model" hidden><div id="modelOptions" class="model-options"></div><div class="model-usage-card"><span>Current chat</span><strong id="modelUsageDetail">~0 tokens</strong><small>Estimated conversation size. Very large chats may condense earlier messages.</small></div></div></div><button class="send" id="sendBtn" type="submit" aria-label="Send message"><svg class="icon"><use href="#i-up"/></svg></button><button class="send" id="stopBtn" type="button" aria-label="Stop generating" hidden><svg class="icon"><use href="#i-stop"/></svg></button></div></div></form><p class="composer-hint">Axiom can make mistakes. Test generated code in Roblox Studio.</p></div>
 </section>
 <section class="hub-view" id="hubView" hidden aria-label="DevHub community"><div class="hub-header"><h1>DevHub</h1><p>A shared space for developers. <strong id="onlineCount">0 developers online</strong></p><div class="online-members" id="onlineMembers" aria-label="Online developers"></div><button class="btn ghost" id="legacyBoardBtn">View earlier board</button><p id="hubStatus" role="status"></p></div><div class="chat-area" id="hubArea"><div class="hub-log" id="hubLog"></div></div><div class="composer-wrap"><form id="hubForm" class="composer-box"><label class="sr-only" for="hubInput">Public message</label><textarea id="hubInput" rows="2" maxlength="500" placeholder="Share what you’re working on…" required></textarea><div class="composer-tools"><span class="small muted">Visible to everyone on DevHub</span><button class="send" id="hubSend" aria-label="Post message"><svg class="icon"><use href="#i-up"/></svg></button></div></form></div></section>
 <section id="creationsView" class="shared-view" hidden aria-label="Community creations"><div class="community-shell"><div class="community-heading"><div><h1>Creations</h1><p>A little inspiration. A lot of work worth sharing.</p></div><button id="newCreation" class="btn primary"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Share a creation</button></div><div class="feed-toolbar"><div class="filter-tabs" id="creationFilters" role="group" aria-label="Filter creations"><button data-category="All" aria-pressed="true">All work</button><button data-category="Interface" aria-pressed="false">Interfaces</button><button data-category="Script" aria-pressed="false">Scripts</button><button data-category="Game" aria-pressed="false">Games</button><button data-category="Other" aria-pressed="false">Other</button></div><button class="btn ghost" id="clearAuthorFilter" hidden>Show everyone</button></div><p id="creationStatus" class="inline-error" role="status"></p><div id="creationGrid" class="creation-grid"></div><button id="moreCreations" class="btn feed-more" hidden>Load more</button></div></section>
@@ -4951,7 +4951,7 @@ html[data-theme=dark] #chatView .composer-box{box-shadow:0 16px 44px rgba(0,0,0,
 <input id="avatarFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/avif,image/bmp" hidden>
 <input id="bannerFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/avif,image/bmp" hidden>
 <input id="attachFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif,.lua,.luau,.txt,.json,.md,.html,.css,.js,.ts,.log" multiple hidden>
-<div id="toast" role="status" hidden></div>
+<dialog id="studioDialog" aria-labelledby="studioTitle"><div class="dialog-header"><h2 id="studioTitle">Roblox Studio</h2><button class="icon-btn" data-close="studioDialog" aria-label="Close Roblox Studio setup"><svg class="icon"><use href="#i-x"/></svg></button></div><div class="dialog-body studio-dialog"><p class="small muted">Connect Studio and Axiom sees your real scripts, Explorer and Output errors, and can send changes to Studio for you to review.</p><ol class="studio-steps"><li><strong>Install the plugin</strong><span>Download it, then in Studio open the Plugins tab → Plugins Folder, drop the file in and restart Studio.</span><a class="btn" href="/assets/AxiomStudio.rbxmx" download="AxiomStudio.rbxmx">Download plugin</a></li><li><strong>Get a code</strong><span>Click the Axiom button in Studio’s Plugins tab and choose “Get a connection code”.</span></li><li><strong>Enter it here</strong><form id="studioPairForm" class="studio-pair"><label class="sr-only" for="studioCode">Connection code</label><input id="studioCode" placeholder="ABC-123" maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" required><button class="btn primary" id="studioPairBtn" type="submit">Connect</button></form><p id="studioError" class="form-error" role="alert"></p></li></ol><h3 class="studio-section-title" id="studioLinksTitle" hidden>Connected places</h3><div id="studioLinks" class="studio-links"></div></div></dialog><div id="toast" role="status" hidden></div>
 <script>
 'use strict';
 const PROXY_URL = 'https://axiom-proxy.itsizzydudee.workers.dev';
@@ -5470,6 +5470,8 @@ async function boot(user){
   refreshDMUnread();
   refreshNotificationUnread();
   refreshGroupInvites();
+  activeStudioLinkId=read(studioLinkKey(),'');loadStudioLinks();startStudioPolling();
+  if(location.pathname.replace(/\/$/,'')==='/studio')openStudioDialog(new URLSearchParams(location.search).get('code')||'');
   if(requestedProfile)openPublicProfile('@'+requestedProfile,false);
   else if(new URLSearchParams(location.search).has('join'))consumeGroupInviteFromURL();
   else if(requestedView==='hub')openHub();
@@ -6004,7 +6006,7 @@ function renderChat(scroll=true){
     row.append(content);
     if(m.role==='assistant'&&!activeRequest){
       if(m.status){const note=document.createElement('p');note.className='status-note';note.textContent=m.status==='length'?'Response limit reached. Continue to finish the remaining code.':m.status==='stopped'?'Generation stopped. This reply may be incomplete.':m.status==='error'?'Connection interrupted. This reply may be incomplete.':'';row.append(note);}
-      const actions=document.createElement('div');actions.className='response-actions';const b=document.createElement('button');b.className='icon-btn';b.ariaLabel='Copy response';b.innerHTML=icon('copy');b.onclick=()=>copyText(m.content);actions.append(b);
+      const actions=document.createElement('div');actions.className='response-actions';const b=document.createElement('button');b.className='icon-btn';b.ariaLabel='Copy response';b.innerHTML=icon('copy');b.onclick=()=>copyText(m.content);actions.append(b);if(/```/.test(m.content)&&(activeStudioLink()||m.studioChange))actions.append(studioButton(m));
       if(index===t.messages.length-1){const regen=document.createElement('button');regen.className='btn ghost';regen.innerHTML=icon('repeat')+'Regenerate';regen.onclick=()=>generate('regenerate');actions.append(regen);if(m.status){const cont=document.createElement('button');cont.className='btn ghost';cont.textContent='Continue';cont.onclick=()=>submitText('Continue exactly where you stopped. Complete the unfinished code and remaining files.');actions.append(cont);}}
       row.append(actions);
     }
@@ -6235,6 +6237,138 @@ function contextMessages(messages){
 
   return selected;
 }
+// ── Roblox Studio sync ─────────────────────────────────────────────────────
+// Links the Axiom Studio plugin to this account, shows its live status, feeds the
+// linked place into chats, and sends replies to Studio for review.
+let studioLinks=[],studioTimer=null,activeStudioLinkId='';
+const studioLinkKey=()=>'axiom_studio_link_'+localKey;
+const studioDismissKey=()=>'axiom_studio_dismissed_'+localKey;
+function activeStudioLink(){return studioLinks.find(link=>link.id===activeStudioLinkId)||null;}
+function studioAgo(ts){if(!ts)return 'never';const s=Math.max(0,Math.round((Date.now()-ts)/1000));return s<5?'just now':s<60?s+'s ago':s<3600?Math.round(s/60)+'m ago':s<86400?Math.round(s/3600)+'h ago':Math.round(s/86400)+'d ago';}
+function studioStatusText(link){
+  if(!link.snapshot.at)return link.online?'Online · waiting for the first sync':'Offline · open the Axiom panel in Studio';
+  return (link.online?'Online':'Offline')+' · synced '+studioAgo(link.snapshot.at)+' · '+link.snapshot.scripts+' script'+(link.snapshot.scripts===1?'':'s');
+}
+async function loadStudioLinks(){
+  if(!account)return;
+  try{
+    const data=await api('/studio/links');
+    studioLinks=Array.isArray(data.links)?data.links:[];
+    if(!studioLinks.some(link=>link.id===activeStudioLinkId)){activeStudioLinkId=studioLinks[0]?.id||'';write(studioLinkKey(),activeStudioLinkId);}
+    renderStudio();
+  }catch{}
+}
+function setActiveStudioLink(id){activeStudioLinkId=id;write(studioLinkKey(),id);renderStudio();renderChat(false);}
+function renderStudio(){
+  const link=activeStudioLink(),chip=$('studioChip');
+  chip.classList.toggle('is-linked',!!link);
+  chip.classList.toggle('is-online',!!link?.online);
+  $('studioChipLabel').textContent=link?link.place.name:'Connect Studio';
+  chip.title=link?'Roblox Studio · '+studioStatusText(link):'Connect Roblox Studio so Axiom can see your game';
+  renderStudioLinks();renderStudioError();
+}
+function renderStudioLinks(){
+  const list=$('studioLinks');list.replaceChildren();
+  $('studioLinksTitle').hidden=!studioLinks.length;
+  for(const link of studioLinks){
+    const row=document.createElement('div');row.className='studio-link'+(link.id===activeStudioLinkId?' active':'');
+    const dot=document.createElement('span');dot.className='studio-dot'+(link.online?' online':'');dot.setAttribute('aria-hidden','true');
+    const copy=document.createElement('div');copy.className='studio-link-copy';
+    const name=document.createElement('strong');name.textContent=link.place.name;
+    const status=document.createElement('span');status.textContent=studioStatusText(link)+(link.pending_changes?' · '+link.pending_changes+' change'+(link.pending_changes===1?'':'s')+' waiting':'');
+    copy.append(name,status);
+    const use=document.createElement('button');use.type='button';use.className='btn ghost';
+    const isActive=link.id===activeStudioLinkId;use.textContent=isActive?'Used in chats':'Use in chats';use.disabled=isActive;use.setAttribute('aria-pressed',String(isActive));
+    use.onclick=()=>setActiveStudioLink(link.id);
+    const remove=document.createElement('button');remove.type='button';remove.className='btn ghost';remove.textContent='Disconnect';
+    remove.onclick=async()=>{if(!confirm('Disconnect '+link.place.name+'? The plugin will need a new code to reconnect.'))return;try{await api('/studio/links/'+encodeURIComponent(link.id),{method:'DELETE'});toast('Disconnected '+link.place.name+'.');await loadStudioLinks();}catch(err){toast(err.message);}};
+    row.append(dot,copy,use,remove);list.append(row);
+  }
+}
+function renderStudioError(){
+  const link=activeStudioLink(),strip=$('studioErrorStrip');
+  const dismissed=Number(read(studioDismissKey(),0))||0;
+  const latest=link?.errors?.filter(error=>error.at>dismissed).at(-1);
+  strip.hidden=!latest||view!=='chat';
+  if(!latest)return;
+  strip.dataset.at=String(latest.at);
+  strip.dataset.message=latest.message;
+  strip.querySelector('.studio-error-text').textContent=(latest.source==='playtest'?'Play test error · ':'Studio error · ')+latest.message.split('\n')[0];
+}
+function openStudioDialog(code=''){
+  $('studioPairForm').reset();$('studioError').textContent='';
+  if(code)$('studioCode').value=code;
+  $('studioDialog').showModal();loadStudioLinks();
+  requestAnimationFrame(()=>$('studioCode').focus());
+}
+$('studioChip').onclick=()=>openStudioDialog();
+$('studioCode').oninput=()=>{const raw=$('studioCode').value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);$('studioCode').value=raw.length>3?raw.slice(0,3)+'-'+raw.slice(3):raw;};
+$('studioPairForm').onsubmit=async event=>{
+  event.preventDefault();
+  const code=$('studioCode').value.trim();if(!code)return;
+  $('studioPairBtn').disabled=true;$('studioError').textContent='';
+  try{
+    const data=await api('/studio/pair/claim',{method:'POST',body:{code}});
+    activeStudioLinkId=data.link.id;write(studioLinkKey(),activeStudioLinkId);
+    $('studioPairForm').reset();
+    toast('Connected '+data.link.place.name+'. Studio finishes connecting in a few seconds.');
+    await loadStudioLinks();
+  }catch(err){$('studioError').textContent=err.message;}
+  finally{$('studioPairBtn').disabled=false;}
+};
+$('studioErrorDismiss').onclick=()=>{write(studioDismissKey(),Number($('studioErrorStrip').dataset.at)||Date.now());renderStudioError();};
+$('studioErrorFix').onclick=()=>{
+  const message=$('studioErrorStrip').dataset.message||'';
+  write(studioDismissKey(),Number($('studioErrorStrip').dataset.at)||Date.now());renderStudioError();
+  submitText('My game shows this error in Roblox Studio. Find the cause in my scripts and fix it:\n\n'+message);
+};
+function startStudioPolling(){
+  clearInterval(studioTimer);
+  studioTimer=setInterval(()=>{if(account&&!document.hidden&&(studioLinks.length||$('studioDialog').open))loadStudioLinks();},8000);
+}
+const STUDIO_CHANGE_LABELS={sending:'Sending…',pending:'Waiting in Studio…',applied:'Applied in Studio',rejected:'Rejected in Studio',failed:'Failed in Studio'};
+function studioButton(message){
+  const button=document.createElement('button');button.type='button';button.className='btn ghost studio-send';
+  const status=message.studioChange?.status;
+  button.innerHTML=icon('upload')+'<span></span>';
+  button.querySelector('span').textContent=status?STUDIO_CHANGE_LABELS[status]:'Send to Studio';
+  button.dataset.status=status||'';
+  button.disabled=status==='sending'||status==='pending'||status==='applied';
+  button.onclick=()=>sendReplyToStudio(message);
+  return button;
+}
+async function sendReplyToStudio(message){
+  const link=activeStudioLink();
+  if(!link){openStudioDialog();return;}
+  const thread=currentThread();
+  message.studioChange={status:'sending',linkId:link.id};renderChat(false);
+  try{
+    const data=await api('/studio/links/'+encodeURIComponent(link.id)+'/changes',{method:'POST',body:{message:message.content},timeout:120000});
+    message.studioChange={id:data.change.id,linkId:link.id,status:'pending',summary:data.change.summary};
+    toast(link.online?'Sent to '+link.place.name+'. Review it in the Axiom panel in Studio.':'Sent. It will appear when you open the Axiom panel in Studio.');
+    trackStudioChange(message,thread);
+  }catch(err){message.studioChange=null;toast(err.message);}
+  if(thread){thread.updated=Date.now();saveThreads().catch(()=>{});}
+  renderChat(false);
+}
+async function trackStudioChange(message,thread){
+  const {id,linkId}=message.studioChange||{};if(!id)return;
+  for(let i=0;i<120&&message.studioChange?.status==='pending';i++){
+    await new Promise(resolve=>setTimeout(resolve,i<20?3000:10000));
+    try{
+      const data=await api('/studio/links/'+encodeURIComponent(linkId)+'/changes');
+      const change=(data.changes||[]).find(item=>item.id===id);
+      if(change&&change.status!=='pending'){
+        message.studioChange.status=change.status;
+        if(change.status==='applied')toast('Applied in Studio. Press Ctrl+Z there to undo.');
+        else if(change.status==='failed')toast('Studio could not apply the change: '+(change.result?.detail||'unknown error').split('\n')[0]);
+        if(thread){thread.updated=Date.now();saveThreads().catch(()=>{});}
+        if(activeId===thread?.id)renderChat(false);
+        return;
+      }
+    }catch{}
+  }
+}
 async function consumeSSE(response,onToken,onFinish,onAgent){
   if(!response.body)throw new Error('The AI returned no response stream.');
   const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='',doneSignal=false,finished=false;
@@ -6271,7 +6405,7 @@ async function generate(action='retry'){
   };
   try{
     const hasImages=messages.some(m=>Array.isArray(m.content)&&m.content.some(c=>c.type==='image_url'));
-    const selectedProject=t.projectId||activeProjectId||'';const projectMeta=projects.find(project=>project.id===selectedProject);const res=await fetch(PROXY_URL+'/chat',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+sessionToken},signal:controller.signal,body:JSON.stringify({mode:t.mode,workspace:normalizeWorkspace(t.workspace||workspace),model_profile:normalizeClientModel(t.modelProfile||modelProfile),request_id:reply.id,project_id:selectedProject||undefined,project_name:projectMeta?.name,project_source:selectedProject?'web':undefined,stream:true,agent_events:true,max_completion_tokens:Number(prefs.tokenLimit)||16384,messages})});
+    const selectedProject=t.projectId||activeProjectId||'';const projectMeta=projects.find(project=>project.id===selectedProject);const res=await fetch(PROXY_URL+'/chat',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+sessionToken},signal:controller.signal,body:JSON.stringify({mode:t.mode,workspace:normalizeWorkspace(t.workspace||workspace),model_profile:normalizeClientModel(t.modelProfile||modelProfile),request_id:reply.id,project_id:selectedProject||undefined,project_name:projectMeta?.name,project_source:selectedProject?'web':undefined,stream:true,agent_events:true,studio_link_id:activeStudioLink()?.id||undefined,max_completion_tokens:Number(prefs.tokenLimit)||16384,messages})});
     reply.usage={
       model:normalizeClientModel(res.headers.get('x-axiom-model-profile')||t.modelProfile||modelProfile),
       label:res.headers.get('x-axiom-model-label')||AXIOM_MODELS[normalizeClientModel(t.modelProfile||modelProfile)]?.label||'Axiom AI',
