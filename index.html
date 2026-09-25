@@ -4340,12 +4340,67 @@ html[data-theme=dark] #chatView .composer-box{box-shadow:0 16px 44px rgba(0,0,0,
 .model-menu{max-height:min(560px,75dvh);overflow-y:auto}
 .model-group-label{padding:10px 10px 4px;color:var(--muted);font-size:10px;font-weight:750;letter-spacing:.09em;text-transform:uppercase}
 .response-usage .icon{width:14px;height:14px;color:var(--blue)}
+/* Axiom studio: the conversation is the product, everything else supports it. */
+:root{--bg:#f8f9fb;--side:#f0f3f7;--surface:#fff;--soft:#f3f6fa;--hover:#e8edf4;--ink:#15202e;--muted:#536274;--line:#dce3ec;--blue:#145fca;--blue-hover:#0d4daa;--blue-soft:#e5efff;--radius:12px}
+html[data-theme=dark]{--bg:#151a21;--side:#111821;--surface:#1b222c;--soft:#202936;--hover:#253142;--ink:#edf2f8;--muted:#a8b7c8;--line:#334153;--blue:#91baff;--blue-hover:#b0ccff;--blue-soft:#223653}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#app .sidebar{width:244px;flex-basis:244px;padding:18px 12px 10px}
+#app .sidebar .brand{padding:3px 10px 22px;font-size:21px}
+#app .new-chat{min-height:42px;margin-bottom:24px;border-radius:9px;box-shadow:none;font-weight:650}
+#app .nav-label{font-size:10px;letter-spacing:.12em;font-weight:750;margin-bottom:6px}
+#app .nav{gap:2px}
+#app .nav-item{min-height:37px;padding:8px 10px;gap:10px;border-radius:8px;font-size:13px}
+#app .nav-item.active{background:var(--blue-soft);color:var(--blue);font-weight:700}
+#app .nav-item.active .nav-dot{width:4px;height:4px}
+#app .side-line{margin:15px 9px}
+#app .recent-heading{margin-top:19px}
+#app .side-bottom{padding-top:8px}
+#app .user-chip{padding:8px;border:1px solid transparent}
+#app .user-chip:hover{border-color:var(--line)}
+#app .topbar{height:60px;padding:0 24px;background:var(--bg)}
+#app .top-title{font-size:14px;font-weight:700}
+#app .top-sub{font-size:12px}
+#app .top-right{gap:6px}
+#app .provider-tag{font-size:10px;padding:3px 7px}
+#chatView .chat-log{width:min(100%,900px);padding:28px 35px 0}
+#chatView .welcome{width:min(100%,900px);padding:clamp(52px,12vh,130px) 35px 28px}
+#chatView .welcome-logo{width:36px;height:36px;margin-bottom:18px}
+#chatView .eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+#chatView .welcome h1{font-size:clamp(30px,3.3vw,43px);font-weight:650;letter-spacing:-.045em;max-width:650px;margin-bottom:10px}
+#chatView .welcome h1 span{color:inherit}
+#chatView .welcome>p:last-of-type{font-size:15px;max-width:560px;color:var(--muted)}
+#chatView .suggestions{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:38px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#chatView .suggestion{min-height:112px;padding:17px 18px;text-align:left;background:transparent;border:0;border-radius:0;box-shadow:none;transition:background .15s}
+#chatView .suggestion:not(:last-child){border-right:1px solid var(--line)}
+#chatView .suggestion:hover{background:var(--soft);transform:none}
+#chatView .suggestion .icon{width:18px;height:18px;color:var(--blue)}
+#chatView .suggestion strong{font-size:13px;font-weight:700}
+#chatView .suggestion span{font-size:12px;line-height:1.4;color:var(--muted)}
+#chatView .mode-note{margin-top:19px;font-size:12px;color:var(--muted)}
+#chatView .composer-wrap{width:min(100%,900px);padding:12px 35px 20px;background:var(--bg)}
+#chatView .composer-box{border-radius:13px;border:1px solid var(--line);padding:13px 14px 10px;box-shadow:0 5px 20px #1019270b}
+#chatView .composer-box:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 12%,transparent)}
+#chatView .composer-box textarea{font-size:15px;min-height:56px}
+#chatView .project-context-row{border-bottom:1px solid var(--line)}
+#chatView .model-trigger{border-radius:8px}
+#chatView .send{border-radius:9px}
+@media(max-width:1024px){#app .sidebar{width:224px;flex-basis:224px}#chatView .welcome,#chatView .chat-log{padding-left:28px;padding-right:28px}#chatView .composer-wrap{padding-left:28px;padding-right:28px}}
 @media(max-width:760px){
+  #app .sidebar{width:min(330px,92vw);padding:16px 12px 12px}
+  #app .topbar{height:54px;padding:0 9px}
+  #chatView .welcome{padding:34px 18px 15px}
+  #chatView .welcome h1{font-size:clamp(29px,7.7vw,36px)}
+  #chatView .suggestions{display:flex;gap:0;overflow-x:auto;margin-top:28px;scroll-snap-type:x mandatory}
+  #chatView .suggestion{flex:0 0 min(72vw,260px);min-height:104px;scroll-snap-align:start;padding:14px}
+  #chatView .chat-log{padding:18px 14px 20px}
+  #chatView .composer-wrap{padding:8px 10px 10px}
+  #chatView .composer-box{padding:10px 10px 8px}
   .topbar .provider-tag{display:inline-flex!important;font-size:10px}
   .top-right #topProfile,.top-right #topSettings{min-width:32px;width:32px;height:32px}
   .top-right #clearChat{display:none}
   .sidebar .side-bottom{bottom:0}
 }
+@media(max-width:430px){#app .topbar #themeToggle{display:none}#app .top-title{max-width:31vw}#chatView .suggestion{flex-basis:78vw}}
 </style>
 </head>
 <body>
@@ -5019,7 +5074,7 @@ function syncChatURL(id=activeId,replace=false){
 }
 const COLORS = ['#2468e8','#7754cc','#cb4974','#b56a25','#278164','#258894','#69788e'];
 const MODES = {
-  axiom: {name:'Axiom AI', sub:'Roblox workspace', title:'Build your next <span>Roblox idea.</span>', description:'Plan it, script it, design it, and make it work in Studio.', suggestions:[['layout','Design an inventory','A clean, responsive item grid','Build a polished Roblox inventory UI with a responsive item grid, item details, equip states, and smooth open/close animations.'],['code','Build a game system','From an idea to working Luau','Build a server-authoritative Roblox sprint and stamina system with a minimal stamina bar. Include keyboard, touch, and gamepad input.'],['box','Work through an idea','Plan your next Roblox project','Help me turn a Roblox game idea into a practical plan. Ask me about the core gameplay first.']]}
+  axiom: {name:'Axiom AI', sub:'Roblox workspace', title:'What are you building <span>in Studio?</span>', description:'Describe the behavior, where it belongs, and what already exists. Axiom will help plan, write, and debug the Luau.', suggestions:[['layout','Design a UI','Responsive inventory with real states','Design a Roblox inventory UI for desktop and mobile. Include selected, equipped, and empty states; explain the Explorer hierarchy and give complete Luau files.'],['code','Build a system','Server-authoritative sprint and stamina','Build a Roblox sprint and stamina system. The server must validate stamina; support keyboard, touch, and gamepad; include exact Explorer placement and test steps.'],['box','Debug a script','Find the cause, then fix it','Help debug a Roblox Luau script. First explain what information you need from Output and Explorer, then identify the cause and provide a corrected complete file.']]}
 };
 const AXIOM_MODELS={
   'axiom-ai':{label:'Axiom AI',sub:'Balanced Roblox help for every project.',icon:'spark',badge:'Base'},
