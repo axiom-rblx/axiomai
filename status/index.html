@@ -309,7 +309,7 @@
       ['debugger', 'Debugger', 'Pins pasted Studio errors to the exact failing line'],
       ['scout', 'Scout', 'Searches Roblox reference material'],
       ['planner', 'Atlas', 'Writes the build plan'],
-      ['builder', 'Builder', 'Writes the answer (Theorem, Lemma, Vector, Proof or Prime)'],
+      ['builder', 'Builder', 'Writes the answer (Beam, Glint, Prism, Beacon or Flare)'],
       ['validator', 'Validator', 'Checks Luau syntax and Roblox APIs'],
       ['reviewer', 'Critic / Flint', 'Reviews drafts for correctness and security'],
       ['fixer', 'Fixer', 'Repairs answers the reviewer or validator rejects'],
@@ -321,11 +321,11 @@
     ].map(([id, name, role]) => ({ id, name, role, status: 'checking' }));
 
     const FALLBACK_MODELS = [
-      ['Axiom Lemma', 'Fast answers and quick Luau fixes.'],
-      ['Axiom Theorem', 'Balanced intelligence for everyday Roblox work.'],
-      ['Axiom Vector', 'Roblox interfaces, designed and built.'],
-      ['Axiom Proof', 'Plans, builds and verifies bigger systems.'],
-      ['Axiom Prime', 'Axiom’s most powerful model for complete systems.']
+      ['Axiom Glint', 'Fast answers and quick Luau fixes.'],
+      ['Axiom Beam', 'Balanced intelligence for everyday Roblox work.'],
+      ['Axiom Prism', 'Roblox interfaces, designed and built.'],
+      ['Axiom Beacon', 'Plans, builds and verifies bigger systems.'],
+      ['Axiom Flare', 'Axiom’s most powerful model for complete systems.']
     ].map(([name, description]) => ({ name, description }));
 
     const STATE_LABEL = {
