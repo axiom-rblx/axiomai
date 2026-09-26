@@ -2,6 +2,8 @@
 <html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/assets/axiom-logo.png">
+  <link rel="apple-touch-icon" href="/assets/axiom-logo.png">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f7faff">
 <meta name="description" content="Axiom — Roblox intelligence for interfaces, Luau systems, debugging, project memory, and Studio workflows.">
@@ -4374,7 +4376,7 @@ html[data-theme=dark] #chatView .composer-box{box-shadow:0 16px 44px rgba(0,0,0,
   <div class="brand"><img data-logo alt="">Axiom<em>.</em></div>
   <button class="btn new-chat" id="newChat"><svg class="icon"><use href="#i-plus"/></svg>New chat<kbd>Alt N</kbd></button>
   <div class="sidebar-scroll" aria-label="Workspace and conversation navigation">
-  <div class="nav-label">Workspace</div><nav class="nav" id="modeNav" aria-label="Axiom workspaces"><button class="nav-item active" data-workspace-model="axiom-ai"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-spark"/></svg>Axiom<span class="nav-dot"></span></button><button class="nav-item" data-workspace-model="work"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Axiom Ridge<span class="nav-dot"></span></button><button class="nav-item" data-workspace-model="code"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-code"/></svg>Axiom Summit<span class="nav-dot"></span></button></nav>
+  <div class="nav-label">Workspace</div><nav class="nav" id="modeNav" aria-label="Axiom workspaces"><button class="nav-item active" data-workspace-model="axiom-ai"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-spark"/></svg>Axiom Theorem<span class="nav-dot"></span></button><button class="nav-item" data-workspace-model="work"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Axiom Proof<span class="nav-dot"></span></button><button class="nav-item" data-workspace-model="code"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-code"/></svg>Axiom Prime<span class="nav-dot"></span></button></nav>
   <hr class="side-line"><details class="community-drawer" id="communityDrawer"><summary class="nav-label nav-community-label">Community <span aria-hidden="true">⌄</span></summary><button class="nav-item" id="devhubNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-grid"/></svg>DevHub</button>
   <button class="nav-item" id="creationsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-box"/></svg>Creations</button><button class="nav-item" id="dmsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-chat"/></svg>Messages<span class="nav-unread" id="dmUnreadBadge" hidden>0</span></button><button class="nav-item" id="notificationsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-bell"/></svg>Notifications<span class="nav-unread" id="notificationUnreadBadge" hidden>0</span></button><button class="nav-item" id="groupsNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-users"/></svg>Groups<span class="nav-unread" id="groupInviteBadge" hidden>0</span></button><button class="nav-item" id="updatesNav"><svg class="asset-icon icon" aria-hidden="true"><use href="#i-repeat"/></svg>Updates</button></details><div class="recent-heading"><div class="nav-label">Your chats</div><button class="icon-btn" id="searchChats" aria-label="Search chats"><svg class="icon"><use href="#i-search"/></svg></button></div><div class="recent" id="recentChats"></div>
   <div class="staff-nav" id="staffNav" hidden>
@@ -5006,11 +5008,11 @@ const MODES = {
   axiom: {name:'Axiom AI', sub:'Roblox workspace', title:'What are we building today?', description:'Describe a system, paste your Luau, or drop in an Output error. Axiom’s agents plan it, write it, and check it before you paste it into Studio.', suggestions:[['layout','Design a UI','Responsive inventory with real states','Design a Roblox inventory UI for desktop and mobile. Include selected, equipped, and empty states; explain the Explorer hierarchy and give complete Luau files.'],['code','Build a system','Server-authoritative sprint and stamina','Build a Roblox sprint and stamina system. The server must validate stamina; support keyboard, touch, and gamepad; include exact Explorer placement and test steps.'],['box','Debug a script','Find the cause, then fix it','Help debug a Roblox Luau script. First explain what information you need from Output and Explorer, then identify the cause and provide a corrected complete file.']]}
 };
 const AXIOM_MODELS={
-  'axiom-ai':{label:'Axiom',sub:'Balanced Roblox help for every project.',icon:'spark',badge:'Base'},
-  work:{label:'Axiom Ridge',sub:'Deeper, reviewed answers for bigger tasks.',icon:'box',badge:'Deep'},
-  code:{label:'Axiom Summit',sub:'Maximum quality for complete Luau systems.',icon:'code',badge:'Max'},
-  sol:{label:'Axiom Brook',sub:'Quick, light Luau help and fast fixes.',icon:'spark',badge:'Fast'},
-  terra:{label:'Axiom Canopy',sub:'Interfaces: the layer players see.',icon:'layout',badge:'UI'}
+  'axiom-ai':{label:'Axiom Theorem',sub:'Balanced intelligence for everyday Roblox work.',icon:'spark',badge:'Base'},
+  work:{label:'Axiom Proof',sub:'Plans, builds and verifies bigger systems.',icon:'box',badge:'Verified'},
+  code:{label:'Axiom Prime',sub:'Axiom’s most powerful model for complete systems.',icon:'code',badge:'Max'},
+  sol:{label:'Axiom Lemma',sub:'Fast answers and quick Luau fixes.',icon:'spark',badge:'Fast'},
+  terra:{label:'Axiom Vector',sub:'Roblox interfaces, designed and built.',icon:'layout',badge:'UI'}
 };
 const LEGACY_CLIENT_MODELS={'core-1':'axiom-ai',fast:'axiom-ai','deep-dive':'work',vision:'terra','terra-1':'terra','atlas-1':'sol'};
 function normalizeClientModel(value){
