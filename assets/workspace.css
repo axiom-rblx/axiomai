@@ -384,3 +384,26 @@ html body .admin-plan-remove{margin-top:8px}
   html body #chatView .project-context-row{position:relative;width:40px!important;min-width:40px;flex:0 0 40px!important;padding:0!important;justify-content:center}
   html body #chatView #projectSelect{position:absolute;inset:0;width:100%;max-width:none;opacity:0;cursor:pointer}
 }
+
+/* ── Refinement (v14.4) ───────────────────────────────────────────────── */
+/* Buttons are flat: color and a hover shift say "primary", not a glow. */
+html body .btn.primary,html body #authSubmit,html body #newCreation{box-shadow:none!important}
+html body .btn.primary:hover{filter:none}
+/* One brand mark everywhere: logo + "Axiom" (the sidebar already drops the dot). */
+html body .auth-intro .brand em{display:none}
+/* Quiet, thin scrollbars that don't compete with content. */
+html body #app .sidebar-scroll,html body #app .chat-area,html body .dm-list{scrollbar-width:thin;scrollbar-color:transparent transparent}
+html body #app .sidebar-scroll:hover,html body #app .chat-area:hover,html body .dm-list:hover{scrollbar-color:var(--line) transparent}
+html body #app .sidebar-scroll::-webkit-scrollbar{width:6px}
+html body #app .sidebar-scroll::-webkit-scrollbar-thumb{background:transparent;border-radius:6px}
+html body #app .sidebar-scroll:hover::-webkit-scrollbar-thumb{background:var(--line)}
+/* The legacy import stays available but stops competing with "Forgot password?". */
+html body #legacyClaimBtn{color:var(--muted)!important;font-weight:500}
+/* DevHub: the composer lines up with the board above it. */
+html body #hubView .composer-box{max-width:830px;margin-left:auto!important;margin-right:auto!important}
+html body #hubView:has(.empty-hub) #legacyBoardBtn{display:none}
+/* Messages: the member panel only appears once a conversation is open. */
+@media(min-width:901px){
+  html body .dm-app:has(#dmDetailsEmpty:not([hidden])){grid-template-columns:276px minmax(0,1fr)!important}
+  html body .dm-app:has(#dmDetailsEmpty:not([hidden])) .dm-details{display:none!important}
+}
