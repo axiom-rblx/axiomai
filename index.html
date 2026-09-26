@@ -4367,7 +4367,7 @@ html[data-theme=dark] #chatView .composer-box{box-shadow:0 16px 44px rgba(0,0,0,
 <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.35 4.15L17.5 8.5l-4.15 1.35L12 14l-1.35-4.15L6.5 8.5l4.15-1.35L12 3Z"/><path d="m18.5 14 .75 2.25L21.5 17l-2.25.75L18.5 20l-.75-2.25L15.5 17l2.25-.75L18.5 14Z"/></symbol>
 </defs></svg>
 <section id="authWrap">
-  <div class="auth-intro"><div class="brand"><img data-logo alt="">Axiom<em>.</em></div><div><h1>Your next game<br>starts with <span>an idea.</span></h1><p>A place to build interfaces, work through scripts, and bring your Roblox projects to life.</p><div class="auth-capabilities"><span><svg class="icon"><use href="#i-layout"/></svg>Interfaces</span><span><svg class="icon"><use href="#i-code"/></svg>Scripts</span><span><svg class="icon"><use href="#i-box"/></svg>Systems</span></div></div><span class="small muted">Made for Roblox developers.</span></div>
+  <div class="auth-intro"><div class="brand"><img data-logo alt="">Axiom<em>.</em></div><div><h1>Your next game<br>starts with <span>an idea.</span></h1><p>A place to build interfaces, work through scripts, and bring your Roblox projects to life.</p></div><span class="small muted">Made for Roblox developers.</span></div>
   <main class="auth-main"><form class="auth-card" id="authForm"><h2 id="authTitle">Welcome back.</h2><p id="authSub">Open your workspace and keep building.</p><div class="field"><label id="authUserLabel" for="authUser">Username or email</label><input id="authUser" autocomplete="username" maxlength="254" required placeholder="Username or verified email"></div><div class="field" id="authEmailField" hidden><label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com"><p class="help">Private. Used for verification and account recovery.</p></div><div class="field"><label for="authPass">Password</label><input id="authPass" type="password" autocomplete="current-password" maxlength="128" minlength="8" required placeholder="Your password"></div><div class="field" id="authConfirmField" hidden><label for="authConfirm">Confirm password</label><input id="authConfirm" type="password" autocomplete="new-password" maxlength="128" minlength="8" placeholder="Type it again"></div><details id="ownerSignup" class="owner-signup" hidden><summary>Registering a reserved owner account?</summary><label class="sr-only" for="ownerSignupCode">Owner registration code</label><input id="ownerSignupCode" type="password" autocomplete="off" maxlength="128" placeholder="Owner registration code"></details><p id="authError" class="form-error" role="alert"></p><button class="btn primary" id="authSubmit">Open workspace</button><div class="auth-secondary"><button type="button" class="auth-link" id="forgotPassword">Forgot password?</button><button type="button" class="auth-link" id="legacyClaimBtn">Claim an old local account</button></div><div class="auth-switch"><span id="authSwitchText">First time here?</span> <button type="button" id="authSwitch">Create an account</button></div><div class="auth-note">Usernames are unique across Axiom. Verified emails can be used to sign in and recover your account.</div></form></main>
 </section>
 <div id="app" hidden>
@@ -4401,7 +4401,7 @@ html[data-theme=dark] #chatView .composer-box{box-shadow:0 16px 44px rgba(0,0,0,
           <span id="dmConversationCount">0 conversations</span>
         </div>
         <button class="icon-btn" id="dmRefreshList" type="button" aria-label="Refresh conversations" title="Refresh conversations">
-          <svg class="icon"><use href="#i-search"/></svg>
+          <svg class="icon"><use href="#i-repeat"/></svg>
         </button>
       </div>
 
@@ -4988,6 +4988,7 @@ function syncViewURL(name){
   if(!next||!history?.pushState)return;
   if(location.pathname!==next)history.pushState({view:name},'',next);
   document.title=(name==='dms'?'Messages':name[0].toUpperCase()+name.slice(1))+' — Axiom';
+  if($('communityDrawer'))$('communityDrawer').open=true;
 }
 function syncChatURL(id=activeId,replace=false){
   if(!history?.pushState||profileUsernameFromPath())return;
@@ -5757,7 +5758,7 @@ function setModelProfile(next){
 function openChatView(){
   if(activeRequest)return;
   if(currentThread()?.messages.length)setMode('axiom');
-  else setMode('axiom',false);
+  else{setMode('axiom',false);syncChatURL(currentThread()?.id||null);}
   syncModelPicker();
   closeSidebar();
   requestAnimationFrame(()=>$('prompt').focus());
