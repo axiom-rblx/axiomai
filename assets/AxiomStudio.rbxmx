@@ -1,0 +1,947 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+  <Item class="Script" referent="RBXAXIOMSTUDIOSYNC">
+    <Properties>
+      <string name="Name">AxiomStudioSync</string>
+      <token name="RunContext">0</token>
+      <ProtectedString name="Source"><![CDATA[--!nocheck
+-- Axiom Studio Sync
+-- Connects Roblox Studio to your Axiom account at axiomai.technology.
+--
+--   • Connect with a 6-character code (no password in Studio).
+--   • Syncs your Explorer tree, scripts, selection and Output errors to Axiom,
+--     so website chats can see your real project.
+--   • Receives changes you send from the website, shows them for review, and
+--     applies them as a single undoable step (Ctrl+Z).
+--
+-- Install: save this file as AxiomStudio.lua (or the built AxiomStudio.rbxmx) in
+-- your Studio Plugins folder (Plugins tab → Plugins Folder), then restart Studio.
+
+local API = "https://axiom-proxy.itsizzydudee.workers.dev"
+local SITE = "axiomai.technology/studio"
+local PLUGIN_VERSION = "1.0.1"
+
+local HttpService = game:GetService("HttpService")
+local RunService = game:GetService("RunService")
+local LogService = game:GetService("LogService")
+local Selection = game:GetService("Selection")
+local ChangeHistoryService = game:GetService("ChangeHistoryService")
+local ScriptEditorService = game:GetService("ScriptEditorService")
+
+local TOKEN_KEY = "AxiomStudioToken_" .. tostring(game.PlaceId)
+
+-- Services Axiom reads for context and may edit. Everything else is off limits.
+local SYNC_SERVICES = {
+	"ServerScriptService", "ReplicatedStorage", "ReplicatedFirst", "StarterGui",
+	"StarterPack", "StarterPlayer", "ServerStorage", "Workspace", "Teams",
+}
+local WRITABLE = {
+	Workspace = true, ReplicatedStorage = true, ReplicatedFirst = true, ServerScriptService = true,
+	ServerStorage = true, StarterGui = true, StarterPack = true, StarterPlayer = true,
+	Lighting = true, SoundService = true, Teams = true, TextChatService = true, Chat = true,
+}
+local SCRIPT_CLASSES = { Script = true, LocalScript = true, ModuleScript = true }
+
+local LIMITS = {
+	treeNodes = 4000,
+	scripts = 350,
+	scriptChars = 120000,
+	totalChars = 850000,
+}
+
+local POLL_SECONDS = 2.5
+local SYNC_SECONDS = 6
+local ERROR_FLUSH_SECONDS = 2
+
+local function now()
+	return DateTime.now().UnixTimestampMillis
+end
+
+--------------------------------------------------------------------------------
+-- HTTP
+--------------------------------------------------------------------------------
+
+local function request(method, path, body, token)
+	local headers = { ["Content-Type"] = "application/json", ["X-Axiom-Plugin"] = PLUGIN_VERSION }
+	if token then
+		headers.Authorization = "Bearer " .. token
+	end
+	local ok, response = pcall(function()
+		return HttpService:RequestAsync({
+			Url = API .. path,
+			Method = method,
+			Headers = headers,
+			Body = body and HttpService:JSONEncode(body) or nil,
+		})
+	end)
+	if not ok then
+		local message = tostring(response)
+		if string.find(message, "not enabled", 1, true) or string.find(message, "permission", 1, true) then
+			message = "Studio blocked Axiom's web requests. Open Plugins → Manage Plugins → Axiom Studio Sync and allow HTTP requests to axiom-proxy.itsizzydudee.workers.dev."
+		end
+		return nil, { network = true, message = message }
+	end
+	local data = nil
+	pcall(function()
+		data = HttpService:JSONDecode(response.Body)
+	end)
+	if response.Success then
+		return data or {}, nil
+	end
+	local message = (type(data) == "table" and type(data.error) == "table" and data.error.message) or response.StatusMessage
+	return nil, { status = response.StatusCode, message = tostring(message) }
+end
+
+--------------------------------------------------------------------------------
+-- Project snapshot
+--------------------------------------------------------------------------------
+
+local function pathOf(instance)
+	local parts = {}
+	local node = instance
+	while node and node.Parent and node.Parent ~= game do
+		table.insert(parts, 1, node.Name)
+		node = node.Parent
+	end
+	if not node or node.Parent ~= game then
+		return nil
+	end
+	table.insert(parts, 1, node.ClassName)
+	return parts
+end
+
+local function readSource(scriptInstance)
+	-- Prefer the editor's text so unsaved edits are included.
+	local ok, text = pcall(function()
+		return ScriptEditorService:GetEditorSource(scriptInstance)
+	end)
+	if ok and type(text) == "string" then
+		return text
+	end
+	local okSource, source = pcall(function()
+		return scriptInstance.Source
+	end)
+	return okSource and source or ""
+end
+
+local function buildSnapshot()
+	local tree, scripts, total = {}, {}, 0
+
+	local function walk(parent, path, depth, workspaceMode)
+		for _, child in ipairs(parent:GetChildren()) do
+			if #tree >= LIMITS.treeNodes then
+				return
+			end
+			local isScript = SCRIPT_CLASSES[child.ClassName] == true
+			local isContainer = child:IsA("Folder") or child:IsA("Model")
+			-- Workspace can hold thousands of parts; only its structure and scripts matter here.
+			if workspaceMode and not (isScript or isContainer) then
+				continue
+			end
+			local childPath = table.clone(path)
+			table.insert(childPath, child.Name)
+			table.insert(tree, { p = childPath, c = child.ClassName })
+			if isScript and #scripts < LIMITS.scripts then
+				local source = readSource(child)
+				if total + #source <= LIMITS.totalChars then
+					total += #source
+					table.insert(scripts, { p = childPath, c = child.ClassName, s = string.sub(source, 1, LIMITS.scriptChars) })
+				end
+			end
+			if depth < (workspaceMode and 4 or 10) then
+				walk(child, childPath, depth + 1, workspaceMode)
+			end
+		end
+	end
+
+	for _, name in ipairs(SYNC_SERVICES) do
+		local ok, service = pcall(game.GetService, game, name)
+		if ok and service then
+			table.insert(tree, { p = { name }, c = service.ClassName })
+			walk(service, { name }, 1, name == "Workspace")
+		end
+	end
+
+	local selection = {}
+	for _, instance in ipairs(Selection:Get()) do
+		local path = pathOf(instance)
+		if path and #selection < 50 then
+			table.insert(selection, path)
+		end
+	end
+
+	return {
+		place = { id = game.PlaceId, name = game.Name },
+		tree = tree,
+		scripts = scripts,
+		selection = selection,
+	}
+end
+
+--------------------------------------------------------------------------------
+-- Applying changes
+--------------------------------------------------------------------------------
+
+local function decodeValue(value)
+	if type(value) == "string" and string.match(value, "^Enum%.%w+%.%w+$") then
+		local parts = string.split(value, ".")
+		return Enum[parts[2]][parts[3]]
+	end
+	if type(value) ~= "table" then
+		return value
+	end
+	local kind = value.type
+	if kind == "Color3" then
+		return Color3.fromRGB(value.r or 0, value.g or 0, value.b or 0)
+	elseif kind == "UDim" then
+		return UDim.new(value.scale or 0, value.offset or 0)
+	elseif kind == "UDim2" then
+		return UDim2.new(value.xs or 0, value.xo or 0, value.ys or 0, value.yo or 0)
+	elseif kind == "Vector2" then
+		return Vector2.new(value.x or 0, value.y or 0)
+	elseif kind == "Vector3" then
+		return Vector3.new(value.x or 0, value.y or 0, value.z or 0)
+	elseif kind == "Enum" then
+		local parts = string.split(tostring(value.value), ".")
+		if parts[1] == "Enum" then
+			table.remove(parts, 1)
+		end
+		return Enum[parts[1]][parts[2]]
+	elseif kind == "ColorSequence" then
+		local keypoints = {}
+		for _, point in ipairs(value.keypoints or {}) do
+			local c = point.color or {}
+			table.insert(keypoints, ColorSequenceKeypoint.new(point.time or 0, Color3.fromRGB(c.r or 0, c.g or 0, c.b or 0)))
+		end
+		return ColorSequence.new(keypoints)
+	elseif kind == "NumberSequence" then
+		local keypoints = {}
+		for _, point in ipairs(value.keypoints or {}) do
+			table.insert(keypoints, NumberSequenceKeypoint.new(point.time or 0, point.value or 0))
+		end
+		return NumberSequence.new(keypoints)
+	elseif kind == "NumberRange" then
+		return NumberRange.new(value.min or 0, value.max or value.min or 0)
+	end
+	error("unsupported value type " .. tostring(kind))
+end
+
+local function writeSource(scriptInstance, text)
+	if scriptInstance.Parent then
+		local ok = pcall(function()
+			ScriptEditorService:UpdateSourceAsync(scriptInstance, function()
+				return text
+			end)
+		end)
+		if ok then
+			return
+		end
+	end
+	scriptInstance.Source = text
+end
+
+local function setProperties(instance, properties, warnings)
+	for name, value in pairs(properties or {}) do
+		if name == "Parent" or name == "ClassName" then
+			continue
+		end
+		local ok, err = pcall(function()
+			if name == "Source" and SCRIPT_CLASSES[instance.ClassName] then
+				writeSource(instance, tostring(value))
+			else
+				instance[name] = decodeValue(value)
+			end
+		end)
+		if not ok then
+			table.insert(warnings, instance.Name .. "." .. tostring(name) .. ": " .. tostring(err))
+		end
+	end
+end
+
+local function resolve(path, createFolders)
+	if type(path) ~= "table" or not WRITABLE[path[1]] then
+		error("Axiom can't edit " .. tostring(path and path[1]))
+	end
+	local node = game:GetService(path[1])
+	for i = 2, #path do
+		local child = node:FindFirstChild(path[i])
+		if not child then
+			if not createFolders then
+				error("Missing " .. table.concat(path, "/", 1, i))
+			end
+			child = Instance.new("Folder")
+			child.Name = path[i]
+			child.Parent = node
+		end
+		node = child
+	end
+	return node
+end
+
+local function applyOperation(op, warnings, touched)
+	if op.op == "create" then
+		local parent = resolve(op.parent, op.ensure_parents == true)
+		local instance = parent:FindFirstChild(op.name)
+		if instance and (op.replace or instance.ClassName ~= op.class) then
+			if not op.replace then
+				error("A " .. instance.ClassName .. " named " .. op.name .. " already exists")
+			end
+			instance:Destroy()
+			instance = nil
+		end
+		local isNew = instance == nil
+		if isNew then
+			instance = Instance.new(op.class)
+			instance.Name = op.name
+		end
+		setProperties(instance, op.properties, warnings)
+		if isNew then
+			instance.Parent = parent
+		end
+		table.insert(touched, instance)
+	elseif op.op == "set" then
+		local instance = resolve(op.target, false)
+		setProperties(instance, op.properties, warnings)
+		table.insert(touched, instance)
+	elseif op.op == "delete" then
+		if type(op.target) ~= "table" or #op.target < 2 then
+			error("Axiom never deletes a service")
+		end
+		resolve(op.target, false):Destroy()
+	else
+		error("Unknown operation " .. tostring(op.op))
+	end
+end
+
+local function applyChange(change)
+	local label = "Axiom: " .. tostring(change.summary)
+	local recording = nil
+	pcall(function()
+		recording = ChangeHistoryService:TryBeginRecording(label)
+	end)
+	if not recording then
+		ChangeHistoryService:SetWaypoint("Before " .. label)
+	end
+
+	local applied, failures, warnings, touched = 0, {}, {}, {}
+	for index, op in ipairs(change.operations or {}) do
+		local ok, err = pcall(applyOperation, op, warnings, touched)
+		if ok then
+			applied += 1
+		else
+			table.insert(failures, "#" .. index .. ": " .. tostring(err))
+		end
+	end
+
+	if recording then
+		ChangeHistoryService:FinishRecording(
+			recording,
+			applied > 0 and Enum.FinishRecordingOperation.Commit or Enum.FinishRecordingOperation.Cancel
+		)
+	else
+		ChangeHistoryService:SetWaypoint(label)
+	end
+
+	-- Open the first script that changed so the result is visible immediately.
+	for _, instance in ipairs(touched) do
+		if SCRIPT_CLASSES[instance.ClassName] and instance.Parent then
+			pcall(function()
+				plugin:OpenScript(instance)
+			end)
+			break
+		end
+	end
+
+	return applied, failures, warnings
+end
+
+--------------------------------------------------------------------------------
+-- Output errors (runs in edit mode and in Play test sessions)
+--------------------------------------------------------------------------------
+
+local errorQueue = {}
+
+LogService.MessageOut:Connect(function(message, messageType)
+	if messageType ~= Enum.MessageType.MessageError or string.find(message, "[Axiom]", 1, true) then
+		return
+	end
+	-- Only script errors ("Script:12: …"); Studio's own messages (plugin icons,
+	-- asset loading) aren't problems in the user's game.
+	if not string.match(message, "[%a_][%w_%.]*:%d+:") then
+		return
+	end
+	if #errorQueue < 30 then
+		table.insert(errorQueue, {
+			message = string.sub(message, 1, 600),
+			at = now(),
+			source = RunService:IsRunning() and "playtest" or "studio",
+		})
+	end
+end)
+
+local function flushErrors()
+	local token = plugin:GetSetting(TOKEN_KEY)
+	if #errorQueue == 0 or type(token) ~= "string" then
+		return
+	end
+	local batch = errorQueue
+	errorQueue = {}
+	request("POST", "/studio/output", { errors = batch }, token)
+end
+
+task.spawn(function()
+	while true do
+		task.wait(ERROR_FLUSH_SECONDS)
+		flushErrors()
+	end
+end)
+
+-- Play-test copies of the plugin only relay errors; the panel lives in edit mode.
+if not RunService:IsEdit() then
+	return
+end
+
+--------------------------------------------------------------------------------
+-- Panel UI
+--------------------------------------------------------------------------------
+
+local toolbar = plugin:CreateToolbar("Axiom")
+local toggleButton = toolbar:CreateButton("AxiomSync", "Open Axiom Studio Sync", "", "Axiom")
+toggleButton.ClickableWhenViewportHidden = true
+
+local widgetInfo = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Right, false, false, 340, 520, 280, 320)
+local widget = plugin:CreateDockWidgetPluginGui("AxiomStudioSync", widgetInfo)
+widget.Title = "Axiom"
+widget.Name = "AxiomStudioSync"
+
+toggleButton.Click:Connect(function()
+	widget.Enabled = not widget.Enabled
+end)
+widget:GetPropertyChangedSignal("Enabled"):Connect(function()
+	toggleButton:SetActive(widget.Enabled)
+end)
+
+local function themeColor(styleColor, modifier)
+	return settings().Studio.Theme:GetColor(styleColor, modifier or Enum.StudioStyleGuideModifier.Default)
+end
+
+local C = {}
+local function refreshColors()
+	C.background = themeColor(Enum.StudioStyleGuideColor.MainBackground)
+	C.card = themeColor(Enum.StudioStyleGuideColor.InputFieldBackground)
+	C.text = themeColor(Enum.StudioStyleGuideColor.MainText)
+	C.muted = themeColor(Enum.StudioStyleGuideColor.DimmedText)
+	C.border = themeColor(Enum.StudioStyleGuideColor.Border)
+	C.accent = themeColor(Enum.StudioStyleGuideColor.MainButton)
+	C.accentText = themeColor(Enum.StudioStyleGuideColor.ButtonText, Enum.StudioStyleGuideModifier.Selected)
+	C.button = themeColor(Enum.StudioStyleGuideColor.Button)
+	C.buttonText = themeColor(Enum.StudioStyleGuideColor.ButtonText)
+	C.error = themeColor(Enum.StudioStyleGuideColor.ErrorText)
+	C.ok = Color3.fromRGB(64, 184, 120)
+end
+refreshColors()
+
+local root = Instance.new("ScrollingFrame")
+root.Name = "Root"
+root.Size = UDim2.fromScale(1, 1)
+root.BorderSizePixel = 0
+root.ScrollBarThickness = 6
+root.CanvasSize = UDim2.new()
+root.AutomaticCanvasSize = Enum.AutomaticSize.Y
+root.Parent = widget
+
+local rootPadding = Instance.new("UIPadding")
+rootPadding.PaddingTop = UDim.new(0, 12)
+rootPadding.PaddingBottom = UDim.new(0, 12)
+rootPadding.PaddingLeft = UDim.new(0, 12)
+rootPadding.PaddingRight = UDim.new(0, 14)
+rootPadding.Parent = root
+
+local rootLayout = Instance.new("UIListLayout")
+rootLayout.Padding = UDim.new(0, 10)
+rootLayout.SortOrder = Enum.SortOrder.LayoutOrder
+rootLayout.Parent = root
+
+local order = 0
+local function nextOrder()
+	order += 1
+	return order
+end
+
+local function corner(parent, radius)
+	local c = Instance.new("UICorner")
+	c.CornerRadius = UDim.new(0, radius or 6)
+	c.Parent = parent
+end
+
+local function text(parent, value, options)
+	options = options or {}
+	local label = Instance.new("TextLabel")
+	label.BackgroundTransparency = 1
+	label.Size = UDim2.new(1, 0, 0, 0)
+	label.AutomaticSize = Enum.AutomaticSize.Y
+	label.TextWrapped = true
+	label.TextXAlignment = options.align or Enum.TextXAlignment.Left
+	label.RichText = false
+	label.Font = options.bold and Enum.Font.SourceSansBold or Enum.Font.SourceSans
+	label.TextSize = options.size or 15
+	label.TextColor3 = options.color or C.text
+	label.Text = value
+	label.LayoutOrder = nextOrder()
+	label.Parent = parent
+	return label
+end
+
+local function selectableText(parent, value, options)
+	options = options or {}
+	local box = Instance.new("TextBox")
+	box.Size = UDim2.new(1, 0, 0, options.height or 32)
+	box.BackgroundColor3 = C.card
+	box.BorderSizePixel = 0
+	box.ClearTextOnFocus = false
+	box.TextEditable = false
+	box.Font = options.font or Enum.Font.Code
+	box.TextSize = options.size or 14
+	box.TextColor3 = C.text
+	box.Text = value
+	box.LayoutOrder = nextOrder()
+	box.Parent = parent
+	corner(box)
+	return box
+end
+
+local function button(parent, label, primary, onClick)
+	local b = Instance.new("TextButton")
+	b.AutoButtonColor = true
+	b.Size = UDim2.new(1, 0, 0, 32)
+	b.BackgroundColor3 = primary and C.accent or C.button
+	b.BorderSizePixel = 0
+	b.Font = Enum.Font.SourceSansBold
+	b.TextSize = 15
+	b.TextColor3 = primary and C.accentText or C.buttonText
+	b.Text = label
+	b.LayoutOrder = nextOrder()
+	b.Parent = parent
+	corner(b)
+	local busy = false
+	b.Activated:Connect(function()
+		if busy then
+			return
+		end
+		busy = true
+		local ok, err = pcall(onClick)
+		busy = false
+		if not ok then
+			warn("[Axiom] " .. tostring(err))
+		end
+	end)
+	return b
+end
+
+local function row(parent, height)
+	local frame = Instance.new("Frame")
+	frame.BackgroundTransparency = 1
+	frame.Size = UDim2.new(1, 0, 0, height or 32)
+	frame.LayoutOrder = nextOrder()
+	frame.Parent = parent
+	local layout = Instance.new("UIListLayout")
+	layout.FillDirection = Enum.FillDirection.Horizontal
+	layout.Padding = UDim.new(0, 8)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = frame
+	return frame
+end
+
+local function card(parent)
+	local frame = Instance.new("Frame")
+	frame.BackgroundColor3 = C.card
+	frame.BorderSizePixel = 0
+	frame.Size = UDim2.new(1, 0, 0, 0)
+	frame.AutomaticSize = Enum.AutomaticSize.Y
+	frame.LayoutOrder = nextOrder()
+	frame.Parent = parent
+	corner(frame, 8)
+	local stroke = Instance.new("UIStroke")
+	stroke.Color = C.border
+	stroke.Thickness = 1
+	stroke.Parent = frame
+	local padding = Instance.new("UIPadding")
+	padding.PaddingTop = UDim.new(0, 10)
+	padding.PaddingBottom = UDim.new(0, 10)
+	padding.PaddingLeft = UDim.new(0, 10)
+	padding.PaddingRight = UDim.new(0, 10)
+	padding.Parent = frame
+	local layout = Instance.new("UIListLayout")
+	layout.Padding = UDim.new(0, 6)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = frame
+	return frame
+end
+
+--------------------------------------------------------------------------------
+-- State and screens
+--------------------------------------------------------------------------------
+
+local state = {
+	screen = "loading", -- loading | connect | pairing | connected
+	notice = nil,
+	noticeIsError = false,
+	pairing = nil,
+	user = nil,
+	link = nil,
+	changes = {},
+	lastSyncAt = 0,
+	scriptCount = 0,
+	busyChange = nil,
+}
+local sessionGeneration = 0
+local statusLabel = nil
+local render
+
+local function setNotice(message, isError)
+	state.notice = message
+	state.noticeIsError = isError == true
+end
+
+local function ago(timestamp)
+	if timestamp == 0 then
+		return "not yet"
+	end
+	local seconds = math.floor((now() - timestamp) / 1000)
+	if seconds < 5 then
+		return "just now"
+	elseif seconds < 60 then
+		return seconds .. "s ago"
+	end
+	return math.floor(seconds / 60) .. "m ago"
+end
+
+local function syncStatusText()
+	return "Synced " .. ago(state.lastSyncAt) .. " · " .. state.scriptCount .. " scripts"
+end
+
+local function describeOp(op)
+	local path
+	if op.op == "create" then
+		path = table.concat(op.parent or {}, "/") .. "/" .. tostring(op.name)
+		return "+ " .. tostring(op.class) .. "  " .. path
+	elseif op.op == "set" then
+		path = table.concat(op.target or {}, "/")
+		local what = (op.properties and op.properties.Source) and "script" or "properties"
+		return "~ Update " .. what .. "  " .. path
+	end
+	return "− Delete  " .. table.concat(op.target or {}, "/")
+end
+
+local startSession, showConnect
+
+local function reportChange(change, status, applied, failures, warnings)
+	local token = plugin:GetSetting(TOKEN_KEY)
+	local detail = table.concat(failures or {}, "\n")
+	if warnings and #warnings > 0 then
+		detail = detail .. (detail ~= "" and "\n" or "") .. "Warnings:\n" .. table.concat(warnings, "\n")
+	end
+	request("POST", "/studio/changes/" .. change.id .. "/result", {
+		status = status,
+		applied = applied or 0,
+		failed = failures and #failures or 0,
+		detail = string.sub(detail, 1, 1900),
+	}, token)
+end
+
+local function onApply(change)
+	state.busyChange = change.id
+	local applied, failures, warnings = applyChange(change)
+	local status = applied > 0 and "applied" or "failed"
+	reportChange(change, status, applied, failures, warnings)
+	for i, item in ipairs(state.changes) do
+		if item.id == change.id then
+			table.remove(state.changes, i)
+			break
+		end
+	end
+	state.busyChange = nil
+	if applied > 0 and #failures == 0 then
+		setNotice("Applied " .. applied .. " change" .. (applied == 1 and "" or "s") .. ". Press Ctrl+Z to undo.")
+	elseif applied > 0 then
+		setNotice("Applied " .. applied .. ", " .. #failures .. " failed: " .. failures[1], true)
+	else
+		setNotice("Nothing was applied: " .. tostring(failures[1]), true)
+	end
+	for _, warning in ipairs(warnings) do
+		warn("[Axiom] " .. warning)
+	end
+	render()
+end
+
+local function onReject(change)
+	reportChange(change, "rejected", 0, {}, {})
+	for i, item in ipairs(state.changes) do
+		if item.id == change.id then
+			table.remove(state.changes, i)
+			break
+		end
+	end
+	setNotice("Change rejected.")
+	render()
+end
+
+render = function()
+	for _, child in ipairs(root:GetChildren()) do
+		if child:IsA("GuiObject") then
+			child:Destroy()
+		end
+	end
+	order = 0
+	statusLabel = nil
+	root.BackgroundColor3 = C.background
+
+	text(root, "Axiom Studio Sync", { bold = true, size = 20 })
+
+	if state.notice then
+		text(root, state.notice, { color = state.noticeIsError and C.error or C.muted, size = 14 })
+	end
+
+	if state.screen == "loading" then
+		text(root, "Checking your connection…", { color = C.muted })
+		return
+	end
+
+	if state.screen == "connect" then
+		text(root, "Connect Studio to your Axiom account so chats on the website can see this place and send changes here for you to review.", { color = C.muted })
+		button(root, "Get a connection code", true, function()
+			setNotice(nil)
+			local data, err = request("POST", "/studio/pair/start", {
+				place = { id = game.PlaceId, name = game.Name },
+				plugin_version = PLUGIN_VERSION,
+			})
+			if not data then
+				setNotice(err.message, true)
+				render()
+				return
+			end
+			state.pairing = data
+			state.pairing.expiresAt = now() + (data.expires_in or 600) * 1000
+			state.screen = "pairing"
+			render()
+
+			local generation = sessionGeneration
+			while state.screen == "pairing" and generation == sessionGeneration do
+				task.wait(2)
+				if state.screen ~= "pairing" or generation ~= sessionGeneration then
+					return
+				end
+				local poll, pollErr = request("POST", "/studio/pair/poll", {
+					pairing_id = data.pairing_id,
+					poll_secret = data.poll_secret,
+				})
+				if poll and poll.status == "connected" then
+					plugin:SetSetting(TOKEN_KEY, poll.token)
+					state.user = poll.user
+					state.link = poll.link
+					setNotice("Connected. Axiom can now see this place.")
+					startSession()
+					return
+				elseif poll and poll.status == "expired" then
+					state.screen = "connect"
+					setNotice("That code expired. Get a new one.", true)
+					render()
+					return
+				elseif not poll and pollErr and not pollErr.network then
+					state.screen = "connect"
+					setNotice(pollErr.message, true)
+					render()
+					return
+				end
+			end
+		end)
+		text(root, "Version " .. PLUGIN_VERSION, { color = C.muted, size = 13 })
+		return
+	end
+
+	if state.screen == "pairing" then
+		local box = card(root)
+		text(box, "1. Open this page while signed in to Axiom:", { color = C.muted, size = 14 })
+		selectableText(box, SITE, { font = Enum.Font.Code, size = 14 })
+		text(box, "2. Enter this code:", { color = C.muted, size = 14 })
+		selectableText(box, state.pairing.code, { height = 48, size = 30 })
+		text(box, "Waiting for you to enter it… The code expires in 10 minutes.", { color = C.muted, size = 13 })
+		button(root, "Cancel", false, function()
+			sessionGeneration += 1
+			state.screen = "connect"
+			setNotice(nil)
+			render()
+		end)
+		return
+	end
+
+	-- Connected
+	local header = card(root)
+	text(header, (state.link and state.link.place and state.link.place.name) or game.Name, { bold = true, size = 16 })
+	text(header, "Connected as " .. ((state.user and state.user.name) or "your account"), { color = C.muted, size = 14 })
+	statusLabel = text(header, syncStatusText(), { color = C.muted, size = 14 })
+
+	local actions = row(root, 32)
+	local syncButton = button(actions, "Sync now", false, function()
+		startSession(true)
+	end)
+	syncButton.Size = UDim2.new(0.5, -4, 1, 0)
+	local disconnectButton = button(actions, "Disconnect", false, function()
+		request("POST", "/studio/disconnect", {}, plugin:GetSetting(TOKEN_KEY))
+		showConnect("Disconnected from Axiom.")
+	end)
+	disconnectButton.Size = UDim2.new(0.5, -4, 1, 0)
+
+	text(root, "Changes from Axiom", { bold = true, size = 16 })
+	if #state.changes == 0 then
+		text(root, "Nothing waiting. Use “Send to Studio” on a reply at " .. SITE .. " and it will appear here for review.", { color = C.muted, size = 14 })
+	end
+	for _, change in ipairs(state.changes) do
+		local box = card(root)
+		text(box, tostring(change.summary), { bold = true, size = 15 })
+		local ops = change.operations or {}
+		for i, op in ipairs(ops) do
+			if i > 8 then
+				text(box, "+" .. (#ops - 8) .. " more", { color = C.muted, size = 13 })
+				break
+			end
+			text(box, describeOp(op), { color = C.muted, size = 13 })
+		end
+		local buttons = row(box, 30)
+		local applyButton = button(buttons, state.busyChange == change.id and "Applying…" or "Apply", true, function()
+			onApply(change)
+		end)
+		applyButton.Size = UDim2.new(0.5, -4, 1, 0)
+		local rejectButton = button(buttons, "Reject", false, function()
+			onReject(change)
+		end)
+		rejectButton.Size = UDim2.new(0.5, -4, 1, 0)
+	end
+end
+
+showConnect = function(message)
+	sessionGeneration += 1
+	plugin:SetSetting(TOKEN_KEY, nil)
+	state.screen = "connect"
+	state.changes = {}
+	state.link = nil
+	setNotice(message, message ~= nil and string.find(message, "Disconnected", 1, true) == nil)
+	render()
+end
+
+local function handleAuthError(err)
+	if err and err.status == 401 then
+		showConnect("This connection was removed on the website. Connect again.")
+		return true
+	end
+	return false
+end
+
+startSession = function(forceSync)
+	sessionGeneration += 1
+	local generation = sessionGeneration
+	local token = plugin:GetSetting(TOKEN_KEY)
+	state.screen = "connected"
+	render()
+
+	local lastSnapshot = nil
+	local function syncOnce(force)
+		local snapshot = buildSnapshot()
+		local encoded = HttpService:JSONEncode(snapshot)
+		if not force and encoded == lastSnapshot then
+			return
+		end
+		local data, err = request("POST", "/studio/snapshot", snapshot, token)
+		if data then
+			lastSnapshot = encoded
+			state.lastSyncAt = now()
+			state.scriptCount = #snapshot.scripts
+		elseif not handleAuthError(err) then
+			setNotice("Sync failed: " .. tostring(err.message), true)
+			render()
+		end
+	end
+
+	-- Push the project, then keep it fresh.
+	task.spawn(function()
+		syncOnce(forceSync)
+		while generation == sessionGeneration do
+			task.wait(SYNC_SECONDS)
+			if generation ~= sessionGeneration then
+				return
+			end
+			syncOnce(false)
+			if statusLabel then
+				statusLabel.Text = syncStatusText()
+			end
+		end
+	end)
+
+	-- Watch for changes sent from the website.
+	task.spawn(function()
+		while generation == sessionGeneration do
+			local data, err = request("GET", "/studio/changes", nil, token)
+			if generation ~= sessionGeneration then
+				return
+			end
+			if data and type(data.changes) == "table" then
+				local known = {}
+				for _, change in ipairs(state.changes) do
+					known[change.id] = true
+				end
+				local arrived = false
+				for _, change in ipairs(data.changes) do
+					if not known[change.id] then
+						table.insert(state.changes, change)
+						arrived = true
+					end
+				end
+				if arrived then
+					widget.Enabled = true
+					setNotice("New changes from Axiom are ready to review.")
+					render()
+				end
+			elseif handleAuthError(err) then
+				return
+			end
+			task.wait(POLL_SECONDS)
+		end
+	end)
+end
+
+settings().Studio.ThemeChanged:Connect(function()
+	refreshColors()
+	render()
+end)
+
+-- Resume a saved connection.
+task.spawn(function()
+	render()
+	local token = plugin:GetSetting(TOKEN_KEY)
+	if type(token) ~= "string" then
+		state.screen = "connect"
+		render()
+		return
+	end
+	local data, err = request("GET", "/studio/session", nil, token)
+	if data then
+		state.user = data.user
+		state.link = data.link
+		startSession(true)
+	elseif err and err.status == 401 then
+		showConnect("Your Axiom connection expired. Connect again.")
+	else
+		-- Offline or blocked: keep the token and let the user retry.
+		state.screen = "connect"
+		setNotice(err and err.message or "Could not reach Axiom.", true)
+		render()
+	end
+end)
+
+plugin.Unloading:Connect(function()
+	sessionGeneration += 1
+	flushErrors()
+end)
+]]></ProtectedString>
+    </Properties>
+  </Item>
+</roblox>
