@@ -325,3 +325,62 @@ html body dialog{font-family:var(--ui-font);background:var(--surface)!important;
 @media(prefers-reduced-motion:reduce){
   html body *,html body *::before,html body *::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
+
+/* ── Plans ────────────────────────────────────────────────────────────── */
+/* Pro wears the accent; Max is the inverted ink chip. */
+html body .plan-chip,html body .plan-badge{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:650;letter-spacing:.01em;background:var(--soft);color:var(--muted);border:1px solid var(--line)}
+html body .plan-chip[data-plan=pro],html body .plan-badge.pro{background:var(--blue-soft);color:var(--blue);border-color:transparent}
+html body .plan-chip[data-plan=max],html body .plan-badge.max{background:var(--ink);color:var(--surface);border-color:transparent}
+html body .plan-badge{margin-left:6px;vertical-align:middle}
+html body #app .plan-nav .plan-chip{margin-left:auto}
+
+html body .model-option.locked strong{color:var(--muted)}
+html body .model-badge.plan{background:var(--blue-soft)!important;color:var(--blue)!important}
+html body .model-plan-link{display:block;width:100%;margin-top:6px;padding:10px 12px;border:0;border-top:1px solid var(--line);background:none;color:var(--blue);font-size:13px;font-weight:600;text-align:left;cursor:pointer;border-radius:0 0 var(--r-md) var(--r-md)}
+html body .model-plan-link:hover{background:var(--soft)}
+
+html body dialog.plans-dialog{width:min(860px,calc(100% - 28px))}
+html body .plans-current{margin:0 0 18px;font-size:16px;font-weight:600;color:var(--ink)}
+html body .plan-usage{padding:16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--soft)}
+html body .plan-usage h3{margin:0 0 10px;font-size:13px;font-weight:650;color:var(--muted)}
+html body .usage-row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:6px 0;font-size:14px}
+html body .usage-value{color:var(--muted);font-variant-numeric:tabular-nums}
+html body .usage-bar{grid-column:1/-1;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+html body .usage-bar span{display:block;height:100%;border-radius:4px;background:var(--blue)}
+html body .plan-usage p{margin:8px 0 0}
+html body .plan-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+html body .plan-card{padding:18px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
+html body .plan-card.current{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
+html body .plan-card header{display:flex;align-items:center;justify-content:space-between;gap:8px}
+html body .plan-card h3{margin:0;font-size:17px;font-weight:650}
+html body .plan-tag{padding:2px 8px;border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:11px;font-weight:650}
+html body .plan-card>p{margin:6px 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
+html body .plan-card ul{margin:0;padding:0;list-style:none}
+html body .plan-card li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:13px}
+html body .plan-card li span{color:var(--muted)}
+html body .plan-card li strong{font-weight:600;text-align:right}
+html body .plans-note{margin:16px 0 0}
+@media(max-width:720px){html body .plan-grid{grid-template-columns:1fr}}
+
+html body .admin-plan-form{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+html body .admin-plan-form select{height:38px;padding:0 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface);color:var(--ink)}
+html body .admin-plan-remove{margin-top:8px}
+
+/* ── Cleanup (v14.3) ──────────────────────────────────────────────────── */
+/* The sidebar already has Settings and your profile; on desktop the top bar
+   keeps only the theme toggle and chat actions. */
+@media(min-width:901px){html body #topSettings,html body #topProfile{display:none!important}}
+@media(max-width:900px){
+  /* A closed drawer should leave no shadow on the page edge. */
+  html body #app .sidebar:not(.open){box-shadow:none!important}
+  /* Suggestions wrap instead of scrolling off screen. */
+  html body #chatView .suggestions{flex-wrap:wrap!important;overflow:visible!important}
+  /* A bare dot isn't a button anyone recognizes: show "Studio". */
+  html body #chatView .studio-chip{max-width:none;padding:0 10px}
+  html body #chatView .studio-chip::after{content:'Studio';font-size:13px}
+}
+@media(max-width:520px){
+  /* Project memory becomes an icon button; the invisible select on top still opens the full list. */
+  html body #chatView .project-context-row{position:relative;width:40px!important;min-width:40px;flex:0 0 40px!important;padding:0!important;justify-content:center}
+  html body #chatView #projectSelect{position:absolute;inset:0;width:100%;max-width:none;opacity:0;cursor:pointer}
+}
