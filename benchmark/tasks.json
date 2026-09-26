@@ -1,0 +1,257 @@
+[
+  {
+    "id": "script-leaderstats",
+    "category": "Scripting",
+    "prompt": "Make a server script that creates leaderstats with Cash and Diamonds for every player who joins.",
+    "expect": [
+      "leaderstats",
+      "PlayerAdded",
+      "Instance\\.new\\(\\s*[\"'](?:IntValue|NumberValue)[\"']",
+      "Cash",
+      "Diamonds"
+    ]
+  },
+  {
+    "id": "script-door",
+    "category": "Scripting",
+    "prompt": "A door part that slides open with TweenService when a player touches it, then closes after 3 seconds. Make sure it can't be triggered again while it's moving.",
+    "expect": [
+      "TweenService",
+      "Touched",
+      "TweenInfo",
+      "GetPlayerFromCharacter|Humanoid",
+      "debounce|isOpen|busy|moving|open\\s*=|opening"
+    ]
+  },
+  {
+    "id": "script-killbrick",
+    "category": "Scripting",
+    "prompt": "Make every part inside a Folder named KillBricks in Workspace kill any player that touches it.",
+    "expect": [
+      "KillBricks",
+      "Touched",
+      "Humanoid",
+      "Health\\s*=\\s*0|:TakeDamage|BreakJoints"
+    ]
+  },
+  {
+    "id": "script-round",
+    "category": "Scripting",
+    "prompt": "A round system: 15 second intermission, teleport all players to a map, a 60 second round, then back to the lobby. Show the time left to players.",
+    "expect": [
+      "task\\.wait|while",
+      "PivotTo|CFrame|MoveTo",
+      "RemoteEvent|StringValue|IntValue|SetAttribute",
+      "15",
+      "60"
+    ]
+  },
+  {
+    "id": "debug-parse",
+    "category": "Debugging",
+    "prompt": "I get this error: Players.Bob.PlayerScripts.Menu:3: Expected identifier when parsing expression, got '.'\n\n```lua\nlocal frame = script.Parent\nlocal button = frame.PlayButton\nbutton.Size = UDim2.new(0, 200, 0, .)\n```",
+    "expect": [
+      "UDim2\\.new\\(\\s*0\\s*,\\s*200\\s*,\\s*0\\s*,\\s*\\d+"
+    ]
+  },
+  {
+    "id": "debug-nil",
+    "category": "Debugging",
+    "prompt": "ServerScriptService.Rewards:5: attempt to index nil with 'Coins'\n\n```lua\nlocal Players = game:GetService(\"Players\")\n\nPlayers.PlayerAdded:Connect(function(player)\n\tlocal stats = player:FindFirstChild(\"leaderstats\")\n\tstats.Coins.Value += 100\nend)\n```",
+    "expect": [
+      "WaitForChild|if not \\w+ then|if \\w+ then|if \\w+ ~= nil"
+    ]
+  },
+  {
+    "id": "debug-jump",
+    "category": "Debugging",
+    "prompt": "This is supposed to count jumps but it counts twice per jump. Fix it.\n\n```lua\nlocal humanoid = script.Parent:WaitForChild(\"Humanoid\")\nlocal jumps = 0\nhumanoid.Jumping:Connect(function()\n\tjumps += 1\n\tprint(jumps)\nend)\n```",
+    "expect": [
+      "Jumping:Connect\\(function\\(\\s*\\w+|StateChanged|Enum\\.HumanoidStateType\\.Jumping"
+    ]
+  },
+  {
+    "id": "debug-infinite",
+    "category": "Debugging",
+    "prompt": "My game freezes as soon as I press Play. Why?\n\n```lua\nlocal part = workspace.Spinner\nwhile true do\n\tpart.CFrame = part.CFrame * CFrame.Angles(0, math.rad(1), 0)\nend\n```",
+    "expect": [
+      "task\\.wait|RunService|Heartbeat|RenderStepped"
+    ]
+  },
+  {
+    "id": "sec-shop",
+    "category": "Security",
+    "prompt": "Make a shop: the client asks to buy an item by name and the server checks the price and the player's Coins before buying.",
+    "expect": [
+      "OnServerEvent|OnServerInvoke",
+      "FireServer|InvokeServer",
+      "Coins",
+      "price|Price|cost|Cost"
+    ],
+    "forbid": [
+      "FireServer\\([^)]*\\bprice",
+      "InvokeServer\\([^)]*\\bprice"
+    ]
+  },
+  {
+    "id": "sec-reward",
+    "category": "Security",
+    "prompt": "Players can claim a daily reward of 100 Coins with a button. Make sure exploiters can't claim it more than once per day.",
+    "expect": [
+      "OnServerEvent|OnServerInvoke",
+      "os\\.time|DateTime|tick",
+      "DataStore|GetAsync|UpdateAsync|SetAsync|lastClaim|LastClaim"
+    ]
+  },
+  {
+    "id": "sec-damage",
+    "category": "Security",
+    "prompt": "A sword that damages other players when it hits them. It must be safe against exploiters sending fake hits.",
+    "expect": [
+      "OnServerEvent|Touched",
+      "Humanoid",
+      "Magnitude|distance|Distance|cooldown|Cooldown"
+    ],
+    "forbid": [
+      "FireServer\\([^)]*\\bdamage"
+    ]
+  },
+  {
+    "id": "sec-admin",
+    "category": "Security",
+    "prompt": "Add a server-side :kick command only admins can use, where admins are listed by UserId.",
+    "expect": [
+      "UserId",
+      "Chatted|TextChatService|TextChatCommand",
+      ":Kick\\("
+    ]
+  },
+  {
+    "id": "data-save",
+    "category": "Data",
+    "prompt": "Save and load each player's Coins with DataStoreService. Handle failures and save when the server shuts down.",
+    "expect": [
+      "GetDataStore",
+      "pcall",
+      "BindToClose",
+      "PlayerRemoving",
+      "GetAsync|UpdateAsync"
+    ]
+  },
+  {
+    "id": "data-table",
+    "category": "Data",
+    "prompt": "Save a player's inventory (a list of item names) and their level to a DataStore, and load it back when they join.",
+    "expect": [
+      "GetDataStore",
+      "pcall",
+      "GetAsync|UpdateAsync",
+      "SetAsync|UpdateAsync",
+      "PlayerAdded"
+    ]
+  },
+  {
+    "id": "data-ordered",
+    "category": "Data",
+    "prompt": "Make a global leaderboard of the top 10 players by Wins using an OrderedDataStore, shown on a SurfaceGui.",
+    "expect": [
+      "GetOrderedDataStore",
+      "GetSortedAsync",
+      "SurfaceGui|TextLabel",
+      "pcall"
+    ]
+  },
+  {
+    "id": "data-module",
+    "category": "Data",
+    "prompt": "Write a ModuleScript that manages player data (load, get, set, save) so my other server scripts can use it.",
+    "expect": [
+      "ModuleScript|return \\w+\\s*$|local \\w+ = \\{\\}",
+      "GetDataStore",
+      "pcall",
+      "function \\w+[.:]\\w+"
+    ]
+  },
+  {
+    "id": "ui-shop",
+    "category": "UI",
+    "prompt": "Build a clean shop UI with three item cards (name, price, buy button) that works on phone and PC.",
+    "expect": [
+      "ScreenGui",
+      "UICorner|UIStroke",
+      "UIListLayout|UIGridLayout",
+      "Activated",
+      "UIPadding|UISizeConstraint|UIAspectRatioConstraint|Scale"
+    ]
+  },
+  {
+    "id": "ui-health",
+    "category": "UI",
+    "prompt": "A health bar at the top of the screen that smoothly updates when the player takes damage.",
+    "expect": [
+      "HealthChanged|Health",
+      "TweenService|Lerp",
+      "Size",
+      "MaxHealth"
+    ]
+  },
+  {
+    "id": "ui-loading",
+    "category": "UI",
+    "prompt": "A loading screen that shows while the game loads, then fades out.",
+    "expect": [
+      "ReplicatedFirst|ContentProvider|game\\.Loaded|IsLoaded",
+      "TweenService|Transparency",
+      "ScreenGui"
+    ]
+  },
+  {
+    "id": "ui-notify",
+    "category": "UI",
+    "prompt": "A notification system: the server can send a message to one player and it pops up in the corner for 4 seconds.",
+    "expect": [
+      "RemoteEvent",
+      "FireClient",
+      "OnClientEvent",
+      "TweenService|task\\.wait|Debris"
+    ]
+  },
+  {
+    "id": "perf-heartbeat",
+    "category": "Performance",
+    "prompt": "Make coins in a Folder spin smoothly. There are 300 coins, so it has to be efficient.",
+    "expect": [
+      "RunService|TweenService",
+      "Heartbeat|RenderStepped|PreRender|TweenInfo"
+    ],
+    "forbid": [
+      "while true do[\\s\\S]{0,120}for _, \\w+ in"
+    ]
+  },
+  {
+    "id": "perf-remote",
+    "category": "Performance",
+    "prompt": "My game sends the position of every player to every client 60 times a second with a RemoteEvent and it lags. How do I fix it?",
+    "expect": [
+      "replicat|Roblox already|throttle|rate|less often|unreliable|UnreliableRemoteEvent"
+    ]
+  },
+  {
+    "id": "perf-leak",
+    "category": "Performance",
+    "prompt": "Why does this leak memory, and how do I fix it?\n\n```lua\nlocal Players = game:GetService(\"Players\")\nPlayers.PlayerAdded:Connect(function(player)\n\tplayer.CharacterAdded:Connect(function(character)\n\t\tgame:GetService(\"RunService\").Heartbeat:Connect(function()\n\t\t\tprint(character.PrimaryPart.Position)\n\t\tend)\n\tend)\nend)\n```",
+    "expect": [
+      "Disconnect|Destroying|AncestryChanged|Died|CharacterRemoving|Once"
+    ]
+  },
+  {
+    "id": "perf-scan",
+    "category": "Performance",
+    "prompt": "My game loops over workspace:GetDescendants() every frame to find parts tagged as lava, and it lags badly with 5,000 parts. What should I do instead? Show the code.",
+    "expect": [
+      "CollectionService",
+      "GetTagged|GetInstanceAddedSignal",
+      "Heartbeat|Touched|cache|once"
+    ]
+  }
+]

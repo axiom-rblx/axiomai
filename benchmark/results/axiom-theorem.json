@@ -1,0 +1,19 @@
+{
+  "name": "Axiom Theorem",
+  "kind": "axiom",
+  "collectedAt": "2026-09-26",
+  "tasks": {
+    "script-leaderstats": {
+      "score": 100,
+      "parts": {
+        "compiles": 25,
+        "realApis": 25,
+        "safe": 20,
+        "doesTheJob": 30
+      },
+      "notes": [],
+      "seconds": 2,
+      "answer": "**Location:** `ServerScriptService/LeaderstatsCreator` (Script)\n\n```lua\n-- LeaderstatsCreator\n-- Creates a Leaderstats folder with Cash and Diamonds IntValues for each player that joins.\n\nlocal Players = game:GetService(\"Players\")\n\nlocal function onPlayerAdded(player: Player)\n\t-- Create the Leaderstats container\n\tlocal leaderstats = Instance.new(\"Folder\")\n\tleaderstats.Name = \"leaderstats\"\n\tleaderstats.Parent = player\n\n\t-- Cash stat\n\tlocal cash = Instance.new(\"IntValue\")\n\tcash.Name = \"Cash\"\n\tcash.Value = 0\n\tcash.Parent = leaderstats\n\n\t-- Diamonds stat\n\tlocal diamonds = Instance.new(\"IntValue\")\n\tdiamonds.Name = \"Diamonds\"\n\tdiamonds.Value = 0\n\tdiamonds.Parent = leaderstats\nend\n\nPlayers.PlayerAdded:Connect(onPlayerAdded)\n\n-- In case the script loads after some players have already joined (e.g., during hot‑reload)\nfor _, player in ipairs(Players:GetPlayers()) do\n\tonPlayerAdded(player)\nend\n```"
+    }
+  }
+}
